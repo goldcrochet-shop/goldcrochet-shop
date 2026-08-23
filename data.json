@@ -11,7 +11,10 @@
         {
           "name": "Cores disponíveis",
           "colors": [
-            { "name": "Dourado", "hex": "#cda434" }
+            {
+              "name": "Dourado",
+              "hex": "#cda434"
+            }
           ]
         }
       ],
@@ -22,7 +25,10 @@
       "custom": true,
       "gallery": [],
       "colors": [
-        { "name": "Dourado", "hex": "#cda434" }
+        {
+          "name": "Dourado",
+          "hex": "#cda434"
+        }
       ]
     },
     {
@@ -41,16 +47,34 @@
         {
           "name": "Cor do corpo",
           "colors": [
-            { "name": "Marfim", "hex": "#f4ead0" },
-            { "name": "Dourado", "hex": "#cda434" },
-            { "name": "Marrom", "hex": "#6b4c2a" }
+            {
+              "name": "Marfim",
+              "hex": "#f4ead0"
+            },
+            {
+              "name": "Dourado",
+              "hex": "#cda434"
+            },
+            {
+              "name": "Marrom",
+              "hex": "#6b4c2a"
+            }
           ]
         }
       ],
       "colors": [
-        { "name": "Marfim", "hex": "#f4ead0" },
-        { "name": "Dourado", "hex": "#cda434" },
-        { "name": "Marrom", "hex": "#6b4c2a" }
+        {
+          "name": "Marfim",
+          "hex": "#f4ead0"
+        },
+        {
+          "name": "Dourado",
+          "hex": "#cda434"
+        },
+        {
+          "name": "Marrom",
+          "hex": "#6b4c2a"
+        }
       ]
     },
     {
@@ -69,16 +93,34 @@
         {
           "name": "Cores disponíveis",
           "colors": [
-            { "name": "Dourado", "hex": "#cda434" },
-            { "name": "Preto", "hex": "#2c2c2c" },
-            { "name": "Marfim", "hex": "#f4ead0" }
+            {
+              "name": "Dourado",
+              "hex": "#cda434"
+            },
+            {
+              "name": "Preto",
+              "hex": "#2c2c2c"
+            },
+            {
+              "name": "Marfim",
+              "hex": "#f4ead0"
+            }
           ]
         }
       ],
       "colors": [
-        { "name": "Dourado", "hex": "#cda434" },
-        { "name": "Preto", "hex": "#2c2c2c" },
-        { "name": "Marfim", "hex": "#f4ead0" }
+        {
+          "name": "Dourado",
+          "hex": "#cda434"
+        },
+        {
+          "name": "Preto",
+          "hex": "#2c2c2c"
+        },
+        {
+          "name": "Marfim",
+          "hex": "#f4ead0"
+        }
       ]
     },
     {
@@ -97,16 +139,34 @@
         {
           "name": "Cores disponíveis",
           "colors": [
-            { "name": "Marfim", "hex": "#f4ead0" },
-            { "name": "Champagne", "hex": "#e8d9ad" },
-            { "name": "Vinho", "hex": "#7a2437" }
+            {
+              "name": "Marfim",
+              "hex": "#f4ead0"
+            },
+            {
+              "name": "Champagne",
+              "hex": "#e8d9ad"
+            },
+            {
+              "name": "Vinho",
+              "hex": "#7a2437"
+            }
           ]
         }
       ],
       "colors": [
-        { "name": "Marfim", "hex": "#f4ead0" },
-        { "name": "Champagne", "hex": "#e8d9ad" },
-        { "name": "Vinho", "hex": "#7a2437" }
+        {
+          "name": "Marfim",
+          "hex": "#f4ead0"
+        },
+        {
+          "name": "Champagne",
+          "hex": "#e8d9ad"
+        },
+        {
+          "name": "Vinho",
+          "hex": "#7a2437"
+        }
       ]
     },
     {
@@ -125,14 +185,26 @@
         {
           "name": "Cores disponíveis",
           "colors": [
-            { "name": "Dourado", "hex": "#cda434" },
-            { "name": "Marfim", "hex": "#f4ead0" }
+            {
+              "name": "Dourado",
+              "hex": "#cda434"
+            },
+            {
+              "name": "Marfim",
+              "hex": "#f4ead0"
+            }
           ]
         }
       ],
       "colors": [
-        { "name": "Dourado", "hex": "#cda434" },
-        { "name": "Marfim", "hex": "#f4ead0" }
+        {
+          "name": "Dourado",
+          "hex": "#cda434"
+        },
+        {
+          "name": "Marfim",
+          "hex": "#f4ead0"
+        }
       ]
     },
     {
@@ -151,16 +223,34 @@
         {
           "name": "Cores disponíveis",
           "colors": [
-            { "name": "Dourado", "hex": "#cda434" },
-            { "name": "Preto", "hex": "#2c2c2c" },
-            { "name": "Rosé", "hex": "#c98a97" }
+            {
+              "name": "Dourado",
+              "hex": "#cda434"
+            },
+            {
+              "name": "Preto",
+              "hex": "#2c2c2c"
+            },
+            {
+              "name": "Rosé",
+              "hex": "#c98a97"
+            }
           ]
         }
       ],
       "colors": [
-        { "name": "Dourado", "hex": "#cda434" },
-        { "name": "Preto", "hex": "#2c2c2c" },
-        { "name": "Rosé", "hex": "#c98a97" }
+        {
+          "name": "Dourado",
+          "hex": "#cda434"
+        },
+        {
+          "name": "Preto",
+          "hex": "#2c2c2c"
+        },
+        {
+          "name": "Rosé",
+          "hex": "#c98a97"
+        }
       ]
     },
     {
@@ -175,21 +265,8 @@
       "model3d": "",
       "image": "",
       "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            { "name": "Dourado", "hex": "#cda434" },
-            { "name": "Rosé", "hex": "#c98a97" },
-            { "name": "Marfim", "hex": "#f4ead0" }
-          ]
-        }
-      ],
-      "colors": [
-        { "name": "Dourado", "hex": "#cda434" },
-        { "name": "Rosé", "hex": "#c98a97" },
-        { "name": "Marfim", "hex": "#f4ead0" }
-      ]
+      "colorSections": [],
+      "colors": []
     }
   ]
 }
