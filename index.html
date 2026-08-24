@@ -1,119 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gold Crochet — Início</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Crochet — Início</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <span>✦ Frete grátis acima de R$200</span>
-    <span class="hide-mobile">Parcele em até 3x sem juros</span>
-    <a href="https://wa.me/553182032351" class="hide-mobile">Atendimento via WhatsApp</a>
-  </div>
+    <!-- Placeholder do Header -->
+    <div id="header-placeholder"></div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-left">
-      <button class="nav-icon-btn" onclick="toggleCart()" aria-label="Carrinho" style="position:relative;">
-        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg>
-        <span class="cart-count-mini" id="navCartCount">0</span>
-      </button>
-    </div>
-    <a href="index.html" class="nav-logo"><span>Gold Crochet</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Casa Gold</a></li>
-      <li><a href="produtos.html">Produtos</a></li>
-      <li><a href="colecoes.html">Coleções</a></li>
-      <li><a href="casa-gold.html">Sobre Nós</a></li>
-      <li><a href="new.html" class="nav-cta">New</a></li>
-    </ul>
-    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  </nav>
+    <!-- Conteúdo da página (restante) -->
+    <main>
+        <div class="hero">
+            <!-- seu hero -->
+        </div>
+        <section class="carousel-section">
+            <!-- seu carrossel -->
+        </section>
+        <!-- ... -->
+    </main>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">🧶 Crochê Artesanal de Alto Padrão</div>
-      <h1>Elegância que se <em>Tece</em><br>à Mão</h1>
-      <p>Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.</p>
-      <div class="hero-buttons">
-        <a href="produtos.html" class="btn-primary">Ver Peças 🧶</a>
-        <a href="casa-gold.html" class="btn-secondary">Nossa História</a>
-      </div>
-    </div>
-  </div>
+    <!-- Placeholder do Footer -->
+    <div id="footer-placeholder"></div>
 
-  <!-- CAROUSEL -->
-  <section class="carousel-section">
-    <div class="section-header"><h2>Peças em <span style="color:#cda434;">Destaque</span></h2></div>
-    <div class="carousel-wrapper">
-      <div class="carousel-track" id="carouselTrack"></div>
-    </div>
-    <div class="carousel-dots" id="carouselDots"></div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="section-header"><h2>Por que <span style="color:#cda434;">Gold Crochet</span>?</h2></div>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg></div><h3>Fios Selecionados</h3><p>Fios premium para um caimento macio e duradouro.</p></div>
-      <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/></svg></div><h3>Múltiplas Cores</h3><p>Personalize com diversas cores.</p></div>
-      <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg></div><h3>Feito à Mão</h3><p>Cada ponto é único.</p></div>
-      <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4v16h16V4z"/></svg></div><h3>Customização Total</h3><p>Traga sua ideia.</p></div>
-    </div>
-  </section>
-
-  <!-- BLOG -->
-  <section class="blog-section">
-    <div class="section-header"><h2>Do nosso <span style="color:#cda434;">Blog</span></h2></div>
-    <div class="blog-grid">
-      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Tendências • 12 Jun</div><h3>O crochê na alta moda</h3><p>Como as passarelas estão redes cobrindo o artesanato.</p></div></div>
-      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Tutorial • 05 Jun</div><h3>Como cuidar das suas peças</h3><p>Dicas essenciais para manter o brilho do crochê.</p></div></div>
-      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Novidade • 28 Mai</div><h3>Novas cores disponíveis</h3><p>Ampliamos nossa paleta com tons exclusivos.</p></div></div>
-    </div>
-  </section>
-
-  <!-- CART FAB -->
-  <button class="cart-fab" onclick="toggleCart()"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg><span class="cart-count" id="cartCount">0</span></button>
-
-  <!-- CART PANEL -->
-  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-  <div class="cart-panel" id="cartPanel">
-    <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="toggleCart()">✕</button></div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-footer" id="cartFooter" style="display:none">
-      <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
-      <button class="checkout-btn" onclick="checkout()">Finalizar pelo WhatsApp 🚀</button>
-    </div>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-content">
-        <h2 id="modalTitle"></h2>
-        <div id="modalPrice" style="font-size:1.5rem; color:#cda434; margin:10px 0;"></div>
-        <p id="modalDesc"></p>
-        <button class="btn-primary" style="width:100%; margin-top:20px;" onclick="addToCart(currentModalId); closeModal();">Adicionar à Sacola 🛍️</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-grid">
-      <div><div class="footer-brand-name">Gold Crochet</div><p style="color:rgba(255,255,255,0.6);">Transformando fio em peças elegantes.</p></div>
-      <div class="footer-col"><h4>Navegação</h4><ul><li><a href="index.html">Casa Gold</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="colecoes.html">Coleções</a></li><li><a href="casa-gold.html">Sobre Nós</a></li><li><a href="new.html">New</a></li></ul></div>
-      <div class="footer-col"><h4>Contato</h4><ul><li><a href="https://instagram.com/goldc.rochet" target="_blank">Instagram</a></li><li><a href="https://wa.me/553182032351" target="_blank">WhatsApp</a></li><li><a href="mailto:rayssacrochet1404@gmail.com">E-mail</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><p>© 2026 Gold Crochet</p></div>
-  </footer>
-
-  <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script src="js/load-components.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
