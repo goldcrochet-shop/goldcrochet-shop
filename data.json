@@ -125,7 +125,7 @@
     },
     {
       "id": 1003,
-      "name": "Manta de Crochê Ponto Concha 🛋️",
+      "name": "Manta de Crochê Concha 🛋️",
       "emoji": "🛋️",
       "desc": "Manta artesanal em ponto concha, macia e aconchegante. Uma peça atemporal para decorar e aquecer com estilo.",
       "category": "Mantas",
@@ -135,39 +135,8 @@
       "model3d": "",
       "image": "",
       "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Champagne",
-              "hex": "#e8d9ad"
-            },
-            {
-              "name": "Vinho",
-              "hex": "#7a2437"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Champagne",
-          "hex": "#e8d9ad"
-        },
-        {
-          "name": "Vinho",
-          "hex": "#7a2437"
-        }
-      ]
+      "colorSections": [],
+      "colors": []
     },
     {
       "id": 1004,
