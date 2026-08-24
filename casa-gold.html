@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Crochet — Casa Gold & Sobre Nós</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>✦ Frete grátis acima de R$200</span>
+    <span class="hide-mobile">Parcele em até 3x sem juros</span>
+    <a href="https://wa.me/553182032351" class="hide-mobile">Atendimento via WhatsApp</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <button class="nav-icon-btn" onclick="toggleCart()" aria-label="Carrinho" style="position:relative;">
+        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg>
+        <span class="cart-count-mini" id="navCartCount">0</span>
+      </button>
+    </div>
+    <a href="index.html" class="nav-logo"><span>Gold Crochet</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Casa Gold</a></li>
+      <li><a href="produtos.html">Produtos</a></li>
+      <li><a href="colecoes.html">Coleções</a></li>
+      <li><a href="casa-gold.html" class="active">Sobre Nós</a></li>
+      <li><a href="new.html" class="nav-cta">New</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- SOBRE EDITORIAL -->
+  <div class="about-editorial">
+    <div class="about-editorial-inner">
+      <div class="about-col">
+        <h3>Sobre a Casa</h3>
+        <h2>A História da Gold Crochet</h2>
+        <p>Nascemos da paixão por criar. De um novelo de fio a uma marca, a Gold Crochet começou como um sonho de transformar o crochê artesanal em peças de alto padrão, elegantes e atemporais.</p>
+        <p>Cada peça que sai das nossas mãos foi feita com cuidado, atenção aos detalhes e muito amor pelo que fazemos.</p>
+      </div>
+      <div class="about-col">
+        <h3>Colaborações</h3>
+        <h2>Parcerias e Projetos</h2>
+        <p>Trabalhamos com designers, influenciadores e marcas que compartilham nosso amor pelo feito à mão.</p>
+        <p>Se você tem uma ideia ou projeto, queremos ouvir! Entre em contato.</p>
+        <a href="https://wa.me/553182032351" class="btn-secondary">Fale Conosco</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOG / CASA GOLD -->
+  <div class="blog-section">
+    <div class="section-header"><h2>Do nosso <span style="color:#cda434;">Blog</span></h2></div>
+    <div class="blog-grid">
+      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Tendências • 12 Jun</div><h3>O crochê na alta moda</h3><p>Como as passarelas estão redes cobrindo o artesanato.</p></div></div>
+      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Tutorial • 05 Jun</div><h3>Como cuidar das suas peças</h3><p>Dicas essenciais para manter o brilho do crochê.</p></div></div>
+      <div class="blog-card"><div class="blog-card-img"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg></div><div class="blog-card-body"><div class="blog-card-meta">Novidade • 28 Mai</div><h3>Novas cores disponíveis</h3><p>Ampliamos nossa paleta com tons exclusivos.</p></div></div>
+    </div>
+  </div>
+
+  <!-- CART FAB -->
+  <button class="cart-fab" onclick="toggleCart()"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg><span class="cart-count" id="cartCount">0</span></button>
+
+  <!-- CART PANEL -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="toggleCart()">✕</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+      <button class="checkout-btn" onclick="checkout()">Finalizar pelo WhatsApp 🚀</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Gold Crochet</div><p style="color:rgba(255,255,255,0.6);">Transformando fio em peças elegantes.</p></div>
+      <div class="footer-col"><h4>Navegação</h4><ul><li><a href="index.html">Casa Gold</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="colecoes.html">Coleções</a></li><li><a href="casa-gold.html">Sobre Nós</a></li><li><a href="new.html">New</a></li></ul></div>
+      <div class="footer-col"><h4>Contato</h4><ul><li><a href="https://instagram.com/goldc.rochet" target="_blank">Instagram</a></li><li><a href="https://wa.me/553182032351" target="_blank">WhatsApp</a></li><li><a href="mailto:rayssacrochet1404@gmail.com">E-mail</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Gold Crochet</p></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
