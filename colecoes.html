@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Crochet — Coleções</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>✦ Frete grátis acima de R$200</span>
+    <span class="hide-mobile">Parcele em até 3x sem juros</span>
+    <a href="https://wa.me/553182032351" class="hide-mobile">Atendimento via WhatsApp</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <button class="nav-icon-btn" onclick="toggleCart()" aria-label="Carrinho" style="position:relative;">
+        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg>
+        <span class="cart-count-mini" id="navCartCount">0</span>
+      </button>
+    </div>
+    <a href="index.html" class="nav-logo"><span>Gold Crochet</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Casa Gold</a></li>
+      <li><a href="produtos.html">Produtos</a></li>
+      <li><a href="colecoes.html" class="active">Coleções</a></li>
+      <li><a href="casa-gold.html">Sobre Nós</a></li>
+      <li><a href="new.html" class="nav-cta">New</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- CONTEÚDO -->
+  <div class="products-hero">
+    <h1>Nossas Coleções</h1>
+    <p>Linhas temáticas criadas com exclusividade.</p>
+  </div>
+  <div style="padding:40px 5%; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;">
+    <div style="background:#fff; border-radius:20px; box-shadow:var(--shadow-card); padding:30px; text-align:center;">
+      <h2>Coleção Ouro</h2>
+      <p style="color:#6b5b3a;">Peças com tons dourados e acabamento brilhante.</p>
+    </div>
+    <div style="background:#fff; border-radius:20px; box-shadow:var(--shadow-card); padding:30px; text-align:center;">
+      <h2>Coleção Pastel</h2>
+      <p style="color:#6b5b3a;">Tons suaves e delicados para um visual romântico.</p>
+    </div>
+    <div style="background:#fff; border-radius:20px; box-shadow:var(--shadow-card); padding:30px; text-align:center;">
+      <h2>Coleção Verão</h2>
+      <p style="color:#6b5b3a;">Peças leves e frescas para os dias quentes.</p>
+    </div>
+  </div>
+
+  <!-- CART FAB -->
+  <button class="cart-fab" onclick="toggleCart()"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6zm1 0l1 3h10l1-3H7zm3-3c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.2-1.8-4-4-4S8-2.8 8 1H7z"/></svg><span class="cart-count" id="cartCount">0</span></button>
+
+  <!-- CART PANEL -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="toggleCart()">✕</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+      <button class="checkout-btn" onclick="checkout()">Finalizar pelo WhatsApp 🚀</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">Gold Crochet</div><p style="color:rgba(255,255,255,0.6);">Transformando fio em peças elegantes.</p></div>
+      <div class="footer-col"><h4>Navegação</h4><ul><li><a href="index.html">Casa Gold</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="colecoes.html">Coleções</a></li><li><a href="casa-gold.html">Sobre Nós</a></li><li><a href="new.html">New</a></li></ul></div>
+      <div class="footer-col"><h4>Contato</h4><ul><li><a href="https://instagram.com/goldc.rochet" target="_blank">Instagram</a></li><li><a href="https://wa.me/553182032351" target="_blank">WhatsApp</a></li><li><a href="mailto:rayssacrochet1404@gmail.com">E-mail</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Gold Crochet</p></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
