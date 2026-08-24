@@ -1,32 +1,19 @@
-async function loadComponent(elementId, url, callback) {
+async function loadComponent(id, url) {
   try {
     const response = await fetch(url);
     const html = await response.text();
-    document.getElementById(elementId).innerHTML = html;
-    if (callback) callback();
+    document.getElementById(id).innerHTML = html;
+    if (id === 'header-placeholder') initHeaderScroll();
   } catch (error) {
     console.error(`Erro ao carregar ${url}:`, error);
   }
 }
 
-// Carregar header e footer em todas as páginas
-document.addEventListener('DOMContentLoaded', () => {
-  // Coloque os placeholders no HTML com esses IDs
-  loadComponent('header-placeholder', 'components/header.html', () => {
-    // Inicializa efeito de scroll do header
-    initHeaderScroll();
-  });
-  loadComponent('footer-placeholder', 'components/footer.html');
-});
-
-// Função para o efeito de recolher/estender o header
 function initHeaderScroll() {
   const header = document.getElementById('meuHeader');
   if (!header) return;
-  const offset = 80;
-
   window.addEventListener('scroll', () => {
-    if (window.scrollY > offset) {
+    if (window.scrollY > 80) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -34,8 +21,13 @@ function initHeaderScroll() {
   });
 }
 
-// Função para toggle do menu mobile
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.toggle('open');
 }
+
+// Executa quando a página carrega
+document.addEventListener('DOMContentLoaded', () => {
+  loadComponent('header-placeholder', 'componentes/header.html');
+  loadComponent('footer-placeholder', 'componentes/footer.html');
+});
