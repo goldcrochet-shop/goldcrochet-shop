@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gold Crochet</title>
 <meta name="description" content="Peças em crochê feitas à mão, com acabamento premium.">
 <meta name="theme-color" content="#d4af37">
@@ -29,6 +29,8 @@
     --shadow-drawer:10px 0 40px rgba(55,39,5,0.20);
     --safe-top:env(safe-area-inset-top,0px);
     --safe-bottom:env(safe-area-inset-bottom,0px);
+    --safe-left:env(safe-area-inset-left,0px);
+    --safe-right:env(safe-area-inset-right,0px);
     --drawer-w:min(390px,92vw);
     --spring:cubic-bezier(0.34,1.56,0.64,1);
     --out:cubic-bezier(0.16,1,0.3,1);
@@ -46,9 +48,26 @@
   .liquid-glass::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 60%), radial-gradient(circle at 80% 70%, rgba(205,164,52,0.15) 0%, transparent 50%); mix-blend-mode:overlay; opacity:0.4; animation:liquidShimmer 8s ease-in-out infinite alternate; border-radius:inherit; }
   @keyframes liquidShimmer { 0%{transform:translate(-5%,-5%) scale(1); opacity:0.3;} 50%{transform:translate(5%,5%) scale(1.1); opacity:0.6;} 100%{transform:translate(-2%,3%) scale(0.95); opacity:0.4;} }
 
-  /* NAVBAR */
-  nav { position:fixed; top:0; left:0; right:0; z-index:1000; height:var(--nav-h); background:rgba(253,246,214,0.94); backdrop-filter:blur(24px); border-bottom:1px solid rgba(212,175,55,0.12); box-shadow:0 2px 20px rgba(166,124,0,0.08); transition:height 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.45s ease, background 0.35s ease; will-change:height; }
-  nav.scrolled { height:var(--nav-h-scrolled); box-shadow:0 4px 32px rgba(166,124,0,0.15); background:rgba(253,246,214,0.97); }
+  /* ==========================================================
+     NAVBAR (com safe-area para notch/Dynamic Island)
+     ========================================================== */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    height:calc(var(--nav-h) + var(--safe-top));
+    padding-top:var(--safe-top);
+    padding-left:var(--safe-left);
+    padding-right:var(--safe-right);
+    background:rgba(253,246,214,0.94);
+    backdrop-filter:blur(24px);
+    border-bottom:1px solid rgba(212,175,55,0.12);
+    box-shadow:0 2px 20px rgba(166,124,0,0.08);
+    transition:height 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.45s ease, background 0.35s ease;
+    will-change:height;
+  }
+  nav.scrolled { height:calc(var(--nav-h-scrolled) + var(--safe-top)); box-shadow:0 4px 32px rgba(166,124,0,0.15); background:rgba(253,246,214,0.97); }
+  /* .nav-inner mantém os filhos absolutos posicionados dentro de --nav-h puro */
+  .nav-inner { position:relative; width:100%; height:var(--nav-h); transition:height 0.5s cubic-bezier(0.4,0,0.2,1); }
+  nav.scrolled .nav-inner { height:var(--nav-h-scrolled); }
 
   /* ==========================================================
      HAMBURGER — VERSÃO V2 (exata)
@@ -132,14 +151,14 @@
   .icon-btn.search-trigger .icon-btn-label { font-family:'Outfit', sans-serif; white-space:nowrap; }
 
   .skip-link { position:absolute; top:-40px; left:16px; background:var(--gold-main); color:#fff; padding:8px 16px; border-radius:var(--radius-pill); font-size:0.85rem; font-weight:700; z-index:2000; transition:top 0.3s; }
-  .skip-link:focus { top:12px; }
+  .skip-link:focus { top:calc(12px + var(--safe-top)); }
 
   .page { display:none; position:relative; z-index:1; }
   .page.active { display:block; }
-  main { padding-top:var(--nav-h); min-height:100vh; }
+  main { padding-top:calc(var(--nav-h) + var(--safe-top)); min-height:100vh; }
 
   /* Hero */
-  .hero { min-height:calc(100vh - var(--nav-h)); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 5% 40px; background:linear-gradient(145deg,var(--off-white) 0%,var(--gold-pale) 60%,#f2debf 100%); position:relative; overflow:hidden; }
+  .hero { min-height:calc(100vh - var(--nav-h) - var(--safe-top)); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 5% 40px; background:linear-gradient(145deg,var(--off-white) 0%,var(--gold-pale) 60%,#f2debf 100%); position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:-100px; right:-100px; width:460px; height:460px; background:radial-gradient(circle,rgba(212,175,55,0.3) 0%,transparent 70%); border-radius:50%; pointer-events:none; animation:floatA 9s ease-in-out infinite; }
   .hero::after { content:''; position:absolute; bottom:-80px; left:-80px; width:360px; height:360px; background:radial-gradient(circle,rgba(186,215,232,0.15) 0%,transparent 70%); border-radius:50%; pointer-events:none; animation:floatB 11s ease-in-out infinite; }
   @keyframes floatA { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-28px,18px)} }
@@ -293,7 +312,7 @@
   /* Carrinho / Favoritos */
   .cart-overlay, .fav-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.5); z-index:1100; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .cart-overlay.open, .fav-overlay.open { opacity:1; pointer-events:all; }
-  .cart-panel, .fav-panel { position:fixed; right:0; top:0; bottom:0; width:min(400px,100vw); background:var(--white); z-index:1200; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; box-shadow:-8px 0 40px rgba(0,0,0,0.14); }
+  .cart-panel, .fav-panel { position:fixed; right:0; top:0; bottom:0; width:min(400px,100vw); background:var(--white); z-index:1200; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; box-shadow:-8px 0 40px rgba(0,0,0,0.14); padding-top:var(--safe-top); padding-bottom:var(--safe-bottom); }
   .cart-panel.open, .fav-panel.open { transform:translateX(0); }
   .cart-header { padding:22px; border-bottom:1px solid var(--gray-light); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
   .cart-header h2 { font-family:'DM Serif Display',serif; font-size:1.4rem; }
@@ -524,7 +543,7 @@
   }
 
   /* SEARCH OVERLAY */
-  .search-overlay { position:fixed; inset:0; background:rgba(253,249,240,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); z-index:2100; opacity:0; pointer-events:none; transition:opacity 0.3s ease; display:flex; flex-direction:column; }
+  .search-overlay { position:fixed; inset:0; background:rgba(253,249,240,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); z-index:2100; opacity:0; pointer-events:none; transition:opacity 0.3s ease; display:flex; flex-direction:column; padding-top:var(--safe-top); padding-bottom:var(--safe-bottom); }
   .search-overlay.open { opacity:1; pointer-events:all; }
   .search-overlay-header { padding:24px 5%; border-bottom:1px solid rgba(212,175,55,0.15); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; max-width:1200px; margin:0 auto; width:100%; }
   .search-overlay-title { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--gold-deep); }
@@ -573,7 +592,7 @@
   .timeline-year { font-size:0.78rem; font-weight:700; color:var(--gold-main); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px; }
   .timeline-text { font-size:0.93rem; color:var(--text-mid); line-height:1.65; }
 
-  footer { background:var(--text-dark); color:rgba(255,255,255,0.75); padding:52px 5% 22px; position:relative; z-index:1; }
+  footer { background:var(--text-dark); color:rgba(255,255,255,0.75); padding:52px 5% calc(22px + var(--safe-bottom)); position:relative; z-index:1; }
   .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:40px; max-width:1200px; margin:0 auto 40px; }
   .footer-brand-name { font-family:'DM Serif Display',serif; font-size:1.3rem; color:#fff; margin-bottom:8px; }
   .footer-brand p { font-size:0.86rem; line-height:1.7; max-width:240px; }
@@ -589,19 +608,19 @@
   .social-circle { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:0.9rem; cursor:pointer; transition:var(--transition); text-decoration:none; color:#fff; }
   .social-circle:hover { background:var(--gold-main); transform:translateY(-3px); }
 
-  .toast { position:fixed; bottom:96px; right:26px; z-index:3000; background:var(--text-dark); color:#fff; padding:12px 20px; border-radius:14px; font-size:0.88rem; font-weight:600; box-shadow:0 8px 28px rgba(0,0,0,0.2); transform:translateY(16px); opacity:0; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); pointer-events:none; border-left:4px solid var(--gold-main); max-width:270px; line-height:1.4; }
+  .toast { position:fixed; bottom:calc(96px + var(--safe-bottom)); right:26px; z-index:3000; background:var(--text-dark); color:#fff; padding:12px 20px; border-radius:14px; font-size:0.88rem; font-weight:600; box-shadow:0 8px 28px rgba(0,0,0,0.2); transform:translateY(16px); opacity:0; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); pointer-events:none; border-left:4px solid var(--gold-main); max-width:270px; line-height:1.4; }
   .toast.show { opacity:1; transform:translateY(0); }
   .toast.success { border-left-color:var(--success); }
   .toast.error { border-left-color:var(--danger); }
 
-  .cookie-banner { position:fixed; bottom:0; left:0; right:0; z-index:2000; background:var(--text-dark); color:rgba(255,255,255,0.85); padding:16px 5%; display:flex; align-items:center; gap:18px; flex-wrap:wrap; box-shadow:0 -4px 24px rgba(0,0,0,0.18); transform:translateY(100%); transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .cookie-banner { position:fixed; bottom:0; left:0; right:0; z-index:2000; background:var(--text-dark); color:rgba(255,255,255,0.85); padding:16px 5% calc(16px + var(--safe-bottom)); display:flex; align-items:center; gap:18px; flex-wrap:wrap; box-shadow:0 -4px 24px rgba(0,0,0,0.18); transform:translateY(100%); transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
   .cookie-banner.show { transform:translateY(0); }
   .cookie-banner p { flex:1; font-size:0.86rem; line-height:1.6; min-width:200px; }
   .cookie-banner a { color:var(--gold-light); }
   .cookie-accept { background:var(--gold-main); color:#fff; border:none; cursor:pointer; padding:9px 24px; border-radius:var(--radius-pill); font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:700; }
   .cookie-decline { background:transparent; color:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.25); cursor:pointer; padding:8px 18px; border-radius:var(--radius-pill); font-family:'Outfit',sans-serif; font-size:0.86rem; }
 
-  .back-top { position:fixed; bottom:28px; right:28px; z-index:800; width:42px; height:42px; border-radius:50%; background:rgba(212,175,55,0.85); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:0 4px 14px rgba(212,175,55,0.4); transition:var(--transition); opacity:0; pointer-events:none; backdrop-filter:blur(8px); }
+  .back-top { position:fixed; bottom:calc(28px + var(--safe-bottom)); right:28px; z-index:800; width:42px; height:42px; border-radius:50%; background:rgba(212,175,55,0.85); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:0 4px 14px rgba(212,175,55,0.4); transition:var(--transition); opacity:0; pointer-events:none; backdrop-filter:blur(8px); }
   .back-top.visible { opacity:1; pointer-events:all; }
   .back-top:hover { background:var(--gold-main); transform:translateY(-3px); }
   .back-top svg { width:16px; height:16px; }
@@ -683,6 +702,24 @@
   .user-modal-btn:hover { background:var(--gold-deep); transform:translateY(-2px); }
   .user-modal-toggle { text-align:center; margin-top:20px; font-size:0.85rem; color:var(--text-mid); }
   .user-modal-toggle button { background:none; border:none; color:var(--gold-main); font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; font-size:0.85rem; }
+
+  /* ==========================================================
+     PREFERS-REDUCED-MOTION — desliga animações para quem pediu
+     ========================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero::before, .hero::after, .hero-scroll,
+    .liquid-glass::after, .skeleton, .fade-in,
+    .reveal { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .fade-in, .fade-in-1, .fade-in-2, .fade-in-3 { opacity: 1 !important; }
+    .carousel-track { transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -692,15 +729,15 @@
 <div class="mouse-light" id="mouseLight" aria-hidden="true"></div>
 
 <!-- SEARCH OVERLAY -->
-<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true">
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Pesquisa">
   <div class="search-overlay-header">
     <span class="search-overlay-title">Pesquisar</span>
     <button class="search-overlay-close" onclick="closeSearchOverlay()" aria-label="Fechar pesquisa">✕</button>
   </div>
   <div class="search-overlay-content">
     <div class="search-overlay-input-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <input type="text" id="searchOverlayInput" placeholder="Buscar peças..." oninput="onSearchOverlay(this.value)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchOverlayInput" placeholder="Buscar peças... (Ctrl+K)" oninput="onSearchOverlay(this.value)">
     </div>
     <div class="search-overlay-results" id="searchOverlayResults"></div>
   </div>
@@ -708,46 +745,44 @@
 
 <!-- NAV -->
 <nav id="mainNav" aria-label="Navegação principal">
-  <button class="hamburger" id="hamburger" type="button" onclick="toggleLeftMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="leftMenu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="#" class="nav-logo" onclick="showPage('inicio');return false;">
-    <img id="navLogoImg" src="./assets/logo.png" alt="Gold Crochet">
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#" onclick="showPage('inicio');return false;" class="active" id="nav-inicio">Início</a></li>
-    <li><a href="#" onclick="showPage('colecoes');return false;" id="nav-colecoes">Coleções</a></li>
-    <li><a href="#" onclick="showPage('produtos');return false;" id="nav-produtos">Peças</a></li>
-    <li><a href="#" onclick="showPage('novidades');return false;" id="nav-novidades">Novidades</a></li>
-    <li><a href="#" onclick="showPage('sobre');return false;" id="nav-sobre">Casa Gold</a></li>
-  </ul>
-  <div class="nav-icons">
-    <button class="icon-btn search-trigger" aria-label="Pesquisa" onclick="openSearchOverlay()" title="Pesquisa">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <span class="icon-btn-label">Pesquisa</span>
+  <div class="nav-inner">
+    <button class="hamburger" id="hamburger" type="button" onclick="toggleLeftMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="leftMenu">
+      <span></span><span></span><span></span>
     </button>
-    <button class="icon-btn" aria-label="Conta" onclick="handleAccountAction()" title="Minha conta" id="userAccountBtn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-    </button>
-    <button class="icon-btn" aria-label="Favoritos" onclick="handleFavoritesAction()" title="Favoritos" id="favIconBtn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      <span class="badge hidden" id="navFavCount">0</span>
-    </button>
-    <button class="icon-btn" aria-label="Sacola de compras" onclick="toggleCart()" title="Sacola de compras">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-      <span class="badge hidden" id="navCartCount">0</span>
-    </button>
+    <a href="#" class="nav-logo" onclick="showPage('inicio');return false;">
+      <img id="navLogoImg" src="./assets/logo.png" alt="Gold Crochet">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('inicio');return false;" class="active" id="nav-inicio">Início</a></li>
+      <li><a href="#" onclick="showPage('colecoes');return false;" id="nav-colecoes">Coleções</a></li>
+      <li><a href="#" onclick="showPage('produtos');return false;" id="nav-produtos">Peças</a></li>
+      <li><a href="#" onclick="showPage('novidades');return false;" id="nav-novidades">Novidades</a></li>
+      <li><a href="#" onclick="showPage('sobre');return false;" id="nav-sobre">Casa Gold</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="icon-btn search-trigger" aria-label="Pesquisa" onclick="openSearchOverlay()" title="Pesquisa (Ctrl+K)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="icon-btn-label">Pesquisa</span>
+      </button>
+      <button class="icon-btn" aria-label="Conta" onclick="handleAccountAction()" title="Minha conta" id="userAccountBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </button>
+      <button class="icon-btn" aria-label="Favoritos" onclick="handleFavoritesAction()" title="Favoritos" id="favIconBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="badge hidden" id="navFavCount">0</span>
+      </button>
+      <button class="icon-btn" aria-label="Sacola de compras" onclick="toggleCart()" title="Sacola de compras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="badge hidden" id="navCartCount">0</span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- ========================================================
-     OVERLAY DO MENU
-     ======================================================== -->
+<!-- OVERLAY DO MENU -->
 <div class="left-menu-overlay" id="leftMenuOverlay" aria-hidden="true" onclick="closeLeftMenu()"></div>
 
-<!-- ========================================================
-     MENU LATERAL — EXATO V2
-     ======================================================== -->
+<!-- MENU LATERAL -->
 <aside class="left-menu" id="leftMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true">
   <div class="left-menu-header">
     <div class="left-menu-brand">
@@ -822,7 +857,7 @@
           <div class="left-menu-account-status" id="leftMenuAccountStatus">Entre para sincronizar favoritos.</div>
         </div>
       </div>
-      <button type="button" id="leftMenuAccountAction" onclick="handleAccountAction()">Entrar / Criar conta</button>
+      <button type="button" id="leftMenuAccountAction" onclick="handleAccountFromMenu()">Entrar / Criar conta</button>
     </div>
   </div>
 
@@ -841,8 +876,8 @@
 
 <!-- SACOLA -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-<div class="cart-panel" id="cartPanel" role="dialog">
-  <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="closeCart()">✕</button></div>
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-label="Minha sacola">
+  <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="closeCart()" aria-label="Fechar sacola">✕</button></div>
   <div class="cart-items" id="cartItems"><div class="cart-empty"><span class="empty-icon">🧶</span><p>Seu carrinho está vazio.<br>Explore nossas peças!</p></div></div>
   <div class="cart-footer" id="cartFooter" style="display:none">
     <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
@@ -857,15 +892,15 @@
 
 <!-- FAVORITOS -->
 <div class="fav-overlay" id="favOverlay" onclick="closeFavorites()"></div>
-<div class="fav-panel" id="favPanel" role="dialog">
-  <div class="cart-header"><h2>❤️ Meus Favoritos</h2><button class="cart-close" onclick="closeFavorites()">✕</button></div>
+<div class="fav-panel" id="favPanel" role="dialog" aria-modal="true" aria-label="Meus favoritos">
+  <div class="cart-header"><h2>❤️ Meus Favoritos</h2><button class="cart-close" onclick="closeFavorites()" aria-label="Fechar favoritos">✕</button></div>
   <div class="cart-items" id="favItems"></div>
 </div>
 
 <!-- MODAL PRODUTO -->
-<div class="modal-overlay" id="modalOverlay" role="dialog">
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
   <div class="modal-box" id="modalBox">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar produto">✕</button>
     <div class="media-switcher-container">
       <div class="media-switcher-tabs">
         <button class="media-tab active" onclick="switchMedia('gallery')" id="tab-gallery">🖼 Galeria</button>
@@ -874,8 +909,8 @@
       <div class="media-panel active" id="panel-gallery">
         <div class="gallery-main" id="galleryMain"></div>
         <div class="gallery-nav" id="galleryNav" style="display:none">
-          <button class="gallery-nav-btn" onclick="galleryPrev()">‹</button>
-          <button class="gallery-nav-btn" onclick="galleryNext()">›</button>
+          <button class="gallery-nav-btn" onclick="galleryPrev()" aria-label="Imagem anterior">‹</button>
+          <button class="gallery-nav-btn" onclick="galleryNext()" aria-label="Próxima imagem">›</button>
         </div>
         <div class="gallery-counter" id="galleryCounter"></div>
         <div class="gallery-thumbs" id="galleryThumbs"></div>
@@ -894,9 +929,9 @@
 </div>
 
 <!-- LOGIN -->
-<div class="user-modal-overlay" id="userModalOverlay" role="dialog">
+<div class="user-modal-overlay" id="userModalOverlay" role="dialog" aria-modal="true" aria-label="Minha conta">
   <div class="user-modal-box">
-    <button class="user-modal-close" onclick="closeUserModal()">✕</button>
+    <button class="user-modal-close" onclick="closeUserModal()" aria-label="Fechar conta">✕</button>
     <div id="loginView">
       <h2 class="user-modal-title">Bem-vindo(a) de volta! 👋</h2>
       <p class="user-modal-subtitle">Entre para acompanhar seus pedidos e favoritos.</p>
@@ -917,7 +952,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="cookie-banner" id="cookieBanner">
   <p>🍪 Usamos cookies para melhorar sua experiência. <a href="#">Política de Privacidade</a>.</p>
   <button class="cookie-accept" onclick="acceptCookies()">Aceitar Tudo</button>
@@ -942,8 +977,8 @@
     <div class="carousel-title">Peças em <span>Destaque</span></div>
     <div class="carousel-wrapper" id="carouselWrapper"><div class="carousel-track" id="carouselTrack"></div></div>
     <div class="carousel-arrows">
-      <button class="carousel-arrow" onclick="prevSlide()">‹</button>
-      <button class="carousel-arrow" onclick="nextSlide()">›</button>
+      <button class="carousel-arrow" onclick="prevSlide()" aria-label="Anterior">‹</button>
+      <button class="carousel-arrow" onclick="nextSlide()" aria-label="Próxima">›</button>
     </div>
   </div>
   <div class="features">
@@ -975,7 +1010,7 @@
     <div class="search-bar">
       <span>🔍</span>
       <input type="text" id="searchInput" placeholder="Buscar peça..." oninput="onSearch(this.value)">
-      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca">✕</button>
     </div>
     <div class="filter-pills" id="filterPills"></div>
   </div>
@@ -1040,8 +1075,8 @@
       <div class="footer-brand-name">Gold Crochet</div>
       <p>Crochê artesanal de alto padrão. Transformando fio em peças elegantes, feitas ponto por ponto.</p>
       <div class="footer-social">
-        <a href="https://instagram.com/goldc.rochet" target="_blank" rel="noopener" class="social-circle">📷</a>
-        <a href="mailto:rayssacrochet1404@gmail.com" class="social-circle">✉</a>
+        <a href="https://instagram.com/goldc.rochet" target="_blank" rel="noopener" class="social-circle" aria-label="Instagram">📷</a>
+        <a href="mailto:rayssacrochet1404@gmail.com" class="social-circle" aria-label="E-mail">✉</a>
       </div>
     </div>
     <div class="footer-col">
@@ -1109,45 +1144,78 @@ let favorites = [];
 let searchOverlayTimeout = null;
 
 /* ==========================================================
-   GOLD CROCHET — MENU SANDUÍCHE — JS V2 EXATO
+   ACESSIBILIDADE — foco, scroll lock, diálogos
    ========================================================== */
 
-function $(id) {
-  return document.getElementById(id);
-}
+function $(id) { return document.getElementById(id); }
 
-function lockBody() {
-  document.body.classList.add("no-scroll");
-}
+function lockBody() { document.body.classList.add("no-scroll"); }
 
 function unlockBody() {
   const openLayer = [
-    "leftMenu",
-    "searchOverlay",
-    "cartPanel",
-    "favPanel",
-    "modalOverlay",
-    "userModalOverlay"
+    "leftMenu", "searchOverlay", "cartPanel",
+    "favPanel", "modalOverlay", "userModalOverlay"
   ].some(id => {
     const element = $(id);
     return element && element.classList.contains("open");
   });
-
-  if (!openLayer) {
-    document.body.classList.remove("no-scroll");
-  }
+  if (!openLayer) document.body.classList.remove("no-scroll");
 }
 
 let previousFocus = null;
 let activeDialog = null;
 
+function setActiveDialog(el) {
+  // Guarda o foco anterior apenas na primeira abertura
+  if (!activeDialog) previousFocus = document.activeElement;
+  activeDialog = el;
+}
+
+function clearActiveDialog(el) {
+  if (activeDialog === el) {
+    activeDialog = null;
+    restoreFocus();
+  }
+}
+
 function restoreFocus() {
   try {
-    if (previousFocus && typeof previousFocus.focus === "function") {
-      previousFocus.focus();
-    }
-  } catch (error) { /* Nada */ }
+    if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
+  } catch (error) { /* nada */ }
   previousFocus = null;
+}
+
+/* Focus trap reforçado: cobre botões/inputs desabilitados e foco que escapou */
+function trapFocus(container, event) {
+  if (event.key !== "Tab") return;
+
+  const focusable = [...container.querySelectorAll(
+    'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )].filter(el => el.offsetParent !== null || el === document.activeElement);
+
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const current = document.activeElement;
+
+  // Se o foco escapou do container, puxa de volta
+  if (!container.contains(current)) {
+    event.preventDefault();
+    first.focus();
+    return;
+  }
+
+  if (event.shiftKey && current === first) {
+    event.preventDefault();
+    last.focus();
+    return;
+  }
+
+  if (!event.shiftKey && current === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 function closeOtherLayers(except = "") {
@@ -1159,13 +1227,10 @@ function closeOtherLayers(except = "") {
     ["modalOverlay", closeModal],
     ["userModalOverlay", closeUserModal]
   ];
-
   pairs.forEach(([id, closeFunction]) => {
     if (id === except) return;
     const element = $(id);
-    if (element && element.classList.contains("open")) {
-      closeFunction();
-    }
+    if (element && element.classList.contains("open")) closeFunction();
   });
 }
 
@@ -1175,7 +1240,6 @@ function updateLeftMenuAccount() {
   const status = $("leftMenuAccountStatus");
   const avatar = $("leftMenuAvatar");
   const action = $("leftMenuAccountAction");
-
   if (!name || !status || !avatar || !action) return;
 
   if (user) {
@@ -1187,7 +1251,6 @@ function updateLeftMenuAccount() {
     action.setAttribute("aria-label", "Sair da conta");
     return;
   }
-
   name.textContent = "Visitante";
   status.textContent = "Entre para sincronizar favoritos.";
   avatar.textContent = "GC";
@@ -1198,23 +1261,13 @@ function updateLeftMenuAccount() {
 function updateDrawerCounts() {
   const favoriteLink = document.querySelector("#drawerFavLink .left-menu-link-text");
   const cartLink = document.querySelector("#drawerCartLink .left-menu-link-text");
+  const cartCount = cart.reduce((total, item) => total + (Number(item.qty) || 0), 0);
 
-  const cartCount = cart.reduce((total, item) => {
-    return total + (Number(item.qty) || 0);
-  }, 0);
-
-  if (favoriteLink) {
-    favoriteLink.textContent = favorites.length
-      ? `Meus favoritos (${favorites.length})`
-      : "Meus favoritos";
-  }
-
-  if (cartLink) {
-    cartLink.textContent = cartCount
-      ? `Minha sacola (${cartCount})`
-      : "Minha sacola";
-  }
+  if (favoriteLink) favoriteLink.textContent = favorites.length ? `Meus favoritos (${favorites.length})` : "Meus favoritos";
+  if (cartLink) cartLink.textContent = cartCount ? `Minha sacola (${cartCount})` : "Minha sacola";
 }
+
+/* ---------- DRAWER ---------- */
 
 function openLeftMenu() {
   closeOtherLayers("leftMenu");
@@ -1223,15 +1276,12 @@ function openLeftMenu() {
   const menu = $("leftMenu");
   const overlay = $("leftMenuOverlay");
   const button = $("hamburger");
-
   if (!menu || !overlay || !button) return;
 
   menu.classList.add("open");
   overlay.classList.add("open");
-
   menu.setAttribute("aria-hidden", "false");
   overlay.setAttribute("aria-hidden", "false");
-
   button.classList.add("is-open");
   button.setAttribute("aria-expanded", "true");
   button.setAttribute("aria-label", "Fechar menu");
@@ -1252,20 +1302,17 @@ function closeLeftMenu() {
   const menu = $("leftMenu");
   const overlay = $("leftMenuOverlay");
   const button = $("hamburger");
-
   if (!menu || !overlay || !button) return;
 
   menu.classList.remove("open");
   overlay.classList.remove("open");
-
   menu.setAttribute("aria-hidden", "true");
   overlay.setAttribute("aria-hidden", "true");
-
   button.classList.remove("is-open");
   button.setAttribute("aria-expanded", "false");
   button.setAttribute("aria-label", "Abrir menu");
 
-  activeDialog = null;
+  if (activeDialog === menu) activeDialog = null;
   unlockBody();
   restoreFocus();
 }
@@ -1277,93 +1324,63 @@ function toggleLeftMenu() {
   else openLeftMenu();
 }
 
-function navigateFromMenu(page) {
-  closeLeftMenu();
-  setTimeout(() => showPage(page), 120);
-}
+function navigateFromMenu(page) { closeLeftMenu(); setTimeout(() => showPage(page), 120); }
+function openSearchFromMenu() { closeLeftMenu(); setTimeout(() => openSearchOverlay(), 160); }
+function openFavoritesFromMenu() { closeLeftMenu(); setTimeout(() => handleFavoritesAction(), 160); }
+function openCartFromMenu() { closeLeftMenu(); setTimeout(() => openCart(), 160); }
+function handleAccountFromMenu() { closeLeftMenu(); setTimeout(() => handleAccountAction(), 160); }
 
-function openSearchFromMenu() {
-  closeLeftMenu();
-  setTimeout(() => openSearchOverlay(), 160);
-}
-
-function openFavoritesFromMenu() {
-  closeLeftMenu();
-  setTimeout(() => handleFavoritesAction(), 160);
-}
-
-function openCartFromMenu() {
-  closeLeftMenu();
-  setTimeout(() => openCart(), 160);
-}
-
-function handleAccountFromMenu() {
-  closeLeftMenu();
-  setTimeout(() => handleAccountAction(), 160);
-}
-
-function trapFocus(container, event) {
-  if (event.key !== "Tab") return;
-
-  const focusable = [...container.querySelectorAll(`button, a[href], input, textarea, select, [tabindex]:not([tabindex="-1"])`)];
-
-  if (!focusable.length) return;
-
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-
-  if (event.shiftKey && document.activeElement === first) {
-    event.preventDefault();
-    last.focus();
-    return;
-  }
-
-  if (!event.shiftKey && document.activeElement === last) {
-    event.preventDefault();
-    first.focus();
-  }
-}
+/* ---------- TECLADO GLOBAL ---------- */
 
 function setupMenuInteractions() {
   document.addEventListener("keydown", event => {
+    // ESC fecha o diálogo ativo (drawer tem prioridade)
     if (event.key === "Escape") {
-      if ($("leftMenu")?.classList.contains("open")) {
-        closeLeftMenu();
-        return;
+      if ($("leftMenu")?.classList.contains("open")) { closeLeftMenu(); return; }
+      if (activeDialog && activeDialog.classList.contains("open")) {
+        if (activeDialog === $("searchOverlay")) { closeSearchOverlay(); return; }
+        if (activeDialog === $("cartPanel")) { closeCart(); return; }
+        if (activeDialog === $("favPanel")) { closeFavorites(); return; }
+        if (activeDialog === $("modalOverlay")) { closeModal(); return; }
+        if (activeDialog === $("userModalOverlay")) { closeUserModal(); return; }
       }
     }
+
+    // Focus trap do diálogo ativo
     if (activeDialog && activeDialog.classList.contains("open")) {
       trapFocus(activeDialog, event);
     }
+
+    // Ctrl+K / Cmd+K → busca
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      openSearchOverlay();
+      return;
+    }
+
+    // "/" → busca (só quando não está digitando)
+    if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) && !document.activeElement?.isContentEditable) {
+      event.preventDefault();
+      openSearchOverlay();
+    }
   });
 
+  // Swipe no drawer para fechar
   const drawer = $("leftMenu");
   if (!drawer) return;
-
-  let startX = 0;
-  let startY = 0;
-  let touching = false;
-
+  let startX = 0, startY = 0, touching = false;
   drawer.addEventListener("pointerdown", event => {
-    touching = true;
-    startX = event.clientX;
-    startY = event.clientY;
+    touching = true; startX = event.clientX; startY = event.clientY;
   });
-
   drawer.addEventListener("pointerup", event => {
     if (!touching) return;
     touching = false;
     const deltaX = event.clientX - startX;
     const deltaY = event.clientY - startY;
     const horizontal = Math.abs(deltaX) > Math.abs(deltaY);
-    if (horizontal && Math.abs(deltaX) > 55 && deltaX < 0) {
-      closeLeftMenu();
-    }
+    if (horizontal && Math.abs(deltaX) > 55 && deltaX < 0) closeLeftMenu();
   });
-
-  drawer.addEventListener("pointercancel", () => {
-    touching = false;
-  });
+  drawer.addEventListener("pointercancel", () => { touching = false; });
 }
 
 function setupMenuAria() {
@@ -1381,27 +1398,22 @@ function setupMenuAria() {
 function setupMenuKeyboardNavigation() {
   const nav = $("leftMenuNav");
   if (!nav) return;
-
   nav.addEventListener("keydown", event => {
     if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
-
     const links = [...nav.querySelectorAll("a")];
     const current = links.indexOf(document.activeElement);
     if (current < 0) return;
-
     event.preventDefault();
-
     let next;
     if (event.key === "ArrowDown") next = (current + 1) % links.length;
     else next = (current - 1 + links.length) % links.length;
-
     links[next].focus();
   });
 }
 
-// ════════════════════════════════════════
-// RESTO DO CÓDIGO
-// ════════════════════════════════════════
+/* ════════════════════════════════════════
+   RESTO DO CÓDIGO
+   ════════════════════════════════════════ */
 
 function getCurrentUserId() { const user = auth.currentUser; return user ? user.uid : 'guest'; }
 function loadCart() { try { cart = JSON.parse(localStorage.getItem('goldcrochet_cart_' + getCurrentUserId()) || '[]'); } catch(e) { cart = []; } }
@@ -1478,10 +1490,24 @@ function handleAccountAction() {
   if (user) { if (confirm(`Logada como ${user.displayName}. Deseja sair?`)) logoutUser(); }
   else openUserModal();
 }
-function openUserModal() { closeOtherLayers('userModalOverlay'); document.getElementById('userModalOverlay').classList.add('open'); showLogin(); lockBody(); }
-function closeUserModal() { document.getElementById('userModalOverlay').classList.remove('open'); unlockBody(); }
+
+function openUserModal() {
+  closeOtherLayers('userModalOverlay');
+  const el = document.getElementById('userModalOverlay');
+  el.classList.add('open');
+  setActiveDialog(el);
+  showLogin();
+  lockBody();
+  setTimeout(() => document.getElementById('loginEmail')?.focus(), 80);
+}
+function closeUserModal() {
+  const el = document.getElementById('userModalOverlay');
+  el.classList.remove('open');
+  clearActiveDialog(el);
+  unlockBody();
+}
 function showLogin() { document.getElementById('loginView').style.display = 'block'; document.getElementById('registerView').style.display = 'none'; }
-function showRegister() { document.getElementById('loginView').style.display = 'none'; document.getElementById('registerView').style.display = 'block'; }
+function showRegister() { document.getElementById('loginView').style.display = 'none'; document.getElementById('registerView').style.display = 'block'; setTimeout(() => document.getElementById('regName')?.focus(), 60); }
 function openUserModalFromCart() { closeCart(); setTimeout(() => openUserModal(), 350); }
 
 function setupLogos() {
@@ -1498,13 +1524,21 @@ function toRaw(url) {
 
 function openSearchOverlay() {
   closeOtherLayers('searchOverlay');
-  document.getElementById('searchOverlay').classList.add('open');
+  const el = document.getElementById('searchOverlay');
+  el.classList.add('open');
+  setActiveDialog(el);
   lockBody();
-  setTimeout(() => document.getElementById('searchOverlayInput')?.focus(), 250);
+  setTimeout(() => {
+    const input = document.getElementById('searchOverlayInput');
+    input?.focus();
+    input?.select();
+  }, 120);
   onSearchOverlay(document.getElementById('searchOverlayInput').value || '');
 }
 function closeSearchOverlay() {
-  document.getElementById('searchOverlay').classList.remove('open');
+  const el = document.getElementById('searchOverlay');
+  el.classList.remove('open');
+  clearActiveDialog(el);
   unlockBody();
 }
 function onSearchOverlay(val) {
@@ -1529,13 +1563,18 @@ function handleFavoritesAction() {
 function openFavorites() {
   closeOtherLayers('favPanel');
   renderFavorites();
-  document.getElementById('favPanel').classList.add('open');
+  const panel = document.getElementById('favPanel');
+  panel.classList.add('open');
   document.getElementById('favOverlay').classList.add('open');
+  setActiveDialog(panel);
   lockBody();
+  setTimeout(() => panel.querySelector('.cart-close')?.focus(), 80);
 }
 function closeFavorites() {
-  document.getElementById('favPanel').classList.remove('open');
+  const panel = document.getElementById('favPanel');
+  panel.classList.remove('open');
   document.getElementById('favOverlay').classList.remove('open');
+  clearActiveDialog(panel);
   unlockBody();
 }
 function toggleFavorites() {
@@ -1551,7 +1590,7 @@ function renderFavorites() {
     return `<div class="cart-item" style="cursor:pointer" onclick="openModalFromFav(${p.id})">
       <div class="cart-item-img">${rawImg ? `<img src="${rawImg}" alt="${p.name}">` : (p.emoji || '🧶')}</div>
       <div class="cart-item-info"><h4>${p.name}</h4><span>${p.price ? 'R$ ' + p.price + ',00' : 'Sob consulta'}</span></div>
-      <button class="cart-remove" onclick="event.stopPropagation();toggleFavorite(${p.id});">🗑</button>
+      <button class="cart-remove" onclick="event.stopPropagation();toggleFavorite(${p.id});" aria-label="Remover dos favoritos">🗑</button>
     </div>`;
   }).join('');
 }
@@ -1578,16 +1617,11 @@ async function loadData() {
     }
   } catch(e) {}
   try {
-    const lp = localStorage.getItem('goldcrochet_products');
-    if (lp) products = JSON.parse(lp);
-    const lc = localStorage.getItem('goldcrochet_categories');
-    if (lc) categories = JSON.parse(lc);
-    const lb = localStorage.getItem('goldcrochet_badges');
-    if (lb) badges = JSON.parse(lb);
-    const lg = localStorage.getItem('goldcrochet_global_colors');
-    if (lg) globalColors = JSON.parse(lg);
-    const lcfg = localStorage.getItem('goldcrochet_config');
-    if (lcfg) siteConfig = JSON.parse(lcfg);
+    const lp = localStorage.getItem('goldcrochet_products'); if (lp) products = JSON.parse(lp);
+    const lc = localStorage.getItem('goldcrochet_categories'); if (lc) categories = JSON.parse(lc);
+    const lb = localStorage.getItem('goldcrochet_badges'); if (lb) badges = JSON.parse(lb);
+    const lg = localStorage.getItem('goldcrochet_global_colors'); if (lg) globalColors = JSON.parse(lg);
+    const lcfg = localStorage.getItem('goldcrochet_config'); if (lcfg) siteConfig = JSON.parse(lcfg);
   } catch(e) {}
 }
 
@@ -1600,12 +1634,8 @@ function applySiteConfig() {
     const s = document.getElementById('heroSubtitle');
     if (s) s.textContent = siteConfig.hero_subtitle;
   }
-  if (siteConfig.instagram) {
-    document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.href = siteConfig.instagram);
-  }
-  if (siteConfig.email) {
-    document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.href = 'mailto:' + siteConfig.email);
-  }
+  if (siteConfig.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.href = siteConfig.instagram);
+  if (siteConfig.email) document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.href = 'mailto:' + siteConfig.email);
 }
 
 let scrollDebounce; let navScrolled = false;
@@ -1657,6 +1687,7 @@ let carouselIdx = 10;
 let carouselTimer;
 let carouselHover = false;
 let isCarouselAnimating = false;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function renderCarousel() {
   carouselProducts = products.filter(p=>!p.custom).slice(0,10);
@@ -1681,8 +1712,8 @@ function renderCarousel() {
         ${img?`<img src="${img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''}
         ${!img?`<div class="product-img-emoji">${p.emoji}</div>`:''}
         ${newLabel}
-        <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </button>
       </div>
       <div class="product-info">
@@ -1713,7 +1744,12 @@ function prevSlide() {
   if (isCarouselAnimating) return; isCarouselAnimating = true; carouselIdx--; updateCarouselPosition(true);
   setTimeout(() => { if (carouselIdx < carouselProducts.length) { carouselIdx = carouselProducts.length * 2 - 1; updateCarouselPosition(false); } isCarouselAnimating = false; }, 520);
 }
-function startCarouselTimer() { clearInterval(carouselTimer); if (!carouselHover) carouselTimer = setInterval(nextSlide, 3800); }
+function startCarouselTimer() {
+  clearInterval(carouselTimer);
+  if (carouselHover) return;
+  if (prefersReducedMotion) return; // respeita prefers-reduced-motion
+  carouselTimer = setInterval(nextSlide, 3800);
+}
 
 function getColors(p) { if (p.colors && p.colors.length) return p.colors; if (p.colorSections) return p.colorSections.flatMap(s=>s.colors||[]); return []; }
 
@@ -1770,8 +1806,8 @@ function cardHtml(p,i) {
       ${hasImg?`<img src="${rawImg}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''} 
       ${!hasImg?`<div class="product-img-emoji">${p.emoji}</div>`:''}
       ${newLabel}
-      <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
     </div>
     <div class="product-info">
@@ -1782,9 +1818,7 @@ function cardHtml(p,i) {
   </div>`;
 }
 function bindCardEvents(grid) {
-  grid.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', handleCardClick);
-  });
+  grid.querySelectorAll('.product-card').forEach(card => { card.addEventListener('click', handleCardClick); });
 }
 function handleCardClick(e) {
   if (e.target.closest('.fav-btn')) return;
@@ -1815,7 +1849,7 @@ function openModal(id) {
     colorsHtml = sections.map((sec, sIdx) => {
       const sel = selectedColors[p.id][sIdx] || (sec.colors.length ? sec.colors[0] : null);
       if(!selectedColors[p.id][sIdx]) selectedColors[p.id][sIdx] = sel;
-      return `<div style="margin-bottom:16px"><div class="modal-colors-label">${sec.name}:</div><div style="display:flex;gap:9px;flex-wrap:wrap" class="modalColorDotsSection" data-sidx="${sIdx}">${sec.colors.map(c => `<button class="color-dot ${sel && c.hex === sel.hex ? 'selected' : ''}" style="background:${c.hex};width:26px;height:26px" data-pid="${p.id}" data-sidx="${sIdx}" data-name="${c.name}" data-hex="${c.hex}"></button>`).join('')}</div><div class="modal-color-name" id="modalColorName-${sIdx}">Cor: ${sel ? sel.name : ''}</div></div>`;
+      return `<div style="margin-bottom:16px"><div class="modal-colors-label">${sec.name}:</div><div style="display:flex;gap:9px;flex-wrap:wrap" class="modalColorDotsSection" data-sidx="${sIdx}">${sec.colors.map(c => `<button class="color-dot ${sel && c.hex === sel.hex ? 'selected' : ''}" style="background:${c.hex};width:26px;height:26px" data-pid="${p.id}" data-sidx="${sIdx}" data-name="${c.name}" data-hex="${c.hex}" aria-label="Cor ${c.name}"></button>`).join('')}</div><div class="modal-color-name" id="modalColorName-${sIdx}">Cor: ${sel ? sel.name : ''}</div></div>`;
     }).join('');
   }
   document.getElementById('modalColors').innerHTML = colorsHtml;
@@ -1827,13 +1861,17 @@ function openModal(id) {
   currentGalleryImages = imgs;
   buildGallery(p);
   closeOtherLayers('modalOverlay');
-  document.getElementById('modalOverlay').classList.add('open'); lockBody();
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.add('open');
+  setActiveDialog(overlay);
+  lockBody();
+  setTimeout(() => document.querySelector('#modalBox .modal-close')?.focus(), 80);
 }
 function buildGallery(p) {
   const main = document.getElementById('galleryMain'); const thumbs = document.getElementById('galleryThumbs'); const counter = document.getElementById('galleryCounter'); const nav = document.getElementById('galleryNav');
   if (currentGalleryImages.length) {
-    main.innerHTML = `<img id="galleryMainImg" src="${currentGalleryImages[0]}" onerror="this.style.display='none'">`;
-    thumbs.innerHTML = currentGalleryImages.map((url,i)=>`<div class="gallery-thumb ${i===0?'active':''}" onclick="setGalleryImg(${i})"><img src="${url}" alt=""></div>`).join('');
+    main.innerHTML = `<img id="galleryMainImg" src="${currentGalleryImages[0]}" onerror="this.style.display='none'" alt="${p.name}">`;
+    thumbs.innerHTML = currentGalleryImages.map((url,i)=>`<div class="gallery-thumb ${i===0?'active':''}" onclick="setGalleryImg(${i})" role="button" tabindex="0"><img src="${url}" alt=""></div>`).join('');
     counter.textContent = `1 / ${currentGalleryImages.length}`;
     counter.style.display = 'block';
     nav.style.display = currentGalleryImages.length > 1 ? 'flex' : 'none';
@@ -1845,7 +1883,12 @@ function buildGallery(p) {
 function setGalleryImg(i) { currentGalleryIdx = i; const img = document.getElementById('galleryMainImg'); if (img && currentGalleryImages[i]) img.src = currentGalleryImages[i]; document.querySelectorAll('.gallery-thumb').forEach((t,j)=>t.classList.toggle('active',j===i)); document.getElementById('galleryCounter').textContent = `${i+1} / ${currentGalleryImages.length}`; }
 function galleryPrev() { if(!currentGalleryImages.length)return; setGalleryImg((currentGalleryIdx-1+currentGalleryImages.length)%currentGalleryImages.length); }
 function galleryNext() { if(!currentGalleryImages.length)return; setGalleryImg((currentGalleryIdx+1)%currentGalleryImages.length); }
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); unlockBody(); }
+function closeModal() {
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('open');
+  clearActiveDialog(overlay);
+  unlockBody();
+}
 document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))closeModal();});
 function addToCartFromModal() { if(currentModal) addToCart(currentModal.id); closeModal(); }
 function openFullscreen() {} function closeFullscreen() {} function fullscreenPrev() {} function fullscreenNext() {} function switchMedia() {}
@@ -1870,19 +1913,24 @@ function updateCartUI() {
   items.innerHTML = cart.map((item,i)=>{
     const rawI=toRaw(item.image);
     const colorInfo = (item.selectedColors && item.selectedColors.length > 0) ? item.selectedColors.map(sc => `<div class="cart-item-color"><div class="cart-item-color-dot" style="background:${sc.hex}"></div>${sc.name}</div>`).join('') : '';
-    return `<div class="cart-item"><div class="cart-item-img">${rawI?`<img src="${rawI}" alt="${item.name}">`:(item.emoji||'🧶')}</div><div class="cart-item-info"><h4>${item.name}</h4>${colorInfo}<span>${item.price?'R$ '+parseFloat(item.price).toFixed(2).replace('.',','):'Sob consulta'}</span></div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i},-1)">−</button><span class="qty-value">${item.qty}</span><button class="qty-btn" onclick="changeQty(${i},1)">+</button></div><button class="cart-remove" onclick="removeFromCart(${i})">🗑</button></div>`;
+    return `<div class="cart-item"><div class="cart-item-img">${rawI?`<img src="${rawI}" alt="${item.name}">`:(item.emoji||'🧶')}</div><div class="cart-item-info"><h4>${item.name}</h4>${colorInfo}<span>${item.price?'R$ '+parseFloat(item.price).toFixed(2).replace('.',','):'Sob consulta'}</span></div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Diminuir quantidade">−</button><span class="qty-value">${item.qty}</span><button class="qty-btn" onclick="changeQty(${i},1)" aria-label="Aumentar quantidade">+</button></div><button class="cart-remove" onclick="removeFromCart(${i})" aria-label="Remover item">🗑</button></div>`;
   }).join('');
   updateDrawerCounts();
 }
 function openCart() {
   closeOtherLayers('cartPanel');
-  document.getElementById('cartPanel').classList.add('open');
+  const panel = document.getElementById('cartPanel');
+  panel.classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
+  setActiveDialog(panel);
   lockBody();
+  setTimeout(() => panel.querySelector('.cart-close')?.focus(), 80);
 }
 function closeCart() {
-  document.getElementById('cartPanel').classList.remove('open');
+  const panel = document.getElementById('cartPanel');
+  panel.classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
+  clearActiveDialog(panel);
   unlockBody();
 }
 function toggleCart() {
@@ -1900,13 +1948,7 @@ function checkout() {
 function showToast(msg,type='') { const t=document.getElementById('toast'); t.textContent=msg; t.className='toast show '+(type||''); setTimeout(()=>t.classList.remove('show'),2800); }
 function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('goldcrochet_cookies','1'); }
 
-// Escape global para overlays que não são o drawer
-document.addEventListener('keydown',e=>{
-  if (e.key !== 'Escape') return;
-  if (document.getElementById('searchOverlay').classList.contains('open')) { closeSearchOverlay(); return; }
-  if (document.getElementById('modalOverlay').classList.contains('open')) { closeModal(); return; }
-  if (document.getElementById('userModalOverlay').classList.contains('open')) { closeUserModal(); return; }
-});
+// Clique fora da busca
 document.getElementById('searchOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('searchOverlay')) closeSearchOverlay(); });
 
 // ════════════════════════════════════════
