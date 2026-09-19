@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Crochet — Crochê Artesanal de Alto Padrão</title>
+<title>Gold Crochet</title>
 <meta name="description" content="Peças em crochê feitas à mão, com acabamento premium. Do amigurumi à peça sob medida, elegância em cada ponto.">
 <meta name="theme-color" content="#d4af37">
 <meta name="color-scheme" content="light">
-<meta property="og:title" content="Gold Crochet — Crochê Artesanal de Alto Padrão">
+<link rel="icon" type="image/png" href="./assets/icon.png">
+<link rel="apple-touch-icon" href="./assets/icon.png">
+<meta property="og:title" content="Gold Crochet">
 <meta property="og:description" content="Peças únicas, personalizadas e com acabamento premium.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="./assets/logo.png">
@@ -32,9 +34,7 @@
   .liquid-glass::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 60%), radial-gradient(circle at 80% 70%, rgba(205,164,52,0.15) 0%, transparent 50%); mix-blend-mode:overlay; opacity:0.4; animation:liquidShimmer 8s ease-in-out infinite alternate; border-radius:inherit; }
   @keyframes liquidShimmer { 0%{transform:translate(-5%,-5%) scale(1); opacity:0.3;} 50%{transform:translate(5%,5%) scale(1.1); opacity:0.6;} 100%{transform:translate(-2%,3%) scale(0.95); opacity:0.4;} }
 
-  /* ============================================
-     NAVBAR
-     ============================================ */
+  /* NAVBAR */
   nav {
     position:fixed; top:0; left:0; right:0; z-index:1000;
     height:var(--nav-h);
@@ -81,7 +81,6 @@
   .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
   .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-  /* Logo — central no topo, ESQUERDA (mais à direita) ao rolar */
   .nav-logo {
     position:absolute;
     left:53%;
@@ -108,7 +107,6 @@
     white-space:nowrap;
   }
 
-  /* Ao rolar: logo vai para esquerda, mais à direita que antes (140px) */
   nav.scrolled .nav-logo {
     left:140px;
     top:50%;
@@ -143,7 +141,6 @@
     white-space:nowrap;
     background:transparent;
   }
-  /* SEM pílula, apenas cor dourada */
   .nav-links a:hover, .nav-links a.active { color:var(--gold-main); background:transparent; }
   .nav-links a::after { content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%) scaleX(0); width:18px; height:2px; background:var(--gold-main); border-radius:2px; transition:transform 0.3s ease; }
   .nav-links a:hover::after, .nav-links a.active::after { transform:translateX(-50%) scaleX(1); }
@@ -202,7 +199,6 @@
   .skip-link { position:absolute; top:-40px; left:16px; background:var(--gold-main); color:#fff; padding:8px 16px; border-radius:var(--radius-pill); font-size:0.85rem; font-weight:700; z-index:2000; transition:top 0.3s; }
   .skip-link:focus { top:12px; }
 
-  /* Páginas */
   .page { display:none; position:relative; z-index:1; }
   .page.active { display:block; }
   main { padding-top:var(--nav-h); min-height:100vh; }
@@ -227,14 +223,11 @@
   .btn-secondary { background:transparent; color:var(--gold-main); border:2px solid var(--gold-main); cursor:pointer; padding:11px 30px; border-radius:var(--radius-pill); font-family:'Outfit',sans-serif; font-size:0.98rem; font-weight:600; transition:var(--transition); text-decoration:none; display:inline-block; }
   .btn-secondary:hover { background:var(--gold-pale); transform:translateY(-3px); box-shadow:0 6px 18px rgba(212,175,55,0.2); }
 
-  /* Skeleton */
   .skeleton { background:linear-gradient(90deg,var(--gray-light) 25%,#fff8ee 50%,var(--gray-light) 75%); background-size:200% 100%; animation:shimmer 1.4s infinite; border-radius:12px; }
   @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
   .skeleton-card { aspect-ratio: 0.75; border-radius:4px; }
 
-  /* ============================================
-     CARROSSEL (infinito)
-     ============================================ */
+  /* CARROSSEL */
   .carousel-section { padding:64px 0 44px; background:var(--white); position:relative; z-index:1; }
   .carousel-title { text-align:center; margin-bottom:36px; font-family:'DM Serif Display',serif; font-size:2rem; color:var(--text-dark); }
   .carousel-title span { color:var(--gold-main); }
@@ -296,9 +289,7 @@
   .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:24px; padding:30px 5% 60px; max-width:1200px; margin:0 auto; }
   .products-count { padding:0 5%; max-width:1200px; margin:12px auto 0; font-size:0.82rem; color:var(--text-mid); }
 
-  /* ============================================
-     CARD PRODUTO — estilo Dolce & Gabbana (quadrado)
-     ============================================ */
+  /* CARD PRODUTO — estilo Dolce & Gabbana */
   .product-card {
     background:transparent;
     border-radius:0;
@@ -325,23 +316,25 @@
   .product-card:hover .product-img-square img { transform: scale(1.05); }
   .product-img-emoji { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:4.5rem; }
 
-  /* "NEW IN" horizontal no canto superior esquerdo */
+  /* "Novo" vertical no canto superior esquerdo */
   .product-new-label {
     position:absolute;
     top:14px;
     left:14px;
     font-size:0.68rem;
     font-weight:700;
-    letter-spacing:0.15em;
+    letter-spacing:0.18em;
     text-transform:uppercase;
     color:var(--text-dark);
     background:transparent;
     padding:0;
     z-index:5;
     font-family:'Outfit', sans-serif;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    line-height:1;
   }
 
-  /* Coração dourado fora da bolinha */
   .fav-btn {
     position:absolute;
     top:10px;
@@ -365,7 +358,6 @@
   .fav-btn.faved { color:var(--gold-main); }
   .fav-btn.faved svg { fill: var(--gold-main); }
 
-  /* Info abaixo — minimalista estilo D&G */
   .product-info {
     padding:14px 2px 6px;
     display:flex;
@@ -394,7 +386,6 @@
     font-weight:500;
   }
 
-  /* Cores (usado no modal e em outros lugares) */
   .color-dots { display:flex; gap:6px; margin-bottom:14px; align-items:center; flex-wrap:wrap; }
   .color-dot { width:18px; height:18px; border-radius:50%; border:2.5px solid rgba(255,255,255,0.8); box-shadow:0 0 0 1.5px rgba(0,0,0,0.12); cursor:pointer; transition:var(--transition); flex-shrink:0; position:relative; outline:none; }
   .color-dot:hover { transform:scale(1.3); box-shadow:0 0 0 2.5px var(--gold-main); }
@@ -407,6 +398,56 @@
   .custom-card .product-info h3, .custom-card .product-info .product-price, .custom-card .product-colors-text { color:#fff; }
   .custom-card .add-cart-btn { background:#fff; color:var(--gold-main); margin-top:8px; }
   .custom-card .add-cart-btn:hover { background:var(--gold-pale); }
+
+  /* ============================================
+     CARD DE COLEÇÃO
+     ============================================ */
+  .collection-card {
+    background:transparent;
+    border-radius:0;
+    overflow:visible;
+    box-shadow:none;
+    border:none;
+    transition: transform 0.3s ease;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+  }
+  .collection-card:hover { transform: translateY(-4px); }
+  .collection-img {
+    width:100%;
+    aspect-ratio: 1.15;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#f2ede0,#f8ead5);
+    border-radius:4px;
+    border:1px solid rgba(212,175,55,0.1);
+  }
+  .collection-img .collection-emoji { font-size:6rem; transition:transform 0.4s ease; }
+  .collection-card:hover .collection-img .collection-emoji { transform:scale(1.08); }
+  .collection-info { padding:18px 2px 6px; text-align:left; }
+  .collection-info h3 {
+    font-family:'DM Serif Display',serif;
+    font-size:1.4rem;
+    font-weight:400;
+    color:var(--text-dark);
+    margin-bottom:6px;
+    line-height:1.2;
+  }
+  .collection-card:hover .collection-info h3 { color:var(--gold-deep); }
+  .collection-info p {
+    font-size:0.88rem;
+    color:var(--text-mid);
+    line-height:1.55;
+  }
+  .collection-info .collection-cta {
+    margin-top:10px;
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-main);
+  }
 
   /* Modal Produto */
   .modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.65); z-index:2000; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
@@ -518,12 +559,12 @@
   .fav-panel { position:fixed; right:0; top:0; bottom:0; width:min(400px,100vw); background:var(--white); z-index:1200; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; box-shadow:-8px 0 40px rgba(0,0,0,0.14); }
   .fav-panel.open { transform:translateX(0); }
 
-  /* LEFT MENU */
+  /* LEFT MENU — agora mais preenchido */
   .left-menu-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.5); z-index:1250; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .left-menu-overlay.open { opacity:1; pointer-events:all; }
   .left-menu {
     position:fixed; left:0; top:0; bottom:0;
-    width:min(340px, 85vw);
+    width:min(360px, 88vw);
     background:linear-gradient(160deg, #fdf9f0 0%, #fbf3df 100%);
     z-index:1260;
     transform:translateX(-100%);
@@ -533,24 +574,22 @@
     border-right:1px solid rgba(212,175,55,0.15);
   }
   .left-menu.open { transform:translateX(0); }
-  .left-menu-header { padding:24px 24px 20px; border-bottom:1px solid rgba(212,175,55,0.18); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
-  .left-menu-title { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--gold-deep); letter-spacing:0.02em; }
+  .left-menu-header { padding:26px 26px 22px; border-bottom:1px solid rgba(212,175,55,0.18); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  .left-menu-title { font-family:'DM Serif Display',serif; font-size:1.6rem; color:var(--gold-deep); letter-spacing:0.02em; }
   .left-menu-close { width:38px; height:38px; border-radius:50%; border:none; background:var(--gold-pale); color:var(--gold-main); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
   .left-menu-close:hover { background:var(--gold-main); color:#fff; transform:rotate(90deg); }
-  .left-menu-nav { padding:22px 16px; display:flex; flex-direction:column; gap:4px; flex:1; overflow-y:auto; }
-  .left-menu-nav a { display:flex; align-items:center; gap:14px; padding:14px 18px; text-decoration:none; color:var(--text-dark); font-family:'Outfit',sans-serif; font-size:1rem; font-weight:600; border-radius:14px; transition:all 0.25s ease; cursor:pointer; border-left:3px solid transparent; }
+  .left-menu-nav { padding:28px 20px; display:flex; flex-direction:column; gap:10px; flex:1; overflow-y:auto; }
+  .left-menu-nav a { display:flex; align-items:center; gap:16px; padding:18px 22px; text-decoration:none; color:var(--text-dark); font-family:'Outfit',sans-serif; font-size:1.08rem; font-weight:600; border-radius:16px; transition:all 0.25s ease; cursor:pointer; border-left:3px solid transparent; }
   .left-menu-nav a:hover { background:rgba(212,175,55,0.12); color:var(--gold-deep); border-left-color:var(--gold-main); transform:translateX(4px); }
   .left-menu-nav a.active { background:rgba(212,175,55,0.18); color:var(--gold-deep); border-left-color:var(--gold-main); }
-  .left-menu-nav a .left-menu-icon { font-size:1.15rem; display:inline-flex; width:24px; justify-content:center; flex-shrink:0; }
-  .left-menu-footer { padding:20px 24px 26px; border-top:1px solid rgba(212,175,55,0.18); text-align:center; flex-shrink:0; }
-  .left-menu-footer p { font-size:0.78rem; color:var(--text-mid); line-height:1.55; margin-bottom:12px; }
-  .left-menu-footer .left-menu-social { display:flex; justify-content:center; gap:10px; }
-  .left-menu-footer .left-menu-social a { width:36px; height:36px; border-radius:50%; background:rgba(212,175,55,0.15); color:var(--gold-deep); display:flex; align-items:center; justify-content:center; font-size:0.95rem; transition:var(--transition); text-decoration:none; }
+  .left-menu-nav a .left-menu-icon { font-size:1.35rem; display:inline-flex; width:30px; justify-content:center; flex-shrink:0; }
+  .left-menu-footer { padding:24px 26px 30px; border-top:1px solid rgba(212,175,55,0.18); text-align:center; flex-shrink:0; }
+  .left-menu-footer p { font-size:0.82rem; color:var(--text-mid); line-height:1.55; margin-bottom:14px; }
+  .left-menu-footer .left-menu-social { display:flex; justify-content:center; gap:12px; }
+  .left-menu-footer .left-menu-social a { width:42px; height:42px; border-radius:50%; background:rgba(212,175,55,0.15); color:var(--gold-deep); display:flex; align-items:center; justify-content:center; font-size:1rem; transition:var(--transition); text-decoration:none; }
   .left-menu-footer .left-menu-social a:hover { background:var(--gold-main); color:#fff; transform:translateY(-3px); }
 
-  /* ============================================
-     SEARCH OVERLAY (pesquisa real)
-     ============================================ */
+  /* SEARCH OVERLAY */
   .search-overlay {
     position:fixed; inset:0;
     background:rgba(253,249,240,0.97);
@@ -677,7 +716,6 @@
   .timeline-year { font-size:0.78rem; font-weight:700; color:var(--gold-main); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px; }
   .timeline-text { font-size:0.93rem; color:var(--text-mid); line-height:1.65; }
 
-  /* Footer */
   footer { background:var(--text-dark); color:rgba(255,255,255,0.75); padding:52px 5% 22px; position:relative; z-index:1; }
   .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:40px; max-width:1200px; margin:0 auto 40px; }
   .footer-brand-name { font-family:'DM Serif Display',serif; font-size:1.3rem; color:#fff; margin-bottom:8px; }
@@ -710,6 +748,7 @@
   .back-top { position:fixed; bottom:28px; right:28px; z-index:800; width:42px; height:42px; border-radius:50%; background:rgba(212,175,55,0.85); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:0 4px 14px rgba(212,175,55,0.4); transition:var(--transition); opacity:0; pointer-events:none; backdrop-filter:blur(8px); }
   .back-top.visible { opacity:1; pointer-events:all; }
   .back-top:hover { background:var(--gold-main); transform:translateY(-3px); }
+  .back-top svg { width:16px; height:16px; }
 
   .no-results { text-align:center; padding:56px 20px; color:var(--text-mid); grid-column:1/-1; }
   .no-results span { font-size:3rem; display:block; margin-bottom:10px; }
@@ -729,7 +768,6 @@
   :focus-visible { outline:3px solid var(--gold-main); outline-offset:2px; border-radius:4px; }
   :focus:not(:focus-visible) { outline:none; }
 
-  /* Responsividade */
   @media (max-width:1200px) {
     .nav-logo { width:280px; height:66px; top:16px; }
     .nav-links a { padding:8px 12px; font-size:0.88rem; }
@@ -773,7 +811,6 @@
     nav.scrolled .nav-logo { left:95px; width:110px; height:34px; }
   }
 
-  /* Login Modal */
   .user-modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.65); z-index:1500; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .user-modal-overlay.open { opacity:1; pointer-events:all; }
   .user-modal-box { background:var(--white); border-radius:var(--radius-lg); max-width:420px; width:100%; box-shadow:0 32px 80px rgba(0,0,0,0.25); transform:scale(0.9) translateY(20px); transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); max-height:94vh; overflow-y:auto; position:relative; padding:30px; }
@@ -887,7 +924,9 @@
   </div>
 </aside>
 
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
 
 <!-- SACOLA -->
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
@@ -1032,7 +1071,7 @@
       <p class="fade-in fade-in-3">Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.</p>
     </div>
     <div class="hero-scroll" onclick="document.querySelector('.carousel-section').scrollIntoView({behavior:'smooth'})">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <span style="font-size:1.4rem;font-weight:300;line-height:1;">^</span>
       <span>Explorar</span>
     </div>
   </div>
@@ -1062,7 +1101,7 @@
   </div>
 </section>
 
-<!-- Coleções -->
+<!-- Coleções — apenas coleções, não produtos -->
 <section class="page" id="page-colecoes">
   <div class="products-hero">
     <h1>Nossas Coleções</h1>
@@ -1214,7 +1253,28 @@ const defaultProducts = [
   { id:9, name:'✨ Peça Personalizada', emoji:'🧶', category:'personalizado', desc:'Envie sua ideia, cor e tamanho — criamos sua peça exclusiva em crochê, do zero!', price:null, colors:[{name:'Dourado',hex:'#d4af37'},{name:'Champagne',hex:'#e0c368'}], badge:'Sob Medida', discount:0, image:'', model3d:'', gallery:[], custom:true },
 ];
 
+/* ============================================
+   COLEÇÕES (cards temáticos, não produtos)
+   ============================================ */
+const defaultCollections = [
+  {
+    id: 'alta-costura',
+    name: 'Alta-Costura',
+    desc: 'Peças exclusivas, feitas com fios premium e acabamento refinado para ocasiões especiais.',
+    emoji: '👑',
+    filter: 'Alta-Costura'
+  },
+  {
+    id: 'dia-a-dia',
+    name: 'Coleção Maré de Ouro',
+    desc: 'Peças versáteis inspiradas no balanço do mar e no brilho do ouro — para o seu dia a dia.',
+    emoji: '🌊',
+    filter: 'Dia a Dia'
+  }
+];
+
 let products = defaultProducts;
+let collections = defaultCollections;
 let cart = [];
 let currentFilter = 'todos';
 let currentColecaoFilter = 'todas';
@@ -1248,7 +1308,7 @@ function toggleFavorite(id) {
   if (favorites.includes(id)) { favorites = favorites.filter(f => f !== id); }
   else { favorites.push(id); }
   saveFavorites();
-  renderProducts(); renderColecoes(); renderNovidades(); renderCarousel(); updateFavCount();
+  renderProducts(); renderNovidades(); renderCarousel(); updateFavCount();
   if (document.getElementById('favPanel').classList.contains('open')) renderFavorites();
   if (document.getElementById('searchOverlay').classList.contains('open')) {
     const v = document.getElementById('searchOverlayInput')?.value || '';
@@ -1359,7 +1419,7 @@ function navigateFromMenu(id) {
 }
 
 // ════════════════════════════════════════
-// SEARCH OVERLAY (pesquisa real)
+// SEARCH OVERLAY
 // ════════════════════════════════════════
 function openSearchOverlay() {
   document.getElementById('searchOverlay').classList.add('open');
@@ -1524,21 +1584,19 @@ function initReveal() {
 // ════════════════════════════════════════
 // CARROSSEL INFINITO
 // ════════════════════════════════════════
-let carouselProducts = []; // 10 base products
-let carouselAll = []; // tripled
-let carouselIdx = 10; // current index in tripled array
+let carouselProducts = [];
+let carouselAll = [];
+let carouselIdx = 10;
 let carouselTimer;
 let carouselHover = false;
 let isCarouselAnimating = false;
 
 function renderCarousel() {
-  // Pega até 10 produtos
   carouselProducts = products.filter(p=>!p.custom).slice(0,10);
   if (carouselProducts.length < 10) {
     const extras = products.filter(p => !carouselProducts.includes(p));
     carouselProducts = carouselProducts.concat(extras).slice(0,10);
   }
-  // Triplica para loop infinito
   carouselAll = [...carouselProducts, ...carouselProducts, ...carouselProducts];
   const track = document.getElementById('carouselTrack');
   if (!track) return;
@@ -1549,7 +1607,7 @@ function renderCarousel() {
     const cols = getColors(p);
     const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
     const isNew = p.badge === 'Novo';
-    const newLabel = isNew ? '<div class="product-new-label">NEW IN</div>' : '';
+    const newLabel = isNew ? '<div class="product-new-label">Novo</div>' : '';
     const fav = favorites.includes(p.id) ? 'faved' : '';
     return `<div class="carousel-card" onclick="openModal(${p.id})" role="button" tabindex="0">
       <div class="product-img-square" style="background:${p.custom?'linear-gradient(135deg,var(--gold-main),var(--gold-deep))':grads[i%grads.length]}">
@@ -1568,11 +1626,9 @@ function renderCarousel() {
     </div>`;
   }).join('');
 
-  // Inicializa posição no primeiro item do conjunto do meio
   carouselIdx = carouselProducts.length;
   updateCarouselPosition(false);
 
-  // Eventos de hover
   const wr = document.getElementById('carouselWrapper');
   wr.addEventListener('mouseenter',()=>{carouselHover=true;clearInterval(carouselTimer);});
   wr.addEventListener('mouseleave',()=>{carouselHover=false;startCarouselTimer();});
@@ -1607,7 +1663,6 @@ function nextSlide() {
   carouselIdx++;
   updateCarouselPosition(true);
   setTimeout(() => {
-    // Se chegou ao início do último conjunto, pula silenciosamente para o conjunto do meio
     if (carouselIdx >= carouselProducts.length * 2) {
       carouselIdx = carouselProducts.length;
       updateCarouselPosition(false);
@@ -1622,7 +1677,6 @@ function prevSlide() {
   carouselIdx--;
   updateCarouselPosition(true);
   setTimeout(() => {
-    // Se chegou ao fim do primeiro conjunto, pula silenciosamente para o conjunto do meio
     if (carouselIdx < carouselProducts.length) {
       carouselIdx = carouselProducts.length * 2 - 1;
       updateCarouselPosition(false);
@@ -1668,19 +1722,41 @@ function setColecaoFilter(filter) {
   renderColecoes();
 }
 
+/* ============================================
+   RENDER COLEÇÕES — somente cards de coleção
+   ============================================ */
 function renderColecoes() {
   const grid = document.getElementById('colecoesGrid');
-  let filtered = products;
-  if (currentColecaoFilter !== 'todas') filtered = products.filter(p => p.category === currentColecaoFilter || (p.badge && p.badge.includes(currentColecaoFilter)));
-  grid.innerHTML = filtered.length ? filtered.map((p,i)=>cardHtml(p,i)).join('') : '<div class="no-results"><span>👜</span><p>Nenhuma peça nesta coleção.</p></div>';
-  bindCardEvents(grid);
+  let filtered = collections;
+  if (currentColecaoFilter !== 'todas') {
+    filtered = collections.filter(c => c.filter === currentColecaoFilter);
+  }
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results"><span>✨</span><p>Nenhuma coleção disponível.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(c => `
+    <div class="collection-card" onclick="openCollection('${c.id}')" role="button" tabindex="0">
+      <div class="collection-img">
+        <div class="collection-emoji">${c.emoji}</div>
+      </div>
+      <div class="collection-info">
+        <h3>${c.name}</h3>
+        <p>${c.desc}</p>
+        <div class="collection-cta">Explorar →</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openCollection(id) {
+  showPage('produtos');
+  // Pode-se filtrar por coleção se quiser
 }
 
 /* ============================================
    CARD — estilo Dolce & Gabbana
-   Removido: badge de desconto (bolinha)
-   Adicionado: label "NEW IN" horizontal
-   Coração dourado fora da bolinha
+   "Novo" vertical, coração dourado, sem bolinha
    ============================================ */
 function cardHtml(p,i) {
   const grads = ['#f2ede0','#f8ead5','#f5e6cb','#f3ead2'];
@@ -1688,7 +1764,7 @@ function cardHtml(p,i) {
   const cols = getColors(p);
   const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
   const isNew = p.badge === 'Novo';
-  const newLabel = isNew ? '<div class="product-new-label">NEW IN</div>' : '';
+  const newLabel = isNew ? '<div class="product-new-label">Novo</div>' : '';
   const fav = favorites.includes(p.id) ? 'faved' : '';
   let priceHtml = p.price ? `R$ ${p.price},00` : 'Sob Consulta';
   return `
@@ -1853,7 +1929,6 @@ document.addEventListener('keydown',e=>{
   else if(document.getElementById('leftMenu').classList.contains('open')) { if(e.key==='Escape')closeLeftMenu(); }
 });
 
-// Fecha o overlay de pesquisa com clique no fundo (fora do conteúdo)
 document.getElementById('searchOverlay').addEventListener('click', (e) => {
   if (e.target === document.getElementById('searchOverlay')) closeSearchOverlay();
 });
@@ -1871,6 +1946,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   await loadData();
   renderCarousel(); renderFilters(); renderProducts(); renderNovidades(); renderColecoes(); updateCartUI();
   updateFavCount();
+  // ← FIX: chama initReveal no carregamento inicial para que os cards
+  // da seção "Por que Gold Crochet?" apareçam imediatamente
+  initReveal();
   if(!localStorage.getItem('goldcrochet_cookies')) setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'),2200);
 });
 </script>
