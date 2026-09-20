@@ -141,9 +141,27 @@
   .nav-item.active { background:var(--gold-main); color:white; box-shadow:0 4px 12px rgba(205,164,52,0.3); }
   .nav-item .icon { font-size:1.05rem; width:22px; text-align:center; }
   .nav-item .nav-count { margin-left:auto; background:rgba(255,255,255,0.15); padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:700; }
+  .nav-item .nav-count.alert { background:var(--danger); color:white; animation:pulse 2s ease-in-out infinite; }
   .nav-item.active .nav-count { background:rgba(255,255,255,0.25); }
+  .nav-item.active .nav-count.alert { background:var(--danger); }
   .nav-divider { height:1px; background:rgba(255,255,255,0.08); margin:8px 14px; flex-shrink:0; }
   .sidebar-footer { padding:14px 12px; border-top:1px solid rgba(255,255,255,0.08); flex-shrink:0; }
+
+  .admin-status {
+    padding:10px 12px; margin-bottom:10px;
+    background:rgba(255,255,255,0.04); border-radius:var(--radius-sm);
+    font-size:0.76rem; color:rgba(255,255,255,0.6);
+    border-left:3px solid transparent;
+  }
+  .admin-status.logged { border-left-color:var(--success); }
+  .admin-status.guest { border-left-color:var(--warning); }
+  .admin-status strong { color:white; display:block; font-size:0.82rem; margin-bottom:2px; }
+  .admin-status small { font-size:0.7rem; word-break:break-all; }
+  .admin-status button { margin-top:8px; width:100%; padding:6px; border-radius:8px; border:none; background:rgba(229,62,62,0.15); color:#ff8888; font-size:0.72rem; font-weight:700; cursor:pointer; font-family:var(--font-body); transition:var(--transition-fast); }
+  .admin-status button:hover { background:rgba(229,62,62,0.3); color:white; }
+  .admin-status button.primary { background:rgba(205,164,52,0.2); color:var(--gold-light); }
+  .admin-status button.primary:hover { background:var(--gold-main); color:white; }
+
   .token-status {
     display:flex; align-items:center; gap:8px; padding:10px 12px;
     border-radius:var(--radius-sm); font-size:0.78rem;
@@ -167,14 +185,19 @@
   .page-header { margin-bottom:24px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; }
   .page-header h2 { font-family:var(--font-display); font-size:1.9rem; letter-spacing:-0.01em; }
   .page-header p { color:var(--text-mid); font-size:0.9rem; margin-top:4px; }
-  .page-header .header-actions { display:flex; gap:8px; flex-wrap:wrap; }
+  .page-header .header-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
 
   .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:24px; }
   .stat-card { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-sm); border:1px solid rgba(205,164,52,0.08); transition:var(--transition); cursor:default; position:relative; overflow:hidden; }
   .stat-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); border-color:rgba(205,164,52,0.2); }
   .stat-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--gold-main); }
-  .stat-label { font-size:0.78rem; color:var(--text-mid); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .stat-card.firebase::before { background:linear-gradient(180deg,#ffca28,#ff8f00); }
+  .stat-card.success::before { background:var(--success); }
+  .stat-card.warning::before { background:var(--warning); }
+  .stat-label { font-size:0.78rem; color:var(--text-mid); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
   .stat-value { font-family:var(--font-display); font-size:2.2rem; color:var(--gold-deep); line-height:1; }
+  .stat-card.success .stat-value { color:var(--success); }
+  .stat-card.warning .stat-value { color:var(--warning); }
   .stat-sub { font-size:0.78rem; color:var(--text-soft); margin-top:4px; }
 
   .panel { background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-sm); border:1px solid rgba(205,164,52,0.08); margin-bottom:24px; animation:fadeIn 0.35s ease; }
@@ -191,6 +214,9 @@
   .btn-danger { background:var(--danger); color:white; }
   .btn-danger:hover { background:#c53030; }
   .btn-success { background:var(--success); color:white; }
+  .btn-success:hover { background:#2f855a; }
+  .btn-whatsapp { background:#25d366; color:white; }
+  .btn-whatsapp:hover { background:#128c7e; }
   .btn-ghost { background:transparent; color:var(--text-mid); border:2px solid var(--gray-light); }
   .btn-ghost:hover { border-color:var(--gold-main); color:var(--gold-main); }
   .btn-sm { padding:6px 14px; font-size:0.78rem; }
@@ -258,9 +284,93 @@
   .product-row-info .meta .tag.section { background:rgba(49,130,206,0.12); color:var(--info); }
   .product-row-info .meta .tag.gender { background:rgba(214,158,46,0.15); color:var(--warning); }
   .product-row-info .meta .tag.collection { background:rgba(160,90,200,0.12); color:#8050b8; }
+  .product-row-info .meta .tag.status { font-weight:700; }
+  .product-row-info .meta .tag.status.pendente { background:rgba(214,158,46,0.15); color:var(--warning); }
+  .product-row-info .meta .tag.status.producao { background:rgba(49,130,206,0.15); color:var(--info); }
+  .product-row-info .meta .tag.status.enviado { background:rgba(160,90,200,0.15); color:#8050b8; }
+  .product-row-info .meta .tag.status.entregue { background:rgba(56,161,105,0.15); color:var(--success); }
+  .product-row-info .meta .tag.status.cancelado { background:rgba(229,62,62,0.15); color:var(--danger); }
   .product-row-price { font-size:1.05rem; font-weight:800; color:var(--gold-main); width:110px; text-align:right; }
   .product-row-actions { display:flex; gap:6px; flex-shrink:0; }
   .product-row-actions .btn { padding:6px 10px; font-size:0.75rem; border-radius:8px; }
+
+  /* Orders */
+  .order-card {
+    background:var(--off-white); border-radius:var(--radius-sm);
+    border:1px solid rgba(205,164,52,0.12);
+    padding:18px 20px; margin-bottom:12px;
+    transition:var(--transition); animation:fadeIn 0.3s ease;
+  }
+  .order-card:hover { border-color:var(--gold-light); box-shadow:0 4px 20px rgba(205,164,52,0.12); }
+  .order-head { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
+  .order-id { font-family:var(--font-mono); font-weight:700; color:var(--gold-deep); font-size:0.95rem; }
+  .order-date { font-size:0.75rem; color:var(--text-soft); font-family:var(--font-mono); }
+  .order-user { font-size:0.82rem; color:var(--text-mid); margin-top:3px; }
+  .order-total { font-family:var(--font-display); font-size:1.3rem; color:var(--gold-main); font-weight:700; }
+  .order-items-box { background:var(--white); padding:12px 14px; border-radius:10px; margin-bottom:12px; border:1px dashed rgba(205,164,52,0.2); }
+  .order-item-line { display:flex; justify-content:space-between; padding:5px 0; font-size:0.85rem; border-bottom:1px solid rgba(205,164,52,0.08); gap:10px; }
+  .order-item-line:last-child { border-bottom:none; }
+  .order-item-colors { font-size:0.72rem; color:var(--text-soft); margin-left:6px; }
+  .order-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .order-status-pill {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:5px 14px; border-radius:999px; font-size:0.75rem; font-weight:700;
+  }
+  .order-status-pill.pendente { background:rgba(214,158,46,0.15); color:var(--warning); }
+  .order-status-pill.producao { background:rgba(49,130,206,0.15); color:var(--info); }
+  .order-status-pill.enviado { background:rgba(160,90,200,0.15); color:#8050b8; }
+  .order-status-pill.entregue { background:rgba(56,161,105,0.15); color:var(--success); }
+  .order-status-pill.cancelado { background:rgba(229,62,62,0.15); color:var(--danger); }
+
+  .order-filters {
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;
+    padding:14px; background:var(--off-white); border-radius:var(--radius-sm);
+    border:1px solid rgba(205,164,52,0.1);
+  }
+  .order-filters select, .order-filters input {
+    flex:1; min-width:140px; padding:8px 14px; font-size:0.85rem;
+    border-radius:999px; border:2px solid rgba(205,164,52,0.18);
+    background:var(--white);
+  }
+  .order-filters select:focus, .order-filters input:focus { border-color:var(--gold-main); outline:none; }
+
+  /* Customer cards */
+  .customer-card {
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px; background:var(--off-white);
+    border-radius:var(--radius-sm); border:1px solid rgba(205,164,52,0.1);
+    transition:var(--transition); cursor:pointer;
+  }
+  .customer-card:hover { border-color:var(--gold-light); box-shadow:0 4px 16px rgba(205,164,52,0.1); transform:translateX(2px); }
+  .customer-avatar {
+    width:48px; height:48px; border-radius:14px;
+    background:linear-gradient(135deg,var(--gold-pale),#f6e8c8);
+    color:var(--gold-deep); display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:1rem; flex-shrink:0;
+  }
+  .customer-info { flex:1; min-width:0; }
+  .customer-info strong { display:block; font-size:0.95rem; margin-bottom:2px; }
+  .customer-info .customer-email { font-size:0.8rem; color:var(--text-mid); }
+  .customer-stats { display:flex; gap:14px; font-size:0.72rem; color:var(--text-soft); margin-top:6px; flex-wrap:wrap; }
+  .customer-stats span { display:inline-flex; align-items:center; gap:4px; }
+
+  /* Modal genérico */
+  .generic-modal { position:fixed; inset:0; background:rgba(42,34,16,0.6); backdrop-filter:blur(4px); z-index:8000; display:none; align-items:center; justify-content:center; padding:20px; }
+  .generic-modal.open { display:flex; }
+  .generic-modal-box {
+    background:var(--white); border-radius:20px; padding:32px;
+    max-width:640px; width:100%; max-height:90vh; overflow-y:auto;
+    box-shadow:var(--shadow-lg); position:relative;
+    animation:fadeInUp 0.3s ease;
+  }
+  .generic-modal-close {
+    position:absolute; top:16px; right:16px;
+    width:36px; height:36px; border-radius:50%; border:none;
+    background:var(--gold-pale); color:var(--gold-main);
+    font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:var(--transition);
+  }
+  .generic-modal-close:hover { background:var(--gold-main); color:white; transform:rotate(90deg); }
 
   .color-sections { display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
   .color-sections:empty::after { content:'Nenhuma seção de cores. Clique em "+ Nova seção".'; display:block; text-align:center; padding:20px; color:var(--text-soft); font-style:italic; font-size:0.82rem; }
@@ -312,7 +422,6 @@
   .cat-row input { flex:1; padding:8px 12px; font-size:0.9rem; }
   .cat-row .cat-usage { font-size:0.72rem; color:var(--text-soft); padding:2px 8px; background:var(--gold-pale); border-radius:999px; font-weight:600; }
 
-  /* Collection row com múltiplos campos */
   .collection-row { display:grid; grid-template-columns:auto 1.2fr 1fr auto auto; gap:8px; align-items:center; padding:8px 12px; background:var(--off-white); border-radius:var(--radius-sm); border:1px solid rgba(205,164,52,0.1); }
   .collection-row input { padding:8px 12px; font-size:0.88rem; }
   .collection-row .collection-emoji-input { width:52px; text-align:center; font-size:1.05rem; }
@@ -351,6 +460,8 @@
   .gh-info-box { background:linear-gradient(135deg, rgba(205,164,52,0.06), rgba(205,164,52,0.02)); border:1.5px solid rgba(205,164,52,0.2); border-radius:var(--radius-sm); padding:14px 16px; margin-bottom:18px; font-size:0.83rem; color:var(--text-mid); line-height:1.6; display:flex; align-items:flex-start; gap:10px; }
   .gh-info-box .info-icon { font-size:1.1rem; flex-shrink:0; line-height:1.3; }
   .gh-info-box strong { color:var(--gold-deep); }
+  .gh-info-box.warning { border-color:rgba(214,158,46,0.4); background:linear-gradient(135deg, rgba(214,158,46,0.08), rgba(214,158,46,0.02)); }
+  .gh-info-box.error { border-color:rgba(229,62,62,0.35); background:linear-gradient(135deg, rgba(229,62,62,0.05), rgba(229,62,62,0.02)); }
 
   .topbar { display:none; background:var(--text-dark); padding:14px 20px; position:sticky; top:0; z-index:200; align-items:center; gap:12px; color:white; }
   .topbar-logo { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#cda434,#a67c00); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
@@ -358,6 +469,24 @@
 
   .hidden { display:none !important; }
   .text-center { text-align:center; }
+
+  .empty-state { text-align:center; padding:50px 20px; color:var(--text-mid); }
+  .empty-state .icon { font-size:3.5rem; display:block; margin-bottom:12px; opacity:0.7; }
+  .empty-state h4 { font-family:var(--font-display); font-size:1.2rem; color:var(--text-dark); margin-bottom:8px; font-weight:400; }
+  .empty-state p { font-size:0.88rem; line-height:1.6; max-width:340px; margin:0 auto; }
+
+  .sync-pill {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:3px 10px; border-radius:999px;
+    font-size:0.7rem; font-weight:700;
+    background:rgba(56,161,105,0.12); color:var(--success);
+  }
+  .sync-pill::before {
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:currentColor;
+    animation:pulse 1.5s ease-in-out infinite;
+  }
+  .sync-pill.offline { background:rgba(229,62,62,0.12); color:var(--danger); }
 
   @media (max-width:900px) {
     .admin-sidebar { width:240px; transform:translateX(-100%); }
@@ -381,6 +510,8 @@
     .product-row-actions { width:100%; justify-content:flex-end; }
     .login-box { padding:36px 24px; }
     .toast { left:16px; right:16px; bottom:16px; max-width:none; }
+    .generic-modal-box { padding:24px 20px; }
+    .order-head { flex-direction:column; }
   }
 </style>
 </head>
@@ -395,6 +526,7 @@
   </div>
 </div>
 
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">
@@ -433,7 +565,7 @@
       <div class="sidebar-logo-icon">
         <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/><path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>
       </div>
-      <div class="sidebar-logo-text"><span>Gold Crochet</span><small>Admin Panel</small></div>
+      <div class="sidebar-logo-text"><span>Gold Crochet</span><small>Admin Panel v4.0</small></div>
     </div>
     <nav class="sidebar-nav">
       <button class="nav-item active" onclick="showTab('dashboard')" id="tab-dashboard"><span class="icon">📊</span> Dashboard</button>
@@ -442,8 +574,9 @@
       <button class="nav-item" onclick="showTab('categorias')" id="tab-categorias"><span class="icon">📂</span> Categorias & Tags</button>
       <button class="nav-item" onclick="showTab('colecoes')" id="tab-colecoes"><span class="icon">🗂️</span> Coleções <span class="nav-count" id="navCountCollections">0</span></button>
       <button class="nav-item" onclick="showTab('cores')" id="tab-cores"><span class="icon">🎨</span> Cores Globais</button>
+      <div class="nav-divider"></div>
+      <button class="nav-item" onclick="showTab('pedidos')" id="tab-pedidos"><span class="icon">📦</span> Pedidos <span class="nav-count" id="navCountOrders">—</span></button>
       <button class="nav-item" onclick="showTab('clientes')" id="tab-clientes"><span class="icon">👥</span> Clientes <span class="nav-count" id="navCountClients">—</span></button>
-<button class="nav-item" onclick="showTab('pedidos')" id="tab-pedidos"><span class="icon">📦</span> Pedidos <span class="nav-count" id="navCountOrders">—</span></button>
       <div class="nav-divider"></div>
       <button class="nav-item" onclick="showTab('config')" id="tab-config"><span class="icon">⚙️</span> Configurações</button>
       <button class="nav-item" onclick="showTab('calc')" id="tab-calc"><span class="icon">🧮</span> Calculadora</button>
@@ -452,6 +585,11 @@
       <button class="nav-item" onclick="showTab('logs')" id="tab-logs"><span class="icon">📋</span> Atividade</button>
     </nav>
     <div class="sidebar-footer">
+      <div class="admin-status guest" id="adminStatusBox">
+        <strong id="adminStatusTitle">Modo Visitante</strong>
+        <small id="adminStatusText">Entre com Firebase para acessar Clientes e Pedidos.</small>
+        <button class="primary" id="adminStatusBtn" onclick="loginWithFirebase()">🔑 Entrar com Firebase</button>
+      </div>
       <button class="token-status" onclick="configureToken()">
         <div class="token-dot" id="tokenDot"></div>
         <span id="tokenStatusText">Configurar Token GitHub</span>
@@ -462,11 +600,17 @@
 
   <main class="admin-main">
 
+    <!-- DASHBOARD -->
     <div id="section-dashboard">
       <div class="page-header">
         <div><h2>Dashboard</h2><p>Visão geral da loja Gold Crochet</p></div>
-        <div class="header-actions"><button class="btn btn-ghost btn-sm" onclick="refreshFromGitHub()">🔄 Sincronizar</button></div>
+        <div class="header-actions">
+          <span class="sync-pill" id="syncPill">Sincronizado</span>
+          <button class="btn btn-ghost btn-sm" onclick="refreshFromGitHub()">🔄 Sincronizar</button>
+        </div>
       </div>
+
+      <div class="section-label">📊 Catálogo (GitHub)</div>
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-label">Produtos</div><div class="stat-value" id="statProducts">0</div><div class="stat-sub">no catálogo</div></div>
         <div class="stat-card"><div class="stat-label">Categorias</div><div class="stat-value" id="statCategories">0</div><div class="stat-sub">ativas</div></div>
@@ -474,22 +618,36 @@
         <div class="stat-card"><div class="stat-label">Novidades</div><div class="stat-value" id="statPosts">0</div><div class="stat-sub">posts no blog</div></div>
         <div class="stat-card"><div class="stat-label">Cores Globais</div><div class="stat-value" id="statColors">0</div><div class="stat-sub">disponíveis</div></div>
       </div>
+
+      <div class="section-label" style="margin-top:8px;">🔥 Loja (Firebase)</div>
+      <div class="stats-grid">
+        <div class="stat-card firebase"><div class="stat-label">👥 Clientes</div><div class="stat-value" id="statClientsFs">—</div><div class="stat-sub">cadastrados</div></div>
+        <div class="stat-card firebase"><div class="stat-label">📦 Pedidos</div><div class="stat-value" id="statOrdersFs">—</div><div class="stat-sub">total histórico</div></div>
+        <div class="stat-card warning"><div class="stat-label">⏳ Pendentes</div><div class="stat-value" id="statPendingOrders">—</div><div class="stat-sub">aguardando ação</div></div>
+        <div class="stat-card success"><div class="stat-label">💰 Receita Total</div><div class="stat-value" id="statRevenueFs" style="font-size:1.6rem;">R$ —</div><div class="stat-sub">pedidos entregues/pagos</div></div>
+        <div class="stat-card success"><div class="stat-label">📈 Receita 30 dias</div><div class="stat-value" id="statRevenue30d" style="font-size:1.6rem;">R$ —</div><div class="stat-sub">últimos 30 dias</div></div>
+      </div>
+
       <div class="panel">
         <div class="panel-header"><h3>⚡ Ações Rápidas</h3></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="openNewProduct()">＋ Nova Peça</button>
           <button class="btn btn-primary" onclick="openNewBlogPost()">＋ Novo Post</button>
+          <button class="btn btn-ghost" onclick="showTab('pedidos')">📦 Ver Pedidos</button>
+          <button class="btn btn-ghost" onclick="showTab('clientes')">👥 Ver Clientes</button>
           <button class="btn btn-ghost" onclick="showTab('config')">⚙️ Config</button>
           <button class="btn btn-ghost" onclick="showTab('backup')">💾 Backup</button>
           <button class="btn btn-ghost" onclick="testGitHubConnection()">🔗 Testar GitHub</button>
         </div>
       </div>
+
       <div class="panel">
         <div class="panel-header"><h3>🕐 Atividade Recente</h3></div>
         <div id="recentActivity"></div>
       </div>
     </div>
 
+    <!-- PRODUTOS -->
     <div id="section-produtos" class="hidden">
       <div class="page-header">
         <div><h2>Produtos</h2><p>Alterações publicadas automaticamente no GitHub</p></div>
@@ -514,7 +672,7 @@
           </select>
           <select class="product-sort" id="productSectionFilter" onchange="filterProducts()">
             <option value="">Todas as seções</option>
-            <option value="dia-a-dia">Dia a Dia</option>
+            <option value="dia-a-dia">Essenciais</option>
             <option value="pequeninos">Pequeninos</option>
             <option value="acessorios">Acessórios</option>
             <option value="bijuterias">Bijuterias</option>
@@ -525,6 +683,7 @@
       </div>
     </div>
 
+    <!-- NOVIDADES -->
     <div id="section-novidades" class="hidden">
       <div class="page-header">
         <div><h2>Novidades (Blog)</h2><p>Posts que aparecem na página Novidades do site</p></div>
@@ -535,6 +694,7 @@
       </div>
     </div>
 
+    <!-- CATEGORIAS -->
     <div id="section-categorias" class="hidden">
       <div class="page-header"><div><h2>Categorias & Tags (Badges)</h2><p>Aparecem nos filtros do site automaticamente</p></div></div>
       <div class="panel">
@@ -555,10 +715,10 @@
       </div>
     </div>
 
-    <!-- NOVA ABA: COLEÇÕES -->
+    <!-- COLEÇÕES -->
     <div id="section-colecoes" class="hidden">
       <div class="page-header">
-        <div><h2>Coleções</h2><p>Crie coleções para agrupar peças no site (ex: Alta-Costura, Dia a Dia)</p></div>
+        <div><h2>Coleções</h2><p>Crie coleções para agrupar peças no site</p></div>
         <div class="header-actions"><button class="btn btn-primary" onclick="addCollection()">＋ Nova Coleção</button></div>
       </div>
       <div class="panel">
@@ -566,11 +726,12 @@
         <div class="cat-list" id="collectionList"></div>
         <div class="gh-info-box" style="margin-top:16px;">
           <span class="info-icon">💡</span>
-          <div>O campo <strong>Filtro</strong> é o valor que o produto guarda internamente para pertencer à coleção. Os produtos devem ser marcados com a coleção no cadastro da peça.</div>
+          <div>O campo <strong>Filtro</strong> é o valor que o produto guarda internamente para pertencer à coleção.</div>
         </div>
       </div>
     </div>
 
+    <!-- CORES -->
     <div id="section-cores" class="hidden">
       <div class="page-header"><div><h2>Cores Globais</h2><p>Cadastre uma vez e reutilize em qualquer peça</p></div></div>
       <div class="panel">
@@ -588,11 +749,60 @@
       </div>
     </div>
 
-    <div id="section-clientes" class="hidden">
-      <div class="page-header"><div><h2>Clientes</h2><p>Usuários registrados neste dispositivo</p></div></div>
-      <div class="panel"><div id="clientsList"></div></div>
+    <!-- PEDIDOS -->
+    <div id="section-pedidos" class="hidden">
+      <div class="page-header">
+        <div>
+          <h2>Pedidos</h2>
+          <p>Pedidos finalizados no site — em tempo real via Firestore</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-sm" onclick="exportOrdersCSV()">📥 Exportar CSV</button>
+          <button class="btn btn-ghost btn-sm" onclick="renderOrders()">🔄 Recarregar</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="order-filters">
+          <select id="orderStatusFilter" onchange="renderOrders()">
+            <option value="">Todos os status</option>
+            <option value="pendente">⏳ Pendente</option>
+            <option value="producao">🧶 Em produção</option>
+            <option value="enviado">📦 Enviado</option>
+            <option value="entregue">✅ Entregue</option>
+            <option value="cancelado">❌ Cancelado</option>
+          </select>
+          <select id="orderPeriodFilter" onchange="renderOrders()">
+            <option value="">Todo o período</option>
+            <option value="7">Últimos 7 dias</option>
+            <option value="30">Últimos 30 dias</option>
+            <option value="90">Últimos 90 dias</option>
+          </select>
+          <input type="text" id="orderSearchInput" placeholder="🔍 Buscar por nome/email/pedido..." oninput="renderOrders()">
+        </div>
+        <div id="ordersList"></div>
+      </div>
     </div>
 
+    <!-- CLIENTES -->
+    <div id="section-clientes" class="hidden">
+      <div class="page-header">
+        <div><h2>Clientes</h2><p>Usuários registrados no site (Firebase Auth + Firestore)</p></div>
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-sm" onclick="renderClients()">🔄 Recarregar</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="product-filters" style="margin-bottom:16px;">
+          <div class="product-search">
+            <span>🔍</span>
+            <input type="text" id="clientSearchInput" placeholder="Buscar cliente por nome/email..." oninput="renderClients()">
+          </div>
+        </div>
+        <div class="product-list" id="clientsList"></div>
+      </div>
+    </div>
+
+    <!-- CONFIG -->
     <div id="section-config" class="hidden">
       <div class="page-header"><div><h2>Configurações do Site</h2><p>Textos e links aplicados automaticamente</p></div></div>
       <div class="panel">
@@ -606,6 +816,7 @@
       </div>
     </div>
 
+    <!-- CALC -->
     <div id="section-calc" class="hidden">
       <div class="page-header"><div><h2>Calculadora de Custo</h2><p>Calcule o preço ideal para cada peça</p></div></div>
       <div class="panel">
@@ -639,6 +850,7 @@
       </div>
     </div>
 
+    <!-- BACKUP -->
     <div id="section-backup" class="hidden">
       <div class="page-header"><div><h2>Backup & Restauração</h2><p>Exporte e importe seus dados</p></div></div>
       <div class="panel">
@@ -666,6 +878,7 @@
       </div>
     </div>
 
+    <!-- LOGS -->
     <div id="section-logs" class="hidden">
       <div class="page-header">
         <div><h2>Atividade</h2><p>Histórico de ações recentes</p></div>
@@ -709,7 +922,6 @@
       <div class="form-group"><label>Modelo 3D (URL)</label><input type="url" id="p_model3d" placeholder="https://..."></div>
     </div>
 
-    <!-- NOVA SEÇÃO: SEÇÃO DO SITE / GÊNERO / COLEÇÃO -->
     <div class="section-label" style="margin-top:8px;">🗂️ Seção do Site</div>
     <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">Define onde o produto aparece no site (menu Peças e filtros das coleções).</p>
     <div class="form-row">
@@ -717,7 +929,7 @@
         <label>Seção <span class="req">*</span></label>
         <select id="p_section" onchange="onProductSectionChange()">
           <option value="">— Selecione —</option>
-          <option value="dia-a-dia">Dia a Dia</option>
+          <option value="dia-a-dia">Essenciais (Dia a Dia)</option>
           <option value="pequeninos">Pequeninos</option>
           <option value="acessorios">Acessórios</option>
           <option value="bijuterias">Bijuterias</option>
@@ -796,6 +1008,14 @@
   </div>
 </div>
 
+<!-- MODAL GENÉRICO (detalhes de cliente/pedido) -->
+<div class="generic-modal" id="genericModal">
+  <div class="generic-modal-box">
+    <button class="generic-modal-close" onclick="closeGenericModal()" aria-label="Fechar">✕</button>
+    <div id="genericModalContent"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
@@ -825,6 +1045,7 @@ try {
   auth = firebase.auth();
   if (firebase.firestore) {
     db = firebase.firestore();
+    db.settings({ ignoreUndefinedProperties: true });
     console.log('✅ Firebase + Firestore inicializados');
   } else {
     console.warn('⚠️ Firestore SDK não carregado');
@@ -853,10 +1074,10 @@ const MAX_IMAGE_SIZE_MB = 3;
 const LOG_MAX_ENTRIES = 100;
 
 // ════════════════════════════════════════
-// SEÇÕES DISPONÍVEIS
+// SEÇÕES
 // ════════════════════════════════════════
 const SECTION_OPTIONS = [
-  { value: 'dia-a-dia',  label: 'Dia a Dia' },
+  { value: 'dia-a-dia',  label: 'Essenciais' },
   { value: 'pequeninos', label: 'Pequeninos' },
   { value: 'acessorios', label: 'Acessórios' },
   { value: 'bijuterias', label: 'Bijuterias' },
@@ -871,6 +1092,14 @@ function labelForGender(val) {
   if (val === 'masculino') return 'Para Ele';
   return '';
 }
+
+const ORDER_STATUS_MAP = {
+  pendente:  { label: '⏳ Pendente',      color: 'var(--warning)' },
+  producao:  { label: '🧶 Em produção',   color: 'var(--info)' },
+  enviado:   { label: '📦 Enviado',       color: '#8050b8' },
+  entregue:  { label: '✅ Entregue',       color: 'var(--success)' },
+  cancelado: { label: '❌ Cancelado',      color: 'var(--danger)' }
+};
 
 // ════════════════════════════════════════
 // DEFAULTS
@@ -915,6 +1144,12 @@ let editingPostId = null;
 let editingImages = [];
 let dragImgFromIdx = -1;
 let isProcessing = false;
+
+// Cache Firestore
+let firestoreOrders = [];
+let firestoreUsers = [];
+let ordersUnsubscribe = null;
+let lastOrdersCount = 0;
 
 // ════════════════════════════════════════
 // UTILS
@@ -963,6 +1198,25 @@ function closeSidebar() {
   document.getElementById('adminSidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('open');
 }
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+function toRawUrl(url) {
+  if (!url) return '';
+  if (url.includes('github.com') && url.includes('/blob/')) {
+    return url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+  }
+  return url;
+}
+function formatBRL(v) {
+  return 'R$ ' + (Number(v) || 0).toFixed(2).replace('.', ',');
+}
+function formatDate(ts) {
+  if (!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
 
 // ════════════════════════════════════════
 // TOKEN GITHUB
@@ -1009,7 +1263,7 @@ function renderRecentActivity() {
   el.innerHTML = activityLog.slice(0, 8).map(l => {
     const time = new Date(l.ts).toLocaleString('pt-BR');
     return `<div style="padding:8px 0;border-bottom:1px solid rgba(205,164,52,0.08);font-size:0.85rem;display:flex;justify-content:space-between;gap:12px;align-items:center;">
-      <span>${l.msg}</span><span style="color:var(--text-soft);font-size:0.72rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span></div>`;
+      <span>${escapeHtml(l.msg)}</span><span style="color:var(--text-soft);font-size:0.72rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span></div>`;
   }).join('');
 }
 function clearLogs() {
@@ -1027,7 +1281,7 @@ function renderFullLogs() {
   el.innerHTML = activityLog.map(l => {
     const time = new Date(l.ts).toLocaleString('pt-BR');
     return `<div style="padding:10px 0;border-bottom:1px solid rgba(205,164,52,0.08);display:flex;justify-content:space-between;gap:12px;">
-      <span style="font-size:0.88rem;">${l.msg}</span>
+      <span style="font-size:0.88rem;">${escapeHtml(l.msg)}</span>
       <span style="color:var(--text-soft);font-size:0.75rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span></div>`;
   }).join('');
 }
@@ -1042,14 +1296,14 @@ function doLogin() {
   const errEl = document.getElementById('loginError');
   errEl.classList.remove('show');
 
-  if (pass === ADMIN_PASSWORD) { enterAdmin('admin'); return; }
+  if (pass === ADMIN_PASSWORD) { enterAdmin('admin', null); return; }
 
   if (email && ADMIN_EMAILS.includes(email)) {
     isProcessing = true;
     document.getElementById('loginBtn').disabled = true;
     document.getElementById('loginBtnText').textContent = 'Entrando...';
     auth.signInWithEmailAndPassword(email, pass)
-      .then(() => enterAdmin(email))
+      .then((cred) => enterAdmin(email, cred.user))
       .catch(() => { errEl.textContent = 'Credenciais Firebase inválidas.'; errEl.classList.add('show'); })
       .finally(() => {
         isProcessing = false;
@@ -1067,13 +1321,28 @@ function loginWithFirebase() {
   const pass = prompt('Senha:');
   if (!pass) return;
   auth.signInWithEmailAndPassword(email, pass)
-    .then((user) => {
-      if (ADMIN_EMAILS.includes(user.email)) enterAdmin(user.email);
-      else { alert('E-mail não autorizado!'); auth.signOut(); }
+    .then((cred) => {
+      if (ADMIN_EMAILS.includes(cred.user.email)) {
+        // Se já está no admin, só atualiza
+        if (document.getElementById('adminApp').classList.contains('show')) {
+          logActivity('✅ Login Firebase');
+          showToast('✅ Conectado ao Firebase!');
+          updateAdminStatusBox();
+          startRealtimeListeners();
+          loadFirebaseStats();
+          renderClients();
+          renderOrders();
+        } else {
+          enterAdmin(cred.user.email, cred.user);
+        }
+      } else {
+        alert('E-mail não autorizado!');
+        auth.signOut();
+      }
     })
     .catch(err => alert('Erro: ' + err.message));
 }
-function enterAdmin(userId) {
+function enterAdmin(userId, fbUser) {
   sessionStorage.setItem('goldcrochet_admin', userId);
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminApp').classList.add('show');
@@ -1082,10 +1351,113 @@ function enterAdmin(userId) {
 }
 function doLogout() {
   if (!confirm('Deseja sair do painel?')) return;
+  if (ordersUnsubscribe) { try { ordersUnsubscribe(); } catch(e){} ordersUnsubscribe = null; }
   if (auth.currentUser) auth.signOut();
   sessionStorage.removeItem('goldcrochet_admin');
   logActivity('👋 Logout');
   location.reload();
+}
+
+// ════════════════════════════════════════
+// FIREBASE HELPERS
+// ════════════════════════════════════════
+function isFirebaseAdmin() {
+  const user = auth && auth.currentUser;
+  return !!(user && ADMIN_EMAILS.includes(user.email));
+}
+function firebaseGateHtml() {
+  return `<div class="gh-info-box warning">
+    <span class="info-icon">🔒</span>
+    <div>
+      <strong>Login com Firebase necessário.</strong><br>
+      Faça login com <strong>${ADMIN_EMAILS[0]}</strong> para visualizar estes dados.
+      <div style="margin-top:10px;">
+        <button class="btn btn-primary btn-sm" onclick="loginWithFirebase()">🔑 Entrar com Firebase</button>
+      </div>
+    </div>
+  </div>`;
+}
+function updateAdminStatusBox() {
+  const box = document.getElementById('adminStatusBox');
+  const title = document.getElementById('adminStatusTitle');
+  const text = document.getElementById('adminStatusText');
+  const btn = document.getElementById('adminStatusBtn');
+  if (!box) return;
+  if (isFirebaseAdmin()) {
+    box.className = 'admin-status logged';
+    title.textContent = '🔥 Firebase Conectado';
+    text.innerHTML = `<small>${escapeHtml(auth.currentUser.email)}</small>`;
+    btn.textContent = '🚪 Sair do Firebase';
+    btn.onclick = () => { auth.signOut().then(() => { showToast('👋 Desconectado do Firebase.'); updateAdminStatusBox(); updateFirestoreUI(); }); };
+  } else if (auth.currentUser) {
+    box.className = 'admin-status guest';
+    title.textContent = '⚠️ Conta não autorizada';
+    text.textContent = 'Faça login com o e-mail admin.';
+    btn.textContent = '🔑 Trocar conta';
+    btn.onclick = () => { auth.signOut().then(loginWithFirebase); };
+  } else {
+    box.className = 'admin-status guest';
+    title.textContent = 'Modo Visitante';
+    text.textContent = 'Entre com Firebase para acessar Clientes e Pedidos.';
+    btn.textContent = '🔑 Entrar com Firebase';
+    btn.onclick = loginWithFirebase;
+  }
+}
+function updateFirestoreUI() {
+  const clients = document.getElementById('navCountClients');
+  const orders = document.getElementById('navCountOrders');
+  if (!isFirebaseAdmin()) {
+    if (clients) { clients.textContent = '—'; clients.classList.remove('alert'); }
+    if (orders) { orders.textContent = '—'; orders.classList.remove('alert'); }
+    return;
+  }
+  loadFirebaseStats();
+}
+async function loadFirebaseStats() {
+  if (!db || !isFirebaseAdmin()) return;
+  try {
+    const [usersSnap, ordersSnap] = await Promise.all([
+      db.collection('users').get(),
+      db.collection('orders').get()
+    ]);
+    const totalUsers = usersSnap.size;
+    const totalOrders = ordersSnap.size;
+    let pending = 0;
+    let revenue = 0;
+    let revenue30d = 0;
+    const now = Date.now();
+    const thirtyDaysAgo = now - (30 * 24 * 60 * 60 * 1000);
+
+    ordersSnap.forEach(doc => {
+      const d = doc.data();
+      const status = d.status || 'pendente';
+      const total = Number(d.total) || 0;
+      if (status === 'pendente') pending++;
+      if (status === 'entregue' || status === 'enviado') revenue += total;
+      if (d.createdAt && d.createdAt.toDate) {
+        const ts = d.createdAt.toDate().getTime();
+        if (ts >= thirtyDaysAgo) revenue30d += total;
+      }
+    });
+
+    document.getElementById('statClientsFs').textContent = totalUsers;
+    document.getElementById('statOrdersFs').textContent = totalOrders;
+    document.getElementById('statPendingOrders').textContent = pending;
+    document.getElementById('statRevenueFs').textContent = formatBRL(revenue);
+    document.getElementById('statRevenue30d').textContent = formatBRL(revenue30d);
+
+    const clientsEl = document.getElementById('navCountClients');
+    const ordersEl = document.getElementById('navCountOrders');
+    if (clientsEl) clientsEl.textContent = totalUsers;
+    if (ordersEl) {
+      ordersEl.textContent = totalOrders;
+      ordersEl.classList.toggle('alert', pending > 0);
+    }
+  } catch(e) {
+    console.warn('[Firestore] Erro stats:', e.message);
+    document.getElementById('statClientsFs').textContent = '!';
+    document.getElementById('statOrdersFs').textContent = '!';
+  }
 }
 
 // ════════════════════════════════════════
@@ -1103,13 +1475,81 @@ async function initAdmin() {
 
   updateDashboard();
   updateTokenUI();
+  updateAdminStatusBox();
   renderRecentActivity();
   renderFullLogs();
   setupCharCounters();
   setupDropZone();
+
   await refreshFromGitHub(true);
+
+  // Listeners Firebase
+  if (auth && auth.onAuthStateChanged) {
+    auth.onAuthStateChanged(() => {
+      updateAdminStatusBox();
+      updateFirestoreUI();
+      const activeTab = document.querySelector('.nav-item.active')?.id?.replace('tab-','');
+      if (activeTab === 'clientes') renderClients();
+      if (activeTab === 'pedidos') renderOrders();
+    });
+  }
+  startRealtimeListeners();
 }
 
+function startRealtimeListeners() {
+  if (!db || !isFirebaseAdmin()) return;
+  if (ordersUnsubscribe) return; // já ativo
+
+  ordersUnsubscribe = db.collection('orders')
+    .orderBy('createdAt', 'desc')
+    .limit(200)
+    .onSnapshot(snapshot => {
+      const before = lastOrdersCount;
+      firestoreOrders = snapshot.docs.map(doc => {
+        const d = doc.data();
+        return { firestoreId: doc.id, ...d };
+      });
+      lastOrdersCount = firestoreOrders.length;
+
+      // Notificação de novo pedido
+      if (before > 0 && firestoreOrders.length > before) {
+        const newest = firestoreOrders[0];
+        showToast(`🔔 Novo pedido de ${newest.userName || 'cliente'}!`, 'success');
+        logActivity(`🔔 Novo pedido recebido`);
+      }
+
+      // Atualiza dashboard
+      loadFirebaseStats();
+
+      // Atualiza a aba se estiver aberta
+      const activeTab = document.querySelector('.nav-item.active')?.id;
+      if (activeTab === 'tab-pedidos') renderOrders();
+      if (activeTab === 'tab-dashboard') updateFirestoreStatsFromCache();
+    }, err => {
+      console.warn('[Firestore] onSnapshot erro:', err.message);
+    });
+}
+
+function updateFirestoreStatsFromCache() {
+  let pending = 0, revenue = 0, revenue30d = 0;
+  const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+  firestoreOrders.forEach(d => {
+    const status = d.status || 'pendente';
+    const total = Number(d.total) || 0;
+    if (status === 'pendente') pending++;
+    if (status === 'entregue' || status === 'enviado') revenue += total;
+    if (d.createdAt && d.createdAt.toDate) {
+      if (d.createdAt.toDate().getTime() >= thirtyDaysAgo) revenue30d += total;
+    }
+  });
+  document.getElementById('statPendingOrders').textContent = pending;
+  document.getElementById('statRevenueFs').textContent = formatBRL(revenue);
+  document.getElementById('statRevenue30d').textContent = formatBRL(revenue30d);
+}
+
+// ════════════════════════════════════════
+// GITHUB DATA
+// ════════════════════════════════════════
 async function refreshFromGitHub(silent) {
   if (!silent) showToast('🔄 Sincronizando com GitHub...');
   try {
@@ -1150,6 +1590,7 @@ function updateAllSections() {
   renderCollectionManager();
   renderConfig();
   renderClients();
+  renderOrders();
   calcular();
   updateCategoryOptions();
   updateBadgeOptions();
@@ -1172,7 +1613,7 @@ function updateDashboard() {
 // ════════════════════════════════════════
 // TABS
 // ════════════════════════════════════════
-const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','clientes','config','calc','backup','logs'];
+const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','pedidos','clientes','config','calc','backup','logs'];
 function showTab(name) {
   TABS.forEach(t => {
     const section = document.getElementById('section-' + t);
@@ -1186,15 +1627,16 @@ function showTab(name) {
   else if (name === 'categorias') renderCategoryManager();
   else if (name === 'colecoes') renderCollectionManager();
   else if (name === 'cores') renderGlobalColors();
+  else if (name === 'pedidos') renderOrders();
   else if (name === 'clientes') renderClients();
   else if (name === 'config') renderConfig();
   else if (name === 'calc') calcular();
-  else if (name === 'dashboard') { updateDashboard(); renderRecentActivity(); }
+  else if (name === 'dashboard') { updateDashboard(); renderRecentActivity(); loadFirebaseStats(); }
   else if (name === 'logs') renderFullLogs();
 }
 
 // ════════════════════════════════════════
-// PRODUTOS
+// PRODUTOS (mantido)
 // ════════════════════════════════════════
 function renderProductList() {
   const list = document.getElementById('productList');
@@ -1225,7 +1667,7 @@ function renderProductList() {
     const priceStr = p.price ? `R$ ${parseFloat(p.price).toFixed(2).replace('.',',')}` : 'Sob Consulta';
     const totalColors = (p.colorSections||[]).reduce((s,sec)=>s+(sec.colors||[]).length,0) || (p.colors||[]).length;
     const rawImg = toRawUrl(p.image);
-    const badgeTag = p.badge ? `<span class="tag ${p.badge==='Novo'?'novo':''}">${p.badge}</span>` : '';
+    const badgeTag = p.badge ? `<span class="tag ${p.badge==='Novo'?'novo':''}">${escapeHtml(p.badge)}</span>` : '';
     const discTag = p.discount > 0 ? `<span class="tag">-${p.discount}%</span>` : '';
     const sectionTag = p.section ? `<span class="tag section">${labelForSection(p.section)}${p.gender ? ' · ' + labelForGender(p.gender) : ''}</span>` : '';
     const collTag = p.collection ? `<span class="tag collection">${escapeHtml(p.collection)}</span>` : '';
@@ -1284,7 +1726,7 @@ async function deleteProduct(id) {
 }
 
 // ════════════════════════════════════════
-// NOVIDADES (BLOG)
+// BLOG (mantido)
 // ════════════════════════════════════════
 function renderBlogList() {
   const list = document.getElementById('blogList');
@@ -1384,7 +1826,7 @@ async function deleteBlogPost(id) {
 }
 
 // ════════════════════════════════════════
-// CATEGORIAS & BADGES
+// CATEGORIAS & BADGES (mantido)
 // ════════════════════════════════════════
 function renderCategoryManager() {
   const catList = document.getElementById('categoryList');
@@ -1481,15 +1923,12 @@ function updateBadgeOptions() {
 }
 
 // ════════════════════════════════════════
-// COLEÇÕES
+// COLEÇÕES (mantido)
 // ════════════════════════════════════════
 function renderCollectionManager() {
   const list = document.getElementById('collectionList');
   if (!list) return;
-  if (!collections.length) {
-    list.innerHTML = '';
-    return;
-  }
+  if (!collections.length) { list.innerHTML = ''; return; }
   list.innerHTML = collections.map((c, i) => {
     const usage = products.filter(p => p.collection === c.filter).length;
     return `<div class="collection-row">
@@ -1498,8 +1937,8 @@ function renderCollectionManager() {
       <input type="text" value="${escapeHtml(c.name || '')}" placeholder="Nome da coleção"
              onchange="updateCollectionField(${i}, 'name', this.value)" title="Nome">
       <input type="text" value="${escapeHtml(c.filter || '')}" placeholder="Filtro (tag do produto)"
-             onchange="updateCollectionField(${i}, 'filter', this.value)" title="Filtro (valor que casa com product.collection)">
-      <span class="collection-usage" title="${usage} peça(s) usando este filtro">${usage} peça${usage!==1?'s':''}</span>
+             onchange="updateCollectionField(${i}, 'filter', this.value)" title="Filtro">
+      <span class="collection-usage" title="${usage} peça(s)">${usage} peça${usage!==1?'s':''}</span>
       <button class="btn btn-danger btn-sm" onclick="removeCollection(${i})" title="Remover">✕</button>
     </div>`;
   }).join('');
@@ -1508,7 +1947,7 @@ function renderCollectionManager() {
 function addCollection() {
   const name = prompt('Nome da nova coleção (ex: Verão Dourado):');
   if (!name || !name.trim()) return;
-  const filter = prompt('Filtro da coleção (valor que o produto deve usar, ex: Verão Dourado):', name.trim());
+  const filter = prompt('Filtro da coleção:', name.trim());
   if (!filter || !filter.trim()) return;
   const emoji = prompt('Emoji da coleção (opcional):', '✨') || '✨';
   const newColl = {
@@ -1529,15 +1968,12 @@ function addCollection() {
 function updateCollectionField(i, field, val) {
   if (!collections[i]) return;
   collections[i][field] = (val || '').trim();
+  saveState('goldcrochet_collections', collections);
   if (field === 'filter' || field === 'name') {
-    saveState('goldcrochet_collections', collections);
     renderCollectionManager();
     updateCollectionOptions();
-    publishAll();
-  } else {
-    saveState('goldcrochet_collections', collections);
-    publishAll();
   }
+  publishAll();
 }
 function removeCollection(i) {
   const c = collections[i];
@@ -1561,7 +1997,7 @@ function updateCollectionOptions() {
 }
 
 // ════════════════════════════════════════
-// CORES GLOBAIS
+// CORES GLOBAIS (mantido)
 // ════════════════════════════════════════
 function renderGlobalColors() {
   const list = document.getElementById('globalColorsList');
@@ -1605,26 +2041,402 @@ function removeGlobalColor(i) {
 }
 
 // ════════════════════════════════════════
-// CLIENTES
+// 🔥 CLIENTES (Firestore)
 // ════════════════════════════════════════
-function renderClients() {
+async function renderClients() {
   const list = document.getElementById('clientsList');
   if (!list) return;
-  const savedUsers = JSON.parse(localStorage.getItem('goldcrochet_users') || '[]');
-  if (!savedUsers.length) {
-    list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum usuário registrado localmente.</p>';
+
+  if (!db) {
+    list.innerHTML = '<div class="gh-info-box error"><span class="info-icon">⚠️</span><div>Firestore indisponível. Verifique se o SDK foi carregado.</div></div>';
     return;
   }
-  list.innerHTML = savedUsers.map(u => `
-    <div class="product-row">
-      <div class="product-row-thumb">👤</div>
-      <div class="product-row-info"><strong>${escapeHtml(u.name || 'Usuário')}</strong>
-      <span style="font-size:0.8rem;color:var(--text-mid);">${escapeHtml(u.email || '-')}</span></div>
-    </div>`).join('');
+  if (!isFirebaseAdmin()) {
+    list.innerHTML = firebaseGateHtml();
+    return;
+  }
+
+  list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Carregando clientes...</p>';
+  try {
+    const snapshot = await db.collection('users').orderBy('createdAt', 'desc').limit(500).get();
+    if (snapshot.empty) {
+      list.innerHTML = `<div class="empty-state"><span class="icon">👥</span><h4>Nenhum cliente ainda</h4><p>Quando alguém criar conta no site, aparecerá aqui.</p></div>`;
+      firestoreUsers = [];
+      return;
+    }
+
+    // Carrega pedidos para contar por usuário
+    const ordersSnap = await db.collection('orders').limit(1000).get();
+    const ordersByUser = {};
+    ordersSnap.forEach(d => {
+      const o = d.data();
+      if (!o.userId) return;
+      if (!ordersByUser[o.userId]) ordersByUser[o.userId] = { count: 0, total: 0, lastAt: null };
+      ordersByUser[o.userId].count++;
+      ordersByUser[o.userId].total += Number(o.total) || 0;
+      if (o.createdAt && o.createdAt.toDate) {
+        const ts = o.createdAt.toDate().getTime();
+        if (!ordersByUser[o.userId].lastAt || ts > ordersByUser[o.userId].lastAt) {
+          ordersByUser[o.userId].lastAt = ts;
+        }
+      }
+    });
+
+    firestoreUsers = snapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }));
+
+    // Filtro de busca
+    const q = (document.getElementById('clientSearchInput')?.value || '').toLowerCase().trim();
+    let visible = firestoreUsers;
+    if (q) visible = visible.filter(u =>
+      (u.name||'').toLowerCase().includes(q) ||
+      (u.email||'').toLowerCase().includes(q)
+    );
+
+    if (!visible.length) {
+      list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum cliente corresponde à busca.</p>';
+      return;
+    }
+
+    list.innerHTML = visible.map(u => {
+      const initial = (u.name || u.email || 'U').trim().slice(0, 2).toUpperCase();
+      const createdStr = u.createdAt ? formatDate(u.createdAt) : '—';
+      const lastLoginStr = u.lastLogin ? formatDate(u.lastLogin) : '—';
+      const stats = ordersByUser[u.uid] || { count: 0, total: 0, lastAt: null };
+      return `<div class="customer-card" onclick="openCustomerDetail('${u.uid}')">
+        <div class="customer-avatar">${escapeHtml(initial)}</div>
+        <div class="customer-info">
+          <strong>${escapeHtml(u.name || 'Sem nome')}</strong>
+          <div class="customer-email">${escapeHtml(u.email || '-')}</div>
+          <div class="customer-stats">
+            <span>📅 Cadastro: ${createdStr}</span>
+            <span>🔑 Acesso: ${lastLoginStr}</span>
+            <span>📦 ${stats.count} pedido${stats.count !== 1 ? 's':''}</span>
+            <span>💰 ${formatBRL(stats.total)}</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();openCustomerDetail('${u.uid}')">Ver →</button>
+      </div>`;
+    }).join('');
+
+    // Guarda mapa para o modal
+    window._customerOrdersMap = ordersByUser;
+  } catch (e) {
+    console.error('[Firestore] Erro clientes:', e);
+    list.innerHTML = `<div class="gh-info-box error">
+      <span class="info-icon">❌</span>
+      <div>Erro: <strong>${escapeHtml(e.message)}</strong><br>
+      <small>Verifique as regras do Firestore.</small></div>
+    </div>`;
+  }
+}
+
+async function openCustomerDetail(uid) {
+  const user = firestoreUsers.find(u => u.uid === uid);
+  if (!user) { showToast('Cliente não encontrado.', 'error'); return; }
+
+  const content = document.getElementById('genericModalContent');
+  content.innerHTML = `<p style="text-align:center;padding:30px;color:var(--text-mid);">Carregando...</p>`;
+  document.getElementById('genericModal').classList.add('open');
+
+  try {
+    const ordersSnap = await db.collection('orders')
+      .where('userId', '==', uid)
+      .get();
+
+    let orders = ordersSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    orders.sort((a, b) => {
+      const ta = a.createdAt?.toDate?.().getTime() || 0;
+      const tb = b.createdAt?.toDate?.().getTime() || 0;
+      return tb - ta;
+    });
+
+    const totalSpent = orders
+      .filter(o => o.status === 'entregue' || o.status === 'enviado')
+      .reduce((s, o) => s + (Number(o.total) || 0), 0);
+
+    content.innerHTML = `
+      <h2 style="font-family:var(--font-display);font-size:1.6rem;margin-bottom:6px;">${escapeHtml(user.name || 'Cliente')}</h2>
+      <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:20px;">${escapeHtml(user.email || '-')}</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+        <div style="background:var(--off-white);padding:14px;border-radius:10px;text-align:center;">
+          <div style="font-size:0.72rem;color:var(--text-mid);font-weight:700;text-transform:uppercase;">Pedidos</div>
+          <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--gold-deep);">${orders.length}</div>
+        </div>
+        <div style="background:var(--off-white);padding:14px;border-radius:10px;text-align:center;">
+          <div style="font-size:0.72rem;color:var(--text-mid);font-weight:700;text-transform:uppercase;">Total gasto</div>
+          <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--success);">${formatBRL(totalSpent)}</div>
+        </div>
+        <div style="background:var(--off-white);padding:14px;border-radius:10px;text-align:center;">
+          <div style="font-size:0.72rem;color:var(--text-mid);font-weight:700;text-transform:uppercase;">UID</div>
+          <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-soft);margin-top:6px;word-break:break-all;">${escapeHtml(uid.slice(0, 12))}…</div>
+        </div>
+      </div>
+
+      <div style="background:var(--off-white);padding:14px 18px;border-radius:10px;margin-bottom:20px;font-size:0.85rem;color:var(--text-mid);">
+        <div style="margin-bottom:6px;">📅 <strong>Cadastro:</strong> ${user.createdAt ? formatDate(user.createdAt) : '—'}</div>
+        <div>🔑 <strong>Último acesso:</strong> ${user.lastLogin ? formatDate(user.lastLogin) : '—'}</div>
+      </div>
+
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:12px;">📦 Histórico de pedidos</h3>
+      ${orders.length ? orders.map(o => {
+        const status = o.status || 'pendente';
+        const statusInfo = ORDER_STATUS_MAP[status] || { label: status };
+        const dateStr = o.createdAt ? formatDate(o.createdAt) : '—';
+        const itemsStr = (o.items || []).map(i => `${i.qty}× ${i.name}`).join(', ');
+        return `<div style="padding:12px;background:var(--white);border:1px solid rgba(205,164,52,0.15);border-radius:10px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+            <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gold-deep);font-weight:700;">#${o.id.slice(-8).toUpperCase()}</span>
+            <span style="font-size:0.72rem;color:var(--text-soft);">${dateStr}</span>
+          </div>
+          <div style="font-size:0.82rem;color:var(--text-mid);margin-bottom:6px;">${escapeHtml(itemsStr)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+            <span style="font-weight:700;color:var(--gold-main);">${formatBRL(o.total)}</span>
+            <span style="font-size:0.75rem;">${statusInfo.label}</span>
+          </div>
+        </div>`;
+      }).join('') : '<p style="color:var(--text-soft);font-style:italic;font-size:0.88rem;">Nenhum pedido ainda.</p>'}
+
+      <div style="display:flex;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--gray-light);flex-wrap:wrap;">
+        <a href="mailto:${escapeHtml(user.email || '')}" class="btn btn-ghost btn-sm" style="text-decoration:none;">✉️ Enviar email</a>
+        <button class="btn btn-danger btn-sm" onclick="deleteCustomerDoc('${uid}')">🗑 Remover cadastro</button>
+      </div>
+    `;
+  } catch(e) {
+    content.innerHTML = `<p style="color:var(--danger);">Erro: ${escapeHtml(e.message)}</p>`;
+  }
+}
+
+async function deleteCustomerDoc(uid) {
+  if (!confirm('Remover o cadastro deste cliente do Firestore?\n\n(O login Firebase dele permanece ativo, mas o registro de cadastro será apagado.)')) return;
+  try {
+    await db.collection('users').doc(uid).delete();
+    showToast('🗑 Cadastro removido.');
+    logActivity(`👥 Cliente removido do Firestore`);
+    closeGenericModal();
+    renderClients();
+    loadFirebaseStats();
+  } catch(e) {
+    showToast('❌ ' + e.message, 'error');
+  }
 }
 
 // ════════════════════════════════════════
-// CONFIG
+// 🔥 PEDIDOS (Firestore)
+// ════════════════════════════════════════
+async function renderOrders() {
+  const list = document.getElementById('ordersList');
+  if (!list) return;
+
+  if (!db) {
+    list.innerHTML = '<div class="gh-info-box error"><span class="info-icon">⚠️</span><div>Firestore indisponível.</div></div>';
+    return;
+  }
+  if (!isFirebaseAdmin()) {
+    list.innerHTML = firebaseGateHtml();
+    return;
+  }
+
+  list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Carregando pedidos...</p>';
+
+  try {
+    const snapshot = await db.collection('orders').orderBy('createdAt', 'desc').limit(500).get();
+
+    if (snapshot.empty) {
+      list.innerHTML = `<div class="empty-state"><span class="icon">📦</span><h4>Nenhum pedido ainda</h4><p>Quando um cliente finalizar uma compra, aparecerá aqui.</p></div>`;
+      return;
+    }
+
+    let docs = snapshot.docs.map(d => ({ firestoreId: d.id, ...d.data() }));
+
+    // Filtros
+    const statusFilter = document.getElementById('orderStatusFilter')?.value || '';
+    const periodFilter = document.getElementById('orderPeriodFilter')?.value || '';
+    const q = (document.getElementById('orderSearchInput')?.value || '').toLowerCase().trim();
+
+    if (statusFilter) docs = docs.filter(d => (d.status || 'pendente') === statusFilter);
+    if (periodFilter) {
+      const days = parseInt(periodFilter);
+      const cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
+      docs = docs.filter(d => {
+        const ts = d.createdAt?.toDate?.().getTime() || 0;
+        return ts >= cutoff;
+      });
+    }
+    if (q) {
+      docs = docs.filter(d =>
+        (d.userName||'').toLowerCase().includes(q) ||
+        (d.userEmail||'').toLowerCase().includes(q) ||
+        (d.firestoreId||'').toLowerCase().includes(q) ||
+        ((d.items || []).map(i => i.name).join(' ').toLowerCase().includes(q))
+      );
+    }
+
+    if (!docs.length) {
+      list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum pedido corresponde aos filtros.</p>';
+      return;
+    }
+
+    list.innerHTML = docs.map(o => {
+      const status = o.status || 'pendente';
+      const statusInfo = ORDER_STATUS_MAP[status] || { label: status };
+      const dateStr = o.createdAt ? formatDate(o.createdAt) : '—';
+      const orderIdShort = o.firestoreId.slice(-8).toUpperCase();
+      const itemsStr = (o.items || []).map(i => {
+        const colorStr = (i.selectedColors && i.selectedColors.length)
+          ? ` <span class="order-item-colors">(${i.selectedColors.map(c => c.name).join(', ')})</span>` : '';
+        const priceStr = i.price ? ` — ${formatBRL(i.price)}` : '';
+        return `<div class="order-item-line">
+          <span><strong>${i.qty}×</strong> ${escapeHtml(i.name)}${colorStr}</span>
+          <span>${priceStr}</span>
+        </div>`;
+      }).join('');
+
+      const waMsg = encodeURIComponent(`Olá ${o.userName || ''}! Aqui é da Gold Crochet sobre o seu pedido #${orderIdShort}. `);
+      const waLink = `https://wa.me/?text=${waMsg}`;
+
+      return `<div class="order-card">
+        <div class="order-head">
+          <div>
+            <div class="order-id">#${orderIdShort}</div>
+            <div class="order-date">${dateStr}</div>
+            <div class="order-user">
+              👤 <strong>${escapeHtml(o.userName || 'Cliente')}</strong> · ${escapeHtml(o.userEmail || 'sem email')}
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div class="order-total">${formatBRL(o.total)}</div>
+            <span class="order-status-pill ${status}">${statusInfo.label}</span>
+          </div>
+        </div>
+        <div class="order-items-box">${itemsStr}</div>
+        <div class="order-actions">
+          <select onchange="updateOrderStatus('${o.firestoreId}', this.value)" style="padding:8px 14px;border-radius:999px;border:2px solid rgba(205,164,52,0.25);font-family:var(--font-body);font-size:0.82rem;cursor:pointer;background:var(--white);">
+            <option value="pendente" ${status==='pendente'?'selected':''}>⏳ Pendente</option>
+            <option value="producao" ${status==='producao'?'selected':''}>🧶 Em produção</option>
+            <option value="enviado" ${status==='enviado'?'selected':''}>📦 Enviado</option>
+            <option value="entregue" ${status==='entregue'?'selected':''}>✅ Entregue</option>
+            <option value="cancelado" ${status==='cancelado'?'selected':''}>❌ Cancelado</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" onclick="copyOrderToClipboard('${o.firestoreId}')">📋 Copiar</button>
+          <a href="${waLink}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm" style="text-decoration:none;">💬 WhatsApp</a>
+          <button class="btn btn-danger btn-sm" onclick="deleteOrder('${o.firestoreId}')">🗑 Remover</button>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Atualiza nav count com o total real (sem filtros)
+    const ordersEl = document.getElementById('navCountOrders');
+    if (ordersEl && !statusFilter && !periodFilter && !q) {
+      ordersEl.textContent = snapshot.size;
+    }
+  } catch (e) {
+    console.error('[Firestore] Erro pedidos:', e);
+    list.innerHTML = `<div class="gh-info-box error">
+      <span class="info-icon">❌</span>
+      <div>Erro: <strong>${escapeHtml(e.message)}</strong><br>
+      <small>Verifique as regras do Firestore.</small></div>
+    </div>`;
+  }
+}
+
+async function updateOrderStatus(orderId, newStatus) {
+  if (!db || !isFirebaseAdmin()) { showToast('🔒 Faça login com Firebase.', 'warning'); return; }
+  try {
+    await db.collection('orders').doc(orderId).update({
+      status: newStatus,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    showToast('✅ Status atualizado!', 'success');
+    logActivity(`📦 Pedido ${orderId.slice(-8)} → ${ORDER_STATUS_MAP[newStatus]?.label || newStatus}`);
+    loadFirebaseStats();
+    // O onSnapshot atualizará automaticamente
+  } catch(e) {
+    showToast('❌ ' + e.message, 'error');
+  }
+}
+
+async function deleteOrder(orderId) {
+  if (!isFirebaseAdmin()) { showToast('🔒 Faça login com Firebase.', 'warning'); return; }
+  if (!confirm('Remover este pedido do Firestore? Esta ação é irreversível.')) return;
+  try {
+    await db.collection('orders').doc(orderId).delete();
+    showToast('🗑 Pedido removido.');
+    logActivity(`🗑 Pedido ${orderId.slice(-8)} removido`);
+    loadFirebaseStats();
+  } catch(e) {
+    showToast('❌ ' + e.message, 'error');
+  }
+}
+
+async function copyOrderToClipboard(orderId) {
+  try {
+    const doc = await db.collection('orders').doc(orderId).get();
+    if (!doc.exists) { showToast('Pedido não encontrado.', 'error'); return; }
+    const data = doc.data();
+    const lines = [
+      `Pedido #${orderId.slice(-8).toUpperCase()}`,
+      `Data: ${data.createdAt ? formatDate(data.createdAt) : '—'}`,
+      `Cliente: ${data.userName || '-'} (${data.userEmail || '-'})`,
+      `Status: ${data.status || 'pendente'}`,
+      ``,
+      `Itens:`,
+      ...(data.items || []).map(i => {
+        const c = (i.selectedColors && i.selectedColors.length) ? ` [${i.selectedColors.map(x => x.name).join(', ')}]` : '';
+        return `  • ${i.qty}× ${i.name}${c} — ${formatBRL(i.price)}`;
+      }),
+      ``,
+      `Total: ${formatBRL(data.total)}`
+    ];
+    await navigator.clipboard.writeText(lines.join('\n'));
+    showToast('📋 Pedido copiado!');
+  } catch(e) {
+    showToast('❌ ' + e.message, 'error');
+  }
+}
+
+function exportOrdersCSV() {
+  if (!firestoreOrders.length) { showToast('⚠️ Nenhum pedido para exportar.', 'warning'); return; }
+  const rows = [['ID','Data','Cliente','Email','Status','Total','Itens']];
+  firestoreOrders.forEach(o => {
+    const itemsStr = (o.items || []).map(i => {
+      const c = (i.selectedColors && i.selectedColors.length) ? `(${i.selectedColors.map(x => x.name).join('|')})` : '';
+      return `${i.qty}x ${i.name}${c}`;
+    }).join(' ; ');
+    rows.push([
+      o.firestoreId.slice(-8).toUpperCase(),
+      o.createdAt ? formatDate(o.createdAt) : '',
+      o.userName || '',
+      o.userEmail || '',
+      o.status || 'pendente',
+      (Number(o.total) || 0).toFixed(2),
+      itemsStr
+    ]);
+  });
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `goldcrochet-pedidos-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  logActivity('📥 CSV de pedidos exportado');
+  showToast('📥 CSV baixado!');
+}
+
+// ════════════════════════════════════════
+// GENERIC MODAL
+// ════════════════════════════════════════
+function closeGenericModal() {
+  document.getElementById('genericModal').classList.remove('open');
+}
+document.getElementById('genericModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('genericModal')) closeGenericModal();
+});
+
+// ════════════════════════════════════════
+// CONFIG (mantido)
 // ════════════════════════════════════════
 function renderConfig() {
   document.getElementById('config_hero_title').value = siteConfig.hero_title || 'Elegância que se <em>Tece</em><br>à Mão';
@@ -1646,7 +2458,7 @@ async function saveConfig() {
 }
 
 // ════════════════════════════════════════
-// CALCULADORA
+// CALCULADORA (mantido)
 // ════════════════════════════════════════
 const CALC_PRESETS = {
   amigurumi: { horas:6, gramas:100, precoFio:45, aviamentos:8, maoDeObra:15, embalagem:4, margem:50 },
@@ -1745,13 +2557,11 @@ function openEditProduct(id) {
   document.getElementById('p_prod_time').value = p.prod_time || '';
   document.getElementById('p_material').value = p.material || '';
 
-  // Novos campos
   updateCollectionOptions();
   document.getElementById('p_section').value = p.section || '';
   document.getElementById('p_gender').value = p.gender || '';
   document.getElementById('p_collection').value = p.collection || '';
   onProductSectionChange();
-  // Se section = dia-a-dia, força visibilidade do gender
   if (p.section === 'dia-a-dia') {
     document.getElementById('p_gender_group').style.display = '';
   }
@@ -1789,7 +2599,7 @@ async function saveProduct() {
   if (!name) { showToast('❗ Nome é obrigatório.', 'error'); document.getElementById('p_name').focus(); return; }
   if (!desc) { showToast('❗ Descrição é obrigatória.', 'error'); document.getElementById('p_desc').focus(); return; }
   if (!section) { showToast('❗ Selecione a seção do site.', 'error'); document.getElementById('p_section').focus(); return; }
-  if (section === 'dia-a-dia' && !gender) { showToast('❗ Selecione o gênero (Para Ela/Para Ele).', 'error'); document.getElementById('p_gender').focus(); return; }
+  if (section === 'dia-a-dia' && !gender) { showToast('❗ Selecione o gênero.', 'error'); document.getElementById('p_gender').focus(); return; }
 
   const hasLocal = editingImages.some(i => i.isBase64);
   let token = getGHToken();
@@ -1847,9 +2657,9 @@ async function saveProduct() {
     const productData = {
       name, emoji: document.getElementById('p_emoji').value.trim() || '🧶',
       desc, category: document.getElementById('p_category').value.trim(),
-      section,                                   // NOVO
-      gender: section === 'dia-a-dia' ? gender : null,  // NOVO
-      collection: collection || null,            // NOVO
+      section,
+      gender: section === 'dia-a-dia' ? gender : null,
+      collection: collection || null,
       price, badge: document.getElementById('p_badge').value.trim(),
       discount, model3d: document.getElementById('p_model3d').value.trim(),
       prod_time: document.getElementById('p_prod_time').value.trim(),
@@ -1886,7 +2696,7 @@ async function saveProduct() {
 }
 
 // ════════════════════════════════════════
-// IMAGENS
+// IMAGENS (mantido)
 // ════════════════════════════════════════
 function setupDropZone() {
   const dz = document.getElementById('dropZone');
@@ -1964,7 +2774,7 @@ function setMainImg(i) {
 }
 
 // ════════════════════════════════════════
-// COLOR SECTIONS
+// COLOR SECTIONS (mantido)
 // ════════════════════════════════════════
 function addColorSection(secName = '', colors = []) {
   const cs = document.getElementById('colorSections');
@@ -2087,7 +2897,7 @@ async function publishAll() {
     const data = {
       products, categories, badges, collections, globalColors, blogPosts,
       config: siteConfig,
-      _meta: { updated: new Date().toISOString(), version: '3.1' }
+      _meta: { updated: new Date().toISOString(), version: '4.0' }
     };
     const jsonString = JSON.stringify(data, null, 2);
     const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
@@ -2124,12 +2934,12 @@ async function testGitHubConnection() {
 }
 
 // ════════════════════════════════════════
-// BACKUP
+// BACKUP (mantido)
 // ════════════════════════════════════════
 function exportData() {
   const data = {
     products, categories, badges, collections, globalColors, blogPosts, config: siteConfig,
-    _meta: { exported: new Date().toISOString(), version: '3.1' }
+    _meta: { exported: new Date().toISOString(), version: '4.0' }
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -2212,19 +3022,8 @@ function resetToDefaults() {
 }
 
 // ════════════════════════════════════════
-// HELPERS
+// CHARACTER COUNTERS
 // ════════════════════════════════════════
-function toRawUrl(url) {
-  if (!url) return '';
-  if (url.includes('github.com') && url.includes('/blob/')) {
-    return url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
-  }
-  return url;
-}
-function escapeHtml(str) {
-  if (str === null || str === undefined) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
-}
 function setupCharCounters() {
   document.querySelectorAll('.char-counter').forEach(el => {
     const input = document.getElementById(el.dataset.for);
@@ -2249,6 +3048,8 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     const pm = document.getElementById('productModal');
     const bm = document.getElementById('blogModal');
+    const gm = document.getElementById('genericModal');
+    if (gm.classList.contains('open')) { closeGenericModal(); return; }
     if (pm.classList.contains('open')) { closeModal(); return; }
     if (bm.classList.contains('open')) { closeBlogModal(); return; }
   }
@@ -2277,7 +3078,7 @@ window.addEventListener('beforeunload', e => {
   if (isProcessing) { e.preventDefault(); e.returnValue = ''; }
 });
 
-console.log('%c🧶 Gold Crochet Admin v3.1', 'color:#cda434;font-size:16px;font-weight:bold;');
+console.log('%c🧶 Gold Crochet Admin v4.0', 'color:#cda434;font-size:16px;font-weight:bold;');
 console.log('%cCtrl+S = Salvar · Ctrl+K = Buscar · ESC = Fechar', 'color:#8b7a5a;font-size:12px;');
 </script>
 </body>
