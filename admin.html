@@ -7,22 +7,17 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#cda434">
 
-<!-- ═══ FAVICON — múltiplos formatos com cache-busting ═══ -->
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon.png?v=5">
 <link rel="icon" type="image/svg+xml" href="./assets/icon.svg?v=5">
 <link rel="shortcut icon" href="./assets/icon.ico?v=5">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon.png?v=5">
-<link rel="mask-icon" href="./assets/icon.svg?v=5" color="#cda434">
+<link rel="mask-icon" href="./assets/icon.svg" color="#cda434">
 
-<!-- ═══ FONTES ═══ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  /* ═══════════════════════════════════════════════
-     DESIGN TOKENS
-     ═══════════════════════════════════════════════ */
   :root {
     --gold-deep:#a67c00; --gold-main:#cda434; --gold-light:#e8cd82;
     --gold-pale:#fbf3df; --white:#fff; --off-white:#fdf9f0;
@@ -42,41 +37,28 @@
     --font-display:'DM Serif Display',serif;
     --font-mono:'JetBrains Mono',monospace;
   }
-
-  /* Dark mode tokens */
   [data-theme="dark"] {
     --white:#1e1a12; --off-white:#15120c; --gray-light:#2a2418;
     --gray-mid:#4a4030; --text-dark:#f0e8d8; --text-mid:#c9b686;
     --text-soft:#9a8a6a; --gold-pale:#2a2218;
   }
-
   * , *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
   html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
   body {
-    font-family:var(--font-body);
-    background:#f7f1e2;
-    color:var(--text-dark);
-    min-height:100vh;
-    transition:background 0.3s ease, color 0.3s ease;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
+    font-family:var(--font-body); background:#f7f1e2; color:var(--text-dark);
+    min-height:100vh; transition:background 0.3s ease, color 0.3s ease;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
   }
   [data-theme="dark"] body { background:#0d0a06; }
-
   ::-webkit-scrollbar { width:10px; height:10px; }
   ::-webkit-scrollbar-track { background:transparent; }
   ::-webkit-scrollbar-thumb { background:rgba(205,164,52,0.3); border-radius:5px; }
   ::-webkit-scrollbar-thumb:hover { background:rgba(205,164,52,0.5); }
 
-  /* ═══════════════════════════════════════════════
-     LOGIN SCREEN
-     ═══════════════════════════════════════════════ */
   #loginScreen {
     min-height:100vh; display:flex; align-items:center; justify-content:center;
     background:linear-gradient(145deg,#fdf9f0 0%,#fbf3df 60%,#f2debf 100%);
-    padding:20px;
-    position:relative;
-    overflow:hidden;
+    padding:20px; position:relative; overflow:hidden;
   }
   #loginScreen::before {
     content:''; position:absolute; top:-200px; right:-200px;
@@ -96,10 +78,7 @@
     text-align:center; position:relative; z-index:2;
     animation:fadeInUp 0.5s ease;
   }
-  @keyframes fadeInUp {
-    from { opacity:0; transform:translateY(20px); }
-    to { opacity:1; transform:translateY(0); }
-  }
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
   .login-logo {
     width:76px; height:76px; border-radius:50%;
     background:linear-gradient(135deg,#cda434,#a67c00);
@@ -107,849 +86,292 @@
     margin:0 auto 20px; box-shadow:0 6px 24px rgba(205,164,52,0.4);
     animation:float 3s ease-in-out infinite;
   }
-  @keyframes float {
-    0%,100% { transform:translateY(0); }
-    50% { transform:translateY(-6px); }
-  }
+  @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
   .login-box h1 { font-family:var(--font-display); font-size:1.9rem; margin-bottom:6px; }
   .login-box > p { font-size:0.92rem; color:var(--text-mid); margin-bottom:28px; }
   .login-input {
     width:100%; border:2px solid rgba(205,164,52,0.2);
     border-radius:var(--radius-sm); padding:14px 18px;
     font-family:var(--font-body); font-size:1rem; background:var(--off-white);
-    outline:none; transition:var(--transition); margin-bottom:14px;
-    color:var(--text-dark);
+    outline:none; transition:var(--transition); margin-bottom:14px; color:var(--text-dark);
   }
-  .login-input:focus {
-    border-color:var(--gold-main); background:var(--white);
-    box-shadow:0 0 0 4px rgba(205,164,52,0.12);
-  }
+  .login-input:focus { border-color:var(--gold-main); background:var(--white); box-shadow:0 0 0 4px rgba(205,164,52,0.12); }
   .login-input::placeholder { color:var(--text-soft); }
   .login-btn {
-    width:100%; background:var(--gold-main); color:white;
-    border:none; padding:15px; border-radius:999px;
-    font-family:var(--font-body); font-size:1rem; font-weight:700;
-    cursor:pointer; box-shadow:0 6px 20px rgba(205,164,52,0.4);
+    width:100%; background:var(--gold-main); color:white; border:none;
+    padding:15px; border-radius:999px; font-family:var(--font-body);
+    font-size:1rem; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 20px rgba(205,164,52,0.4);
     transition:var(--transition); position:relative; overflow:hidden;
   }
-  .login-btn::before {
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
-    transform:translateX(-100%); transition:transform 0.6s ease;
-  }
-  .login-btn:hover::before { transform:translateX(100%); }
   .login-btn:hover { background:var(--gold-deep); transform:translateY(-2px); }
-  .login-btn:active { transform:translateY(1px) scale(0.98); }
   .login-btn:disabled { opacity:0.6; cursor:not-allowed; }
   .login-error {
     color:var(--danger); font-size:0.85rem; margin-top:10px;
     display:none; padding:10px; background:var(--danger-soft);
-    border-radius:var(--radius-xs); border-left:3px solid var(--danger);
-    text-align:left;
+    border-radius:var(--radius-xs); border-left:3px solid var(--danger); text-align:left;
   }
-  .login-error.show { display:block; animation:shake 0.5s ease; }
-  @keyframes shake {
-    0%,100% { transform:translateX(0); }
-    25% { transform:translateX(-6px); }
-    75% { transform:translateX(6px); }
-  }
-  .login-divider {
-    display:flex; align-items:center; gap:10px;
-    color:var(--text-soft); font-size:0.8rem;
-    margin:20px 0 14px; font-weight:600;
-  }
-  .login-divider::before, .login-divider::after {
-    content:''; flex:1; height:1px; background:var(--gray-light);
-  }
-  .login-hint {
-    font-size:0.75rem; color:var(--text-soft); margin-top:16px;
-    line-height:1.5;
-  }
-  .login-hint code {
-    background:var(--off-white); padding:2px 6px; border-radius:4px;
-    font-family:var(--font-mono); font-size:0.72rem;
-    color:var(--gold-deep); font-weight:600;
-  }
+  .login-error.show { display:block; }
+  .login-hint { font-size:0.75rem; color:var(--text-soft); margin-top:16px; line-height:1.5; }
+  .login-hint code { background:var(--off-white); padding:2px 6px; border-radius:4px; font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-deep); font-weight:600; }
 
-  /* ═══════════════════════════════════════════════
-     ADMIN APP
-     ═══════════════════════════════════════════════ */
   #adminApp { display:none; min-height:100vh; }
   #adminApp.show { display:block; }
 
-  /* ═══ SIDEBAR ═══ */
   .admin-sidebar {
     position:fixed; left:0; top:0; bottom:0; width:250px;
     background:var(--text-dark); display:flex; flex-direction:column;
     z-index:100; box-shadow:4px 0 24px rgba(0,0,0,0.15);
     transition:transform 0.3s ease;
   }
-  [data-theme="dark"] .admin-sidebar { background:#0a0806; }
-  .sidebar-logo {
-    display:flex; align-items:center; gap:12px;
-    padding:22px 20px; border-bottom:1px solid rgba(255,255,255,0.08);
-    flex-shrink:0;
-  }
-  .sidebar-logo-icon {
-    width:40px; height:40px; border-radius:50%;
-    background:linear-gradient(135deg,#cda434,#a67c00);
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0; box-shadow:0 4px 12px rgba(205,164,52,0.3);
-  }
+  .sidebar-logo { display:flex; align-items:center; gap:12px; padding:22px 20px; border-bottom:1px solid rgba(255,255,255,0.08); flex-shrink:0; }
+  .sidebar-logo-icon { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#cda434,#a67c00); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 12px rgba(205,164,52,0.3); }
   .sidebar-logo-text { flex:1; min-width:0; }
-  .sidebar-logo-text span {
-    font-family:var(--font-display); color:white;
-    font-size:1.15rem; display:block;
-  }
-  .sidebar-logo-text small {
-    display:block; color:rgba(255,255,255,0.4);
-    font-size:0.7rem; margin-top:-2px; font-weight:500;
-  }
-  .sidebar-nav {
-    flex:1; padding:14px 10px;
-    display:flex; flex-direction:column; gap:4px;
-    overflow-y:auto;
-  }
+  .sidebar-logo-text span { font-family:var(--font-display); color:white; font-size:1.15rem; display:block; }
+  .sidebar-logo-text small { display:block; color:rgba(255,255,255,0.4); font-size:0.7rem; margin-top:-2px; font-weight:500; }
+  .sidebar-nav { flex:1; padding:14px 10px; display:flex; flex-direction:column; gap:4px; overflow-y:auto; }
   .nav-item {
-    display:flex; align-items:center; gap:12px;
-    padding:12px 14px; border-radius:var(--radius-sm);
-    color:rgba(255,255,255,0.6); font-size:0.9rem;
-    font-weight:500; cursor:pointer; transition:var(--transition-fast);
-    border:none; background:none; width:100%; text-align:left;
-    font-family:var(--font-body); position:relative;
+    display:flex; align-items:center; gap:12px; padding:12px 14px;
+    border-radius:var(--radius-sm); color:rgba(255,255,255,0.6);
+    font-size:0.9rem; font-weight:500; cursor:pointer;
+    transition:var(--transition-fast); border:none; background:none;
+    width:100%; text-align:left; font-family:var(--font-body); position:relative;
   }
   .nav-item:hover { background:rgba(255,255,255,0.08); color:white; }
   .nav-item.active { background:var(--gold-main); color:white; box-shadow:0 4px 12px rgba(205,164,52,0.3); }
   .nav-item .icon { font-size:1.05rem; width:22px; text-align:center; }
-  .nav-item .nav-count {
-    margin-left:auto; background:rgba(255,255,255,0.15);
-    padding:2px 8px; border-radius:999px; font-size:0.72rem;
-    font-weight:700;
-  }
+  .nav-item .nav-count { margin-left:auto; background:rgba(255,255,255,0.15); padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:700; }
   .nav-item.active .nav-count { background:rgba(255,255,255,0.25); }
-  .nav-divider {
-    height:1px; background:rgba(255,255,255,0.08);
-    margin:8px 14px; flex-shrink:0;
-  }
-  .sidebar-footer {
-    padding:14px 12px; border-top:1px solid rgba(255,255,255,0.08);
-    flex-shrink:0;
-  }
+  .nav-divider { height:1px; background:rgba(255,255,255,0.08); margin:8px 14px; flex-shrink:0; }
+  .sidebar-footer { padding:14px 12px; border-top:1px solid rgba(255,255,255,0.08); flex-shrink:0; }
   .token-status {
-    display:flex; align-items:center; gap:8px;
-    padding:10px 12px; border-radius:var(--radius-sm);
-    font-size:0.78rem; color:rgba(255,255,255,0.45);
-    cursor:pointer; border:none; background:none; width:100%;
-    transition:var(--transition-fast); margin-bottom:6px;
-    font-family:var(--font-body); text-align:left;
+    display:flex; align-items:center; gap:8px; padding:10px 12px;
+    border-radius:var(--radius-sm); font-size:0.78rem;
+    color:rgba(255,255,255,0.45); cursor:pointer; border:none;
+    background:none; width:100%; transition:var(--transition-fast);
+    margin-bottom:6px; font-family:var(--font-body); text-align:left;
   }
   .token-status:hover { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.8); }
-  .token-dot {
-    width:8px; height:8px; border-radius:50%;
-    background:#555; flex-shrink:0; transition:background 0.3s;
-  }
-  .token-dot.ok {
-    background:var(--success);
-    box-shadow:0 0 8px rgba(56,161,105,0.7);
-    animation:pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%,100% { transform:scale(1); opacity:1; }
-    50% { transform:scale(1.15); opacity:0.85; }
-  }
+  .token-dot { width:8px; height:8px; border-radius:50%; background:#555; flex-shrink:0; transition:background 0.3s; }
+  .token-dot.ok { background:var(--success); box-shadow:0 0 8px rgba(56,161,105,0.7); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.15); opacity:0.85; } }
   .logout-btn {
-    display:flex; align-items:center; gap:10px;
-    padding:10px 12px; border-radius:var(--radius-sm);
-    color:rgba(255,255,255,0.5); font-size:0.85rem;
-    cursor:pointer; border:none; background:none; width:100%;
-    transition:var(--transition-fast); font-family:var(--font-body);
+    display:flex; align-items:center; gap:10px; padding:10px 12px;
+    border-radius:var(--radius-sm); color:rgba(255,255,255,0.5);
+    font-size:0.85rem; cursor:pointer; border:none; background:none;
+    width:100%; transition:var(--transition-fast); font-family:var(--font-body);
   }
   .logout-btn:hover { color:var(--danger); background:rgba(229,62,62,0.1); }
 
-  /* ═══ MAIN ═══ */
   .admin-main { margin-left:250px; padding:28px; min-height:100vh; }
-  .page-header {
-    margin-bottom:24px; display:flex; align-items:flex-start;
-    justify-content:space-between; gap:20px; flex-wrap:wrap;
-  }
-  .page-header h2 {
-    font-family:var(--font-display); font-size:1.9rem;
-    letter-spacing:-0.01em;
-  }
+  .page-header { margin-bottom:24px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .page-header h2 { font-family:var(--font-display); font-size:1.9rem; letter-spacing:-0.01em; }
   .page-header p { color:var(--text-mid); font-size:0.9rem; margin-top:4px; }
   .page-header .header-actions { display:flex; gap:8px; flex-wrap:wrap; }
 
-  /* ═══ DASHBOARD STATS ═══ */
-  .stats-grid {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px; margin-bottom:24px;
-  }
-  .stat-card {
-    background:var(--white); border-radius:var(--radius);
-    padding:20px; box-shadow:var(--shadow-sm);
-    border:1px solid rgba(205,164,52,0.08);
-    transition:var(--transition); cursor:default;
-    position:relative; overflow:hidden;
-  }
-  .stat-card:hover {
-    transform:translateY(-3px); box-shadow:var(--shadow);
-    border-color:rgba(205,164,52,0.2);
-  }
-  .stat-card::before {
-    content:''; position:absolute; top:0; left:0;
-    width:4px; height:100%; background:var(--gold-main);
-  }
-  .stat-label {
-    font-size:0.78rem; color:var(--text-mid);
-    font-weight:600; text-transform:uppercase;
-    letter-spacing:0.06em; margin-bottom:6px;
-  }
-  .stat-value {
-    font-family:var(--font-display); font-size:2.2rem;
-    color:var(--gold-deep); line-height:1;
-  }
-  .stat-sub {
-    font-size:0.78rem; color:var(--text-soft);
-    margin-top:4px;
-  }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:24px; }
+  .stat-card { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-sm); border:1px solid rgba(205,164,52,0.08); transition:var(--transition); cursor:default; position:relative; overflow:hidden; }
+  .stat-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); border-color:rgba(205,164,52,0.2); }
+  .stat-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--gold-main); }
+  .stat-label { font-size:0.78rem; color:var(--text-mid); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .stat-value { font-family:var(--font-display); font-size:2.2rem; color:var(--gold-deep); line-height:1; }
+  .stat-sub { font-size:0.78rem; color:var(--text-soft); margin-top:4px; }
 
-  /* ═══ PANELS ═══ */
-  .panel {
-    background:var(--white); border-radius:var(--radius);
-    padding:24px; box-shadow:var(--shadow-sm);
-    border:1px solid rgba(205,164,52,0.08);
-    margin-bottom:24px;
-    animation:fadeIn 0.35s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity:0; transform:translateY(8px); }
-    to { opacity:1; transform:translateY(0); }
-  }
-  .panel-header {
-    display:flex; align-items:center; justify-content:space-between;
-    margin-bottom:20px; flex-wrap:wrap; gap:12px;
-  }
-  .panel-header h3 {
-    font-size:1.05rem; font-weight:700;
-    display:flex; align-items:center; gap:8px;
-  }
+  .panel { background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-sm); border:1px solid rgba(205,164,52,0.08); margin-bottom:24px; animation:fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+  .panel-header h3 { font-size:1.05rem; font-weight:700; display:flex; align-items:center; gap:8px; }
   .panel-header-actions { display:flex; gap:8px; flex-wrap:wrap; }
 
-  /* ═══ BUTTONS ═══ */
-  .btn {
-    padding:9px 20px; border-radius:999px; border:none;
-    font-family:var(--font-body); font-size:0.87rem;
-    font-weight:700; cursor:pointer;
-    transition:var(--transition-fast);
-    display:inline-flex; align-items:center; gap:6px;
-    white-space:nowrap; line-height:1;
-  }
+  .btn { padding:9px 20px; border-radius:999px; border:none; font-family:var(--font-body); font-size:0.87rem; font-weight:700; cursor:pointer; transition:var(--transition-fast); display:inline-flex; align-items:center; gap:6px; white-space:nowrap; line-height:1; }
   .btn:active { transform:scale(0.96); }
   .btn:disabled { opacity:0.5; cursor:not-allowed; }
-  .btn-primary {
-    background:var(--gold-main); color:white;
-    box-shadow:0 4px 14px rgba(205,164,52,0.35);
-  }
+  .btn-primary { background:var(--gold-main); color:white; box-shadow:0 4px 14px rgba(205,164,52,0.35); }
   .btn-primary:hover { background:var(--gold-deep); transform:translateY(-1px); box-shadow:0 6px 20px rgba(205,164,52,0.45); }
   .btn-danger { background:var(--danger); color:white; }
   .btn-danger:hover { background:#c53030; }
   .btn-success { background:var(--success); color:white; }
-  .btn-ghost {
-    background:transparent; color:var(--text-mid);
-    border:2px solid var(--gray-light);
-  }
+  .btn-ghost { background:transparent; color:var(--text-mid); border:2px solid var(--gray-light); }
   .btn-ghost:hover { border-color:var(--gold-main); color:var(--gold-main); }
   .btn-sm { padding:6px 14px; font-size:0.78rem; }
-  .btn-icon {
-    padding:8px; width:36px; height:36px; border-radius:50%;
-    justify-content:center;
-  }
 
-  /* ═══ FORMS ═══ */
-  .form-row {
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:16px; margin-bottom:16px;
-  }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
   .form-row-3 { grid-template-columns:1fr 1fr 1fr; }
   .form-group { margin-bottom:16px; position:relative; }
-  label {
-    display:block; font-size:0.82rem; font-weight:600;
-    color:var(--text-mid); margin-bottom:6px;
-  }
+  label { display:block; font-size:0.82rem; font-weight:600; color:var(--text-mid); margin-bottom:6px; }
   label .req { color:var(--danger); margin-left:2px; }
-  input[type=text], input[type=number], input[type=password],
-  input[type=email], input[type=url], textarea, select {
+  input[type=text], input[type=number], input[type=password], input[type=email], input[type=url], textarea, select {
     width:100%; border:2px solid rgba(205,164,52,0.18);
     border-radius:var(--radius-sm); padding:11px 14px;
     font-family:var(--font-body); font-size:0.92rem;
     color:var(--text-dark); background:var(--off-white);
     outline:none; transition:var(--transition-fast);
   }
-  input:focus, textarea:focus, select:focus {
-    border-color:var(--gold-main); background:var(--white);
-    box-shadow:0 0 0 4px rgba(205,164,52,0.1);
-  }
-  input:invalid:not(:placeholder-shown) { border-color:var(--danger); }
+  select { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b5b3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+  input:focus, textarea:focus, select:focus { border-color:var(--gold-main); background:var(--white); box-shadow:0 0 0 4px rgba(205,164,52,0.1); }
   textarea { resize:vertical; min-height:90px; line-height:1.5; }
-  .char-counter {
-    position:absolute; right:10px; bottom:6px;
-    font-size:0.72rem; color:var(--text-soft);
-    font-family:var(--font-mono); pointer-events:none;
-  }
+  .char-counter { position:absolute; right:10px; bottom:6px; font-size:0.72rem; color:var(--text-soft); font-family:var(--font-mono); pointer-events:none; }
   .char-counter.warn { color:var(--warning); }
   .char-counter.over { color:var(--danger); font-weight:700; }
-  .form-hint {
-    font-size:0.75rem; color:var(--text-soft);
-    margin-top:4px; line-height:1.4;
-  }
+  .form-hint { font-size:0.75rem; color:var(--text-soft); margin-top:4px; line-height:1.4; }
 
-  /* ═══ DROP ZONE ═══ */
-  .drop-zone {
-    border:2.5px dashed rgba(205,164,52,0.35);
-    border-radius:var(--radius); padding:34px 20px;
-    text-align:center; cursor:pointer;
-    transition:var(--transition); background:var(--off-white);
-    position:relative;
-  }
-  .drop-zone:hover, .drop-zone.drag-over {
-    border-color:var(--gold-main); background:var(--gold-pale);
-    box-shadow:0 0 0 4px rgba(205,164,52,0.08);
-    transform:scale(1.005);
-  }
-  .drop-zone input[type=file] {
-    position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;
-  }
-  .drop-icon {
-    font-size:2.5rem; margin-bottom:10px;
-    display:block; transition:transform 0.3s ease;
-  }
-  .drop-zone:hover .drop-icon { transform:scale(1.15) rotate(-5deg); }
+  .drop-zone { border:2.5px dashed rgba(205,164,52,0.35); border-radius:var(--radius); padding:34px 20px; text-align:center; cursor:pointer; transition:var(--transition); background:var(--off-white); position:relative; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color:var(--gold-main); background:var(--gold-pale); box-shadow:0 0 0 4px rgba(205,164,52,0.08); }
+  .drop-zone input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+  .drop-icon { font-size:2.5rem; margin-bottom:10px; display:block; }
   .drop-text { font-size:0.92rem; color:var(--text-mid); }
   .drop-text strong { color:var(--gold-main); }
-  .drop-hint {
-    font-size:0.75rem; color:var(--text-soft); margin-top:6px;
-  }
+  .drop-hint { font-size:0.75rem; color:var(--text-soft); margin-top:6px; }
 
-  /* ═══ IMAGE PREVIEW GRID ═══ */
-  .img-preview-grid {
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
-    gap:10px; margin-top:14px;
-  }
-  .img-preview-grid:empty::after {
-    content:'Nenhuma imagem adicionada';
-    grid-column:1/-1; text-align:center; padding:20px;
-    color:var(--text-soft); font-size:0.82rem; font-style:italic;
-  }
-  .img-preview-item {
-    position:relative; border-radius:10px; overflow:hidden;
-    border:2px solid rgba(205,164,52,0.15);
-    background:var(--off-white); aspect-ratio:1;
-    transition:var(--transition); cursor:move;
-  }
+  .img-preview-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:10px; margin-top:14px; }
+  .img-preview-grid:empty::after { content:'Nenhuma imagem adicionada'; grid-column:1/-1; text-align:center; padding:20px; color:var(--text-soft); font-size:0.82rem; font-style:italic; }
+  .img-preview-item { position:relative; border-radius:10px; overflow:hidden; border:2px solid rgba(205,164,52,0.15); background:var(--off-white); aspect-ratio:1; transition:var(--transition); cursor:move; }
   .img-preview-item.dragging { opacity:0.4; }
-  .img-preview-item.drag-target {
-    border-color:var(--gold-main);
-    box-shadow:0 0 0 3px rgba(205,164,52,0.3);
-  }
+  .img-preview-item.drag-target { border-color:var(--gold-main); box-shadow:0 0 0 3px rgba(205,164,52,0.3); }
   .img-preview-item:hover { border-color:var(--gold-main); }
-  .img-preview-item img {
-    width:100%; height:100%; object-fit:cover; pointer-events:none;
-  }
-  .img-preview-item .img-remove {
-    position:absolute; top:4px; right:4px;
-    width:24px; height:24px; border-radius:50%;
-    background:rgba(229,62,62,0.9); border:none; color:white;
-    font-size:0.75rem; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:var(--transition-fast); z-index:5;
-  }
+  .img-preview-item img { width:100%; height:100%; object-fit:cover; pointer-events:none; }
+  .img-preview-item .img-remove { position:absolute; top:4px; right:4px; width:24px; height:24px; border-radius:50%; background:rgba(229,62,62,0.9); border:none; color:white; font-size:0.75rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition-fast); z-index:5; }
   .img-preview-item .img-remove:hover { background:var(--danger); transform:scale(1.15); }
-  .img-preview-item .img-main-badge {
-    position:absolute; bottom:4px; left:4px;
-    background:var(--gold-main); color:white;
-    font-size:0.62rem; font-weight:700;
-    padding:3px 8px; border-radius:999px;
-    pointer-events:none; letter-spacing:0.04em;
-  }
-  .img-preview-item .img-set-main-btn {
-    position:absolute; bottom:4px; right:4px;
-    background:rgba(0,0,0,0.6); color:white;
-    font-size:0.6rem; font-weight:600;
-    padding:3px 8px; border-radius:999px;
-    border:none; cursor:pointer;
-    transition:var(--transition-fast);
-  }
+  .img-preview-item .img-main-badge { position:absolute; bottom:4px; left:4px; background:var(--gold-main); color:white; font-size:0.62rem; font-weight:700; padding:3px 8px; border-radius:999px; pointer-events:none; letter-spacing:0.04em; }
+  .img-preview-item .img-set-main-btn { position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.6); color:white; font-size:0.6rem; font-weight:600; padding:3px 8px; border-radius:999px; border:none; cursor:pointer; transition:var(--transition-fast); }
   .img-preview-item .img-set-main-btn:hover { background:var(--gold-main); }
-  .img-preview-item .img-upload-badge {
-    position:absolute; top:4px; left:4px;
-    background:rgba(205,164,52,0.9); color:white;
-    font-size:0.58rem; font-weight:700;
-    padding:2px 6px; border-radius:999px;
-    pointer-events:none;
-  }
+  .img-preview-item .img-upload-badge { position:absolute; top:4px; left:4px; background:rgba(205,164,52,0.9); color:white; font-size:0.58rem; font-weight:700; padding:2px 6px; border-radius:999px; pointer-events:none; }
 
-  /* ═══ PRODUCT LIST ═══ */
-  .product-filters {
-    display:flex; gap:10px; margin-bottom:16px;
-    flex-wrap:wrap; align-items:center;
-  }
-  .product-search {
-    flex:1; min-width:200px; display:flex; align-items:center;
-    gap:8px; background:var(--off-white);
-    border:2px solid rgba(205,164,52,0.18);
-    border-radius:999px; padding:8px 14px;
-    transition:var(--transition-fast);
-  }
-  .product-search:focus-within {
-    border-color:var(--gold-main);
-    background:var(--white);
-    box-shadow:0 0 0 4px rgba(205,164,52,0.1);
-  }
-  .product-search input {
-    flex:1; border:none; outline:none;
-    background:transparent; font-size:0.9rem;
-    color:var(--text-dark);
-  }
-  .product-sort {
-    padding:8px 14px; border-radius:999px;
-    border:2px solid rgba(205,164,52,0.18);
-    background:var(--off-white);
-    font-family:var(--font-body); font-size:0.85rem;
-    color:var(--text-dark); cursor:pointer;
-    transition:var(--transition-fast);
-  }
+  .product-filters { display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
+  .product-search { flex:1; min-width:200px; display:flex; align-items:center; gap:8px; background:var(--off-white); border:2px solid rgba(205,164,52,0.18); border-radius:999px; padding:8px 14px; transition:var(--transition-fast); }
+  .product-search:focus-within { border-color:var(--gold-main); background:var(--white); box-shadow:0 0 0 4px rgba(205,164,52,0.1); }
+  .product-search input { flex:1; border:none; outline:none; background:transparent; font-size:0.9rem; color:var(--text-dark); }
+  .product-sort { padding:8px 14px; border-radius:999px; border:2px solid rgba(205,164,52,0.18); background:var(--off-white); font-family:var(--font-body); font-size:0.85rem; color:var(--text-dark); cursor:pointer; transition:var(--transition-fast); }
   .product-sort:focus { border-color:var(--gold-main); outline:none; }
 
   .product-list { display:flex; flex-direction:column; gap:12px; }
-  .product-list:empty::after {
-    content:'Nenhum produto cadastrado ainda. Clique em "+ Nova Peça" para começar.';
-    display:block; text-align:center; padding:40px 20px;
-    color:var(--text-soft); font-style:italic;
-    background:var(--off-white); border-radius:var(--radius-sm);
-  }
-  .product-row {
-    display:flex; align-items:center; gap:14px;
-    background:var(--off-white); border-radius:var(--radius-sm);
-    padding:14px 18px;
-    border:1px solid rgba(205,164,52,0.1);
-    transition:var(--transition);
-    animation:fadeIn 0.3s ease;
-  }
-  .product-row:hover {
-    border-color:var(--gold-light);
-    box-shadow:0 4px 16px rgba(205,164,52,0.1);
-    transform:translateX(2px);
-  }
-  .product-row-thumb {
-    width:52px; height:52px; border-radius:10px;
-    overflow:hidden; background:var(--gold-pale);
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem; flex-shrink:0;
-  }
+  .product-list:empty::after { content:'Nenhum produto cadastrado ainda. Clique em "+ Nova Peça" para começar.'; display:block; text-align:center; padding:40px 20px; color:var(--text-soft); font-style:italic; background:var(--off-white); border-radius:var(--radius-sm); }
+  .product-row { display:flex; align-items:center; gap:14px; background:var(--off-white); border-radius:var(--radius-sm); padding:14px 18px; border:1px solid rgba(205,164,52,0.1); transition:var(--transition); animation:fadeIn 0.3s ease; }
+  .product-row:hover { border-color:var(--gold-light); box-shadow:0 4px 16px rgba(205,164,52,0.1); transform:translateX(2px); }
+  .product-row-thumb { width:52px; height:52px; border-radius:10px; overflow:hidden; background:var(--gold-pale); display:flex; align-items:center; justify-content:center; font-size:1.6rem; flex-shrink:0; }
   .product-row-thumb img { width:100%; height:100%; object-fit:cover; }
   .product-row-info { flex:1; min-width:140px; }
-  .product-row-info strong {
-    display:block; font-size:0.95rem;
-    margin-bottom:2px; font-weight:700;
-  }
-  .product-row-info .meta {
-    font-size:0.78rem; color:var(--text-mid);
-    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  }
-  .product-row-info .meta .tag {
-    padding:2px 8px; border-radius:999px;
-    background:rgba(205,164,52,0.1); color:var(--gold-deep);
-    font-weight:600; font-size:0.72rem;
-  }
-  .product-row-info .meta .tag.novo {
-    background:rgba(56,161,105,0.12); color:var(--success);
-  }
-  .product-row-price {
-    font-size:1.05rem; font-weight:800;
-    color:var(--gold-main); width:110px;
-    text-align:right;
-  }
-  .product-row-actions {
-    display:flex; gap:6px; flex-shrink:0;
-  }
-  .product-row-actions .btn {
-    padding:6px 10px; font-size:0.75rem; border-radius:8px;
-  }
+  .product-row-info strong { display:block; font-size:0.95rem; margin-bottom:2px; font-weight:700; }
+  .product-row-info .meta { font-size:0.78rem; color:var(--text-mid); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .product-row-info .meta .tag { padding:2px 8px; border-radius:999px; background:rgba(205,164,52,0.1); color:var(--gold-deep); font-weight:600; font-size:0.72rem; }
+  .product-row-info .meta .tag.novo { background:rgba(56,161,105,0.12); color:var(--success); }
+  .product-row-info .meta .tag.section { background:rgba(49,130,206,0.12); color:var(--info); }
+  .product-row-info .meta .tag.gender { background:rgba(214,158,46,0.15); color:var(--warning); }
+  .product-row-info .meta .tag.collection { background:rgba(160,90,200,0.12); color:#8050b8; }
+  .product-row-price { font-size:1.05rem; font-weight:800; color:var(--gold-main); width:110px; text-align:right; }
+  .product-row-actions { display:flex; gap:6px; flex-shrink:0; }
+  .product-row-actions .btn { padding:6px 10px; font-size:0.75rem; border-radius:8px; }
 
-  /* ═══ COLOR SECTIONS ═══ */
-  .color-sections {
-    display:flex; flex-direction:column; gap:12px;
-    margin-bottom:12px;
-  }
-  .color-sections:empty::after {
-    content:'Nenhuma seção de cores. Clique em "+ Nova seção".';
-    display:block; text-align:center; padding:20px;
-    color:var(--text-soft); font-style:italic; font-size:0.82rem;
-  }
-  .color-section {
-    border:2px solid rgba(205,164,52,0.18);
-    border-radius:var(--radius-sm);
-    padding:14px; background:var(--off-white);
-    animation:fadeIn 0.3s ease;
-  }
-  .color-section-header {
-    display:flex; align-items:center; gap:10px;
-    margin-bottom:12px;
-  }
+  .color-sections { display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
+  .color-sections:empty::after { content:'Nenhuma seção de cores. Clique em "+ Nova seção".'; display:block; text-align:center; padding:20px; color:var(--text-soft); font-style:italic; font-size:0.82rem; }
+  .color-section { border:2px solid rgba(205,164,52,0.18); border-radius:var(--radius-sm); padding:14px; background:var(--off-white); animation:fadeIn 0.3s ease; }
+  .color-section-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
   .color-section-header input { flex:1; }
-  .color-items {
-    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;
-    min-height:30px;
-  }
-  .color-items:empty::after {
-    content:'Sem cores nesta seção';
-    font-size:0.78rem; color:var(--text-soft);
-    font-style:italic; padding:4px 0;
-  }
-  .color-item {
-    display:flex; align-items:center; gap:6px;
-    background:var(--white); border:1px solid var(--gray-light);
-    border-radius:999px; padding:4px 10px 4px 6px;
-    font-size:0.82rem; transition:var(--transition-fast);
-  }
+  .color-items { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; min-height:30px; }
+  .color-items:empty::after { content:'Sem cores nesta seção'; font-size:0.78rem; color:var(--text-soft); font-style:italic; padding:4px 0; }
+  .color-item { display:flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--gray-light); border-radius:999px; padding:4px 10px 4px 6px; font-size:0.82rem; transition:var(--transition-fast); }
   .color-item:hover { border-color:var(--gold-main); box-shadow:var(--shadow-sm); }
-  .color-swatch {
-    width:20px; height:20px; border-radius:50%;
-    border:2px solid rgba(0,0,0,0.1); flex-shrink:0;
-  }
-  .color-item-remove {
-    background:none; border:none; color:#aaa; cursor:pointer;
-    font-size:0.9rem; padding:0 2px; line-height:1;
-    transition:color 0.15s;
-  }
+  .color-swatch { width:20px; height:20px; border-radius:50%; border:2px solid rgba(0,0,0,0.1); flex-shrink:0; }
+  .color-item-remove { background:none; border:none; color:#aaa; cursor:pointer; font-size:0.9rem; padding:0 2px; line-height:1; transition:color 0.15s; }
   .color-item-remove:hover { color:var(--danger); }
-  .add-color-row {
-    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
-  }
-  .add-color-row input[type=text] {
-    flex:1; min-width:100px;
-  }
-  .add-color-row input[type=color] {
-    width:44px; height:40px; padding:2px;
-    border-radius:8px; cursor:pointer;
-    border:2px solid rgba(205,164,52,0.18);
-  }
-  .color-preview-name {
-    position:absolute; right:60px; top:50%;
-    transform:translateY(-50%);
-    font-size:0.72rem; color:var(--text-soft);
-    pointer-events:none; opacity:0;
-    transition:opacity 0.2s;
-  }
-  .add-color-row:focus-within .color-preview-name { opacity:1; }
+  .add-color-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .add-color-row input[type=text] { flex:1; min-width:100px; }
+  .add-color-row input[type=color] { width:44px; height:40px; padding:2px; border-radius:8px; cursor:pointer; border:2px solid rgba(205,164,52,0.18); }
 
-  /* ═══ GLOBAL COLORS ═══ */
-  .global-colors-list {
-    display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;
-  }
-  .global-colors-list:empty::after {
-    content:'Nenhuma cor global cadastrada';
-    color:var(--text-soft); font-style:italic;
-    font-size:0.85rem; padding:20px 0;
-  }
-  .global-color-tag {
-    display:flex; align-items:center; gap:10px;
-    background:var(--off-white);
-    border:1px solid rgba(205,164,52,0.18);
-    border-radius:999px; padding:6px 12px 6px 8px;
-    font-size:0.85rem; transition:var(--transition-fast);
-  }
-  .global-color-tag:hover {
-    border-color:var(--gold-main); box-shadow:var(--shadow-sm);
-  }
-  .global-color-swatch {
-    width:24px; height:24px; border-radius:50%;
-    border:2px solid rgba(0,0,0,0.1);
-  }
+  .global-colors-list { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+  .global-colors-list:empty::after { content:'Nenhuma cor global cadastrada'; color:var(--text-soft); font-style:italic; font-size:0.85rem; padding:20px 0; }
+  .global-color-tag { display:flex; align-items:center; gap:10px; background:var(--off-white); border:1px solid rgba(205,164,52,0.18); border-radius:999px; padding:6px 12px 6px 8px; font-size:0.85rem; transition:var(--transition-fast); }
+  .global-color-tag:hover { border-color:var(--gold-main); box-shadow:var(--shadow-sm); }
+  .global-color-swatch { width:24px; height:24px; border-radius:50%; border:2px solid rgba(0,0,0,0.1); }
   .global-color-info { line-height:1.2; }
   .global-color-info strong { display:block; font-size:0.82rem; font-weight:700; }
   .global-color-info span { font-size:0.75rem; color:var(--text-mid); }
-  .global-color-tag .remove-x {
-    background:none; border:none; color:var(--text-soft);
-    font-size:1.2rem; cursor:pointer; padding:0 4px; line-height:1;
-    transition:color 0.15s;
-  }
+  .global-color-tag .remove-x { background:none; border:none; color:var(--text-soft); font-size:1.2rem; cursor:pointer; padding:0 4px; line-height:1; transition:color 0.15s; }
   .global-color-tag .remove-x:hover { color:var(--danger); }
 
-  /* ═══ CALCULATOR ═══ */
   .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
   .calc-inputs { display:flex; flex-direction:column; gap:10px; }
-  .calc-result-box {
-    background:linear-gradient(135deg,var(--gold-main),var(--gold-deep));
-    border-radius:var(--radius); padding:30px; color:white;
-    text-align:center; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    box-shadow:0 12px 32px rgba(205,164,52,0.3);
-    position:relative; overflow:hidden;
-  }
-  .calc-result-box::before {
-    content:''; position:absolute; top:-50%; right:-50%;
-    width:100%; height:100%;
-    background:radial-gradient(circle,rgba(255,255,255,0.1),transparent 70%);
-    animation:rotate 20s linear infinite;
-  }
-  @keyframes rotate {
-    from { transform:rotate(0deg); }
-    to { transform:rotate(360deg); }
-  }
-  .calc-result-label {
-    font-size:0.88rem; opacity:0.85;
-    margin-bottom:8px; position:relative;
-  }
-  .calc-result-value {
-    font-family:var(--font-display); font-size:3rem;
-    margin-bottom:4px; position:relative;
-    text-shadow:0 2px 8px rgba(0,0,0,0.15);
-  }
-  .calc-result-sub {
-    font-size:0.82rem; opacity:0.75; position:relative;
-  }
-  .calc-breakdown {
-    background:var(--off-white); border-radius:var(--radius-sm);
-    padding:16px; margin-top:16px;
-  }
+  .calc-result-box { background:linear-gradient(135deg,var(--gold-main),var(--gold-deep)); border-radius:var(--radius); padding:30px; color:white; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 12px 32px rgba(205,164,52,0.3); position:relative; overflow:hidden; }
+  .calc-result-label { font-size:0.88rem; opacity:0.85; margin-bottom:8px; }
+  .calc-result-value { font-family:var(--font-display); font-size:3rem; margin-bottom:4px; text-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  .calc-result-sub { font-size:0.82rem; opacity:0.75; }
+  .calc-breakdown { background:var(--off-white); border-radius:var(--radius-sm); padding:16px; margin-top:16px; }
   .calc-breakdown:empty { display:none; }
-  .calc-breakdown-row {
-    display:flex; justify-content:space-between;
-    font-size:0.85rem; padding:8px 0;
-    border-bottom:1px solid rgba(205,164,52,0.1);
-  }
-  .calc-breakdown-row:last-child {
-    border-bottom:none; font-weight:700;
-    color:var(--gold-main); font-size:0.95rem;
-    margin-top:4px; padding-top:12px;
-    border-top:2px solid rgba(205,164,52,0.2);
-  }
+  .calc-breakdown-row { display:flex; justify-content:space-between; font-size:0.85rem; padding:8px 0; border-bottom:1px solid rgba(205,164,52,0.1); }
+  .calc-breakdown-row:last-child { border-bottom:none; font-weight:700; color:var(--gold-main); font-size:0.95rem; margin-top:4px; padding-top:12px; border-top:2px solid rgba(205,164,52,0.2); }
   .calc-breakdown-row span:first-child { color:var(--text-mid); }
-  .calc-preset-row {
-    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;
-  }
-  .calc-preset {
-    padding:6px 14px; border-radius:999px;
-    background:var(--off-white); border:2px solid rgba(205,164,52,0.18);
-    font-family:var(--font-body); font-size:0.8rem;
-    font-weight:600; color:var(--text-mid);
-    cursor:pointer; transition:var(--transition-fast);
-  }
-  .calc-preset:hover {
-    border-color:var(--gold-main); color:var(--gold-main);
-    background:var(--gold-pale);
-  }
-  .calc-preset.active {
-    background:var(--gold-main); color:white;
-    border-color:var(--gold-main);
-  }
+  .calc-preset-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .calc-preset { padding:6px 14px; border-radius:999px; background:var(--off-white); border:2px solid rgba(205,164,52,0.18); font-family:var(--font-body); font-size:0.8rem; font-weight:600; color:var(--text-mid); cursor:pointer; transition:var(--transition-fast); }
+  .calc-preset:hover { border-color:var(--gold-main); color:var(--gold-main); background:var(--gold-pale); }
+  .calc-preset.active { background:var(--gold-main); color:white; border-color:var(--gold-main); }
 
-  /* ═══ CATEGORY MANAGER ═══ */
   .cat-list { display:flex; flex-direction:column; gap:10px; }
-  .cat-list:empty::after {
-    content:'Nenhuma categoria. Clique em "+ Nova".';
-    display:block; text-align:center; padding:20px;
-    color:var(--text-soft); font-style:italic; font-size:0.85rem;
-  }
-  .cat-row {
-    display:flex; gap:10px; align-items:center;
-    padding:8px 12px; background:var(--off-white);
-    border-radius:var(--radius-sm);
-    border:1px solid rgba(205,164,52,0.1);
-    transition:var(--transition-fast);
-  }
+  .cat-list:empty::after { content:'Nenhuma categoria. Clique em "+ Nova".'; display:block; text-align:center; padding:20px; color:var(--text-soft); font-style:italic; font-size:0.85rem; }
+  .cat-row { display:flex; gap:10px; align-items:center; padding:8px 12px; background:var(--off-white); border-radius:var(--radius-sm); border:1px solid rgba(205,164,52,0.1); transition:var(--transition-fast); }
   .cat-row:hover { border-color:var(--gold-light); }
   .cat-row input { flex:1; padding:8px 12px; font-size:0.9rem; }
-  .cat-row .cat-usage {
-    font-size:0.72rem; color:var(--text-soft);
-    padding:2px 8px; background:var(--gold-pale);
-    border-radius:999px; font-weight:600;
-  }
+  .cat-row .cat-usage { font-size:0.72rem; color:var(--text-soft); padding:2px 8px; background:var(--gold-pale); border-radius:999px; font-weight:600; }
 
-  /* ═══ MODAL ═══ */
-  .modal-overlay {
-    position:fixed; inset:0;
-    background:rgba(42,34,16,0.55);
-    backdrop-filter:blur(4px);
-    -webkit-backdrop-filter:blur(4px);
-    z-index:500; display:flex; align-items:center;
-    justify-content:center; padding:20px;
-    opacity:0; pointer-events:none;
-    transition:opacity 0.25s;
-  }
+  /* Collection row com múltiplos campos */
+  .collection-row { display:grid; grid-template-columns:auto 1.2fr 1fr auto auto; gap:8px; align-items:center; padding:8px 12px; background:var(--off-white); border-radius:var(--radius-sm); border:1px solid rgba(205,164,52,0.1); }
+  .collection-row input { padding:8px 12px; font-size:0.88rem; }
+  .collection-row .collection-emoji-input { width:52px; text-align:center; font-size:1.05rem; }
+  .collection-row .collection-usage { font-size:0.72rem; color:var(--text-soft); padding:2px 8px; background:var(--gold-pale); border-radius:999px; font-weight:600; white-space:nowrap; }
+  .collection-row .collection-filter-tag { font-family:var(--font-mono); font-size:0.7rem; color:var(--gold-deep); }
+
+  .modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:500; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.25s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
-  .modal-box {
-    background:var(--white); border-radius:24px;
-    max-width:760px; width:100%; max-height:92vh;
-    overflow-y:auto; padding:32px;
-    box-shadow:var(--shadow-lg); position:relative;
-    transform:scale(0.95) translateY(10px);
-    transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  }
+  .modal-box { background:var(--white); border-radius:24px; max-width:760px; width:100%; max-height:92vh; overflow-y:auto; padding:32px; box-shadow:var(--shadow-lg); position:relative; transform:scale(0.95) translateY(10px); transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
   .modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
-  .modal-title {
-    font-family:var(--font-display); font-size:1.6rem;
-    margin-bottom:6px; padding-right:40px;
-  }
-  .modal-subtitle {
-    font-size:0.85rem; color:var(--text-mid);
-    margin-bottom:22px;
-  }
-  .modal-close-btn {
-    position:absolute; top:18px; right:18px;
-    width:36px; height:36px; border-radius:50%;
-    border:none; background:var(--gold-pale);
-    color:var(--gold-main); font-size:1rem;
-    cursor:pointer; display:flex;
-    align-items:center; justify-content:center;
-    transition:var(--transition);
-  }
-  .modal-close-btn:hover {
-    background:var(--gold-main); color:white;
-    transform:rotate(90deg);
-  }
-  .modal-footer {
-    display:flex; gap:12px; margin-top:24px;
-    justify-content:flex-end; flex-wrap:wrap;
-    padding-top:20px; border-top:1px solid var(--gray-light);
-  }
+  .modal-title { font-family:var(--font-display); font-size:1.6rem; margin-bottom:6px; padding-right:40px; }
+  .modal-subtitle { font-size:0.85rem; color:var(--text-mid); margin-bottom:22px; }
+  .modal-close-btn { position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:none; background:var(--gold-pale); color:var(--gold-main); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+  .modal-close-btn:hover { background:var(--gold-main); color:white; transform:rotate(90deg); }
+  .modal-footer { display:flex; gap:12px; margin-top:24px; justify-content:flex-end; flex-wrap:wrap; padding-top:20px; border-top:1px solid var(--gray-light); }
 
-  /* ═══ SECTION LABEL ═══ */
-  .section-label {
-    font-size:0.95rem; font-weight:700;
-    color:var(--text-dark); margin-bottom:12px;
-    margin-top:4px; display:flex; align-items:center; gap:8px;
-  }
-  .section-label::after {
-    content:''; flex:1; height:1px;
-    background:linear-gradient(90deg,rgba(205,164,52,0.2),transparent);
-  }
+  .section-label { font-size:0.95rem; font-weight:700; color:var(--text-dark); margin-bottom:12px; margin-top:4px; display:flex; align-items:center; gap:8px; }
+  .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(205,164,52,0.2),transparent); }
 
-  /* ═══ TOAST ═══ */
-  .toast {
-    position:fixed; bottom:28px; right:28px;
-    z-index:9999; background:var(--text-dark);
-    color:white; padding:14px 22px;
-    border-radius:12px; font-size:0.88rem;
-    font-weight:600; border-left:4px solid var(--gold-main);
-    box-shadow:var(--shadow-lg);
-    opacity:0; transform:translateY(20px);
-    transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    pointer-events:none; max-width:340px; line-height:1.45;
-  }
+  .toast { position:fixed; bottom:28px; right:28px; z-index:9999; background:var(--text-dark); color:white; padding:14px 22px; border-radius:12px; font-size:0.88rem; font-weight:600; border-left:4px solid var(--gold-main); box-shadow:var(--shadow-lg); opacity:0; transform:translateY(20px); transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); pointer-events:none; max-width:340px; line-height:1.45; }
   .toast.show { opacity:1; transform:translateY(0); }
   .toast.success { border-left-color:var(--success); }
   .toast.error { border-left-color:var(--danger); }
   .toast.warning { border-left-color:var(--warning); }
 
-  /* ═══ SAVING OVERLAY ═══ */
-  .saving-overlay {
-    position:fixed; inset:0;
-    background:rgba(42,34,16,0.7);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    z-index:9000; display:none;
-    align-items:center; justify-content:center;
-    flex-direction:column;
-  }
+  .saving-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:9000; display:none; align-items:center; justify-content:center; flex-direction:column; }
   .saving-overlay.show { display:flex; }
-  .saving-box {
-    background:var(--white); border-radius:20px;
-    padding:36px 44px; text-align:center;
-    box-shadow:var(--shadow-lg);
-    min-width:300px;
-  }
-  .saving-spinner {
-    width:52px; height:52px;
-    border:4px solid rgba(205,164,52,0.2);
-    border-top-color:var(--gold-main);
-    border-radius:50%;
-    animation:spin 0.9s linear infinite;
-    margin:0 auto 18px;
-  }
+  .saving-box { background:var(--white); border-radius:20px; padding:36px 44px; text-align:center; box-shadow:var(--shadow-lg); min-width:300px; }
+  .saving-spinner { width:52px; height:52px; border:4px solid rgba(205,164,52,0.2); border-top-color:var(--gold-main); border-radius:50%; animation:spin 0.9s linear infinite; margin:0 auto 18px; }
   @keyframes spin { to { transform:rotate(360deg); } }
-  .saving-text {
-    font-size:0.95rem; font-weight:700;
-    color:var(--text-dark);
-  }
-  .saving-sub {
-    font-size:0.82rem; color:var(--text-mid);
-    margin-top:6px; font-family:var(--font-mono);
-    word-break:break-all;
-  }
-  .saving-progress {
-    margin-top:16px; height:4px; background:var(--gray-light);
-    border-radius:2px; overflow:hidden;
-  }
-  .saving-progress-bar {
-    height:100%; background:linear-gradient(90deg,var(--gold-main),var(--gold-deep));
-    width:0%; transition:width 0.3s ease;
-    border-radius:2px;
-  }
+  .saving-text { font-size:0.95rem; font-weight:700; color:var(--text-dark); }
+  .saving-sub { font-size:0.82rem; color:var(--text-mid); margin-top:6px; font-family:var(--font-mono); word-break:break-all; }
+  .saving-progress { margin-top:16px; height:4px; background:var(--gray-light); border-radius:2px; overflow:hidden; }
+  .saving-progress-bar { height:100%; background:linear-gradient(90deg,var(--gold-main),var(--gold-deep)); width:0%; transition:width 0.3s ease; border-radius:2px; }
 
-  /* ═══ GITHUB INFO BOX ═══ */
-  .gh-info-box {
-    background:linear-gradient(135deg, rgba(205,164,52,0.06), rgba(205,164,52,0.02));
-    border:1.5px solid rgba(205,164,52,0.2);
-    border-radius:var(--radius-sm); padding:14px 16px;
-    margin-bottom:18px; font-size:0.83rem;
-    color:var(--text-mid); line-height:1.6;
-    display:flex; align-items:flex-start; gap:10px;
-  }
-  .gh-info-box .info-icon {
-    font-size:1.1rem; flex-shrink:0; line-height:1.3;
-  }
+  .gh-info-box { background:linear-gradient(135deg, rgba(205,164,52,0.06), rgba(205,164,52,0.02)); border:1.5px solid rgba(205,164,52,0.2); border-radius:var(--radius-sm); padding:14px 16px; margin-bottom:18px; font-size:0.83rem; color:var(--text-mid); line-height:1.6; display:flex; align-items:flex-start; gap:10px; }
+  .gh-info-box .info-icon { font-size:1.1rem; flex-shrink:0; line-height:1.3; }
   .gh-info-box strong { color:var(--gold-deep); }
 
-  /* ═══ TOPBAR (mobile) ═══ */
-  .topbar {
-    display:none; background:var(--text-dark);
-    padding:14px 20px; position:sticky; top:0;
-    z-index:200; align-items:center; gap:12px;
-    color:white;
-  }
-  .topbar-logo {
-    width:32px; height:32px; border-radius:50%;
-    background:linear-gradient(135deg,#cda434,#a67c00);
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-  }
-  .topbar h3 {
-    font-family:var(--font-display); font-size:1.1rem;
-    flex:1; color:white;
-  }
+  .topbar { display:none; background:var(--text-dark); padding:14px 20px; position:sticky; top:0; z-index:200; align-items:center; gap:12px; color:white; }
+  .topbar-logo { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#cda434,#a67c00); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .topbar h3 { font-family:var(--font-display); font-size:1.1rem; flex:1; color:white; }
 
-  /* ═══ UTILITIES ═══ */
   .hidden { display:none !important; }
   .text-center { text-align:center; }
-  .text-mono { font-family:var(--font-mono); }
-  .mt-0 { margin-top:0 !important; }
-  .mb-0 { margin-bottom:0 !important; }
 
-  /* ═══ RESPONSIVE ═══ */
   @media (max-width:900px) {
-    .admin-sidebar {
-      width:240px;
-      transform:translateX(-100%);
-    }
+    .admin-sidebar { width:240px; transform:translateX(-100%); }
     .admin-sidebar.open { transform:translateX(0); }
-    .admin-main {
-      margin-left:0; padding:20px;
-      padding-top:70px;
-    }
+    .admin-main { margin-left:0; padding:20px; padding-top:70px; }
     .topbar { display:flex; }
     .calc-grid { grid-template-columns:1fr; }
     .form-row { grid-template-columns:1fr; }
     .form-row-3 { grid-template-columns:1fr; }
-    .sidebar-overlay {
-      position:fixed; inset:0;
-      background:rgba(0,0,0,0.5);
-      z-index:99; opacity:0;
-      pointer-events:none; transition:opacity 0.3s;
-    }
+    .sidebar-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:99; opacity:0; pointer-events:none; transition:opacity 0.3s; }
     .sidebar-overlay.open { opacity:1; pointer-events:all; }
     .page-header { flex-direction:column; align-items:stretch; }
+    .collection-row { grid-template-columns:1fr 1fr; }
+    .collection-row > .collection-usage { grid-column:1/-1; }
   }
   @media (max-width:640px) {
     .modal-box { padding:24px 20px; border-radius:20px; }
@@ -964,58 +386,41 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     SAVING OVERLAY
-     ═══════════════════════════════════════════════ -->
 <div class="saving-overlay" id="savingOverlay">
   <div class="saving-box">
     <div class="saving-spinner"></div>
     <div class="saving-text" id="savingText">Sincronizando...</div>
     <div class="saving-sub" id="savingSub">Aguarde um momento</div>
-    <div class="saving-progress">
-      <div class="saving-progress-bar" id="savingProgress"></div>
-    </div>
+    <div class="saving-progress"><div class="saving-progress-bar" id="savingProgress"></div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     LOGIN SCREEN
-     ═══════════════════════════════════════════════ -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">
       <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
         <circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/>
         <path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
-        <path d="M50 18c-6 4-6 12 0 16" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
       </svg>
     </div>
     <h1>Gold Crochet Admin</h1>
     <p>Painel de gerenciamento da loja</p>
     <input class="login-input" type="email" id="loginEmail" placeholder="E-mail (opcional)" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
     <input class="login-input" type="password" id="loginPass" placeholder="Senha de acesso" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">
-      <span id="loginBtnText">Entrar →</span>
-    </button>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()"><span id="loginBtnText">Entrar →</span></button>
     <div class="login-error" id="loginError"></div>
-    <div class="login-divider">OU</div>
+    <div style="margin:20px 0;display:flex;align-items:center;gap:10px;color:var(--text-soft);font-size:0.8rem;font-weight:600;">
+      <div style="flex:1;height:1px;background:var(--gray-light);"></div>OU<div style="flex:1;height:1px;background:var(--gray-light);"></div>
+    </div>
     <button class="login-btn" style="background:transparent;color:var(--gold-main);border:2px solid var(--gold-main);box-shadow:none;" onclick="loginWithFirebase()">Entrar com Conta Firebase</button>
     <p class="login-hint">Senha admin padrão: <code>goldcrochet2026</code></p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     ADMIN APP
-     ═══════════════════════════════════════════════ -->
 <div id="adminApp">
-
-  <!-- TOPBAR MOBILE -->
   <div class="topbar">
     <div class="topbar-logo">
-      <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
-        <circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/>
-        <path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
-      </svg>
+      <svg width="18" height="18" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/><path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>
     </div>
     <h3>Gold Crochet</h3>
     <button class="btn btn-ghost btn-sm" onclick="toggleSidebar()">☰</button>
@@ -1023,138 +428,77 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-  <!-- SIDEBAR -->
   <aside class="admin-sidebar" id="adminSidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">
-        <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/>
-          <path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
-          <path d="M50 18c-6 4-6 12 0 16" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="34" r="16" fill="none" stroke="white" stroke-width="4"/><path d="M28 78c2-20 16-30 22-30s20 10 22 30" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>
       </div>
-      <div class="sidebar-logo-text">
-        <span>Gold Crochet</span>
-        <small>Admin Panel</small>
-      </div>
+      <div class="sidebar-logo-text"><span>Gold Crochet</span><small>Admin Panel</small></div>
     </div>
     <nav class="sidebar-nav">
-      <button class="nav-item active" onclick="showTab('dashboard')" id="tab-dashboard">
-        <span class="icon">📊</span> Dashboard
-      </button>
-      <button class="nav-item" onclick="showTab('produtos')" id="tab-produtos">
-        <span class="icon">🧶</span> Produtos
-        <span class="nav-count" id="navCountProducts">0</span>
-      </button>
-      <button class="nav-item" onclick="showTab('categorias')" id="tab-categorias">
-        <span class="icon">📂</span> Categorias
-      </button>
-      <button class="nav-item" onclick="showTab('cores')" id="tab-cores">
-        <span class="icon">🎨</span> Cores Globais
-      </button>
-      <button class="nav-item" onclick="showTab('clientes')" id="tab-clientes">
-        <span class="icon">👥</span> Clientes
-      </button>
+      <button class="nav-item active" onclick="showTab('dashboard')" id="tab-dashboard"><span class="icon">📊</span> Dashboard</button>
+      <button class="nav-item" onclick="showTab('produtos')" id="tab-produtos"><span class="icon">🧶</span> Produtos <span class="nav-count" id="navCountProducts">0</span></button>
+      <button class="nav-item" onclick="showTab('novidades')" id="tab-novidades"><span class="icon">📰</span> Novidades <span class="nav-count" id="navCountPosts">0</span></button>
+      <button class="nav-item" onclick="showTab('categorias')" id="tab-categorias"><span class="icon">📂</span> Categorias & Tags</button>
+      <button class="nav-item" onclick="showTab('colecoes')" id="tab-colecoes"><span class="icon">🗂️</span> Coleções <span class="nav-count" id="navCountCollections">0</span></button>
+      <button class="nav-item" onclick="showTab('cores')" id="tab-cores"><span class="icon">🎨</span> Cores Globais</button>
+      <button class="nav-item" onclick="showTab('clientes')" id="tab-clientes"><span class="icon">👥</span> Clientes</button>
       <div class="nav-divider"></div>
-      <button class="nav-item" onclick="showTab('config')" id="tab-config">
-        <span class="icon">⚙️</span> Configurações
-      </button>
-      <button class="nav-item" onclick="showTab('calc')" id="tab-calc">
-        <span class="icon">🧮</span> Calculadora
-      </button>
+      <button class="nav-item" onclick="showTab('config')" id="tab-config"><span class="icon">⚙️</span> Configurações</button>
+      <button class="nav-item" onclick="showTab('calc')" id="tab-calc"><span class="icon">🧮</span> Calculadora</button>
       <div class="nav-divider"></div>
-      <button class="nav-item" onclick="showTab('backup')" id="tab-backup">
-        <span class="icon">💾</span> Backup
-      </button>
-      <button class="nav-item" onclick="showTab('logs')" id="tab-logs">
-        <span class="icon">📋</span> Atividade
-      </button>
+      <button class="nav-item" onclick="showTab('backup')" id="tab-backup"><span class="icon">💾</span> Backup</button>
+      <button class="nav-item" onclick="showTab('logs')" id="tab-logs"><span class="icon">📋</span> Atividade</button>
     </nav>
     <div class="sidebar-footer">
-      <button class="token-status" id="tokenStatusBtn" onclick="configureToken()">
+      <button class="token-status" onclick="configureToken()">
         <div class="token-dot" id="tokenDot"></div>
         <span id="tokenStatusText">Configurar Token GitHub</span>
       </button>
-      <button class="logout-btn" onclick="doLogout()">
-        <span>🚪</span> Sair
-      </button>
+      <button class="logout-btn" onclick="doLogout()"><span>🚪</span> Sair</button>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <main class="admin-main">
 
-    <!-- ═══ DASHBOARD ═══ -->
     <div id="section-dashboard">
       <div class="page-header">
-        <div>
-          <h2>Dashboard</h2>
-          <p>Visão geral da loja Gold Crochet</p>
-        </div>
-        <div class="header-actions">
-          <button class="btn btn-ghost btn-sm" onclick="refreshFromGitHub()" title="Baixar dados mais recentes do GitHub">🔄 Sincronizar</button>
-        </div>
+        <div><h2>Dashboard</h2><p>Visão geral da loja Gold Crochet</p></div>
+        <div class="header-actions"><button class="btn btn-ghost btn-sm" onclick="refreshFromGitHub()">🔄 Sincronizar</button></div>
       </div>
-
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">Produtos</div>
-          <div class="stat-value" id="statProducts">0</div>
-          <div class="stat-sub">no catálogo</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Categorias</div>
-          <div class="stat-value" id="statCategories">0</div>
-          <div class="stat-sub">ativas</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Cores Globais</div>
-          <div class="stat-value" id="statColors">0</div>
-          <div class="stat-sub">disponíveis</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Com Imagem</div>
-          <div class="stat-value" id="statWithImage">0</div>
-          <div class="stat-sub">produtos com foto</div>
-        </div>
+        <div class="stat-card"><div class="stat-label">Produtos</div><div class="stat-value" id="statProducts">0</div><div class="stat-sub">no catálogo</div></div>
+        <div class="stat-card"><div class="stat-label">Categorias</div><div class="stat-value" id="statCategories">0</div><div class="stat-sub">ativas</div></div>
+        <div class="stat-card"><div class="stat-label">Coleções</div><div class="stat-value" id="statCollections">0</div><div class="stat-sub">criadas</div></div>
+        <div class="stat-card"><div class="stat-label">Novidades</div><div class="stat-value" id="statPosts">0</div><div class="stat-sub">posts no blog</div></div>
+        <div class="stat-card"><div class="stat-label">Cores Globais</div><div class="stat-value" id="statColors">0</div><div class="stat-sub">disponíveis</div></div>
       </div>
-
       <div class="panel">
-        <div class="panel-header">
-          <h3>⚡ Ações Rápidas</h3>
-        </div>
+        <div class="panel-header"><h3>⚡ Ações Rápidas</h3></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="openNewProduct()">＋ Nova Peça</button>
-          <button class="btn btn-ghost" onclick="showTab('config')">⚙️ Configurações</button>
-          <button class="btn btn-ghost" onclick="showTab('backup')">💾 Exportar Backup</button>
+          <button class="btn btn-primary" onclick="openNewBlogPost()">＋ Novo Post</button>
+          <button class="btn btn-ghost" onclick="showTab('config')">⚙️ Config</button>
+          <button class="btn btn-ghost" onclick="showTab('backup')">💾 Backup</button>
           <button class="btn btn-ghost" onclick="testGitHubConnection()">🔗 Testar GitHub</button>
         </div>
       </div>
-
       <div class="panel">
-        <div class="panel-header">
-          <h3>🕐 Atividade Recente</h3>
-        </div>
+        <div class="panel-header"><h3>🕐 Atividade Recente</h3></div>
         <div id="recentActivity"></div>
       </div>
     </div>
 
-    <!-- ═══ PRODUTOS ═══ -->
     <div id="section-produtos" class="hidden">
       <div class="page-header">
-        <div>
-          <h2>Produtos</h2>
-          <p>Alterações publicadas automaticamente no GitHub</p>
-        </div>
-        <div class="header-actions">
-          <button class="btn btn-primary" onclick="openNewProduct()">＋ Nova Peça</button>
-        </div>
+        <div><h2>Produtos</h2><p>Alterações publicadas automaticamente no GitHub</p></div>
+        <div class="header-actions"><button class="btn btn-primary" onclick="openNewProduct()">＋ Nova Peça</button></div>
       </div>
       <div class="panel">
         <div class="product-filters">
           <div class="product-search">
             <span>🔍</span>
-            <input type="text" id="productSearchInput" placeholder="Buscar peça por nome ou categoria..." oninput="filterProducts()">
+            <input type="text" id="productSearchInput" placeholder="Buscar peça..." oninput="filterProducts()">
           </div>
           <select class="product-sort" id="productSort" onchange="filterProducts()">
             <option value="newest">Mais recentes</option>
@@ -1167,138 +511,102 @@
           <select class="product-sort" id="productCategoryFilter" onchange="filterProducts()">
             <option value="">Todas as categorias</option>
           </select>
+          <select class="product-sort" id="productSectionFilter" onchange="filterProducts()">
+            <option value="">Todas as seções</option>
+            <option value="dia-a-dia">Dia a Dia</option>
+            <option value="pequeninos">Pequeninos</option>
+            <option value="acessorios">Acessórios</option>
+            <option value="bijuterias">Bijuterias</option>
+            <option value="casa">Artigos para Casa</option>
+          </select>
         </div>
         <div class="product-list" id="productList"></div>
       </div>
     </div>
 
-    <!-- ═══ CATEGORIAS ═══ -->
-    <div id="section-categorias" class="hidden">
+    <div id="section-novidades" class="hidden">
       <div class="page-header">
-        <div>
-          <h2>Categorias & Badges</h2>
-          <p>Aparecem nos filtros do site automaticamente</p>
-        </div>
+        <div><h2>Novidades (Blog)</h2><p>Posts que aparecem na página Novidades do site</p></div>
+        <div class="header-actions"><button class="btn btn-primary" onclick="openNewBlogPost()">＋ Novo Post</button></div>
       </div>
+      <div class="panel">
+        <div class="product-list" id="blogList"></div>
+      </div>
+    </div>
+
+    <div id="section-categorias" class="hidden">
+      <div class="page-header"><div><h2>Categorias & Tags (Badges)</h2><p>Aparecem nos filtros do site automaticamente</p></div></div>
       <div class="panel">
         <div class="panel-header">
           <h3>📂 Categorias</h3>
           <button class="btn btn-primary btn-sm" onclick="addCategory()">＋ Nova</button>
         </div>
         <div class="cat-list" id="categoryList"></div>
+        <p class="form-hint" style="margin-top:12px;">💡 Use slugs em minúsculas (ex: <strong>amigurumi</strong>, <strong>saias-vestidos</strong>) para casar com os filtros do site.</p>
       </div>
       <div class="panel">
         <div class="panel-header">
-          <h3>🏷️ Badges</h3>
-          <button class="btn btn-primary btn-sm" onclick="addBadge()">＋ Novo</button>
+          <h3>🏷️ Tags (Badges)</h3>
+          <button class="btn btn-primary btn-sm" onclick="addBadge()">＋ Nova</button>
         </div>
         <div class="cat-list" id="badgeList"></div>
-        <p class="form-hint" style="margin-top:12px;">
-          💡 O badge <strong>Novo</strong> ativa o rótulo vertical dourado no card do produto no site.
-        </p>
+        <p class="form-hint" style="margin-top:12px;">💡 O badge <strong>Novo</strong> ativa o rótulo vertical dourado no card do produto.</p>
       </div>
     </div>
 
-    <!-- ═══ CORES GLOBAIS ═══ -->
-    <div id="section-cores" class="hidden">
+    <!-- NOVA ABA: COLEÇÕES -->
+    <div id="section-colecoes" class="hidden">
       <div class="page-header">
-        <div>
-          <h2>Cores Globais</h2>
-          <p>Cadastre uma vez e reutilize em qualquer peça</p>
-        </div>
+        <div><h2>Coleções</h2><p>Crie coleções para agrupar peças no site (ex: Alta-Costura, Dia a Dia)</p></div>
+        <div class="header-actions"><button class="btn btn-primary" onclick="addCollection()">＋ Nova Coleção</button></div>
       </div>
       <div class="panel">
-        <div class="panel-header">
-          <h3>🎨 Cores Cadastradas</h3>
+        <div class="panel-header"><h3>🗂️ Coleções Cadastradas</h3></div>
+        <div class="cat-list" id="collectionList"></div>
+        <div class="gh-info-box" style="margin-top:16px;">
+          <span class="info-icon">💡</span>
+          <div>O campo <strong>Filtro</strong> é o valor que o produto guarda internamente para pertencer à coleção. Os produtos devem ser marcados com a coleção no cadastro da peça.</div>
         </div>
+      </div>
+    </div>
+
+    <div id="section-cores" class="hidden">
+      <div class="page-header"><div><h2>Cores Globais</h2><p>Cadastre uma vez e reutilize em qualquer peça</p></div></div>
+      <div class="panel">
+        <div class="panel-header"><h3>🎨 Cores Cadastradas</h3></div>
         <div class="global-colors-list" id="globalColorsList"></div>
         <div class="section-label" style="margin-top:20px;">➕ Adicionar Nova Cor</div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Nome da cor <span class="req">*</span></label>
-            <input type="text" id="newGlobalColorName" placeholder="ex: Dourado Champagne" maxlength="40">
-          </div>
-          <div class="form-group">
-            <label>Cor</label>
-            <input type="color" id="newGlobalColorHex" value="#cda434" style="width:100%;height:44px;padding:4px;border-radius:8px;cursor:pointer;">
-          </div>
+          <div class="form-group"><label>Nome da cor <span class="req">*</span></label><input type="text" id="newGlobalColorName" placeholder="ex: Dourado Champagne" maxlength="40"></div>
+          <div class="form-group"><label>Cor</label><input type="color" id="newGlobalColorHex" value="#cda434" style="width:100%;height:44px;padding:4px;border-radius:8px;cursor:pointer;"></div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Preço adicional (R$)</label>
-            <input type="number" id="newGlobalColorPrice" placeholder="0.00" step="0.01" min="0" value="0">
-          </div>
-          <div class="form-group" style="display:flex;align-items:flex-end;">
-            <button class="btn btn-primary" style="width:100%" onclick="addGlobalColor()">＋ Adicionar Cor</button>
-          </div>
+          <div class="form-group"><label>Preço adicional (R$)</label><input type="number" id="newGlobalColorPrice" placeholder="0.00" step="0.01" min="0" value="0"></div>
+          <div class="form-group" style="display:flex;align-items:flex-end;"><button class="btn btn-primary" style="width:100%" onclick="addGlobalColor()">＋ Adicionar Cor</button></div>
         </div>
       </div>
     </div>
 
-    <!-- ═══ CLIENTES ═══ -->
     <div id="section-clientes" class="hidden">
-      <div class="page-header">
-        <div>
-          <h2>Clientes</h2>
-          <p>Usuários registrados neste dispositivo</p>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="gh-info-box">
-          <span class="info-icon">ℹ️</span>
-          <div>
-            Para visualizar <strong>todos os clientes reais</strong>, ative o <strong>Firestore</strong> no console do Firebase e altere o código para ler a coleção <code>users</code>. Esta lista mostra apenas usuários que logaram neste navegador.
-          </div>
-        </div>
-        <div id="clientsList"></div>
-      </div>
+      <div class="page-header"><div><h2>Clientes</h2><p>Usuários registrados neste dispositivo</p></div></div>
+      <div class="panel"><div id="clientsList"></div></div>
     </div>
 
-    <!-- ═══ CONFIGURAÇÕES ═══ -->
     <div id="section-config" class="hidden">
-      <div class="page-header">
-        <div>
-          <h2>Configurações do Site</h2>
-          <p>Textos e links aplicados automaticamente no site</p>
-        </div>
-      </div>
+      <div class="page-header"><div><h2>Configurações do Site</h2><p>Textos e links aplicados automaticamente</p></div></div>
       <div class="panel">
-        <div class="gh-info-box">
-          <span class="info-icon">⚡</span>
-          <div>Ao salvar, o site <strong>index.html</strong> aplicará estas configurações na próxima visita do usuário.</div>
-        </div>
-        <div class="form-group">
-          <label>Título do Hero <span class="req">*</span></label>
-          <input type="text" id="config_hero_title" maxlength="80" placeholder="Elegância que se Tece à Mão">
-          <span class="form-hint">Aparece em destaque na página inicial</span>
-        </div>
-        <div class="form-group">
-          <label>Subtítulo do Hero</label>
-          <textarea id="config_hero_subtitle" maxlength="250" placeholder="Peças únicas, personalizadas..."></textarea>
-          <span class="form-hint">Parágrafo abaixo do título</span>
-        </div>
+        <div class="form-group"><label>Título do Hero <span class="req">*</span></label><input type="text" id="config_hero_title" maxlength="120" placeholder="Elegância que se <em>Tece</em><br>à Mão"></div>
+        <div class="form-group"><label>Subtítulo do Hero</label><textarea id="config_hero_subtitle" maxlength="300"></textarea></div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Link do Instagram</label>
-            <input type="url" id="config_instagram" placeholder="https://instagram.com/goldc.rochet">
-          </div>
-          <div class="form-group">
-            <label>E-mail de contato</label>
-            <input type="email" id="config_email" placeholder="contato@exemplo.com">
-          </div>
+          <div class="form-group"><label>Link do Instagram</label><input type="url" id="config_instagram" placeholder="https://instagram.com/goldc.rochet"></div>
+          <div class="form-group"><label>E-mail de contato</label><input type="email" id="config_email"></div>
         </div>
         <button class="btn btn-primary" onclick="saveConfig()">💾 Salvar e Publicar</button>
       </div>
     </div>
 
-    <!-- ═══ CALCULADORA ═══ -->
     <div id="section-calc" class="hidden">
-      <div class="page-header">
-        <div>
-          <h2>Calculadora de Custo</h2>
-          <p>Calcule o preço ideal para cada peça</p>
-        </div>
-      </div>
+      <div class="page-header"><div><h2>Calculadora de Custo</h2><p>Calcule o preço ideal para cada peça</p></div></div>
       <div class="panel">
         <div class="calc-preset-row">
           <span style="font-size:0.82rem;color:var(--text-mid);align-self:center;margin-right:4px;">Presets:</span>
@@ -1310,34 +618,13 @@
         </div>
         <div class="calc-grid">
           <div class="calc-inputs">
-            <div class="form-group">
-              <label>⏱️ Tempo de confecção (horas)</label>
-              <input type="number" id="c_horas" value="6" min="0" step="0.5" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>🧶 Fio utilizado (gramas)</label>
-              <input type="number" id="c_gramas" value="150" min="0" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>💰 Preço do fio (R$/kg)</label>
-              <input type="number" id="c_precoFio" value="45" min="0" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>🧷 Aviamentos (botões, enchimento, etc)</label>
-              <input type="number" id="c_aviamentos" value="6" min="0" step="0.5" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>👷 Mão de obra (R$/hora)</label>
-              <input type="number" id="c_maoDeObra" value="15" min="0" step="0.01" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>📦 Embalagem (R$)</label>
-              <input type="number" id="c_embalagem" value="4" min="0" step="0.01" oninput="calcular()">
-            </div>
-            <div class="form-group">
-              <label>📈 Margem de lucro (%)</label>
-              <input type="number" id="c_margem" value="45" min="0" max="500" oninput="calcular()">
-            </div>
+            <div class="form-group"><label>⏱️ Tempo (horas)</label><input type="number" id="c_horas" value="6" min="0" step="0.5" oninput="calcular()"></div>
+            <div class="form-group"><label>🧶 Fio (gramas)</label><input type="number" id="c_gramas" value="150" min="0" oninput="calcular()"></div>
+            <div class="form-group"><label>💰 Preço do fio (R$/kg)</label><input type="number" id="c_precoFio" value="45" min="0" oninput="calcular()"></div>
+            <div class="form-group"><label>🧷 Aviamentos (R$)</label><input type="number" id="c_aviamentos" value="6" min="0" step="0.5" oninput="calcular()"></div>
+            <div class="form-group"><label>👷 Mão de obra (R$/h)</label><input type="number" id="c_maoDeObra" value="15" min="0" step="0.01" oninput="calcular()"></div>
+            <div class="form-group"><label>📦 Embalagem (R$)</label><input type="number" id="c_embalagem" value="4" min="0" step="0.01" oninput="calcular()"></div>
+            <div class="form-group"><label>📈 Margem (%)</label><input type="number" id="c_margem" value="45" min="0" max="500" oninput="calcular()"></div>
           </div>
           <div>
             <div class="calc-result-box">
@@ -1351,17 +638,10 @@
       </div>
     </div>
 
-    <!-- ═══ BACKUP ═══ -->
     <div id="section-backup" class="hidden">
-      <div class="page-header">
-        <div>
-          <h2>Backup & Restauração</h2>
-          <p>Exporte e importe seus dados</p>
-        </div>
-      </div>
+      <div class="page-header"><div><h2>Backup & Restauração</h2><p>Exporte e importe seus dados</p></div></div>
       <div class="panel">
         <div class="panel-header"><h3>📤 Exportar</h3></div>
-        <p style="font-size:0.88rem;color:var(--text-mid);margin-bottom:16px;">Baixe um arquivo JSON com todos os dados da loja (produtos, categorias, cores, config).</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn btn-primary" onclick="exportData()">💾 Baixar data.json</button>
           <button class="btn btn-ghost" onclick="copyDataToClipboard()">📋 Copiar JSON</button>
@@ -1369,127 +649,110 @@
       </div>
       <div class="panel">
         <div class="panel-header"><h3>📥 Importar</h3></div>
-        <p style="font-size:0.88rem;color:var(--text-mid);margin-bottom:16px;">Cole um JSON ou envie um arquivo para restaurar os dados.</p>
         <div class="drop-zone" id="importDropZone" style="padding:20px;">
           <input type="file" id="importFileInput" accept=".json,application/json" onchange="handleImportFile(this.files)">
           <span class="drop-icon">📁</span>
           <div class="drop-text">Arraste um <strong>arquivo .json</strong> ou clique</div>
-          <div class="drop-hint">Formato: data.json do Gold Crochet</div>
         </div>
         <div style="margin-top:16px;">
-          <label>Ou cole o JSON aqui:</label>
           <textarea id="importJsonText" placeholder='{"products": [...], "categories": [...]}' style="min-height:120px;font-family:var(--font-mono);font-size:0.8rem;"></textarea>
           <button class="btn btn-ghost" style="margin-top:10px;" onclick="importFromText()">📥 Importar do Texto</button>
         </div>
       </div>
       <div class="panel" style="border-color:rgba(229,62,62,0.2);">
         <div class="panel-header"><h3 style="color:var(--danger);">⚠️ Zona de Perigo</h3></div>
-        <p style="font-size:0.88rem;color:var(--text-mid);margin-bottom:16px;">Restaurar aos valores de fábrica. Todos os dados serão perdidos.</p>
         <button class="btn btn-danger" onclick="resetToDefaults()">🗑 Restaurar Padrões</button>
       </div>
     </div>
 
-    <!-- ═══ LOGS ═══ -->
     <div id="section-logs" class="hidden">
       <div class="page-header">
-        <div>
-          <h2>Atividade</h2>
-          <p>Histórico de ações recentes</p>
-        </div>
-        <div class="header-actions">
-          <button class="btn btn-ghost btn-sm" onclick="clearLogs()">🗑 Limpar Logs</button>
-        </div>
+        <div><h2>Atividade</h2><p>Histórico de ações recentes</p></div>
+        <div class="header-actions"><button class="btn btn-ghost btn-sm" onclick="clearLogs()">🗑 Limpar Logs</button></div>
       </div>
-      <div class="panel">
-        <div id="fullLogList"></div>
-      </div>
+      <div class="panel"><div id="fullLogList"></div></div>
     </div>
 
   </main>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     MODAL PRODUTO
-     ═══════════════════════════════════════════════ -->
+<!-- MODAL PRODUTO -->
 <div class="modal-overlay" id="productModal">
   <div class="modal-box">
     <button class="modal-close-btn" onclick="closeModal()" aria-label="Fechar">✕</button>
     <div class="modal-title" id="modalTitle">Nova Peça</div>
     <div class="modal-subtitle" id="modalSubtitle">Preencha os dados abaixo</div>
 
-    <div class="gh-info-box" id="ghInfoBox">
+    <div class="gh-info-box">
       <span class="info-icon">🔗</span>
-      <div>
-        Imagens locais serão enviadas ao GitHub. <strong id="ghTokenNote">Configure o token na barra lateral antes de salvar.</strong>
-      </div>
+      <div>Imagens locais serão enviadas ao GitHub. <strong>Configure o token na barra lateral antes de salvar.</strong></div>
     </div>
 
     <div class="section-label">📋 Informações Básicas</div>
     <div class="form-row">
-      <div class="form-group">
-        <label>Nome da peça <span class="req">*</span></label>
-        <input type="text" id="p_name" placeholder="ex: Amigurumi Coelhinho" maxlength="60">
-        <span class="char-counter" data-for="p_name">0/60</span>
-      </div>
-      <div class="form-group">
-        <label>Emoji <span class="req">*</span></label>
-        <input type="text" id="p_emoji" placeholder="🧸" maxlength="4">
-      </div>
+      <div class="form-group"><label>Nome da peça <span class="req">*</span></label><input type="text" id="p_name" placeholder="ex: Amigurumi Coelhinho" maxlength="60"></div>
+      <div class="form-group"><label>Emoji <span class="req">*</span></label><input type="text" id="p_emoji" placeholder="🧸" maxlength="4"></div>
     </div>
-    <div class="form-group">
-      <label>Descrição <span class="req">*</span></label>
-      <textarea id="p_desc" placeholder="Descreva a peça em detalhes..." maxlength="300"></textarea>
-      <span class="char-counter" data-for="p_desc">0/300</span>
+    <div class="form-group"><label>Descrição <span class="req">*</span></label><textarea id="p_desc" placeholder="Descreva a peça..." maxlength="300"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>Categoria</label><input type="text" id="p_category" list="categoryOptions" placeholder="ex: amigurumi"><datalist id="categoryOptions"></datalist></div>
+      <div class="form-group"><label>Preço (R$) — vazio = Sob Consulta</label><input type="number" id="p_price" placeholder="65.00" min="0" step="0.01"></div>
     </div>
     <div class="form-row">
-      <div class="form-group">
-        <label>Categoria</label>
-        <input type="text" id="p_category" list="categoryOptions" placeholder="ex: amigurumi">
-        <datalist id="categoryOptions"></datalist>
-      </div>
-      <div class="form-group">
-        <label>Preço (R$) — vazio = Sob Consulta</label>
-        <input type="number" id="p_price" placeholder="65.00" min="0" step="0.01">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Badge</label>
-        <input type="text" id="p_badge" list="badgeOptions" placeholder="ex: Novo">
-        <datalist id="badgeOptions"></datalist>
-      </div>
-      <div class="form-group">
-        <label>Desconto (%)</label>
-        <input type="number" id="p_discount" placeholder="0" min="0" max="100">
-      </div>
+      <div class="form-group"><label>Tag/Badge</label><input type="text" id="p_badge" list="badgeOptions" placeholder="ex: Novo"><datalist id="badgeOptions"></datalist></div>
+      <div class="form-group"><label>Desconto (%)</label><input type="number" id="p_discount" placeholder="0" min="0" max="100"></div>
     </div>
     <div class="form-row-3">
+      <div class="form-group"><label>Tempo produção (h)</label><input type="number" id="p_prod_time" placeholder="8" min="0"></div>
+      <div class="form-group"><label>Material</label><input type="text" id="p_material" placeholder="Fio Premium" maxlength="40"></div>
+      <div class="form-group"><label>Modelo 3D (URL)</label><input type="url" id="p_model3d" placeholder="https://..."></div>
+    </div>
+
+    <!-- NOVA SEÇÃO: SEÇÃO DO SITE / GÊNERO / COLEÇÃO -->
+    <div class="section-label" style="margin-top:8px;">🗂️ Seção do Site</div>
+    <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">Define onde o produto aparece no site (menu Peças e filtros das coleções).</p>
+    <div class="form-row">
       <div class="form-group">
-        <label>Tempo produção (horas)</label>
-        <input type="number" id="p_prod_time" placeholder="8" min="0">
+        <label>Seção <span class="req">*</span></label>
+        <select id="p_section" onchange="onProductSectionChange()">
+          <option value="">— Selecione —</option>
+          <option value="dia-a-dia">Dia a Dia</option>
+          <option value="pequeninos">Pequeninos</option>
+          <option value="acessorios">Acessórios</option>
+          <option value="bijuterias">Bijuterias</option>
+          <option value="casa">Artigos para Casa</option>
+        </select>
       </div>
+      <div class="form-group" id="p_gender_group" style="display:none;">
+        <label>Gênero <span class="req">*</span></label>
+        <select id="p_gender">
+          <option value="">— Selecione —</option>
+          <option value="feminino">Para Ela (Feminino)</option>
+          <option value="masculino">Para Ele (Masculino)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
       <div class="form-group">
-        <label>Material</label>
-        <input type="text" id="p_material" placeholder="Fio Premium" maxlength="40">
+        <label>Coleção</label>
+        <select id="p_collection">
+          <option value="">— Nenhuma —</option>
+        </select>
+        <p class="form-hint">Opcional. Agrupa a peça em uma coleção específica do site.</p>
       </div>
-      <div class="form-group">
-        <label>Modelo 3D (URL)</label>
-        <input type="url" id="p_model3d" placeholder="https://...">
-      </div>
+      <div></div>
     </div>
 
     <div class="section-label" style="margin-top:8px;">🖼️ Imagens da Peça</div>
-    <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">
-      Arraste imagens ou cole URLs. A <strong>primeira</strong> é a capa. Reordene arrastando.
-    </p>
+    <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">A <strong>primeira</strong> é a capa. Reordene arrastando.</p>
     <div class="drop-zone" id="dropZone">
       <input type="file" id="imgFileInput" accept="image/*" multiple onchange="handleFileSelect(this.files)">
       <span class="drop-icon">🖼️</span>
-      <div class="drop-text">Arraste <strong>imagens</strong> aqui ou clique para selecionar</div>
-      <div class="drop-hint">PNG, JPG, WebP — múltiplos arquivos aceitos</div>
+      <div class="drop-text">Arraste <strong>imagens</strong> aqui ou clique</div>
+      <div class="drop-hint">PNG, JPG, WebP — múltiplos arquivos</div>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;">
-      <input type="url" id="imgUrlInput" placeholder="Ou cole a URL da imagem aqui..." style="flex:1;">
+      <input type="url" id="imgUrlInput" placeholder="Ou cole a URL..." style="flex:1;">
       <button class="btn btn-ghost btn-sm" onclick="addImageByUrl()" style="flex-shrink:0;">+ URL</button>
     </div>
     <div class="img-preview-grid" id="imgPreviewGrid"></div>
@@ -1508,23 +771,41 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TOAST
-     ═══════════════════════════════════════════════ -->
+<!-- MODAL BLOG POST -->
+<div class="modal-overlay" id="blogModal">
+  <div class="modal-box" style="max-width:600px;">
+    <button class="modal-close-btn" onclick="closeBlogModal()" aria-label="Fechar">✕</button>
+    <div class="modal-title" id="blogModalTitle">Novo Post</div>
+    <div class="modal-subtitle">Preencha as informações do post</div>
+
+    <div class="form-row">
+      <div class="form-group"><label>Título <span class="req">*</span></label><input type="text" id="b_title" placeholder="ex: Nova Coleção Verão" maxlength="80"></div>
+      <div class="form-group"><label>Emoji</label><input type="text" id="b_emoji" placeholder="🌊" maxlength="4"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Data (texto livre)</label><input type="text" id="b_date" placeholder="ex: Março 2026" maxlength="40"></div>
+      <div class="form-group"><label>Tag</label><input type="text" id="b_tag" placeholder="ex: Lançamento" maxlength="30"></div>
+    </div>
+    <div class="form-group"><label>Resumo <span class="req">*</span></label><textarea id="b_excerpt" placeholder="Um pequeno texto sobre o post..." maxlength="280"></textarea></div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeBlogModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveBlogPost()" id="saveBlogBtn">💾 Salvar Post</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
-<!-- ═══════════════════════════════════════════════
-     FIREBASE — CORRIGIDO (scripts adicionados)
-     ═══════════════════════════════════════════════ -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 
 <script>
 'use strict';
 
-// ═══════════════════════════════════════════════
-// FIREBASE — INICIALIZAÇÃO PROTEGIDA
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// FIREBASE
+// ════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyCptS84PWOOnw2iz6ihni6Am023lyvgi3g",
   authDomain: "gold-crochet.firebaseapp.com",
@@ -1534,7 +815,6 @@ const firebaseConfig = {
   appId: "1:133111101270:web:a53b559687c10135b848f7",
   measurementId: "G-GHHVJHSMJH"
 };
-
 let auth = null;
 try {
   if (typeof firebase === 'undefined') throw new Error('SDK Firebase não carregado');
@@ -1542,7 +822,7 @@ try {
   auth = firebase.auth();
   console.log('✅ Firebase inicializado');
 } catch(e) {
-  console.warn('⚠️ Firebase offline — login por senha local ainda funciona:', e.message);
+  console.warn('⚠️ Firebase offline:', e.message);
   auth = {
     currentUser: null,
     onAuthStateChanged: () => {},
@@ -1552,9 +832,9 @@ try {
   };
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // CONFIG
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 const ADMIN_PASSWORD = 'goldcrochet2026';
 const ADMIN_EMAILS = ['rayssacrochet1404@gmail.com'];
 const GH_OWNER = 'goldcrochet-shop';
@@ -1564,49 +844,80 @@ const GH_DATA_PATH = 'data.json';
 const MAX_IMAGE_SIZE_MB = 3;
 const LOG_MAX_ENTRIES = 100;
 
-// ═══════════════════════════════════════════════
-// ESTADO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// SEÇÕES DISPONÍVEIS
+// ════════════════════════════════════════
+const SECTION_OPTIONS = [
+  { value: 'dia-a-dia',  label: 'Dia a Dia' },
+  { value: 'pequeninos', label: 'Pequeninos' },
+  { value: 'acessorios', label: 'Acessórios' },
+  { value: 'bijuterias', label: 'Bijuterias' },
+  { value: 'casa',       label: 'Artigos para Casa' }
+];
+function labelForSection(val) {
+  const s = SECTION_OPTIONS.find(x => x.value === val);
+  return s ? s.label : (val || '');
+}
+function labelForGender(val) {
+  if (val === 'feminino') return 'Para Ela';
+  if (val === 'masculino') return 'Para Ele';
+  return '';
+}
+
+// ════════════════════════════════════════
+// DEFAULTS
+// ════════════════════════════════════════
 const DEFAULT_PRODUCTS = [
-  { id:1, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', desc:'Ursinho feito à mão com todo carinho.', price:65, prod_time:8, material:'Fio Premium', colorSections:[{name:'Cores',colors:[{name:'Dourado',hex:'#cda434'},{name:'Marfim',hex:'#f4ead0'}]}], badge:'Popular', discount:0, image:'', gallery:[] }
+  { id:1001, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', section:'casa', gender:null, collection:'Dia a Dia', desc:'Ursinho feito à mão com todo carinho.', price:65, prod_time:8, material:'Fio Premium', colorSections:[{name:'Cores',colors:[{name:'Dourado',hex:'#cda434'},{name:'Marfim',hex:'#f4ead0'}]}], badge:'Popular', discount:0, image:'', gallery:[] }
 ];
 const DEFAULT_GLOBAL_COLORS = [
-  { name:'Dourado Gold Crochet', hex:'#cda434', priceAdd:0 },
+  { name:'Dourado Gold', hex:'#cda434', priceAdd:0 },
   { name:'Marfim', hex:'#f4ead0', priceAdd:0 },
   { name:'Preto', hex:'#2c2c2c', priceAdd:0 },
   { name:'Vinho', hex:'#7a2437', priceAdd:2 }
 ];
-const DEFAULT_CATEGORIES = ['amigurumi','bolsas','mantas','Alta-Costura','Dia a Dia'];
-const DEFAULT_BADGES = ['Novo','Destaque','Popular','Exclusivo','Sob Medida'];
+const DEFAULT_CATEGORIES = [
+  'amigurumi','bolsas','mantas','vestuario','personalizado',
+  'roupas-noite','saias-vestidos','jaquetas-casacos','tops','calcas',
+  'pequeninos','bebe','garotas','garotos','presentes',
+  'charms','brincos','colares','broches','braceletes','aneis','decoracoes'
+];
+const DEFAULT_BADGES = ['Novo','Destaque','Popular','Exclusivo','Sob Medida','Edição Limitada'];
+const DEFAULT_COLLECTIONS = [
+  { id:'alta-costura', name:'Alta-Costura', filter:'Alta-Costura', emoji:'👑', desc:'Peças exclusivas, com fios premium e acabamento refinado.' },
+  { id:'dia-a-dia', name:'Coleção Maré de Ouro', filter:'Dia a Dia', emoji:'🌊', desc:'Peças versáteis inspiradas no balanço do mar e no brilho do ouro.' }
+];
+const DEFAULT_BLOG_POSTS = [
+  { id:1, title:'Nova Coleção Maré de Ouro', date:'Março 2026', emoji:'🌊', tag:'Lançamento', excerpt:'Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas.' }
+];
 
+// ════════════════════════════════════════
+// ESTADO
+// ════════════════════════════════════════
 let products = [];
 let globalColors = [];
 let categories = [];
 let badges = [];
+let collections = [];
+let blogPosts = [];
 let siteConfig = {};
 let activityLog = [];
 let editingId = null;
+let editingPostId = null;
 let editingImages = [];
 let dragImgFromIdx = -1;
 let isProcessing = false;
 
-// ═══════════════════════════════════════════════
-// UTILS — ARMAZENAMENTO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════
 function loadState(key, def) {
-  try {
-    const s = localStorage.getItem(key);
-    if (s) return JSON.parse(s);
-  } catch(e) {}
+  try { const s = localStorage.getItem(key); if (s) return JSON.parse(s); } catch(e) {}
   return def;
 }
 function saveState(key, val) {
   try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
 }
-
-// ═══════════════════════════════════════════════
-// UTILS — UI
-// ═══════════════════════════════════════════════
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1618,17 +929,12 @@ function showSaving(text, sub, progress) {
   document.getElementById('savingText').textContent = text || 'Sincronizando...';
   document.getElementById('savingSub').textContent = sub || '';
   const bar = document.getElementById('savingProgress');
-  if (typeof progress === 'number') {
-    bar.style.width = Math.min(100, progress) + '%';
-  } else {
+  if (typeof progress === 'number') { bar.style.width = Math.min(100, progress) + '%'; }
+  else {
     bar.style.width = '0%';
-    // Simula progresso
     let p = 0;
     clearInterval(bar._timer);
-    bar._timer = setInterval(() => {
-      p = Math.min(85, p + Math.random() * 15);
-      bar.style.width = p + '%';
-    }, 200);
+    bar._timer = setInterval(() => { p = Math.min(85, p + Math.random() * 15); bar.style.width = p + '%'; }, 200);
   }
   document.getElementById('savingOverlay').classList.add('show');
 }
@@ -1642,19 +948,17 @@ function hideSaving() {
   }, 250);
 }
 function toggleSidebar() {
-  const sidebar = document.getElementById('adminSidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  sidebar.classList.toggle('open');
-  overlay.classList.toggle('open');
+  document.getElementById('adminSidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
 }
 function closeSidebar() {
   document.getElementById('adminSidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('open');
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // TOKEN GITHUB
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function getGHToken() { return sessionStorage.getItem('gh_token') || ''; }
 function setGHToken(token) {
   sessionStorage.setItem('gh_token', (token || '').trim());
@@ -1671,9 +975,9 @@ function updateTokenUI() {
 function configureToken() {
   const current = getGHToken();
   const msg = current
-    ? 'Token atual configurado. Cole um novo para substituir (ou cancele):'
-    : '🔑 Cole seu Token de Acesso Pessoal do GitHub\n(Settings → Developer settings → Personal access tokens → Tokens classic → repo scope):';
-  const token = prompt(msg, current ? '' : '');
+    ? 'Token atual configurado. Cole um novo para substituir:'
+    : '🔑 Cole seu Token do GitHub (classic, escopo "repo"):';
+  const token = prompt(msg, '');
   if (token && token !== current) {
     setGHToken(token);
     logActivity('🔑 Token GitHub atualizado');
@@ -1681,9 +985,9 @@ function configureToken() {
   }
 }
 
-// ═══════════════════════════════════════════════
-// LOG DE ATIVIDADE
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// LOGS
+// ════════════════════════════════════════
 function logActivity(msg) {
   activityLog.unshift({ msg, ts: Date.now() });
   if (activityLog.length > LOG_MAX_ENTRIES) activityLog = activityLog.slice(0, LOG_MAX_ENTRIES);
@@ -1693,16 +997,11 @@ function logActivity(msg) {
 function renderRecentActivity() {
   const el = document.getElementById('recentActivity');
   if (!el) return;
-  if (!activityLog.length) {
-    el.innerHTML = '<p style="color:var(--text-soft);font-style:italic;">Nenhuma atividade ainda.</p>';
-    return;
-  }
+  if (!activityLog.length) { el.innerHTML = '<p style="color:var(--text-soft);font-style:italic;">Nenhuma atividade ainda.</p>'; return; }
   el.innerHTML = activityLog.slice(0, 8).map(l => {
     const time = new Date(l.ts).toLocaleString('pt-BR');
     return `<div style="padding:8px 0;border-bottom:1px solid rgba(205,164,52,0.08);font-size:0.85rem;display:flex;justify-content:space-between;gap:12px;align-items:center;">
-      <span>${l.msg}</span>
-      <span style="color:var(--text-soft);font-size:0.72rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span>
-    </div>`;
+      <span>${l.msg}</span><span style="color:var(--text-soft);font-size:0.72rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span></div>`;
   }).join('');
 }
 function clearLogs() {
@@ -1716,22 +1015,18 @@ function clearLogs() {
 function renderFullLogs() {
   const el = document.getElementById('fullLogList');
   if (!el) return;
-  if (!activityLog.length) {
-    el.innerHTML = '<p style="color:var(--text-soft);font-style:italic;">Nenhuma atividade registrada.</p>';
-    return;
-  }
+  if (!activityLog.length) { el.innerHTML = '<p style="color:var(--text-soft);font-style:italic;">Nenhuma atividade registrada.</p>'; return; }
   el.innerHTML = activityLog.map(l => {
     const time = new Date(l.ts).toLocaleString('pt-BR');
     return `<div style="padding:10px 0;border-bottom:1px solid rgba(205,164,52,0.08);display:flex;justify-content:space-between;gap:12px;">
       <span style="font-size:0.88rem;">${l.msg}</span>
-      <span style="color:var(--text-soft);font-size:0.75rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span>
-    </div>`;
+      <span style="color:var(--text-soft);font-size:0.75rem;font-family:var(--font-mono);white-space:nowrap;">${time}</span></div>`;
   }).join('');
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // LOGIN
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function doLogin() {
   if (isProcessing) return;
   const pass = document.getElementById('loginPass').value;
@@ -1739,10 +1034,7 @@ function doLogin() {
   const errEl = document.getElementById('loginError');
   errEl.classList.remove('show');
 
-  if (pass === ADMIN_PASSWORD) {
-    enterAdmin('admin');
-    return;
-  }
+  if (pass === ADMIN_PASSWORD) { enterAdmin('admin'); return; }
 
   if (email && ADMIN_EMAILS.includes(email)) {
     isProcessing = true;
@@ -1750,10 +1042,7 @@ function doLogin() {
     document.getElementById('loginBtnText').textContent = 'Entrando...';
     auth.signInWithEmailAndPassword(email, pass)
       .then(() => enterAdmin(email))
-      .catch(() => {
-        errEl.textContent = 'Credenciais Firebase inválidas.';
-        errEl.classList.add('show');
-      })
+      .catch(() => { errEl.textContent = 'Credenciais Firebase inválidas.'; errEl.classList.add('show'); })
       .finally(() => {
         isProcessing = false;
         document.getElementById('loginBtn').disabled = false;
@@ -1764,7 +1053,6 @@ function doLogin() {
     errEl.classList.add('show');
   }
 }
-
 function loginWithFirebase() {
   const email = prompt('E-mail admin:');
   if (!email) return;
@@ -1777,7 +1065,6 @@ function loginWithFirebase() {
     })
     .catch(err => alert('Erro: ' + err.message));
 }
-
 function enterAdmin(userId) {
   sessionStorage.setItem('goldcrochet_admin', userId);
   document.getElementById('loginScreen').style.display = 'none';
@@ -1785,7 +1072,6 @@ function enterAdmin(userId) {
   logActivity('✅ Login realizado');
   initAdmin();
 }
-
 function doLogout() {
   if (!confirm('Deseja sair do painel?')) return;
   if (auth.currentUser) auth.signOut();
@@ -1794,15 +1080,16 @@ function doLogout() {
   location.reload();
 }
 
-// ═══════════════════════════════════════════════
-// INICIALIZAÇÃO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════
 async function initAdmin() {
-  // Carrega do localStorage primeiro (resposta rápida)
   products = loadState('goldcrochet_products', DEFAULT_PRODUCTS);
   globalColors = loadState('goldcrochet_global_colors', DEFAULT_GLOBAL_COLORS);
   categories = loadState('goldcrochet_categories', DEFAULT_CATEGORIES);
   badges = loadState('goldcrochet_badges', DEFAULT_BADGES);
+  collections = loadState('goldcrochet_collections', DEFAULT_COLLECTIONS);
+  blogPosts = loadState('goldcrochet_blogPosts', DEFAULT_BLOG_POSTS);
   siteConfig = loadState('goldcrochet_config', {});
   activityLog = loadState('goldcrochet_logs', []);
 
@@ -1812,8 +1099,6 @@ async function initAdmin() {
   renderFullLogs();
   setupCharCounters();
   setupDropZone();
-
-  // Depois tenta baixar do GitHub
   await refreshFromGitHub(true);
 }
 
@@ -1829,18 +1114,21 @@ async function refreshFromGitHub(silent) {
       if (data.products && data.products.length) products = data.products;
       if (data.categories && data.categories.length) categories = data.categories;
       if (data.badges && data.badges.length) badges = data.badges;
+      if (data.collections && data.collections.length) collections = data.collections;
       if (data.globalColors && data.globalColors.length) globalColors = data.globalColors;
+      if (data.blogPosts && data.blogPosts.length) blogPosts = data.blogPosts;
       if (data.config) siteConfig = data.config;
       saveState('goldcrochet_products', products);
       saveState('goldcrochet_categories', categories);
       saveState('goldcrochet_badges', badges);
+      saveState('goldcrochet_collections', collections);
       saveState('goldcrochet_global_colors', globalColors);
+      saveState('goldcrochet_blogPosts', blogPosts);
       saveState('goldcrochet_config', siteConfig);
-      if (!silent) logActivity('🔄 Sincronizado do GitHub');
-      if (!silent) showToast('✅ Dados sincronizados!');
+      if (!silent) { logActivity('🔄 Sincronizado do GitHub'); showToast('✅ Dados sincronizados!'); }
     }
   } catch(e) {
-    if (!silent) showToast('⚠️ Não foi possível sincronizar. Verifique sua conexão.', 'warning');
+    if (!silent) showToast('⚠️ Não foi possível sincronizar.', 'warning');
   }
   updateDashboard();
   updateAllSections();
@@ -1848,29 +1136,35 @@ async function refreshFromGitHub(silent) {
 
 function updateAllSections() {
   renderProductList();
+  renderBlogList();
   renderGlobalColors();
   renderCategoryManager();
+  renderCollectionManager();
   renderConfig();
   renderClients();
   calcular();
   updateCategoryOptions();
   updateBadgeOptions();
+  updateCollectionOptions();
   updateCategoryFilter();
 }
 
 function updateDashboard() {
   document.getElementById('statProducts').textContent = products.length;
   document.getElementById('statCategories').textContent = categories.length;
+  document.getElementById('statCollections').textContent = collections.length;
+  document.getElementById('statPosts').textContent = blogPosts.length;
   document.getElementById('statColors').textContent = globalColors.length;
-  document.getElementById('statWithImage').textContent = products.filter(p => p.image).length;
   document.getElementById('navCountProducts').textContent = products.length;
+  document.getElementById('navCountPosts').textContent = blogPosts.length;
+  const navColl = document.getElementById('navCountCollections');
+  if (navColl) navColl.textContent = collections.length;
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // TABS
-// ═══════════════════════════════════════════════
-const TABS = ['dashboard','produtos','categorias','cores','clientes','config','calc','backup','logs'];
-
+// ════════════════════════════════════════
+const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','clientes','config','calc','backup','logs'];
 function showTab(name) {
   TABS.forEach(t => {
     const section = document.getElementById('section-' + t);
@@ -1879,9 +1173,10 @@ function showTab(name) {
     if (tab) tab.classList.toggle('active', t === name);
   });
   closeSidebar();
-
   if (name === 'produtos') renderProductList();
+  else if (name === 'novidades') renderBlogList();
   else if (name === 'categorias') renderCategoryManager();
+  else if (name === 'colecoes') renderCollectionManager();
   else if (name === 'cores') renderGlobalColors();
   else if (name === 'clientes') renderClients();
   else if (name === 'config') renderConfig();
@@ -1890,60 +1185,50 @@ function showTab(name) {
   else if (name === 'logs') renderFullLogs();
 }
 
-// ═══════════════════════════════════════════════
-// PRODUTOS — LISTAGEM
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// PRODUTOS
+// ════════════════════════════════════════
 function renderProductList() {
   const list = document.getElementById('productList');
   if (!list) return;
-
   let visible = products.slice();
   const q = (document.getElementById('productSearchInput')?.value || '').toLowerCase().trim();
   const sort = document.getElementById('productSort')?.value || 'newest';
   const cat = document.getElementById('productCategoryFilter')?.value || '';
-
-  if (q) {
-    visible = visible.filter(p =>
-      (p.name || '').toLowerCase().includes(q) ||
-      (p.desc || '').toLowerCase().includes(q) ||
-      (p.category || '').toLowerCase().includes(q)
-    );
-  }
-  if (cat) {
-    visible = visible.filter(p => p.category === cat);
-  }
+  const sec = document.getElementById('productSectionFilter')?.value || '';
+  if (q) visible = visible.filter(p =>
+    (p.name||'').toLowerCase().includes(q) || (p.desc||'').toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q));
+  if (cat) visible = visible.filter(p => p.category === cat);
+  if (sec) visible = visible.filter(p => p.section === sec);
   switch (sort) {
     case 'name-asc': visible.sort((a,b) => (a.name||'').localeCompare(b.name||'')); break;
     case 'name-desc': visible.sort((a,b) => (b.name||'').localeCompare(a.name||'')); break;
     case 'price-asc': visible.sort((a,b) => (a.price||0) - (b.price||0)); break;
     case 'price-desc': visible.sort((a,b) => (b.price||0) - (a.price||0)); break;
     case 'oldest': visible.sort((a,b) => a.id - b.id); break;
-    case 'newest':
     default: visible.sort((a,b) => b.id - a.id);
   }
-
   if (!visible.length) {
     list.innerHTML = products.length
-      ? '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum produto corresponde aos filtros.</p>'
-      : '';
+      ? '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum produto corresponde aos filtros.</p>' : '';
     return;
   }
-
   list.innerHTML = visible.map(p => {
     const priceStr = p.price ? `R$ ${parseFloat(p.price).toFixed(2).replace('.',',')}` : 'Sob Consulta';
     const totalColors = (p.colorSections||[]).reduce((s,sec)=>s+(sec.colors||[]).length,0) || (p.colors||[]).length;
     const rawImg = toRawUrl(p.image);
     const badgeTag = p.badge ? `<span class="tag ${p.badge==='Novo'?'novo':''}">${p.badge}</span>` : '';
     const discTag = p.discount > 0 ? `<span class="tag">-${p.discount}%</span>` : '';
+    const sectionTag = p.section ? `<span class="tag section">${labelForSection(p.section)}${p.gender ? ' · ' + labelForGender(p.gender) : ''}</span>` : '';
+    const collTag = p.collection ? `<span class="tag collection">${escapeHtml(p.collection)}</span>` : '';
     return `<div class="product-row">
       <div class="product-row-thumb">${rawImg ? `<img src="${rawImg}" loading="lazy" onerror="this.parentElement.textContent='${p.emoji||'🧶'}'">` : (p.emoji||'🧶')}</div>
       <div class="product-row-info">
         <strong>${escapeHtml(p.name||'-')}</strong>
         <div class="meta">
-          <span>${escapeHtml(p.category||'sem categoria')}</span>
-          <span>·</span>
+          <span>${escapeHtml(p.category||'sem categoria')}</span><span>·</span>
           <span>${totalColors} cor(es)</span>
-          ${badgeTag}${discTag}
+          ${sectionTag}${collTag}${badgeTag}${discTag}
         </div>
       </div>
       <div class="product-row-price">${priceStr}</div>
@@ -1954,12 +1239,9 @@ function renderProductList() {
       </div>
     </div>`;
   }).join('');
-
   updateCategoryFilter();
 }
-
 function filterProducts() { renderProductList(); }
-
 function updateCategoryFilter() {
   const sel = document.getElementById('productCategoryFilter');
   if (!sel) return;
@@ -1968,15 +1250,10 @@ function updateCategoryFilter() {
     categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
   sel.value = current;
 }
-
 function duplicateProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
-  const newP = {
-    ...JSON.parse(JSON.stringify(p)),
-    id: Date.now(),
-    name: p.name + ' (Cópia)'
-  };
+  const newP = { ...JSON.parse(JSON.stringify(p)), id: Date.now(), name: p.name + ' (Cópia)' };
   products.push(newP);
   saveState('goldcrochet_products', products);
   renderProductList();
@@ -1985,11 +1262,10 @@ function duplicateProduct(id) {
   showToast('📄 Peça duplicada!');
   publishAll();
 }
-
 async function deleteProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
-  if (!confirm(`Remover "${p.name}"? Esta ação não pode ser desfeita.`)) return;
+  if (!confirm(`Remover "${p.name}"?`)) return;
   products = products.filter(p => p.id !== id);
   saveState('goldcrochet_products', products);
   renderProductList();
@@ -1999,14 +1275,113 @@ async function deleteProduct(id) {
   await publishAll();
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// NOVIDADES (BLOG)
+// ════════════════════════════════════════
+function renderBlogList() {
+  const list = document.getElementById('blogList');
+  if (!list) return;
+  if (!blogPosts.length) {
+    list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum post cadastrado. Clique em "+ Novo Post".</p>';
+    return;
+  }
+  const sorted = blogPosts.slice().sort((a,b) => b.id - a.id);
+  list.innerHTML = sorted.map(p => `
+    <div class="product-row">
+      <div class="product-row-thumb" style="font-size:1.8rem;">${p.emoji || '📰'}</div>
+      <div class="product-row-info">
+        <strong>${escapeHtml(p.title||'-')}</strong>
+        <div class="meta">
+          <span>${escapeHtml(p.date||'')}</span>
+          <span>·</span>
+          <span class="tag">${escapeHtml(p.tag||'Geral')}</span>
+        </div>
+        <p style="font-size:0.78rem;color:var(--text-mid);margin-top:4px;line-height:1.4;">${escapeHtml((p.excerpt||'').substring(0,100))}${(p.excerpt||'').length>100?'...':''}</p>
+      </div>
+      <div class="product-row-actions">
+        <button class="btn btn-ghost" onclick="openEditBlogPost(${p.id})" title="Editar">✏️</button>
+        <button class="btn btn-danger" onclick="deleteBlogPost(${p.id})" title="Remover">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+function openNewBlogPost() {
+  editingPostId = null;
+  document.getElementById('blogModalTitle').textContent = 'Novo Post';
+  document.getElementById('b_title').value = '';
+  document.getElementById('b_emoji').value = '';
+  document.getElementById('b_date').value = new Date().toLocaleDateString('pt-BR', { month:'long', year:'numeric' }).replace(/^\w/, c => c.toUpperCase());
+  document.getElementById('b_tag').value = '';
+  document.getElementById('b_excerpt').value = '';
+  document.getElementById('blogModal').classList.add('open');
+  setTimeout(() => document.getElementById('b_title').focus(), 300);
+}
+function openEditBlogPost(id) {
+  const p = blogPosts.find(x => x.id === id);
+  if (!p) return;
+  editingPostId = id;
+  document.getElementById('blogModalTitle').textContent = 'Editar Post';
+  document.getElementById('b_title').value = p.title || '';
+  document.getElementById('b_emoji').value = p.emoji || '';
+  document.getElementById('b_date').value = p.date || '';
+  document.getElementById('b_tag').value = p.tag || '';
+  document.getElementById('b_excerpt').value = p.excerpt || '';
+  document.getElementById('blogModal').classList.add('open');
+}
+function closeBlogModal() {
+  document.getElementById('blogModal').classList.remove('open');
+  editingPostId = null;
+}
+document.getElementById('blogModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('blogModal')) closeBlogModal();
+});
+async function saveBlogPost() {
+  const title = document.getElementById('b_title').value.trim();
+  const excerpt = document.getElementById('b_excerpt').value.trim();
+  if (!title) { showToast('❗ Título é obrigatório.', 'error'); return; }
+  if (!excerpt) { showToast('❗ Resumo é obrigatório.', 'error'); return; }
+  const data = {
+    title,
+    emoji: document.getElementById('b_emoji').value.trim() || '📰',
+    date: document.getElementById('b_date').value.trim() || new Date().toLocaleDateString('pt-BR'),
+    tag: document.getElementById('b_tag').value.trim() || 'Geral',
+    excerpt
+  };
+  if (editingPostId !== null) {
+    const idx = blogPosts.findIndex(p => p.id === editingPostId);
+    if (idx >= 0) blogPosts[idx] = { ...blogPosts[idx], ...data };
+    logActivity(`✏️ Post editado: ${title}`);
+  } else {
+    blogPosts.push({ id: Date.now(), ...data });
+    logActivity(`➕ Post criado: ${title}`);
+  }
+  saveState('goldcrochet_blogPosts', blogPosts);
+  closeBlogModal();
+  renderBlogList();
+  updateDashboard();
+  showToast('✅ Post salvo!');
+  await publishAll();
+}
+async function deleteBlogPost(id) {
+  const p = blogPosts.find(x => x.id === id);
+  if (!p) return;
+  if (!confirm(`Remover post "${p.title}"?`)) return;
+  blogPosts = blogPosts.filter(x => x.id !== id);
+  saveState('goldcrochet_blogPosts', blogPosts);
+  renderBlogList();
+  updateDashboard();
+  logActivity(`🗑 Post removido: ${p.title}`);
+  showToast('🗑 Post removido.');
+  await publishAll();
+}
+
+// ════════════════════════════════════════
 // CATEGORIAS & BADGES
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function renderCategoryManager() {
   const catList = document.getElementById('categoryList');
   const badgeList = document.getElementById('badgeList');
   if (!catList || !badgeList) return;
-
   catList.innerHTML = categories.map((cat, i) => {
     const usage = products.filter(p => p.category === cat).length;
     return `<div class="cat-row">
@@ -2015,7 +1390,6 @@ function renderCategoryManager() {
       <button class="btn btn-danger btn-sm" onclick="removeCategory(${i})">✕</button>
     </div>`;
   }).join('');
-
   badgeList.innerHTML = badges.map((badge, i) => {
     const usage = products.filter(p => p.badge === badge).length;
     return `<div class="cat-row">
@@ -2025,11 +1399,10 @@ function renderCategoryManager() {
     </div>`;
   }).join('');
 }
-
 function addCategory() {
-  const name = prompt('Nome da nova categoria:');
+  const name = prompt('Nome da nova categoria (slug, ex: saias-vestidos):');
   if (!name || !name.trim()) return;
-  const clean = name.trim();
+  const clean = name.trim().toLowerCase();
   if (categories.includes(clean)) { showToast('⚠️ Categoria já existe.', 'warning'); return; }
   categories.push(clean);
   saveState('goldcrochet_categories', categories);
@@ -2051,10 +1424,7 @@ function updateCategory(i, val) {
 function removeCategory(i) {
   const cat = categories[i];
   const usage = products.filter(p => p.category === cat).length;
-  const msg = usage > 0
-    ? `"${cat}" está em uso por ${usage} peça(s). Remover mesmo assim?`
-    : `Remover "${cat}"?`;
-  if (!confirm(msg)) return;
+  if (!confirm(usage > 0 ? `"${cat}" está em uso por ${usage} peça(s). Remover?` : `Remover "${cat}"?`)) return;
   categories.splice(i, 1);
   saveState('goldcrochet_categories', categories);
   renderCategoryManager();
@@ -2063,18 +1433,17 @@ function removeCategory(i) {
   logActivity(`📂 Categoria removida: ${cat}`);
   publishAll();
 }
-
 function addBadge() {
-  const name = prompt('Nome do novo badge:');
+  const name = prompt('Nome da nova tag/badge:');
   if (!name || !name.trim()) return;
   const clean = name.trim();
-  if (badges.includes(clean)) { showToast('⚠️ Badge já existe.', 'warning'); return; }
+  if (badges.includes(clean)) { showToast('⚠️ Tag já existe.', 'warning'); return; }
   badges.push(clean);
   saveState('goldcrochet_badges', badges);
   renderCategoryManager();
   updateBadgeOptions();
-  logActivity(`🏷️ Badge criado: ${clean}`);
-  showToast('✅ Badge salvo!');
+  logActivity(`🏷️ Tag criada: ${clean}`);
+  showToast('✅ Tag salva!');
   publishAll();
 }
 function updateBadge(i, val) {
@@ -2085,16 +1454,15 @@ function updateBadge(i, val) {
   publishAll();
 }
 function removeBadge(i) {
-  if (!confirm(`Remover badge "${badges[i]}"?`)) return;
+  if (!confirm(`Remover tag "${badges[i]}"?`)) return;
   const b = badges[i];
   badges.splice(i, 1);
   saveState('goldcrochet_badges', badges);
   renderCategoryManager();
   updateBadgeOptions();
-  logActivity(`🏷️ Badge removido: ${b}`);
+  logActivity(`🏷️ Tag removida: ${b}`);
   publishAll();
 }
-
 function updateCategoryOptions() {
   const d = document.getElementById('categoryOptions');
   if (d) d.innerHTML = categories.map(c => `<option value="${escapeHtml(c)}">`).join('');
@@ -2104,9 +1472,89 @@ function updateBadgeOptions() {
   if (d) d.innerHTML = badges.map(b => `<option value="${escapeHtml(b)}">`).join('');
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// COLEÇÕES
+// ════════════════════════════════════════
+function renderCollectionManager() {
+  const list = document.getElementById('collectionList');
+  if (!list) return;
+  if (!collections.length) {
+    list.innerHTML = '';
+    return;
+  }
+  list.innerHTML = collections.map((c, i) => {
+    const usage = products.filter(p => p.collection === c.filter).length;
+    return `<div class="collection-row">
+      <input type="text" class="collection-emoji-input" value="${escapeHtml(c.emoji || '✨')}" maxlength="4"
+             onchange="updateCollectionField(${i}, 'emoji', this.value)" title="Emoji">
+      <input type="text" value="${escapeHtml(c.name || '')}" placeholder="Nome da coleção"
+             onchange="updateCollectionField(${i}, 'name', this.value)" title="Nome">
+      <input type="text" value="${escapeHtml(c.filter || '')}" placeholder="Filtro (tag do produto)"
+             onchange="updateCollectionField(${i}, 'filter', this.value)" title="Filtro (valor que casa com product.collection)">
+      <span class="collection-usage" title="${usage} peça(s) usando este filtro">${usage} peça${usage!==1?'s':''}</span>
+      <button class="btn btn-danger btn-sm" onclick="removeCollection(${i})" title="Remover">✕</button>
+    </div>`;
+  }).join('');
+  updateDashboard();
+}
+function addCollection() {
+  const name = prompt('Nome da nova coleção (ex: Verão Dourado):');
+  if (!name || !name.trim()) return;
+  const filter = prompt('Filtro da coleção (valor que o produto deve usar, ex: Verão Dourado):', name.trim());
+  if (!filter || !filter.trim()) return;
+  const emoji = prompt('Emoji da coleção (opcional):', '✨') || '✨';
+  const newColl = {
+    id: 'coll-' + Date.now(),
+    name: name.trim(),
+    filter: filter.trim(),
+    emoji: emoji.trim(),
+    desc: ''
+  };
+  collections.push(newColl);
+  saveState('goldcrochet_collections', collections);
+  renderCollectionManager();
+  updateCollectionOptions();
+  logActivity(`🗂️ Coleção criada: ${name}`);
+  showToast('✅ Coleção salva!');
+  publishAll();
+}
+function updateCollectionField(i, field, val) {
+  if (!collections[i]) return;
+  collections[i][field] = (val || '').trim();
+  if (field === 'filter' || field === 'name') {
+    saveState('goldcrochet_collections', collections);
+    renderCollectionManager();
+    updateCollectionOptions();
+    publishAll();
+  } else {
+    saveState('goldcrochet_collections', collections);
+    publishAll();
+  }
+}
+function removeCollection(i) {
+  const c = collections[i];
+  if (!c) return;
+  const usage = products.filter(p => p.collection === c.filter).length;
+  if (!confirm(usage > 0 ? `"${c.name}" está em uso por ${usage} peça(s). Remover?` : `Remover "${c.name}"?`)) return;
+  collections.splice(i, 1);
+  saveState('goldcrochet_collections', collections);
+  renderCollectionManager();
+  updateCollectionOptions();
+  logActivity(`🗂️ Coleção removida: ${c.name}`);
+  publishAll();
+}
+function updateCollectionOptions() {
+  const sel = document.getElementById('p_collection');
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— Nenhuma —</option>' +
+    collections.map(c => `<option value="${escapeHtml(c.filter)}">${escapeHtml(c.emoji ? c.emoji + ' ' : '')}${escapeHtml(c.name)}</option>`).join('');
+  sel.value = current;
+}
+
+// ════════════════════════════════════════
 // CORES GLOBAIS
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function renderGlobalColors() {
   const list = document.getElementById('globalColorsList');
   if (!list) return;
@@ -2127,8 +1575,7 @@ function addGlobalColor() {
   const priceAdd = parseFloat(document.getElementById('newGlobalColorPrice').value) || 0;
   if (!name) { showToast('❗ Digite o nome da cor.', 'error'); return; }
   if (globalColors.some(c => c.name.toLowerCase() === name.toLowerCase())) {
-    showToast('⚠️ Essa cor já existe.', 'warning');
-    return;
+    showToast('⚠️ Essa cor já existe.', 'warning'); return;
   }
   globalColors.push({ name, hex, priceAdd });
   saveState('goldcrochet_global_colors', globalColors);
@@ -2136,7 +1583,7 @@ function addGlobalColor() {
   document.getElementById('newGlobalColorName').value = '';
   document.getElementById('newGlobalColorPrice').value = '0';
   logActivity(`🎨 Cor adicionada: ${name}`);
-  showToast('✅ Cor salva e publicada!');
+  showToast('✅ Cor salva!');
   publishAll();
 }
 function removeGlobalColor(i) {
@@ -2146,36 +1593,33 @@ function removeGlobalColor(i) {
   saveState('goldcrochet_global_colors', globalColors);
   renderGlobalColors();
   logActivity(`🎨 Cor removida: ${c.name}`);
-  showToast('🗑 Cor removida.');
   publishAll();
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // CLIENTES
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function renderClients() {
   const list = document.getElementById('clientsList');
   if (!list) return;
   const savedUsers = JSON.parse(localStorage.getItem('goldcrochet_users') || '[]');
   if (!savedUsers.length) {
-    list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum usuário registrado localmente neste dispositivo.</p>';
+    list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Nenhum usuário registrado localmente.</p>';
     return;
   }
   list.innerHTML = savedUsers.map(u => `
     <div class="product-row">
       <div class="product-row-thumb">👤</div>
-      <div class="product-row-info">
-        <strong>${escapeHtml(u.name || 'Usuário')}</strong>
-        <span style="font-size:0.8rem;color:var(--text-mid);">${escapeHtml(u.email || '-')}</span>
-      </div>
+      <div class="product-row-info"><strong>${escapeHtml(u.name || 'Usuário')}</strong>
+      <span style="font-size:0.8rem;color:var(--text-mid);">${escapeHtml(u.email || '-')}</span></div>
     </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════
-// CONFIGURAÇÕES DO SITE
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════
 function renderConfig() {
-  document.getElementById('config_hero_title').value = siteConfig.hero_title || 'Elegância que se Tece à Mão';
+  document.getElementById('config_hero_title').value = siteConfig.hero_title || 'Elegância que se <em>Tece</em><br>à Mão';
   document.getElementById('config_hero_subtitle').value = siteConfig.hero_subtitle || 'Peças únicas, personalizadas e com acabamento premium.';
   document.getElementById('config_instagram').value = siteConfig.instagram || 'https://instagram.com/goldc.rochet';
   document.getElementById('config_email').value = siteConfig.email || 'rayssacrochet1404@gmail.com';
@@ -2188,14 +1632,14 @@ async function saveConfig() {
     email: document.getElementById('config_email').value.trim()
   };
   saveState('goldcrochet_config', siteConfig);
-  logActivity('⚙️ Configurações do site atualizadas');
+  logActivity('⚙️ Configurações atualizadas');
   await publishAll();
   showToast('✅ Configurações publicadas!');
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // CALCULADORA
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 const CALC_PRESETS = {
   amigurumi: { horas:6, gramas:100, precoFio:45, aviamentos:8, maoDeObra:15, embalagem:4, margem:50 },
   bolsa:     { horas:12, gramas:250, precoFio:55, aviamentos:6, maoDeObra:18, embalagem:6, margem:45 },
@@ -2222,55 +1666,66 @@ function calcular() {
   const horas = v('c_horas'), gramas = v('c_gramas'), precoFio = v('c_precoFio');
   const aviamentos = v('c_aviamentos'), maoDeObra = v('c_maoDeObra');
   const embalagem = v('c_embalagem'), margem = v('c_margem');
-
   const custoFio = (gramas / 1000) * precoFio;
   const custoMao = maoDeObra * horas;
   const custoBase = custoFio + aviamentos + custoMao + embalagem;
   const precoFinal = custoBase * (1 + margem / 100);
   const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
-
   document.getElementById('calcPrecoFinal').textContent = fmt(precoFinal);
   document.getElementById('calcCustoBase').textContent = 'Custo base: ' + fmt(custoBase);
-
   document.getElementById('calcBreakdown').innerHTML = `
     <div class="calc-breakdown-row"><span>🧶 Fio</span><span>${fmt(custoFio)}</span></div>
     <div class="calc-breakdown-row"><span>🧷 Aviamentos</span><span>${fmt(aviamentos)}</span></div>
     <div class="calc-breakdown-row"><span>👷 Mão de obra</span><span>${fmt(custoMao)}</span></div>
     <div class="calc-breakdown-row"><span>📦 Embalagem</span><span>${fmt(embalagem)}</span></div>
     <div class="calc-breakdown-row"><span>📈 Lucro (${margem}%)</span><span>${fmt(precoFinal - custoBase)}</span></div>
-    <div class="calc-breakdown-row"><span>💰 Preço final</span><span>${fmt(precoFinal)}</span></div>
-  `;
+    <div class="calc-breakdown-row"><span>💰 Preço final</span><span>${fmt(precoFinal)}</span></div>`;
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // MODAL PRODUTO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+function onProductSectionChange() {
+  const section = document.getElementById('p_section').value;
+  const genderGroup = document.getElementById('p_gender_group');
+  if (section === 'dia-a-dia') {
+    genderGroup.style.display = '';
+  } else {
+    genderGroup.style.display = 'none';
+    document.getElementById('p_gender').value = '';
+  }
+}
+
 function openNewProduct() {
   editingId = null;
   editingImages = [];
   document.getElementById('modalTitle').textContent = 'Nova Peça';
   document.getElementById('modalSubtitle').textContent = 'Preencha os dados abaixo';
   ['p_name','p_emoji','p_desc','p_badge','p_model3d','p_price','p_prod_time','p_material'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
+    const el = document.getElementById(id); if (el) el.value = '';
   });
   document.getElementById('p_discount').value = '0';
   document.getElementById('p_category').value = categories[0] || '';
+  document.getElementById('p_section').value = '';
+  document.getElementById('p_gender').value = '';
+  document.getElementById('p_gender_group').style.display = 'none';
+  document.getElementById('p_collection').value = '';
   document.getElementById('colorSections').innerHTML = '';
   document.getElementById('imgPreviewGrid').innerHTML = '';
   addColorSection();
   setupDropZone();
-  openModal();
+  document.getElementById('productModal').classList.add('open');
+  updateCategoryOptions();
+  updateBadgeOptions();
+  updateCollectionOptions();
   setTimeout(() => document.getElementById('p_name').focus(), 300);
 }
-
 function openEditProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   editingId = id;
   document.getElementById('modalTitle').textContent = 'Editar Peça';
   document.getElementById('modalSubtitle').textContent = p.name || '';
-
   document.getElementById('p_name').value = p.name || '';
   document.getElementById('p_emoji').value = p.emoji || '';
   document.getElementById('p_desc').value = p.desc || '';
@@ -2282,22 +1737,27 @@ function openEditProduct(id) {
   document.getElementById('p_prod_time').value = p.prod_time || '';
   document.getElementById('p_material').value = p.material || '';
 
+  // Novos campos
+  updateCollectionOptions();
+  document.getElementById('p_section').value = p.section || '';
+  document.getElementById('p_gender').value = p.gender || '';
+  document.getElementById('p_collection').value = p.collection || '';
+  onProductSectionChange();
+  // Se section = dia-a-dia, força visibilidade do gender
+  if (p.section === 'dia-a-dia') {
+    document.getElementById('p_gender_group').style.display = '';
+  }
+
   editingImages = [];
   if (p.image) editingImages.push({ src: p.image, isBase64: false });
   if (p.gallery) p.gallery.forEach(g => g && editingImages.push({ src: g, isBase64: false }));
   renderImgPreviews();
-
   const cs = document.getElementById('colorSections');
   cs.innerHTML = '';
   const sections = p.colorSections || (p.colors ? [{ name: 'Cores disponíveis', colors: p.colors }] : []);
   sections.forEach(sec => addColorSection(sec.name, sec.colors));
   if (!sections.length) addColorSection();
   setupDropZone();
-  updateCharCounters();
-  openModal();
-}
-
-function openModal() {
   updateCategoryOptions();
   updateBadgeOptions();
   document.getElementById('productModal').classList.add('open');
@@ -2315,8 +1775,13 @@ async function saveProduct() {
   if (isProcessing) return;
   const name = document.getElementById('p_name').value.trim();
   const desc = document.getElementById('p_desc').value.trim();
+  const section = document.getElementById('p_section').value;
+  const gender = document.getElementById('p_gender').value;
+
   if (!name) { showToast('❗ Nome é obrigatório.', 'error'); document.getElementById('p_name').focus(); return; }
   if (!desc) { showToast('❗ Descrição é obrigatória.', 'error'); document.getElementById('p_desc').focus(); return; }
+  if (!section) { showToast('❗ Selecione a seção do site.', 'error'); document.getElementById('p_section').focus(); return; }
+  if (section === 'dia-a-dia' && !gender) { showToast('❗ Selecione o gênero (Para Ela/Para Ele).', 'error'); document.getElementById('p_gender').focus(); return; }
 
   const hasLocal = editingImages.some(i => i.isBase64);
   let token = getGHToken();
@@ -2325,7 +1790,6 @@ async function saveProduct() {
     if (!token) return;
     setGHToken(token);
   }
-
   isProcessing = true;
   const saveBtn = document.getElementById('saveProductBtn');
   saveBtn.disabled = true;
@@ -2356,7 +1820,6 @@ async function saveProduct() {
       }
     }
 
-    // Coleta cores
     const sectionEls = document.querySelectorAll('.color-section');
     const colorSections = Array.from(sectionEls).map(el => {
       const secName = el.querySelector('.cs-name').value.trim() || 'Cores disponíveis';
@@ -2371,10 +1834,14 @@ async function saveProduct() {
     const priceRaw = document.getElementById('p_price').value;
     const price = priceRaw !== '' ? parseFloat(priceRaw) : null;
     const discount = parseInt(document.getElementById('p_discount').value) || 0;
+    const collection = document.getElementById('p_collection').value || '';
 
     const productData = {
       name, emoji: document.getElementById('p_emoji').value.trim() || '🧶',
       desc, category: document.getElementById('p_category').value.trim(),
+      section,                                   // NOVO
+      gender: section === 'dia-a-dia' ? gender : null,  // NOVO
+      collection: collection || null,            // NOVO
       price, badge: document.getElementById('p_badge').value.trim(),
       discount, model3d: document.getElementById('p_model3d').value.trim(),
       prod_time: document.getElementById('p_prod_time').value.trim(),
@@ -2410,9 +1877,9 @@ async function saveProduct() {
   }
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // IMAGENS
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function setupDropZone() {
   const dz = document.getElementById('dropZone');
   if (!dz || dz.dataset.bound === '1') return;
@@ -2425,15 +1892,11 @@ function setupDropZone() {
     if (e.dataTransfer.files.length) handleFileSelect(e.dataTransfer.files);
   });
 }
-
 function handleFileSelect(files) {
   Array.from(files).forEach(file => {
     if (!file.type.startsWith('image/')) return;
     const sizeMB = file.size / (1024 * 1024);
-    if (sizeMB > MAX_IMAGE_SIZE_MB) {
-      showToast(`⚠️ "${file.name}" excede ${MAX_IMAGE_SIZE_MB}MB e foi ignorada.`, 'warning');
-      return;
-    }
+    if (sizeMB > MAX_IMAGE_SIZE_MB) { showToast(`⚠️ "${file.name}" excede ${MAX_IMAGE_SIZE_MB}MB.`, 'warning'); return; }
     const ext = file.type.split('/')[1] || 'png';
     const reader = new FileReader();
     reader.onload = e => {
@@ -2442,40 +1905,32 @@ function handleFileSelect(files) {
     };
     reader.readAsDataURL(file);
   });
-  // Limpa input para permitir reseleção do mesmo arquivo
   const inp = document.getElementById('imgFileInput');
   if (inp) inp.value = '';
 }
-
 function addImageByUrl() {
   const input = document.getElementById('imgUrlInput');
   const url = input.value.trim();
   if (!url) return;
   if (!/^https?:\/\//i.test(url) && !url.startsWith('data:')) {
-    showToast('❗ URL inválida.', 'error');
-    return;
+    showToast('❗ URL inválida.', 'error'); return;
   }
   editingImages.push({ src: url, isBase64: false });
   input.value = '';
   renderImgPreviews();
 }
-
 function renderImgPreviews() {
   const grid = document.getElementById('imgPreviewGrid');
   grid.innerHTML = editingImages.map((img, i) => `
     <div class="img-preview-item" draggable="true"
-         ondragstart="dragImgStart(${i})"
-         ondragover="dragImgOver(event,${i})"
-         ondragleave="dragImgLeave(event)"
-         ondrop="dragImgDrop(event,${i})">
+         ondragstart="dragImgStart(${i})" ondragover="dragImgOver(event,${i})"
+         ondragleave="dragImgLeave(event)" ondrop="dragImgDrop(event,${i})">
       <img src="${img.src}" onerror="this.parentElement.style.background='var(--gold-pale)'">
       <button class="img-remove" onclick="removeImg(${i})" title="Remover">✕</button>
       ${i === 0 ? '<div class="img-main-badge">CAPA</div>' : `<button class="img-set-main-btn" onclick="setMainImg(${i})">Capa</button>`}
       ${img.isBase64 ? '<div class="img-upload-badge">📤 Upload</div>' : ''}
-    </div>
-  `).join('');
+    </div>`).join('');
 }
-
 function dragImgStart(i) { dragImgFromIdx = i; }
 function dragImgOver(e, i) {
   e.preventDefault();
@@ -2500,16 +1955,16 @@ function setMainImg(i) {
   renderImgPreviews();
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // COLOR SECTIONS
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function addColorSection(secName = '', colors = []) {
   const cs = document.getElementById('colorSections');
   const div = document.createElement('div');
   div.className = 'color-section';
   div.innerHTML = `
     <div class="color-section-header">
-      <input class="cs-name" placeholder="Nome da seção (ex: Cores disponíveis)" value="${escapeHtml(secName)}">
+      <input class="cs-name" placeholder="Nome da seção" value="${escapeHtml(secName)}">
       <button class="btn btn-danger btn-sm" onclick="this.closest('.color-section').remove()">✕</button>
     </div>
     <div class="color-items"></div>
@@ -2517,8 +1972,7 @@ function addColorSection(secName = '', colors = []) {
       <input class="new-color-name" placeholder="Nome da cor">
       <input type="color" class="new-color-hex" value="#cda434">
       <button class="btn btn-ghost btn-sm" onclick="addColorToSection(this)">＋ Adicionar</button>
-    </div>
-  `;
+    </div>`;
   cs.appendChild(div);
   colors.forEach(c => addColorItemToSection(div, c.name, c.hex));
 }
@@ -2539,15 +1993,11 @@ function addColorItemToSection(section, name, hex) {
   div.innerHTML = `
     <div class="color-swatch" style="background:${hex}" title="${hex}"></div>
     <span>${escapeHtml(name)}</span>
-    <button class="color-item-remove" onclick="this.closest('.color-item').remove()" title="Remover">×</button>
-  `;
+    <button class="color-item-remove" onclick="this.closest('.color-item').remove()" title="Remover">×</button>`;
   section.querySelector('.color-items').appendChild(div);
 }
 function addColorSectionFromGlobal() {
-  if (!globalColors.length) {
-    showToast('⚠️ Cadastre cores globais primeiro.', 'warning');
-    return;
-  }
+  if (!globalColors.length) { showToast('⚠️ Cadastre cores globais primeiro.', 'warning'); return; }
   const section = document.createElement('div');
   section.className = 'color-section';
   section.innerHTML = `
@@ -2565,8 +2015,7 @@ function addColorSectionFromGlobal() {
         </label>`).join('')}
     </div>
     <div class="color-items"></div>
-    <button class="btn btn-primary btn-sm" onclick="confirmGlobalColorSection(this)">✓ Confirmar Selecionadas</button>
-  `;
+    <button class="btn btn-primary btn-sm" onclick="confirmGlobalColorSection(this)">✓ Confirmar Selecionadas</button>`;
   document.getElementById('colorSections').appendChild(section);
 }
 function confirmGlobalColorSection(btn) {
@@ -2584,32 +2033,22 @@ function confirmGlobalColorSection(btn) {
   row.innerHTML = `
     <input class="new-color-name" placeholder="Nome da cor">
     <input type="color" class="new-color-hex" value="#cda434">
-    <button class="btn btn-ghost btn-sm" onclick="addColorToSection(this)">＋ Adicionar</button>
-  `;
+    <button class="btn btn-ghost btn-sm" onclick="addColorToSection(this)">＋ Adicionar</button>`;
   section.appendChild(row);
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // GITHUB API
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 async function uploadToGitHub(path, contentBase64, commitMessage, token) {
   const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
   let sha = null;
   try {
     const getRes = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
-    if (getRes.ok) {
-      const fd = await getRes.json();
-      sha = fd.sha;
-    }
-  } catch(e) { /* arquivo não existe ainda */ }
-
-  const body = {
-    message: commitMessage,
-    content: contentBase64,
-    branch: GH_BRANCH
-  };
+    if (getRes.ok) { const fd = await getRes.json(); sha = fd.sha; }
+  } catch(e) {}
+  const body = { message: commitMessage, content: contentBase64, branch: GH_BRANCH };
   if (sha) body.sha = sha;
-
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
@@ -2619,41 +2058,32 @@ async function uploadToGitHub(path, contentBase64, commitMessage, token) {
     },
     body: JSON.stringify(body)
   });
-
   if (!response.ok) {
-    const err = await response.json().catch(() => ({ message: 'Erro desconhecido' }));
-    if (response.status === 401) throw new Error('Token inválido ou expirado');
-    if (response.status === 403) throw new Error('Token sem permissão (escopo "repo" necessário)');
+    const err = await response.json().catch(() => ({ message: 'Erro' }));
+    if (response.status === 401) throw new Error('Token inválido');
+    if (response.status === 403) throw new Error('Token sem permissão');
     if (response.status === 404) throw new Error('Repositório não encontrado');
     throw new Error(err.message || `Erro HTTP ${response.status}`);
   }
   return await response.json();
 }
-
 async function publishAll() {
   let token = getGHToken();
   if (!token) {
-    token = prompt('Token GitHub necessário para publicar. Cole aqui:');
+    token = prompt('Token GitHub necessário para publicar:');
     if (!token) { showToast('⚠️ Sem token — salvo apenas localmente.', 'warning'); return; }
     setGHToken(token);
   }
-
   showSaving('Publicando no GitHub...', 'data.json', 70);
   try {
     const data = {
-      products,
-      categories,
-      badges,
-      globalColors,
+      products, categories, badges, collections, globalColors, blogPosts,
       config: siteConfig,
-      _meta: {
-        updated: new Date().toISOString(),
-        version: '2.0'
-      }
+      _meta: { updated: new Date().toISOString(), version: '3.1' }
     };
     const jsonString = JSON.stringify(data, null, 2);
     const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-    await uploadToGitHub(GH_DATA_PATH, base64Content, `Catálogo atualizado via Admin [${new Date().toLocaleString('pt-BR')}]`, token);
+    await uploadToGitHub(GH_DATA_PATH, base64Content, `Catálogo atualizado [${new Date().toLocaleString('pt-BR')}]`, token);
     hideSaving();
     showToast('✅ Publicado! O site verá as mudanças em segundos.', 'success');
     logActivity('📤 Publicado no GitHub');
@@ -2663,11 +2093,10 @@ async function publishAll() {
     logActivity(`❌ Erro ao publicar: ${e.message}`);
   }
 }
-
 async function testGitHubConnection() {
   const token = getGHToken();
   if (!token) { showToast('⚠️ Configure o token primeiro.', 'warning'); return; }
-  showSaving('Testando conexão...', `Repositório: ${GH_OWNER}/${GH_REPO}`);
+  showSaving('Testando conexão...', `${GH_OWNER}/${GH_REPO}`);
   try {
     const resp = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`, {
       headers: { 'Authorization': `Bearer ${token}` }
@@ -2675,28 +2104,24 @@ async function testGitHubConnection() {
     hideSaving();
     if (resp.ok) {
       const repo = await resp.json();
-      showToast(`✅ Conectado! Repositório com ${repo.size}KB`, 'success');
+      showToast(`✅ Conectado! Repo: ${repo.full_name}`, 'success');
       logActivity('🔗 Teste de conexão OK');
     } else {
-      showToast(`❌ Erro ${resp.status}. Verifique o token.`, 'error');
+      showToast(`❌ Erro ${resp.status}.`, 'error');
     }
   } catch(e) {
     hideSaving();
-    showToast('❌ Erro de rede: ' + e.message, 'error');
+    showToast('❌ Erro: ' + e.message, 'error');
   }
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // BACKUP
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function exportData() {
   const data = {
-    products, categories, badges, globalColors,
-    config: siteConfig,
-    _meta: {
-      exported: new Date().toISOString(),
-      version: '2.0'
-    }
+    products, categories, badges, collections, globalColors, blogPosts, config: siteConfig,
+    _meta: { exported: new Date().toISOString(), version: '3.1' }
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -2708,84 +2133,69 @@ function exportData() {
   logActivity('💾 Backup exportado');
   showToast('💾 Backup baixado!');
 }
-
 async function copyDataToClipboard() {
-  const data = { products, categories, badges, globalColors, config: siteConfig };
-  const json = JSON.stringify(data, null, 2);
+  const data = { products, categories, badges, collections, globalColors, blogPosts, config: siteConfig };
   try {
-    await navigator.clipboard.writeText(json);
-    showToast('📋 JSON copiado para a área de transferência!');
-  } catch(e) {
-    showToast('❌ Não foi possível copiar.', 'error');
-  }
+    await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+    showToast('📋 JSON copiado!');
+  } catch(e) { showToast('❌ Não foi possível copiar.', 'error'); }
 }
-
 function handleImportFile(files) {
   if (!files || !files.length) return;
   const file = files[0];
-  if (!file.name.endsWith('.json')) {
-    showToast('❗ Formato inválido. Use .json', 'error');
-    return;
-  }
+  if (!file.name.endsWith('.json')) { showToast('❗ Use .json', 'error'); return; }
   const reader = new FileReader();
   reader.onload = e => {
-    try {
-      const data = JSON.parse(e.target.result);
-      importData(data);
-    } catch(err) {
-      showToast('❌ JSON inválido: ' + err.message, 'error');
-    }
+    try { importData(JSON.parse(e.target.result)); }
+    catch(err) { showToast('❌ JSON inválido: ' + err.message, 'error'); }
   };
   reader.readAsText(file);
 }
-
 function importFromText() {
   const text = document.getElementById('importJsonText').value.trim();
   if (!text) { showToast('❗ Cole o JSON primeiro.', 'error'); return; }
-  try {
-    const data = JSON.parse(text);
-    importData(data);
-  } catch(err) {
-    showToast('❌ JSON inválido: ' + err.message, 'error');
-  }
+  try { importData(JSON.parse(text)); }
+  catch(err) { showToast('❌ JSON inválido: ' + err.message, 'error'); }
 }
-
 function importData(data) {
   if (!confirm('Isso substituirá TODOS os dados atuais. Continuar?')) return;
   if (data.products && Array.isArray(data.products)) products = data.products;
   if (data.categories && Array.isArray(data.categories)) categories = data.categories;
   if (data.badges && Array.isArray(data.badges)) badges = data.badges;
+  if (data.collections && Array.isArray(data.collections)) collections = data.collections;
   if (data.globalColors && Array.isArray(data.globalColors)) globalColors = data.globalColors;
+  if (data.blogPosts && Array.isArray(data.blogPosts)) blogPosts = data.blogPosts;
   if (data.config) siteConfig = data.config;
-
   saveState('goldcrochet_products', products);
   saveState('goldcrochet_categories', categories);
   saveState('goldcrochet_badges', badges);
+  saveState('goldcrochet_collections', collections);
   saveState('goldcrochet_global_colors', globalColors);
+  saveState('goldcrochet_blogPosts', blogPosts);
   saveState('goldcrochet_config', siteConfig);
-
   updateAllSections();
   updateDashboard();
   logActivity('📥 Dados importados');
   showToast('✅ Dados importados!', 'success');
   document.getElementById('importJsonText').value = '';
 }
-
 function resetToDefaults() {
-  if (!confirm('⚠️ ATENÇÃO: Isso apagará TODOS os dados e restaurará os padrões. Continuar?')) return;
-  if (!confirm('Tem certeza absoluta? Esta ação é irreversível.')) return;
+  if (!confirm('⚠️ Apagar TUDO e restaurar padrões?')) return;
+  if (!confirm('Confirma? Irreversível.')) return;
   products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
   categories = [...DEFAULT_CATEGORIES];
   badges = [...DEFAULT_BADGES];
+  collections = JSON.parse(JSON.stringify(DEFAULT_COLLECTIONS));
   globalColors = JSON.parse(JSON.stringify(DEFAULT_GLOBAL_COLORS));
+  blogPosts = JSON.parse(JSON.stringify(DEFAULT_BLOG_POSTS));
   siteConfig = {};
-
   saveState('goldcrochet_products', products);
   saveState('goldcrochet_categories', categories);
   saveState('goldcrochet_badges', badges);
+  saveState('goldcrochet_collections', collections);
   saveState('goldcrochet_global_colors', globalColors);
+  saveState('goldcrochet_blogPosts', blogPosts);
   saveState('goldcrochet_config', siteConfig);
-
   updateAllSections();
   updateDashboard();
   logActivity('🗑 Reset aos padrões');
@@ -2793,9 +2203,9 @@ function resetToDefaults() {
   publishAll();
 }
 
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 // HELPERS
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
 function toRawUrl(url) {
   if (!url) return '';
   if (url.includes('github.com') && url.includes('/blob/')) {
@@ -2803,24 +2213,13 @@ function toRawUrl(url) {
   }
   return url;
 }
-
 function escapeHtml(str) {
   if (str === null || str === undefined) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
 }
-
-// ═══════════════════════════════════════════════
-// CHAR COUNTERS
-// ═══════════════════════════════════════════════
 function setupCharCounters() {
   document.querySelectorAll('.char-counter').forEach(el => {
-    const id = el.dataset.for;
-    const input = document.getElementById(id);
+    const input = document.getElementById(el.dataset.for);
     if (!input) return;
     const max = parseInt(input.getAttribute('maxlength')) || 200;
     const update = () => {
@@ -2834,31 +2233,23 @@ function setupCharCounters() {
     update();
   });
 }
-function updateCharCounters() {
-  document.querySelectorAll('.char-counter').forEach(el => {
-    const input = document.getElementById(id => id) && document.getElementById(el.dataset.for);
-    if (input) input.dispatchEvent(new Event('input'));
-  });
-}
 
-// ═══════════════════════════════════════════════
-// ATALHOS DE TECLADO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// KEYBOARD SHORTCUTS
+// ════════════════════════════════════════
 document.addEventListener('keydown', e => {
-  // ESC fecha modal
   if (e.key === 'Escape') {
-    const modal = document.getElementById('productModal');
-    if (modal.classList.contains('open')) { closeModal(); return; }
+    const pm = document.getElementById('productModal');
+    const bm = document.getElementById('blogModal');
+    if (pm.classList.contains('open')) { closeModal(); return; }
+    if (bm.classList.contains('open')) { closeBlogModal(); return; }
   }
-  // Ctrl+S salva produto
   if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-    const modal = document.getElementById('productModal');
-    if (modal.classList.contains('open')) {
-      e.preventDefault();
-      saveProduct();
-    }
+    const pm = document.getElementById('productModal');
+    const bm = document.getElementById('blogModal');
+    if (pm.classList.contains('open')) { e.preventDefault(); saveProduct(); }
+    if (bm.classList.contains('open')) { e.preventDefault(); saveBlogPost(); }
   }
-  // Ctrl+K abre busca de produtos
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
     e.preventDefault();
     showTab('produtos');
@@ -2866,41 +2257,20 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ═══════════════════════════════════════════════
-// INICIALIZAÇÃO
-// ═══════════════════════════════════════════════
+// ════════════════════════════════════════
+// AUTO-INIT
+// ════════════════════════════════════════
 if (sessionStorage.getItem('goldcrochet_admin')) {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminApp').classList.add('show');
   initAdmin();
 }
-
 window.addEventListener('beforeunload', e => {
-  if (isProcessing) {
-    e.preventDefault();
-    e.returnValue = '';
-  }
+  if (isProcessing) { e.preventDefault(); e.returnValue = ''; }
 });
 
-// Auto-save de drafts no formulário a cada 30 segundos
-setInterval(() => {
-  const modal = document.getElementById('productModal');
-  if (modal.classList.contains('open')) {
-    const draft = {
-      name: document.getElementById('p_name').value,
-      desc: document.getElementById('p_desc').value,
-      category: document.getElementById('p_category').value,
-      emoji: document.getElementById('p_emoji').value,
-      price: document.getElementById('p_price').value,
-      badge: document.getElementById('p_badge').value,
-      discount: document.getElementById('p_discount').value
-    };
-    sessionStorage.setItem('goldcrochet_draft', JSON.stringify(draft));
-  }
-}, 30000);
-
-console.log('%c🧶 Gold Crochet Admin v2.0', 'color:#cda434;font-size:16px;font-weight:bold;');
-console.log('%cAtalhos: Ctrl+S = Salvar · Ctrl+K = Buscar · ESC = Fechar modal', 'color:#8b7a5a;font-size:12px;');
+console.log('%c🧶 Gold Crochet Admin v3.1', 'color:#cda434;font-size:16px;font-weight:bold;');
+console.log('%cCtrl+S = Salvar · Ctrl+K = Buscar · ESC = Fechar', 'color:#8b7a5a;font-size:12px;');
 </script>
 </body>
 </html>
