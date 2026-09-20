@@ -795,8 +795,18 @@
         {
           "name": "Dourado",
           "hex": "#cda434"
+        },
+        {
+          "name": "Preto",
+          "hex": "#2c2c2c"
         }
-      ]
+      ],
+      "section": "dia-a-dia",
+      "gender": "masculino",
+      "collection": null,
+      "model3d": "",
+      "prod_time": "",
+      "material": ""
     },
     {
       "id": 1021,
@@ -1001,11 +1011,11 @@
   "config": {
     "hero_title": "Elegância que se <em>Tece</em><br>à Mão",
     "hero_subtitle": "Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.",
-    "instagram": "https://instagram.com/goldc.rochet",
-    "email": "rayssacrochet1404@gmail.com"
+    "instagram": "https://instagram.com/goldcrochetbrasil",
+    "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-20T16:21:13.696Z",
-    "version": "3.1"
+    "updated": "2026-09-20T20:30:27.671Z",
+    "version": "4.0"
   }
 }
