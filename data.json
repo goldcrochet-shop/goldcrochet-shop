@@ -227,7 +227,7 @@
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
       "desc": "Chaveiro delicado em formato de flor, feito em crochê. Um mimo perfeito para bolsas, mochilas e presentes.",
-      "category": "Acessórios",
+      "category": "bolsas",
       "price": 22,
       "badge": "",
       "discount": 0,
@@ -235,7 +235,42 @@
       "image": "",
       "gallery": [],
       "colorSections": [],
-      "colors": []
+      "colors": [],
+      "prod_time": "",
+      "material": ""
     }
-  ]
+  ],
+  "categories": [
+    "amigurumi",
+    "bolsas",
+    "mantas",
+    "vestuario",
+    "personalizado",
+    "roupas-noite",
+    "saias-vestidos",
+    "jaquetas-casacos",
+    "tops",
+    "calcas",
+    "pequeninos",
+    "charms",
+    "brincos",
+    "colares",
+    "broches",
+    "braceletes",
+    "aneis",
+    "decoracoes"
+  ],
+  "badges": [
+    "Novo",
+    "Destaque",
+    "Popular",
+    "Exclusivo",
+    "Sob Medida"
+  ],
+  "globalColors": [],
+  "config": {},
+  "_meta": {
+    "updated": "2026-09-20T01:53:49.046Z",
+    "version": "2.0"
+  }
 }
