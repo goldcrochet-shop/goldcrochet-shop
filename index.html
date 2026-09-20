@@ -368,7 +368,9 @@
   .product-card:hover .product-img-square img { transform:scale(1.05); }
   .product-img-emoji { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:4.5rem; }
 
-  .product-new-label { position:absolute; top:14px; left:14px; font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-dark); background:transparent; padding:0; z-index:5; font-family:'Outfit', sans-serif; writing-mode:vertical-rl; transform:rotate(180deg); line-height:1; }
+  /* BADGE ÚNICA (Novo / Destaque / Popular / -X%) — sempre no mesmo lugar */
+  .product-badge-label { position:absolute; top:14px; left:14px; font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-dark); background:transparent; padding:0; z-index:5; font-family:'Outfit', sans-serif; writing-mode:vertical-rl; transform:rotate(180deg); line-height:1; }
+  .product-badge-label.discount { color:var(--danger); font-weight:800; }
 
   .fav-btn { position:absolute; top:10px; right:10px; background:transparent; border:none; border-radius:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; transition:transform 0.25s ease; color:var(--gold-main); padding:0; }
   .fav-btn svg { width:22px; height:22px; }
@@ -379,6 +381,8 @@
   .product-info h3 { font-size:0.94rem; font-weight:400; color:var(--text-dark); line-height:1.3; font-family:'Outfit', sans-serif; }
   .product-card:hover .product-info h3 { color:var(--gold-deep); }
   .product-info .product-price { font-size:0.98rem; font-weight:600; color:var(--text-dark); font-family:'Outfit', sans-serif; }
+  .product-info .product-price .price-old { text-decoration:line-through; color:var(--gray-mid); font-weight:400; font-size:0.85rem; margin-right:6px; }
+  .product-info .product-price .price-new { color:var(--danger); }
   .product-colors-text { font-size:0.72rem; color:var(--text-mid); text-transform:uppercase; letter-spacing:0.06em; font-weight:500; }
 
   .color-dots { display:flex; gap:6px; margin-bottom:14px; align-items:center; flex-wrap:wrap; }
@@ -403,7 +407,233 @@
   .collection-info p { font-size:0.88rem; color:var(--text-mid); line-height:1.55; }
   .collection-info .collection-cta { margin-top:10px; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-main); }
 
-  /* Modal Produto */
+  /* ==========================================================
+     PÁGINA DE PRODUTO (tela cheia)
+     ========================================================== */
+  .product-page-wrap {
+    background: var(--white);
+    padding: 40px 0 0;
+  }
+  .product-page-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+  .product-page-top {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 56px;
+    align-items: flex-start;
+    padding-bottom: 60px;
+  }
+  .product-page-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .product-page-gallery-item {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f2ede0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+  }
+  .product-page-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .product-page-gallery-item .gallery-emoji {
+    font-size: 12rem;
+  }
+  .product-page-info {
+    position: sticky;
+    top: calc(var(--nav-h) + 30px);
+    padding-bottom: 20px;
+  }
+  .product-page-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .product-page-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .product-page-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: 'Outfit', sans-serif;
+  }
+  .product-page-price-old {
+    font-size: 1rem;
+    text-decoration: line-through;
+    color: var(--gray-mid);
+    font-weight: 400;
+  }
+  .product-page-price-new {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--danger);
+  }
+  .product-page-discount-tag {
+    background: var(--danger);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .product-page-desc {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 26px;
+  }
+  .product-page-colors-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .product-page-add-btn {
+    width: 100%;
+    background: var(--gold-main);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 0 16px 0 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: var(--shadow-btn);
+    transition: var(--transition);
+    margin-top: 14px;
+  }
+  .product-page-add-btn:hover { background: var(--gold-deep); transform: translateY(-2px); }
+
+  /* Specs accordion */
+  .product-page-specs {
+    border-top: 1px solid rgba(42,34,16,0.12);
+    margin-top: 20px;
+  }
+  .product-page-specs details {
+    border-bottom: 1px solid rgba(42,34,16,0.12);
+    padding: 20px 0;
+  }
+  .product-page-specs summary {
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding-right: 6px;
+    font-family: 'Outfit', sans-serif;
+  }
+  .product-page-specs summary::-webkit-details-marker { display: none; }
+  .product-page-specs summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--gold-main);
+    transition: transform 0.3s ease;
+  }
+  .product-page-specs details[open] summary::after { content: '−'; }
+  .product-page-specs details p {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* Você pode gostar */
+  .product-page-related {
+    padding: 56px 0 40px;
+    border-top: 1px solid rgba(42,34,16,0.08);
+    margin-top: 40px;
+  }
+  .product-page-related h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 26px;
+    color: var(--text-dark);
+  }
+  .product-page-related-track-wrap { overflow: hidden; }
+  .product-page-related-track {
+    display: flex;
+    gap: 20px;
+    padding: 8px 0;
+  }
+  .product-page-related-track .carousel-card {
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  /* Blocos Cuidados / Embalagem / Entrega */
+  .product-page-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    padding: 50px 0 70px;
+    border-top: 1px solid rgba(42,34,16,0.08);
+  }
+  .product-page-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  .product-page-block p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .product-page-block a {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold-main);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .product-page-block a:hover { color: var(--gold-deep); text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .product-page-top { grid-template-columns: 1fr; gap: 28px; }
+    .product-page-info { position: static; }
+    .product-page-blocks { grid-template-columns: 1fr; gap: 26px; }
+    .product-page-title { font-size: 1.15rem; }
+    .product-page-related-track .carousel-card { min-width: 180px; max-width: 180px; }
+  }
+
+  /* Modal Produto (mantido por compatibilidade) */
   .modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.65); z-index:2000; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal-box { background:var(--white); border-radius:var(--radius-lg); max-width:700px; width:100%; box-shadow:0 32px 80px rgba(0,0,0,0.25); transform:scale(0.9) translateY(20px); transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); max-height:94vh; overflow-y:auto; position:relative; display:flex; flex-direction:column; }
@@ -668,6 +898,16 @@
     border-top:1px dashed rgba(212,175,55,.3) !important;
     padding-top:10px !important;
   }
+  /* Para Ela / Para Ele lado a lado no submenu "Peças" */
+  .left-menu-sub-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:4px 0;
+  }
+  .left-menu-sub-row .left-menu-sub-group { padding:0; }
+  .left-menu-sub-row .left-menu-sub-label { padding:4px 6px; font-size:.6rem; letter-spacing:.08em; }
+  .left-menu-sub-row .left-menu-sub a { padding:6px 8px; font-size:.78rem; min-height:34px; }
 
   .left-menu-account {
     position:static;
@@ -885,7 +1125,7 @@
     margin: 0 auto;
     padding: 32px 5% 36px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0,1fr)) 220px;
+    grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr 220px;
     gap: 26px;
     align-items: flex-start;
   }
@@ -942,6 +1182,13 @@
   }
   .mega-col ul li.mega-see-all a:hover {
     color: var(--gold-main);
+  }
+  /* Dia a Dia com Para Ela / Para Ele lado a lado */
+  .mega-diaadia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 10px;
   }
   .mega-image-slot {
     border-radius: 18px;
@@ -1140,13 +1387,13 @@
      ========================================================== */
   @media (max-width:1200px) {
     .nav-links a { padding:8px 12px; font-size:0.88rem; }
-    .mega-menu-inner { grid-template-columns: repeat(5, minmax(0,1fr)) 180px; gap: 18px; }
+    .mega-menu-inner { grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 180px; gap: 18px; }
     .mega-menu-inner.mega-casa { grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .mega-col ul li a { font-size: 0.84rem; }
   }
   @media (max-width:1100px) {
-    /* Esconde o slot de imagem e libera espaço para as 5 colunas */
-    .mega-menu-inner { grid-template-columns: repeat(5, minmax(0,1fr)); gap: 20px; }
+    /* Esconde o slot de imagem e libera espaço */
+    .mega-menu-inner { grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr; gap: 20px; }
     .mega-image-slot { display: none; }
   }
   @media (max-width:1000px) {
@@ -1302,29 +1549,35 @@
 <div class="mega-menu" id="megaMenuPecas" role="region" aria-label="Menu de peças">
   <div class="mega-menu-inner">
 
-    <!-- COLUNA 1: DIA A DIA (dividida em Para Ela / Para Ele) -->
+    <!-- COLUNA 1: DIA A DIA (Para Ela e Para Ele lado a lado) -->
     <div class="mega-col">
       <h3>Dia a Dia</h3>
-      <div class="mega-subhead">Para Ela</div>
-      <ul>
-        <li><a onclick="megaGoTo('produtos','roupas-noite');return false;">Roupas para noite</a></li>
-        <li><a onclick="megaGoTo('produtos','saias-vestidos');return false;">Saias e vestidos</a></li>
-        <li><a onclick="megaGoTo('produtos','jaquetas-casacos');return false;">Jaquetas e casacos</a></li>
-        <li><a onclick="megaGoTo('produtos','tops');return false;">Tops</a></li>
-        <li><a onclick="megaGoTo('produtos','calcas');return false;">Calças</a></li>
-      </ul>
-      <div class="mega-subhead">Para Ele</div>
-      <ul>
-        <li><a onclick="megaGoTo('produtos','roupas-noite');return false;">Roupas para noite</a></li>
-        <li><a onclick="megaGoTo('produtos','jaquetas-casacos');return false;">Jaquetas e casacos</a></li>
-        <li><a onclick="megaGoTo('produtos','calcas');return false;">Calças</a></li>
-      </ul>
+      <div class="mega-diaadia-grid">
+        <div>
+          <div class="mega-subhead">Para Ela</div>
+          <ul>
+            <li><a onclick="megaGoTo('produtos','roupas-noite');return false;">Roupas para noite</a></li>
+            <li><a onclick="megaGoTo('produtos','saias-vestidos');return false;">Saias e vestidos</a></li>
+            <li><a onclick="megaGoTo('produtos','jaquetas-casacos');return false;">Jaquetas e casacos</a></li>
+            <li><a onclick="megaGoTo('produtos','tops');return false;">Tops</a></li>
+            <li><a onclick="megaGoTo('produtos','calcas');return false;">Calças</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="mega-subhead">Para Ele</div>
+          <ul>
+            <li><a onclick="megaGoTo('produtos','roupas-noite');return false;">Roupas para noite</a></li>
+            <li><a onclick="megaGoTo('produtos','jaquetas-casacos');return false;">Jaquetas e casacos</a></li>
+            <li><a onclick="megaGoTo('produtos','calcas');return false;">Calças</a></li>
+          </ul>
+        </div>
+      </div>
       <ul>
         <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
       </ul>
     </div>
 
-    <!-- COLUNA 2: PEQUENINOS (movida para o meio entre Dia a Dia e Acessórios) -->
+    <!-- COLUNA 2: PEQUENINOS -->
     <div class="mega-col">
       <h3>Pequeninos</h3>
       <ul>
@@ -1402,6 +1655,16 @@
       <p>A influência dos artistas, parcerias criativas e o crochê como expressão coletiva.</p>
       <span class="mega-casa-arrow">Descobrir →</span>
     </a>
+    <a class="mega-casa-block" onclick="megaGoTo('cuidados');return false;">
+      <h3>Cuidados Gold Crochet</h3>
+      <p>Como lavar, secar e guardar suas peças para que durem por gerações.</p>
+      <span class="mega-casa-arrow">Saiba mais →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('entregas');return false;">
+      <h3>Entrega & Devolução</h3>
+      <p>Prazos, formas de envio e nossa política de trocas e devoluções.</p>
+      <span class="mega-casa-arrow">Consultar →</span>
+    </a>
   </div>
 </div>
 
@@ -1457,22 +1720,22 @@
       </a>
       <div class="left-menu-sub" id="leftMenuPecasSub">
 
-        <!-- DIA A DIA — Para Ela -->
-        <div class="left-menu-sub-group">
-          <span class="left-menu-sub-label">Dia a Dia — Para Ela</span>
-          <a href="#" onclick="navigateFromSubMenu('roupas-noite');return false;">Roupas para noite</a>
-          <a href="#" onclick="navigateFromSubMenu('saias-vestidos');return false;">Saias e vestidos</a>
-          <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos');return false;">Jaquetas e casacos</a>
-          <a href="#" onclick="navigateFromSubMenu('tops');return false;">Tops</a>
-          <a href="#" onclick="navigateFromSubMenu('calcas');return false;">Calças</a>
-        </div>
-
-        <!-- DIA A DIA — Para Ele -->
-        <div class="left-menu-sub-group">
-          <span class="left-menu-sub-label">Dia a Dia — Para Ele</span>
-          <a href="#" onclick="navigateFromSubMenu('roupas-noite');return false;">Roupas para noite</a>
-          <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos');return false;">Jaquetas e casacos</a>
-          <a href="#" onclick="navigateFromSubMenu('calcas');return false;">Calças</a>
+        <!-- DIA A DIA — Para Ela e Para Ele lado a lado -->
+        <div class="left-menu-sub-row">
+          <div class="left-menu-sub-group">
+            <span class="left-menu-sub-label">Para Ela</span>
+            <a href="#" onclick="navigateFromSubMenu('roupas-noite');return false;">Roupas p/ noite</a>
+            <a href="#" onclick="navigateFromSubMenu('saias-vestidos');return false;">Saias &amp; vestidos</a>
+            <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos');return false;">Jaquetas &amp; casacos</a>
+            <a href="#" onclick="navigateFromSubMenu('tops');return false;">Tops</a>
+            <a href="#" onclick="navigateFromSubMenu('calcas');return false;">Calças</a>
+          </div>
+          <div class="left-menu-sub-group">
+            <span class="left-menu-sub-label">Para Ele</span>
+            <a href="#" onclick="navigateFromSubMenu('roupas-noite');return false;">Roupas p/ noite</a>
+            <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos');return false;">Jaquetas &amp; casacos</a>
+            <a href="#" onclick="navigateFromSubMenu('calcas');return false;">Calças</a>
+          </div>
         </div>
 
         <!-- PEQUENINOS -->
@@ -1529,6 +1792,8 @@
         <a href="#" onclick="navigateFromMenu('periodo-atemporal');return false;">O período atemporal</a>
         <a href="#" onclick="navigateFromMenu('sobre');return false;">Sobre Gold Crochet</a>
         <a href="#" onclick="navigateFromMenu('colaboracoes');return false;">Colaborações &amp; Artistas</a>
+        <a href="#" onclick="navigateFromMenu('cuidados');return false;">Cuidados Gold Crochet</a>
+        <a href="#" onclick="navigateFromMenu('entregas');return false;">Entrega &amp; Devolução</a>
       </div>
     </nav>
 
@@ -1611,7 +1876,7 @@
   <div class="cart-items" id="favItems"></div>
 </div>
 
-<!-- MODAL PRODUTO -->
+<!-- MODAL PRODUTO (mantido por compatibilidade - não é mais usado) -->
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
   <div class="modal-box" id="modalBox">
     <button class="modal-close" onclick="closeModal()" aria-label="Fechar produto">✕</button>
@@ -1698,9 +1963,7 @@
     </div>
   </div>
 
-  <!-- ==========================================================
-       PARA MULHER / PARA HOMEM — acima de "Por que Gold Crochet?"
-       ========================================================== -->
+  <!-- PARA MULHER / PARA HOMEM -->
   <div class="gender-section">
     <a class="gender-card" href="#" onclick="showPage('produtos');return false;" style="background-image:url('./assets/para-mulher.jpg')" aria-label="Descubra mais na coleção Para Mulher">
       <div class="gender-content">
@@ -1745,6 +2008,51 @@
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
+<!-- PÁGINA DE PRODUTO (tela cheia) -->
+<section class="page" id="page-produto">
+  <div class="product-page-wrap">
+    <div class="product-page-inner">
+      <div class="product-page-top">
+        <div class="product-page-gallery" id="productPageGallery"></div>
+        <div class="product-page-info">
+          <h1 class="product-page-title" id="productPageTitle"></h1>
+          <div class="product-page-price-row" id="productPagePriceRow"></div>
+          <p class="product-page-desc" id="productPageDesc"></p>
+          <div id="productPageColors"></div>
+          <button class="product-page-add-btn" onclick="addToCartFromProductPage()">Adicionar à Sacola 🛍️</button>
+
+          <div class="product-page-specs" id="productPageSpecs"></div>
+        </div>
+      </div>
+
+      <div class="product-page-related">
+        <h2>Você pode gostar</h2>
+        <div class="product-page-related-track-wrap">
+          <div class="product-page-related-track" id="productPageRelated"></div>
+        </div>
+      </div>
+
+      <div class="product-page-blocks">
+        <div class="product-page-block">
+          <h3>Cuidados Gold Crochet</h3>
+          <p>Nossas peças são feitas para durar. Lavar à mão com água fria, secar na sombra na horizontal e guardar dobradas — assim elas atravessam gerações.</p>
+          <a onclick="showPage('cuidados')">Saiba mais →</a>
+        </div>
+        <div class="product-page-block">
+          <h3>Embalagem para presente</h3>
+          <p>Cada pedido pode ser enviado com embalagem especial para presente, com fita de cetim e cartão personalizado. Perfeito para surpreender quem você ama.</p>
+          <a href="https://wa.me/553182032351?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20embalagem%20para%20presente%20%F0%9F%8E%81" target="_blank" rel="noopener">Solicitar no WhatsApp →</a>
+        </div>
+        <div class="product-page-block">
+          <h3>Entrega & Devolução</h3>
+          <p>Enviamos para todo o Brasil com prazos que variam de 3 a 15 dias úteis. Aceitamos devoluções em até 7 dias após o recebimento, conforme o Código de Defesa do Consumidor.</p>
+          <a onclick="showPage('entregas')">Consultar política →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- NOVIDADES — BLOG -->
 <section class="page" id="page-novidades">
   <div class="products-hero">
@@ -1783,6 +2091,74 @@
         <div class="timeline-item reveal"><div class="timeline-year">Expansão</div><div class="timeline-text">Novas técnicas, primeiros projetos personalizados e o reconhecimento de clientes fiéis.</div></div>
         <div class="timeline-item reveal"><div class="timeline-year">Consolidação</div><div class="timeline-text">Entrada em fios premium e acabamentos exclusivos que definem nossa identidade.</div></div>
         <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Loja online oficial e centenas de peças entregues em todo o Brasil.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — CUIDADOS -->
+<section class="page" id="page-cuidados">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Cuidados <span>Gold Crochet</span></h1>
+        <p>Suas peças de crochê são feitas para durar. Com alguns cuidados simples no dia a dia, elas mantêm o caimento, a cor e a maciez por muitos anos — e podem até passar de geração em geração.</p>
+        <p>Siga nossas recomendações de lavagem, secagem e armazenamento para preservar cada ponto feito à mão.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Ver peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">💧</div><div class="stat-label">Lavar à Mão</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">🌤️</div><div class="stat-label">Secar na Sombra</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">🧺</div><div class="stat-label">Guardar Dobrada</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Como <span>Cuidar</span></h2>
+      <p>Cada ponto foi feito à mão, com paciência. Trate sua peça com o mesmo cuidado.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Lavagem</div><div class="timeline-text">Lave à mão com água fria e sabão neutro. Nunca use alvejante ou amaciante. Não torça a peça — pressione suavemente para retirar o excesso de água.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Secagem</div><div class="timeline-text">Seque na horizontal, à sombra, sobre uma toalha limpa. Evite pendurar molhada para não deformar o fio.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Armazenamento</div><div class="timeline-text">Guarde dobrada, em local seco e arejado. Para peças delicadas, use saquinhos de algodão.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Uso Diário</div><div class="timeline-text">Evite contato com superfícies ásperas e objetos que possam puxar o fio. Se aparecer uma laçada, puxe com cuidado para o lado interno.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — ENTREGAS -->
+<section class="page" id="page-entregas">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Entrega & <span>Devolução</span></h1>
+        <p>Enviamos para todo o Brasil com cuidado e carinho. Cada pedido é embalado com proteção extra para que sua peça chegue impecável ao destino.</p>
+        <p>Consulte abaixo os prazos, formas de envio e nossa política de trocas e devoluções.</p>
+        <a href="https://wa.me/553182032351?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20entrega%20%F0%9F%93%A6" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;margin-top:8px;">Falar no WhatsApp</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">3-15</div><div class="stat-label">Dias Úteis</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">7</div><div class="stat-label">Dias p/ Devolver</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">100%</div><div class="stat-label">Rastreável</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Políticas de <span>Envio</span></h2>
+      <p>Cada peça é feita sob demanda e embalada individualmente com proteção extra.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Prazo de Produção</div><div class="timeline-text">Peças sob medida levam de 3 a 10 dias úteis para ficarem prontas antes do envio.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Envio</div><div class="timeline-text">Enviamos por Correios (PAC/SEDEX) ou transportadora, com código de rastreio enviado por e-mail.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Recebimento</div><div class="timeline-text">Confira sua peça ao receber. Caso haja qualquer problema, entre em contato em até 48h.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Devolução</div><div class="timeline-text">Aceitamos devoluções em até 7 dias após o recebimento, desde que a peça esteja sem uso e na embalagem original.</div></div>
       </div>
     </div>
   </div>
@@ -1959,7 +2335,6 @@ const defaultCollections = [
   { id:'dia-a-dia', name:'Coleção Maré de Ouro', desc:'Peças versáteis inspiradas no balanço do mar e no brilho do ouro.', emoji:'🌊', filter:'Dia a Dia' }
 ];
 
-// Posts do blog de novidades
 const defaultBlogPosts = [
   { id: 1, title: 'Nova Coleção Maré de Ouro', date: 'Março 2026', emoji: '🌊', tag: 'Lançamento', excerpt: 'Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas em tons dourados e azuis.' },
   { id: 2, title: 'Por trás dos pontos: o Atelier', date: 'Fevereiro 2026', emoji: '🧶', tag: 'Bastidores', excerpt: 'Um passeio pelo nosso atelier, onde cada peça nasce do cuidado, da paciência e do amor pelo crochê artesanal.' },
@@ -1992,6 +2367,7 @@ let selectedColors = {};
 let searchTimeout = null;
 let favorites = [];
 let searchOverlayTimeout = null;
+let currentProductPageId = null;
 
 // Rótulos amigáveis para as categorias
 const categoryLabels = {
@@ -2020,6 +2396,25 @@ const categoryLabels = {
 };
 function labelForCategory(cat) {
   return categoryLabels[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+}
+
+/* Preço efetivo considerando desconto */
+function getEffectivePrice(p) {
+  if (!p || !p.price) return null;
+  const base = parseFloat(p.price);
+  if (!base) return null;
+  if (p.discount && p.discount > 0) return Math.round(base * (1 - p.discount / 100));
+  return base;
+}
+
+/* Badge textual: desconto tem prioridade */
+function getBadgeText(p) {
+  if (p.discount && p.discount > 0) return `-${p.discount}%`;
+  if (p.badge) return p.badge;
+  return '';
+}
+function isDiscountBadge(p) {
+  return p.discount && p.discount > 0;
 }
 
 /* ==========================================================
@@ -2438,7 +2833,6 @@ function setupMenuInteractions() {
     }
   });
 
-  // Fechar o user dropdown ao clicar fora
   document.addEventListener('click', (e) => {
     const dd = document.getElementById('userDropdown');
     if (!dd || !dd.classList.contains('open')) return;
@@ -2511,6 +2905,9 @@ function toggleFavorite(id) {
   if (document.getElementById('searchOverlay').classList.contains('open')) {
     const v = document.getElementById('searchOverlayInput')?.value || '';
     if (v) onSearchOverlay(v);
+  }
+  if (currentProductPageId === id) {
+    renderProductPageContent(id);
   }
 }
 function updateFavCount() {
@@ -2705,14 +3102,15 @@ function renderFavorites() {
   if (!favProducts.length) { items.innerHTML = '<div class="cart-empty"><span class="empty-icon">🤍</span><p>Você ainda não tem favoritos.<br>Toque no coração das peças que amar!</p></div>'; return; }
   items.innerHTML = favProducts.map(p => {
     const rawImg = toRaw(p.image);
+    const priceInfo = formatPriceHtml(p);
     return `<div class="cart-item" style="cursor:pointer" onclick="openModalFromFav(${p.id})">
       <div class="cart-item-img">${rawImg ? `<img src="${rawImg}" alt="${p.name}">` : (p.emoji || '🧶')}</div>
-      <div class="cart-item-info"><h4>${p.name}</h4><span>${p.price ? 'R$ ' + p.price + ',00' : 'Sob consulta'}</span></div>
+      <div class="cart-item-info"><h4>${p.name}</h4><span>${priceInfo}</span></div>
       <button class="cart-remove" onclick="event.stopPropagation();toggleFavorite(${p.id});" aria-label="Remover dos favoritos">🗑</button>
     </div>`;
   }).join('');
 }
-function openModalFromFav(id) { closeFavorites(); setTimeout(() => openModal(id), 300); }
+function openModalFromFav(id) { closeFavorites(); setTimeout(() => openProductPage(id), 300); }
 
 async function loadData() {
   try {
@@ -2777,7 +3175,9 @@ window.addEventListener('scroll', () => {
 function showPage(id) {
   closeMega();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
+  const target = document.getElementById('page-'+id);
+  if (!target) return;
+  target.classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const nav = document.getElementById('nav-'+id); if (nav) nav.classList.add('active');
   document.querySelectorAll('.left-menu-nav a').forEach(a => a.classList.remove('active'));
@@ -2819,21 +3219,22 @@ function renderCarousel() {
     const img = toRaw(p.image);
     const cols = getColors(p);
     const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
-    const isNew = p.badge === 'Novo';
-    const newLabel = isNew ? '<div class="product-new-label">Novo</div>' : '';
+    const badgeText = getBadgeText(p);
+    const isDisc = isDiscountBadge(p);
+    const badgeLabel = badgeText ? `<div class="product-badge-label${isDisc?' discount':''}">${badgeText}</div>` : '';
     const fav = favorites.includes(p.id) ? 'faved' : '';
-    return `<div class="carousel-card" onclick="openModal(${p.id})" role="button" tabindex="0">
+    return `<div class="carousel-card" onclick="openProductPage(${p.id})" role="button" tabindex="0">
       <div class="product-img-square" style="background:${grads[i%grads.length]}">
         ${img?`<img src="${img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''}
         ${!img?`<div class="product-img-emoji">${p.emoji}</div>`:''}
-        ${newLabel}
+        ${badgeLabel}
         <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </button>
       </div>
       <div class="product-info">
         <h3>${p.name}</h3>
-        <div class="product-price">${p.price?'R$ '+p.price+',00':'Sob Consulta'}</div>
+        <div class="product-price">${formatPriceHtml(p)}</div>
         ${colorText ? `<div class="product-colors-text">${colorText}</div>` : ''}
       </div>
     </div>`;
@@ -2867,6 +3268,24 @@ function startCarouselTimer() {
 }
 
 function getColors(p) { if (p.colors && p.colors.length) return p.colors; if (p.colorSections) return p.colorSections.flatMap(s=>s.colors||[]); return []; }
+
+/* Formata preço HTML: mostra riscado + novo se houver desconto */
+function formatPriceHtml(p) {
+  if (!p.price) return 'Sob Consulta';
+  const base = parseFloat(p.price);
+  if (p.discount && p.discount > 0) {
+    const final = Math.round(base * (1 - p.discount / 100));
+    return `<span class="price-old">R$ ${base},00</span><span class="price-new">R$ ${final},00</span>`;
+  }
+  return `R$ ${base},00`;
+}
+/* Preço simples (usado no carrinho) */
+function getPriceForCart(p) {
+  if (!p.price) return null;
+  const base = parseFloat(p.price);
+  if (p.discount && p.discount > 0) return Math.round(base * (1 - p.discount / 100));
+  return base;
+}
 
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
@@ -2930,23 +3349,23 @@ function cardHtml(p,i) {
   const rawImg = toRaw(p.image); const hasImg = !!rawImg;
   const cols = getColors(p);
   const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
-  const isNew = p.badge === 'Novo';
-  const newLabel = isNew ? '<div class="product-new-label">Novo</div>' : '';
+  const badgeText = getBadgeText(p);
+  const isDisc = isDiscountBadge(p);
+  const badgeLabel = badgeText ? `<div class="product-badge-label${isDisc?' discount':''}">${badgeText}</div>` : '';
   const fav = favorites.includes(p.id) ? 'faved' : '';
-  let priceHtml = p.price ? `R$ ${p.price},00` : 'Sob Consulta';
   return `
   <div class="product-card ${p.custom?'custom-card':''}" data-id="${p.id}" role="button" tabindex="0">
     <div class="product-img-square" style="background:${grads[i%grads.length]}">
       ${hasImg?`<img src="${rawImg}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''} 
       ${!hasImg?`<div class="product-img-emoji">${p.emoji}</div>`:''}
-      ${newLabel}
+      ${badgeLabel}
       <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
       </button>
     </div>
     <div class="product-info">
       <h3>${p.name}</h3>
-      <div class="product-price">${priceHtml}</div>
+      <div class="product-price">${formatPriceHtml(p)}</div>
       ${colorText ? `<div class="product-colors-text">${colorText}</div>` : ''}
     </div>
   </div>`;
@@ -2956,7 +3375,7 @@ function bindCardEvents(grid) {
 }
 function handleCardClick(e) {
   if (e.target.closest('.fav-btn')) return;
-  const pid = parseInt(this.dataset?.id); if (pid) openModal(pid);
+  const pid = parseInt(this.dataset?.id); if (pid) openProductPage(pid);
 }
 function renderFilters() {
   const container = document.getElementById('filterPills');
@@ -2986,70 +3405,176 @@ function clearSearch() {
   renderProducts();
 }
 
-function openModal(id) {
-  const p = products.find(x=>x.id===id); if (!p) return;
-  currentModal = p; currentGalleryIdx = 0;
-  document.getElementById('modalTitle').textContent = p.name;
-  const pr = document.getElementById('modalPriceRow');
-  if (p.price) pr.innerHTML = `<div class="modal-price">R$ ${p.price},00</div>`; else pr.innerHTML = `<div class="modal-price">Preço sob consulta</div>`;
-  document.getElementById('modalPrintInfo').innerHTML = p.prod_time ? `<div class="print-info-item"><strong>~${p.prod_time}h</strong>Confecção</div>` : '';
-  document.getElementById('modalDesc').textContent = p.desc;
-  let sections = p.colorSections || (p.colors ? [{ name: 'Cores disponíveis', colors: p.colors }] : []);
-  if (!selectedColors[p.id] || !Array.isArray(selectedColors[p.id])) selectedColors[p.id] = sections.map(s => s.colors.length ? s.colors[0] : null);
+/* ==========================================================
+   PÁGINA DE PRODUTO (tela cheia)
+   ========================================================== */
+function openProductPage(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  currentProductPageId = id;
+  currentModal = p;
+  selectedColors[p.id] = null; // reset
+  renderProductPageContent(id);
+  showPage('produto');
+}
+
+function renderProductPageContent(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+
+  /* Título */
+  document.getElementById('productPageTitle').textContent = p.name;
+
+  /* Preço (com desconto) */
+  const priceRow = document.getElementById('productPagePriceRow');
+  const base = parseFloat(p.price) || 0;
+  if (p.discount && p.discount > 0) {
+    const final = Math.round(base * (1 - p.discount / 100));
+    priceRow.innerHTML = `
+      <span class="product-page-price-old">R$ ${base},00</span>
+      <span class="product-page-price-new">R$ ${final},00</span>
+      <span class="product-page-discount-tag">-${p.discount}%</span>
+    `;
+  } else if (base > 0) {
+    priceRow.innerHTML = `<span class="product-page-price">R$ ${base},00</span>`;
+  } else {
+    priceRow.innerHTML = `<span class="product-page-price">Sob consulta</span>`;
+  }
+
+  /* Descrição */
+  document.getElementById('productPageDesc').textContent = p.desc || '';
+
+  /* Cores */
+  const sections = p.colorSections || (p.colors ? [{ name: 'Cores disponíveis', colors: p.colors }] : []);
+  if (!Array.isArray(selectedColors[p.id])) {
+    selectedColors[p.id] = sections.map(s => s.colors.length ? s.colors[0] : null);
+  }
   let colorsHtml = '';
   if (sections.length > 0) {
     colorsHtml = sections.map((sec, sIdx) => {
       const sel = selectedColors[p.id][sIdx] || (sec.colors.length ? sec.colors[0] : null);
-      if(!selectedColors[p.id][sIdx]) selectedColors[p.id][sIdx] = sel;
-      return `<div style="margin-bottom:16px"><div class="modal-colors-label">${sec.name}:</div><div style="display:flex;gap:9px;flex-wrap:wrap" class="modalColorDotsSection" data-sidx="${sIdx}">${sec.colors.map(c => `<button class="color-dot ${sel && c.hex === sel.hex ? 'selected' : ''}" style="background:${c.hex};width:26px;height:26px" data-pid="${p.id}" data-sidx="${sIdx}" data-name="${c.name}" data-hex="${c.hex}" aria-label="Cor ${c.name}"></button>`).join('')}</div><div class="modal-color-name" id="modalColorName-${sIdx}">Cor: ${sel ? sel.name : ''}</div></div>`;
+      if (!selectedColors[p.id][sIdx]) selectedColors[p.id][sIdx] = sel;
+      return `<div style="margin-bottom:18px">
+        <div class="product-page-colors-label">${sec.name}</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap" class="productPageColorDots" data-sidx="${sIdx}">
+          ${sec.colors.map(c => `<button class="color-dot ${sel && c.hex === sel.hex ? 'selected' : ''}" style="background:${c.hex};width:28px;height:28px" data-pid="${p.id}" data-sidx="${sIdx}" data-name="${c.name}" data-hex="${c.hex}" aria-label="Cor ${c.name}"></button>`).join('')}
+        </div>
+        <div class="modal-color-name" id="productPageColorName-${sIdx}">Cor: ${sel ? sel.name : ''}</div>
+      </div>`;
     }).join('');
   }
-  document.getElementById('modalColors').innerHTML = colorsHtml;
-  setTimeout(() => { document.querySelectorAll('.modalColorDotsSection .color-dot').forEach(dot => dot.addEventListener('click', () => { const pid = parseInt(dot.dataset.pid); const sIdx = parseInt(dot.dataset.sidx); selectedColors[pid][sIdx] = {name: dot.dataset.name, hex: dot.dataset.hex}; const parent = dot.closest('.modalColorDotsSection'); parent.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected')); dot.classList.add('selected'); document.getElementById('modalColorName-' + sIdx).textContent = 'Cor: ' + dot.dataset.name; })); }, 0);
+  document.getElementById('productPageColors').innerHTML = colorsHtml;
+  setTimeout(() => {
+    document.querySelectorAll('.productPageColorDots .color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const pid = parseInt(dot.dataset.pid);
+        const sIdx = parseInt(dot.dataset.sidx);
+        selectedColors[pid][sIdx] = { name: dot.dataset.name, hex: dot.dataset.hex };
+        const parent = dot.closest('.productPageColorDots');
+        parent.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+        dot.classList.add('selected');
+        const label = document.getElementById('productPageColorName-' + sIdx);
+        if (label) label.textContent = 'Cor: ' + dot.dataset.name;
+      });
+    });
+  }, 0);
 
-  const rawImg = toRaw(p.image); const imgs = [];
+  /* Galeria (imagens empilhadas verticalmente) */
+  const gallery = document.getElementById('productPageGallery');
+  const rawImg = toRaw(p.image);
+  const imgs = [];
   if (rawImg) imgs.push(rawImg);
-  (p.gallery||[]).forEach(g=>{const r=toRaw(g);if(r&&!imgs.includes(r))imgs.push(r);});
-  currentGalleryImages = imgs;
-  buildGallery(p);
-  closeOtherLayers('modalOverlay');
-  const overlay = document.getElementById('modalOverlay');
-  overlay.classList.add('open');
-  setActiveDialog(overlay);
-  lockBody();
-  setTimeout(() => document.querySelector('#modalBox .modal-close')?.focus(), 80);
-}
-function buildGallery(p) {
-  const main = document.getElementById('galleryMain'); const thumbs = document.getElementById('galleryThumbs'); const counter = document.getElementById('galleryCounter'); const nav = document.getElementById('galleryNav');
-  if (currentGalleryImages.length) {
-    main.innerHTML = `<img id="galleryMainImg" src="${currentGalleryImages[0]}" onerror="this.style.display='none'" alt="${p.name}">`;
-    thumbs.innerHTML = currentGalleryImages.map((url,i)=>`<div class="gallery-thumb ${i===0?'active':''}" onclick="setGalleryImg(${i})" role="button" tabindex="0"><img src="${url}" alt=""></div>`).join('');
-    counter.textContent = `1 / ${currentGalleryImages.length}`;
-    counter.style.display = 'block';
-    nav.style.display = currentGalleryImages.length > 1 ? 'flex' : 'none';
+  (p.gallery || []).forEach(g => { const r = toRaw(g); if (r && !imgs.includes(r)) imgs.push(r); });
+  if (imgs.length) {
+    gallery.innerHTML = imgs.map(url => `
+      <div class="product-page-gallery-item">
+        <img src="${url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+      </div>
+    `).join('');
   } else {
-    main.innerHTML = `<div style="font-size:6rem;display:flex;align-items:center;justify-content:center;width:100%;height:100%">${p.emoji}</div>`;
-    thumbs.innerHTML = ''; counter.style.display = 'none'; nav.style.display = 'none';
+    gallery.innerHTML = `<div class="product-page-gallery-item"><div class="gallery-emoji">${p.emoji || '🧶'}</div></div>`;
   }
+
+  /* Specs (accordion) */
+  const specs = document.getElementById('productPageSpecs');
+  const composition = p.composition || p.material || 'Fios premium de alta durabilidade, selecionados à mão para cada peça.';
+  const care = p.care || 'Lavar à mão com água fria e sabão neutro. Secar na horizontal, à sombra. Guardar dobrada.';
+  const responsibility = p.responsibility || 'Produção artesanal sob demanda, sem desperdício, com fios de fornecedores conscientes.';
+  specs.innerHTML = `
+    <details>
+      <summary>Composição</summary>
+      <p>${composition}</p>
+    </details>
+    <details>
+      <summary>Cuidados</summary>
+      <p>${care}</p>
+    </details>
+    <details>
+      <summary>Responsabilidade</summary>
+      <p>${responsibility}</p>
+    </details>
+  `;
+
+  /* Você pode gostar */
+  const related = document.getElementById('productPageRelated');
+  const others = products.filter(x => x.id !== p.id).slice(0, 8);
+  const grads = ['#f2ede0','#f8ead5','#f5e6cb','#f3ead2'];
+  related.innerHTML = others.map((rp, i) => {
+    const rimg = toRaw(rp.image);
+    const rcols = getColors(rp);
+    const rcolorText = rcols.length > 0 ? `${rcols.length} ${rcols.length === 1 ? 'Cor' : 'Cores'}` : '';
+    const rbadge = getBadgeText(rp);
+    const rdisc = isDiscountBadge(rp);
+    const rbadgeLabel = rbadge ? `<div class="product-badge-label${rdisc?' discount':''}">${rbadge}</div>` : '';
+    const rfav = favorites.includes(rp.id) ? 'faved' : '';
+    return `<div class="carousel-card" onclick="openProductPage(${rp.id})" role="button" tabindex="0">
+      <div class="product-img-square" style="background:${grads[i%grads.length]}">
+        ${rimg?`<img src="${rimg}" alt="${rp.name}" loading="lazy" onerror="this.style.display='none'">`:''}
+        ${!rimg?`<div class="product-img-emoji">${rp.emoji}</div>`:''}
+        ${rbadgeLabel}
+        <button class="fav-btn ${rfav}" onclick="event.stopPropagation();toggleFavorite(${rp.id})" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <h3>${rp.name}</h3>
+        <div class="product-price">${formatPriceHtml(rp)}</div>
+        ${rcolorText ? `<div class="product-colors-text">${rcolorText}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
 }
-function setGalleryImg(i) { currentGalleryIdx = i; const img = document.getElementById('galleryMainImg'); if (img && currentGalleryImages[i]) img.src = currentGalleryImages[i]; document.querySelectorAll('.gallery-thumb').forEach((t,j)=>t.classList.toggle('active',j===i)); document.getElementById('galleryCounter').textContent = `${i+1} / ${currentGalleryImages.length}`; }
-function galleryPrev() { if(!currentGalleryImages.length)return; setGalleryImg((currentGalleryIdx-1+currentGalleryImages.length)%currentGalleryImages.length); }
-function galleryNext() { if(!currentGalleryImages.length)return; setGalleryImg((currentGalleryIdx+1)%currentGalleryImages.length); }
+
+function addToCartFromProductPage() {
+  if (!currentProductPageId) return;
+  addToCart(currentProductPageId);
+}
+
+/* ---------- MODAL (compatibilidade - redireciona para página) ---------- */
+function openModal(id) { openProductPage(id); }
 function closeModal() {
   const overlay = document.getElementById('modalOverlay');
-  overlay.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
   clearActiveDialog(overlay);
   unlockBody();
 }
-document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))closeModal();});
-function addToCartFromModal() { if(currentModal) addToCart(currentModal.id); closeModal(); }
-function openFullscreen() {} function closeFullscreen() {} function fullscreenPrev() {} function fullscreenNext() {} function switchMedia() {}
+function addToCartFromModal() {
+  if (currentModal) addToCart(currentModal.id);
+  closeModal();
+}
+function switchMedia() {}
+function galleryPrev() {}
+function galleryNext() {}
+function setGalleryImg() {}
 
 function addToCart(id) {
   const p = products.find(x=>x.id===id); if(!p) return;
-  const colsArr = selectedColors[id] || []; const chosenColors = colsArr.filter(c => c !== null);
+  const colsArr = selectedColors[id] || []; 
+  const chosenColors = Array.isArray(colsArr) ? colsArr.filter(c => c !== null && c !== undefined) : [];
+  const effectivePrice = getPriceForCart(p);
   const existing = cart.find(c => c.id === id && JSON.stringify(c.selectedColors) === JSON.stringify(chosenColors));
-  if(existing) existing.qty++; else cart.push({...p, qty:1, selectedColors: chosenColors});
+  if(existing) existing.qty++;
+  else cart.push({...p, price: effectivePrice, originalPrice: p.price, qty:1, selectedColors: chosenColors});
   saveCart(); updateCartUI();
   showToast(`✅ ${p.name} adicionado!`);
 }
