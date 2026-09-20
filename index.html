@@ -174,6 +174,12 @@
   .icon-btn.search-trigger { width:44px; min-width:44px; padding:0; gap:0; }
   .icon-btn.search-trigger .icon-btn-label { display:none; }
 
+  /* X do botão de pesquisa (aparece quando o overlay está aberto) */
+  .search-trigger .st-icon-close { display:none; }
+  .search-trigger.is-active .st-icon-search { display:none; }
+  .search-trigger.is-active .st-icon-close { display:block; }
+  .search-trigger.is-active { background:rgba(212,175,55,.18); color:var(--gold-main); }
+
   .skip-link { position:absolute; top:-40px; left:16px; background:var(--gold-main); color:#fff; padding:8px 16px; border-radius:var(--radius-pill); font-size:0.85rem; font-weight:700; z-index:2000; transition:top 0.3s; }
   .skip-link:focus { top:calc(12px + var(--safe-top)); }
 
@@ -193,6 +199,7 @@
   .hero h1 em { font-style:italic; color:var(--gold-main); }
   .hero p { font-size:1.1rem; color:var(--text-mid); max-width:500px; margin:0 auto 34px; line-height:1.75; }
   .hero-scroll { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--gray-mid); font-size:0.78rem; animation:bounce 2s infinite; cursor:pointer; }
+  .hero-scroll-arrow { display:inline-flex; color:var(--gold-main); }
   @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
   .btn-primary { background:var(--gold-main); color:#fff; border:none; cursor:pointer; padding:13px 32px; border-radius:var(--radius-pill); font-family:'Outfit',sans-serif; font-size:0.98rem; font-weight:700; box-shadow:var(--shadow-btn); transition:var(--transition); text-decoration:none; display:inline-block; }
@@ -760,12 +767,12 @@
     pointer-events: auto;
   }
   .mega-menu-inner {
-    max-width: 1280px;
+    max-width: 1360px;
     margin: 0 auto;
     padding: 32px 5% 36px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 36px;
+    grid-template-columns: repeat(4, 1fr) 260px;
+    gap: 32px;
     align-items: flex-start;
   }
   .mega-col h3 {
@@ -819,10 +826,26 @@
     justify-content: center;
     font-size: 3rem;
     color: var(--gold-main);
-    min-height: 220px;
+    min-height: 240px;
+    height: 100%;
     border: 1px dashed rgba(212,175,55,0.35);
+    overflow: hidden;
+    position: relative;
   }
-  .mega-image-slot span { opacity: 0.55; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+  .mega-image-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+  }
+  .mega-image-slot span {
+    opacity: 0.55;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 
   /* Mega Casa Gold */
   .mega-menu-inner.mega-casa {
@@ -991,7 +1014,7 @@
      ========================================================== */
   @media (max-width:1200px) {
     .nav-links a { padding:8px 12px; font-size:0.88rem; }
-    .mega-menu-inner { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .mega-menu-inner { grid-template-columns: repeat(4, 1fr) 220px; gap: 24px; }
   }
   @media (max-width:1000px) {
     .nav-links a { padding:7px 9px; font-size:0.83rem; }
@@ -1106,8 +1129,9 @@
       <button class="hamburger" id="hamburger" type="button" onclick="toggleLeftMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="leftMenu">
         <span></span><span></span><span></span>
       </button>
-      <button class="icon-btn search-trigger" aria-label="Pesquisa" onclick="openSearchOverlay()" title="Pesquisa (Ctrl+K)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <button class="icon-btn search-trigger" id="searchTriggerBtn" aria-label="Pesquisa" onclick="toggleSearchOverlay()" title="Pesquisa (Ctrl+K)">
+        <svg class="st-icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg class="st-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         <span class="icon-btn-label">Pesquisa</span>
       </button>
     </div>
@@ -1182,6 +1206,13 @@
         <li><a onclick="megaGoTo('produtos','amigurumi');return false;">Amigurumis</a></li>
         <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
       </ul>
+    </div>
+    <!-- IMAGEM AO LADO DE ARTIGOS PARA CASA -->
+    <div class="mega-image-slot" aria-hidden="true">
+      <!-- Substitua o src abaixo pela sua imagem (ex: ./assets/mega-pecas.jpg) -->
+      <img src="./assets/mega-pecas.jpg" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+      <span style="display:none">Sua imagem aqui</span>
     </div>
   </div>
 </div>
@@ -1478,8 +1509,10 @@
       <p class="fade-in fade-in-3" id="heroSubtitle">Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.</p>
     </div>
     <div class="hero-scroll" onclick="document.querySelector('.carousel-section').scrollIntoView({behavior:'smooth'})">
-      <span style="font-size:1.4rem;font-weight:300;line-height:1;">^</span>
       <span>Explorar</span>
+      <span class="hero-scroll-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
     </div>
   </div>
   <div class="carousel-section">
@@ -1521,7 +1554,6 @@
       <input type="text" id="searchInput" placeholder="Buscar peça..." oninput="onSearch(this.value)">
       <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca">✕</button>
     </div>
-    <div class="filter-pills" id="filterPills"></div>
   </div>
   <div class="products-count" id="productsCount"></div>
   <div class="products-grid" id="productsGrid"></div>
@@ -1944,24 +1976,16 @@ function openMega(id) {
   positionNavDropdowns();
 }
 
-/**
- * Navega do mega menu para uma página.
- * @param {string} page - 'inicio' | 'produtos' | 'colecoes' | 'novidades' | 'sobre' | 'colaboracoes'
- * @param {string} [category] - filtra a página de produtos por categoria
- */
 function megaGoTo(page, category) {
   closeMega();
   showPage(page);
   if (page === 'produtos' && category) {
-    // limpa a busca para não conflitar com o filtro
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.value = '';
     const clearBtn = document.getElementById('searchClear');
     if (clearBtn) clearBtn.classList.remove('visible');
-    // aplica o filtro depois do showPage renderizar
     setTimeout(() => setFilter(category), 30);
   } else if (page === 'produtos') {
-    // "Ver tudo" — volta para todos
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.value = '';
     const clearBtn = document.getElementById('searchClear');
@@ -2287,12 +2311,27 @@ function toRaw(url) {
   return url;
 }
 
+/* ---------- SEARCH OVERLAY (com X no botão do header) ---------- */
+function toggleSearchOverlay() {
+  const el = document.getElementById('searchOverlay');
+  if (el && el.classList.contains('open')) closeSearchOverlay();
+  else openSearchOverlay();
+}
 function openSearchOverlay() {
   closeOtherLayers('searchOverlay');
   const el = document.getElementById('searchOverlay');
   el.classList.add('open');
   setActiveDialog(el);
   lockBody();
+  // Marca o botão do header como ativo (mostra o X)
+  const trigger = document.getElementById('searchTriggerBtn');
+  if (trigger) {
+    trigger.classList.add('is-active');
+    trigger.setAttribute('aria-label', 'Fechar pesquisa');
+    trigger.setAttribute('title', 'Fechar pesquisa');
+    const label = trigger.querySelector('.icon-btn-label');
+    if (label) label.textContent = 'Fechar';
+  }
   setTimeout(() => {
     const input = document.getElementById('searchOverlayInput');
     input?.focus();
@@ -2305,6 +2344,15 @@ function closeSearchOverlay() {
   el.classList.remove('open');
   clearActiveDialog(el);
   unlockBody();
+  // Restaura o botão do header (mostra a lupa)
+  const trigger = document.getElementById('searchTriggerBtn');
+  if (trigger) {
+    trigger.classList.remove('is-active');
+    trigger.setAttribute('aria-label', 'Pesquisa');
+    trigger.setAttribute('title', 'Pesquisa (Ctrl+K)');
+    const label = trigger.querySelector('.icon-btn-label');
+    if (label) label.textContent = 'Pesquisa';
+  }
 }
 function onSearchOverlay(val) {
   const clearBtn = document.getElementById('searchOverlayClear');
@@ -2595,7 +2643,10 @@ function handleCardClick(e) {
   const pid = parseInt(this.dataset?.id); if (pid) openModal(pid);
 }
 function renderFilters() {
+  // As pills de categoria foram removidas da página de Peças.
+  // Mantemos esta função apenas como guarda para não quebrar chamadas existentes.
   const container = document.getElementById('filterPills');
+  if (!container) return;
   let html = `<button class="filter-pill ${currentFilter === 'todos' ? 'active' : ''}" onclick="setFilter('todos')">Todos</button>`;
   categories.forEach(cat => { html += `<button class="filter-pill ${currentFilter === cat ? 'active' : ''}" onclick="setFilter('${cat}')">${labelForCategory(cat)}</button>`; });
   container.innerHTML = html;
