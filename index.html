@@ -332,7 +332,6 @@
   .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:20px; padding:30px 5% 60px; max-width:1240px; margin:0 auto; }
   .products-count { padding:0 5%; max-width:1240px; margin:12px auto 0; font-size:0.82rem; color:var(--text-mid); }
 
-  /* Cabeçalho do filtro ativo na página de produtos */
   .products-filter-header {
     text-align: center;
     padding: 26px 5% 0;
@@ -407,9 +406,6 @@
   .collection-info p { font-size:0.88rem; color:var(--text-mid); line-height:1.55; }
   .collection-info .collection-cta { margin-top:10px; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-main); }
 
-  /* ==========================================================
-     PÁGINA DE PRODUTO (tela cheia)
-     ========================================================== */
   .product-page-wrap { background: var(--white); padding: 40px 0 0; }
   .product-page-inner { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
   .product-page-top { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: flex-start; padding-bottom: 60px; }
@@ -457,9 +453,6 @@
     .product-page-related-track .carousel-card { min-width: 180px; max-width: 180px; }
   }
 
-  /* ==========================================================
-     PÁGINA DE CONTA DO USUÁRIO
-     ========================================================== */
   .user-account-wrap { max-width: 960px; margin: 0 auto; padding: 44px 5% 90px; }
   .user-account-header h1 {
     font-family: 'DM Serif Display', serif;
@@ -556,6 +549,7 @@
   .user-order-date { font-size: 0.78rem; color: var(--text-mid); }
   .user-order-items { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 10px; }
   .user-order-total { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
+  .user-order-status { margin-top: 10px; font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); }
   .user-checkbox-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(212,175,55,0.12); }
   .user-checkbox-row:last-child { border-bottom: none; }
   .user-checkbox-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold-main); margin-top: 3px; cursor: pointer; flex-shrink: 0; }
@@ -564,7 +558,6 @@
   .user-checkbox-row label small { color: var(--text-mid); font-size: 0.82rem; }
   @media (max-width: 640px) { .user-field-row { grid-template-columns: 1fr; } .user-tab-card { padding: 22px; } }
 
-  /* Modal Produto (compatibilidade) */
   .modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.65); z-index:2000; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal-box { background:var(--white); border-radius:var(--radius-lg); max-width:700px; width:100%; box-shadow:0 32px 80px rgba(0,0,0,0.25); transform:scale(0.9) translateY(20px); transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); max-height:94vh; overflow-y:auto; position:relative; display:flex; flex-direction:column; }
@@ -1311,8 +1304,6 @@
 <!-- MEGA MENU: PEÇAS -->
 <div class="mega-menu" id="megaMenuPecas" role="region" aria-label="Menu de peças">
   <div class="mega-menu-inner">
-
-    <!-- COLUNA 1: ESSENCIAIS -->
     <div class="mega-col">
       <h3>Essenciais</h3>
       <div class="mega-diaadia-grid">
@@ -1339,7 +1330,6 @@
       </div>
     </div>
 
-    <!-- COLUNA 2: PEQUENINOS -->
     <div class="mega-col">
       <h3>Pequeninos</h3>
       <ul>
@@ -1351,7 +1341,6 @@
       </ul>
     </div>
 
-    <!-- COLUNA 3: ACESSÓRIOS -->
     <div class="mega-col">
       <h3>Acessórios</h3>
       <ul>
@@ -1361,7 +1350,6 @@
       </ul>
     </div>
 
-    <!-- COLUNA 4: BIJUTERIAS -->
     <div class="mega-col">
       <h3>Bijuterias</h3>
       <ul>
@@ -1374,7 +1362,6 @@
       </ul>
     </div>
 
-    <!-- COLUNA 5: ARTIGOS PARA CASA -->
     <div class="mega-col">
       <h3>Artigos para Casa</h3>
       <ul>
@@ -1715,7 +1702,6 @@
     </div>
   </div>
 
-  <!-- ALTERAÇÃO: cards agora redirecionam para a listagem filtrada (Essenciais → Para Ela / Para Ele) -->
   <div class="gender-section">
     <a class="gender-card" href="#" onclick="megaGoToSectionGender('dia-a-dia','feminino');return false;" style="background-image:url('./assets/para-mulher.jpg')" aria-label="Ver tudo em Essenciais — Para Ela">
       <div class="gender-content">
@@ -1745,7 +1731,6 @@
 <section class="page" id="page-colecoes">
   <div class="products-hero"><h1>Nossas Coleções</h1><p>Explore as coleções exclusivas da Gold Crochet.</p></div>
   <div class="products-controls" style="justify-content:center; margin-top:20px;">
-    <!-- ALTERAÇÃO: "Dia a Dia" renomeado para "Essenciais" (valor de filtro mantido por compatibilidade dos dados) -->
     <div class="filter-pills" id="colecoesFilterPills">
       <button class="filter-pill active" data-filter="todas" onclick="setColecaoFilter('todas')">Todas</button>
       <button class="filter-pill" data-filter="Alta-Costura" onclick="setColecaoFilter('Alta-Costura')">Alta-Costura</button>
@@ -1755,7 +1740,6 @@
   <div class="products-grid" id="colecoesGrid"></div>
 </section>
 
-<!-- PÁGINA PEÇAS (com header dinâmico) -->
 <section class="page" id="page-produtos">
   <div class="products-hero"><h1>Nosso Acervo</h1><p>Amigurumis, bolsas, mantas e peças personalizadas.</p></div>
   <div class="products-filter-header" id="productsFilterHeader" style="display:none">
@@ -1765,7 +1749,6 @@
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<!-- PÁGINA DE PRODUTO -->
 <section class="page" id="page-produto">
   <div class="product-page-wrap">
     <div class="product-page-inner">
@@ -1810,7 +1793,6 @@
   </div>
 </section>
 
-<!-- PÁGINA DE CONTA DO USUÁRIO -->
 <section class="page" id="page-conta">
   <div class="user-account-wrap">
     <div class="user-account-header">
@@ -1829,7 +1811,6 @@
   </div>
 </section>
 
-<!-- NOVIDADES -->
 <section class="page" id="page-novidades">
   <div class="products-hero">
     <h1>Novidades</h1>
@@ -1838,7 +1819,6 @@
   <div class="blog-grid" id="novidadesGrid"></div>
 </section>
 
-<!-- CASA GOLD — SOBRE -->
 <section class="page" id="page-sobre">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -1872,7 +1852,6 @@
   </div>
 </section>
 
-<!-- CASA GOLD — CUIDADOS -->
 <section class="page" id="page-cuidados">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -1906,7 +1885,6 @@
   </div>
 </section>
 
-<!-- CASA GOLD — ENTREGAS -->
 <section class="page" id="page-entregas">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -1940,7 +1918,6 @@
   </div>
 </section>
 
-<!-- CASA GOLD — SUSTENTABILIDADE -->
 <section class="page" id="page-sustentabilidade">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -1974,7 +1951,6 @@
   </div>
 </section>
 
-<!-- CASA GOLD — PERÍODO ATEMPORAL -->
 <section class="page" id="page-periodo-atemporal">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -2009,7 +1985,6 @@
   </div>
 </section>
 
-<!-- CASA GOLD — COLABORAÇÕES -->
 <section class="page" id="page-colaboracoes">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
@@ -2090,15 +2065,7 @@
   </div>
 </footer>
 
-<!-- ============================================================
-     FIREBASE — SDK Modular v10 via ESM (equivalente ao npm)
-     Se você usar bundler (Vite/Webpack), troque as URLs por:
-       import { initializeApp } from "firebase/app";
-       import { getAnalytics }  from "firebase/analytics";
-       import { getAuth, ... }  from "firebase/auth";
-     ============================================================ -->
 <script type="module">
-// ─── Firebase imports ─────────────────────────────────────────
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import {
@@ -2110,8 +2077,19 @@ import {
   updateProfile,
   deleteUser
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore,
+  doc as fsDoc,
+  setDoc,
+  getDoc,
+  collection as fsCollection,
+  addDoc,
+  query as fsQuery,
+  where as fsWhere,
+  getDocs,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ─── Firebase config ──────────────────────────────────────────
 const firebaseConfig = {
   apiKey: "AIzaSyCptS84PWOOnw2iz6ihni6Am023lyvgi3g",
   authDomain: "gold-crochet.firebaseapp.com",
@@ -2122,26 +2100,18 @@ const firebaseConfig = {
   measurementId: "G-GHHVJHSMJH"
 };
 
-// ─── Firebase initialize ──────────────────────────────────────
 const app = initializeApp(firebaseConfig);
-
-// Analytics pode falhar em alguns ambientes (ex.: domínio não autorizado)
 let analytics = null;
 try { analytics = getAnalytics(app); } catch (e) { console.warn('[Firebase] Analytics indisponível:', e); }
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // ════════════════════════════════════════
 // DADOS
 // ════════════════════════════════════════
 const GITHUB_RAW = 'https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/data.json';
 
-/*
- * Modelo de produto (novos campos suportados pelo admin):
- *   section: 'dia-a-dia' | 'pequeninos' | 'acessorios' | 'bijuterias' | 'casa'
- *   gender:  'feminino' | 'masculino' | null  (obrigatório apenas em dia-a-dia)
- *   collection: 'Alta-Costura' | 'Dia a Dia' | ... (opcional)
- */
 const defaultProducts = [
   { id:1, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', section:'casa', gender:null, collection:'Dia a Dia', desc:'Ursinho de crochê feito à mão.', price:65, colors:[{name:'Dourado',hex:'#d4af37'},{name:'Marfim',hex:'#fdf6d6'}], badge:'Popular', discount:0, image:'', model3d:'', gallery:[] },
   { id:2, name:'Bolsa de Crochê', emoji:'👜', category:'bolsas', section:'acessorios', gender:null, collection:'Alta-Costura', desc:'Bolsa artesanal em crochê.', price:120, colors:[{name:'Dourado',hex:'#d4af37'},{name:'Preto',hex:'#2c2c2c'}], badge:'', discount:0, image:'', model3d:'', gallery:[] },
@@ -2192,7 +2162,6 @@ let searchOverlayTimeout = null;
 let currentProductPageId = null;
 let currentUserTab = 'pedidos';
 
-// Mapeamento categoria → seção (fallback caso o admin não envie section)
 const CATEGORY_TO_SECTION = {
   'roupas-noite': 'dia-a-dia',
   'saias-vestidos': 'dia-a-dia',
@@ -2214,7 +2183,6 @@ const CATEGORY_TO_SECTION = {
   'mantas': 'casa',
   'amigurumi': 'casa'
 };
-// ALTERAÇÃO: "Dia a Dia" → "Essenciais" (nome visível)
 const SECTION_LABELS = {
   'dia-a-dia': 'Essenciais',
   'pequeninos': 'Pequeninos',
@@ -2228,7 +2196,6 @@ function getProductSection(p) {
   return CATEGORY_TO_SECTION[p.category] || null;
 }
 
-// Rótulos amigáveis para as categorias
 const categoryLabels = {
   'amigurumi': 'Amigurumi',
   'bolsas': 'Bolsas',
@@ -2272,6 +2239,78 @@ function getBadgeText(p) {
 }
 function isDiscountBadge(p) {
   return p.discount && p.discount > 0;
+}
+
+/* ==========================================================
+   FIRESTORE — Helpers de dados do usuário
+   ========================================================== */
+async function ensureUserDoc(user, name) {
+  if (!user || !db) return;
+  try {
+    const ref = fsDoc(db, 'users', user.uid);
+    const snap = await getDoc(ref);
+    const baseName = name || user.displayName || (snap.exists() ? snap.data().name : '') || '';
+    if (!snap.exists()) {
+      await setDoc(ref, {
+        name: baseName,
+        email: user.email || '',
+        createdAt: serverTimestamp(),
+        lastLogin: serverTimestamp()
+      });
+    } else {
+      await setDoc(ref, {
+        name: baseName || (snap.data().name || ''),
+        email: user.email || '',
+        lastLogin: serverTimestamp()
+      }, { merge: true });
+    }
+  } catch (e) {
+    console.warn('[Firestore] Erro ao salvar usuário:', e.message);
+  }
+}
+
+async function saveOrderToFirestore(user, order) {
+  if (!user || !db) return null;
+  try {
+    const ref = await addDoc(fsCollection(db, 'orders'), {
+      userId: user.uid,
+      userName: user.displayName || '',
+      userEmail: user.email || '',
+      items: order.items,
+      total: order.total,
+      status: 'pendente',
+      createdAt: serverTimestamp()
+    });
+    return ref.id;
+  } catch (e) {
+    console.warn('[Firestore] Erro ao salvar pedido:', e.message);
+    return null;
+  }
+}
+
+async function fetchUserOrders(user) {
+  if (!user || !db) return [];
+  try {
+    const q = fsQuery(fsCollection(db, 'orders'), fsWhere('userId', '==', user.uid));
+    const snapshot = await getDocs(q);
+    const orders = snapshot.docs.map(d => {
+      const data = d.data();
+      const createdAt = data.createdAt?.toDate?.() || null;
+      return {
+        id: d.id.slice(-8).toUpperCase(),
+        firestoreId: d.id,
+        date: (createdAt || new Date()).toISOString(),
+        items: data.items || [],
+        total: data.total || 0,
+        status: data.status || 'pendente'
+      };
+    });
+    orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return orders;
+  } catch (e) {
+    console.warn('[Firestore] Erro ao buscar pedidos:', e.message);
+    return [];
+  }
 }
 
 /* ==========================================================
@@ -2357,7 +2396,6 @@ function updateDrawerCounts() {
   if (cartLink) cartLink.textContent = cartCount ? `Minha sacola (${cartCount})` : "Minha sacola";
 }
 
-/* ---------- DRAWER ---------- */
 function openLeftMenu() {
   closeOtherLayers("leftMenu");
   previousFocus = document.activeElement;
@@ -2428,9 +2466,6 @@ function handleAccountFromMenu() {
   }, 180);
 }
 
-/* ==========================================================
-   MEGA MENUS
-   ========================================================== */
 let megaCloseTimer = null;
 function positionNavDropdowns() {
   const nav = document.getElementById('mainNav');
@@ -2524,9 +2559,6 @@ function initMegaMenus() {
   window.addEventListener('scroll', positionNavDropdowns, { passive: true });
 }
 
-/* ==========================================================
-   USER DROPDOWN
-   ========================================================== */
 function renderUserDropdown() {
   const user = auth?.currentUser || null;
   const avatar = document.getElementById('userDropAvatar');
@@ -2642,9 +2674,6 @@ function setupMenuKeyboardNavigation() {
   });
 }
 
-/* ════════════════════════════════════════
-   RESTO DO CÓDIGO
-   ════════════════════════════════════════ */
 function getCurrentUserId() { const user = auth.currentUser; return user ? user.uid : 'guest'; }
 function loadCart() { try { cart = JSON.parse(localStorage.getItem('goldcrochet_cart_' + getCurrentUserId()) || '[]'); } catch(e) { cart = []; } }
 function saveCart() { localStorage.setItem('goldcrochet_cart_' + getCurrentUserId(), JSON.stringify(cart)); }
@@ -2672,10 +2701,8 @@ function updateFavCount() {
   updateDrawerCounts();
 }
 
-// ──────────────────────────────────────────
-// FIREBASE AUTH — listeners (v10 modular)
-// ──────────────────────────────────────────
-onAuthStateChanged(auth, () => {
+onAuthStateChanged(auth, (user) => {
+  if (user) { ensureUserDoc(user); }
   loadCart(); loadFavorites(); updateCartUI(); updateFavCount(); updateAuthUI();
   updateLeftMenuAccount();
   updateDrawerCounts();
@@ -2695,7 +2722,11 @@ function registerUser() {
   if (!name || !email || !password) { showToast('⚠️ Preencha todos os campos!', 'error'); return; }
   if (password.length < 6) { showToast('⚠️ Senha deve ter ao menos 6 caracteres!', 'error'); return; }
   createUserWithEmailAndPassword(auth, email, password)
-    .then(uc => updateProfile(uc.user, { displayName: name }))
+    .then(async uc => {
+      await updateProfile(uc.user, { displayName: name });
+      await ensureUserDoc(uc.user, name);
+      return uc;
+    })
     .then(() => { closeUserModal(); showToast(`🎉 Conta criada!`); })
     .catch(err => showToast('❌ ' + err.message, 'error'));
 }
@@ -2704,7 +2735,11 @@ function loginUser() {
   const password = document.getElementById('loginPassword').value.trim();
   if (!email || !password) { showToast('⚠️ Preencha todos os campos!', 'error'); return; }
   signInWithEmailAndPassword(auth, email, password)
-    .then(() => { closeUserModal(); showToast(`✅ Bem-vindo(a) de volta!`); })
+    .then(async () => {
+      await ensureUserDoc(auth.currentUser);
+      closeUserModal();
+      showToast(`✅ Bem-vindo(a) de volta!`);
+    })
     .catch(() => showToast('❌ E-mail ou senha incorretos!', 'error'));
 }
 function logoutUser() { signOut(auth).then(() => { showToast('👋 Você saiu da sua conta.'); if ($('page-conta')?.classList.contains('active')) showPage('inicio'); }); }
@@ -2747,7 +2782,6 @@ function toRaw(url) {
   return url;
 }
 
-/* ---------- SEARCH OVERLAY ---------- */
 function toggleSearchOverlay() {
   const el = document.getElementById('searchOverlay');
   if (el && el.classList.contains('open')) closeSearchOverlay(); else openSearchOverlay();
@@ -2924,9 +2958,6 @@ function initReveal() {
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
 }
 
-/* ==========================================================
-   CARROSSEL
-   ========================================================== */
 let carouselProducts = [];
 let carouselAll = [];
 let carouselIdx = 10;
@@ -3016,9 +3047,6 @@ function getPriceForCart(p) {
   return base;
 }
 
-/* ==========================================================
-   FILTROS DA PÁGINA PRODUTOS
-   ========================================================== */
 function setFilter(cat, gender) {
   currentFilter = cat || 'todos';
   currentGenderFilter = gender || null;
@@ -3101,7 +3129,6 @@ function renderProducts() {
   bindCardEvents(grid);
 }
 
-/* NOVIDADES */
 function renderNovidades() {
   const grid = document.getElementById('novidadesGrid');
   if (!grid) return;
@@ -3121,7 +3148,6 @@ function renderNovidades() {
 }
 function openBlogPost(id) { const post = blogPosts.find(p => p.id === id); if (!post) return; showToast(`📰 ${post.title}`); }
 
-// ALTERAÇÃO: setColecaoFilter agora usa data-filter (não textContent)
 function setColecaoFilter(filter) {
   currentColecaoFilter = filter;
   document.querySelectorAll('#colecoesFilterPills .filter-pill').forEach(p => {
@@ -3163,7 +3189,7 @@ function cardHtml(p,i) {
   return `
   <div class="product-card ${p.custom?'custom-card':''}" data-id="${p.id}" role="button" tabindex="0">
     <div class="product-img-square" style="background:${grads[i%grads.length]}">
-      ${hasImg?`<img src="${rawImg}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''} 
+      ${hasImg?`<img src="${rawImg}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''}
       ${!hasImg?`<div class="product-img-emoji">${p.emoji}</div>`:''}
       ${badgeLabel}
       <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
@@ -3210,9 +3236,6 @@ function clearSearch() {
   renderProducts();
 }
 
-/* ==========================================================
-   PÁGINA DE PRODUTO
-   ========================================================== */
 function openProductPage(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -3332,7 +3355,6 @@ function addToCartFromProductPage() {
   addToCart(currentProductPageId);
 }
 
-/* ---------- MODAL (compatibilidade) ---------- */
 function openModal(id) { openProductPage(id); }
 function closeModal() {
   const overlay = document.getElementById('modalOverlay');
@@ -3347,7 +3369,7 @@ function setGalleryImg() {}
 
 function addToCart(id) {
   const p = products.find(x=>x.id===id); if(!p) return;
-  const colsArr = selectedColors[id] || []; 
+  const colsArr = selectedColors[id] || [];
   const chosenColors = Array.isArray(colsArr) ? colsArr.filter(c => c !== null && c !== undefined) : [];
   const effectivePrice = getPriceForCart(p);
   const existing = cart.find(c => c.id === id && JSON.stringify(c.selectedColors) === JSON.stringify(chosenColors));
@@ -3390,36 +3412,59 @@ function toggleCart() {
   const p = document.getElementById('cartPanel');
   if (p.classList.contains('open')) closeCart(); else openCart();
 }
-function checkout() {
-  if(!cart.length) return;
+
+async function checkout() {
+  if (!cart.length) return;
   const user = auth.currentUser;
-  // Salvar pedido localmente (por usuário) para aparecer na aba Pedidos
+  const total = cart.reduce((s,c)=>(s+(c.price||0)*c.qty),0);
+
+  // Salva pedido no Firestore (se autenticado) + localStorage como fallback
   if (user) {
-    const order = {
-      id: 'GC' + Date.now().toString().slice(-8),
-      date: new Date().toISOString(),
-      items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price, selectedColors: c.selectedColors || [] })),
-      total: cart.reduce((s,c)=>s+(c.price||0)*c.qty,0)
-    };
+    const orderItems = cart.map(c => ({
+      id: c.id,
+      name: c.name,
+      qty: c.qty,
+      price: c.price,
+      selectedColors: c.selectedColors || []
+    }));
+
+    // Fallback local primeiro (para UX offline)
     try {
       const key = 'goldcrochet_orders_' + user.uid;
       const orders = JSON.parse(localStorage.getItem(key) || '[]');
-      orders.unshift(order);
+      orders.unshift({
+        id: 'GC' + Date.now().toString().slice(-8),
+        date: new Date().toISOString(),
+        items: orderItems,
+        total,
+        status: 'pendente'
+      });
       localStorage.setItem(key, JSON.stringify(orders));
     } catch(e) {}
+
+    // Firestore (não bloqueia o WhatsApp)
+    saveOrderToFirestore(user, { items: orderItems, total }).then(fsId => {
+      if (fsId) console.log('[Pedido salvo no Firestore]', fsId);
+    });
+
+    if (document.getElementById('page-conta')?.classList.contains('active')) {
+      renderUserPedidos();
+    }
   }
-  const lines = cart.map(c=>{ const colorStr = (c.selectedColors && c.selectedColors.length > 0) ? ` (${c.selectedColors.map(sc => sc.name).join(', ')})` : ''; return `• ${c.name}${colorStr} x${c.qty}${c.price?' — R$ '+parseFloat(c.price).toFixed(2).replace('.',','):''}`; });
-  const total = cart.reduce((s,c)=>s+(c.price||0)*c.qty,0);
+
+  const lines = cart.map(c=>{
+    const colorStr = (c.selectedColors && c.selectedColors.length > 0)
+      ? ` (${c.selectedColors.map(sc => sc.name).join(', ')})` : '';
+    return `• ${c.name}${colorStr} x${c.qty}${c.price?' — R$ '+parseFloat(c.price).toFixed(2).replace('.',','):''}`;
+  });
   const msg = `Olá! Gostaria de fazer um pedido na Gold Crochet 🧶\n\n${lines.join('\n')}\n\nTotal: R$ ${total.toFixed(2).replace('.',',')}\n\nAguardo confirmação! 😊`;
-  closeCart(); showToast('🚀 Abrindo WhatsApp...'); setTimeout(()=>window.open('https://wa.me/553182032351?text='+encodeURIComponent(msg),'_blank'),800);
+  closeCart(); showToast('🚀 Abrindo WhatsApp...');
+  setTimeout(()=>window.open('https://wa.me/553182032351?text='+encodeURIComponent(msg),'_blank'), 800);
 }
 
 function showToast(msg,type='') { const t=document.getElementById('toast'); t.textContent=msg; t.className='toast show '+(type||''); setTimeout(()=>t.classList.remove('show'),2800); }
 function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('goldcrochet_cookies','1'); }
 
-/* ==========================================================
-   PÁGINA MINHA CONTA (com abas)
-   ========================================================== */
 function openUserAccountPage() {
   closeUserDropdown();
   showPage('conta');
@@ -3437,7 +3482,8 @@ function renderUserAccount() {
   renderUserConfig();
   setUserTab(currentUserTab || 'pedidos');
 }
-function renderUserPedidos() {
+
+async function renderUserPedidos() {
   const el = document.getElementById('userTabPedidos');
   if (!el) return;
   const user = auth.currentUser;
@@ -3445,15 +3491,32 @@ function renderUserPedidos() {
     el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">🔒</span><h3>Entre para ver seus pedidos</h3><p>Faça login para acompanhar seus pedidos e histórico de compras.</p><button class="user-primary-btn" onclick="openUserModal()">Entrar na minha conta</button></div></div>`;
     return;
   }
-  let orders = [];
-  try { orders = JSON.parse(localStorage.getItem('goldcrochet_orders_' + user.uid) || '[]'); } catch(e) { orders = []; }
+
+  el.innerHTML = `<div class="user-tab-card"><p style="text-align:center;color:var(--text-mid);padding:20px;">Carregando pedidos...</p></div>`;
+
+  // Busca Firestore; fallback localStorage
+  let orders = await fetchUserOrders(user);
+  if (!orders.length) {
+    try { orders = JSON.parse(localStorage.getItem('goldcrochet_orders_' + user.uid) || '[]'); } catch(e) { orders = []; }
+  }
+
   if (!orders.length) {
     el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">📦</span><h3>Nenhum pedido ainda</h3><p>Quando você finalizar uma compra, seu pedido aparecerá aqui.</p><button class="user-primary-btn" onclick="showPage('produtos')">Explorar peças</button></div></div>`;
     return;
   }
+
+  const statusMap = {
+    pendente: '⏳ Pendente',
+    producao: '🧶 Em produção',
+    enviado: '📦 Enviado',
+    entregue: '✅ Entregue',
+    cancelado: '❌ Cancelado'
+  };
+
   el.innerHTML = orders.map(o => {
     const dateStr = new Date(o.date).toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
-    const itemsStr = o.items.map(i => `${i.qty}× ${i.name}`).join(' · ');
+    const itemsStr = (o.items || []).map(i => `${i.qty}× ${i.name}`).join(' · ');
+    const statusLabel = statusMap[o.status] || o.status || '⏳ Pendente';
     return `<div class="user-order-card">
       <div class="user-order-header">
         <span class="user-order-id">Pedido #${o.id}</span>
@@ -3461,9 +3524,11 @@ function renderUserPedidos() {
       </div>
       <div class="user-order-items">${itemsStr}</div>
       <div class="user-order-total">Total: R$ ${(o.total||0).toFixed(2).replace('.',',')}</div>
+      <div class="user-order-status">${statusLabel}</div>
     </div>`;
   }).join('');
 }
+
 function renderUserConta() {
   const el = document.getElementById('userTabConta');
   if (!el) return;
@@ -3498,7 +3563,11 @@ function saveUserConta() {
   const name = (document.getElementById('userContaName')?.value || '').trim();
   if (!name) { showToast('⚠️ Preencha o nome!', 'error'); return; }
   updateProfile(user, { displayName: name })
-    .then(() => { showToast('✅ Nome atualizado!'); updateLeftMenuAccount(); renderUserDropdown(); renderUserConta(); })
+    .then(async () => {
+      await ensureUserDoc(user, name);
+      showToast('✅ Nome atualizado!');
+      updateLeftMenuAccount(); renderUserDropdown(); renderUserConta();
+    })
     .catch(err => showToast('❌ ' + err.message, 'error'));
 }
 function renderUserConfig() {
@@ -3544,7 +3613,6 @@ function deleteUserAccount() {
 
 document.getElementById('searchOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('searchOverlay')) closeSearchOverlay(); });
 
-// ─── Boot do app ──────────────────────────────────────────────
 async function initApp() {
   setupLogos();
   setupMenuAria();
@@ -3586,44 +3654,28 @@ window.addEventListener('resize', () => {
   positionNavDropdowns();
 });
 
-/* ============================================================
-   EXPOR FUNÇÕES AO ESCOPO GLOBAL
-   (necessário porque type="module" isola o escopo;
-    os onclick="" inline do HTML precisam acessar window.fn)
-   ============================================================ */
 Object.assign(window, {
-  // Navegação / Drawer
   showPage, toggleLeftMenu, closeLeftMenu, navigateFromMenu,
   navigateFromSubMenu, togglePecasSubmenu, toggleCasaSubmenu,
   openSearchFromMenu, openFavoritesFromMenu, openCartFromMenu,
   handleAccountFromMenu, handleAccountAction, handleFavoritesAction,
-  // Mega menus
   megaGoTo, megaGoToCategory, megaGoToSection, megaGoToSectionGender,
   megaGoToCollection,
-  // Busca
   toggleSearchOverlay, openSearchOverlay, closeSearchOverlay,
   onSearchOverlay, clearSearchOverlayInput,
-  // Produtos / Filtros
   openProductPage, openModal, toggleFavorite, setFilter, setSectionFilter,
   setSectionGenderFilter, setCollectionFilter, clearAllFilters,
   setColecaoFilter, openCollection, onSearch, clearSearch,
-  // Carrinho
   toggleCart, closeCart, openCart, checkout, removeFromCart, changeQty,
   addToCart, addToCartFromModal, addToCartFromProductPage, openUserModalFromCart,
-  // Favoritos
   openFavorites, closeFavorites, openModalFromFav,
-  // Modal produto
   closeModal, switchMedia, galleryPrev, galleryNext,
-  // Usuário
   openUserModal, closeUserModal, showLogin, showRegister,
   loginUser, registerUser, logoutUser, openUserAccountPage,
   closeUserDropdown, openUserDropdown, toggleUserDropdown,
   setUserTab, saveUserConta, deleteUserAccount,
-  // Carrossel
   prevSlide, nextSlide,
-  // Blog / Coleções
   openBlogPost,
-  // Cookies
   acceptCookies
 });
 </script>
