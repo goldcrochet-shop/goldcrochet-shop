@@ -263,6 +263,18 @@
   .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(282px,1fr)); gap:26px; padding:30px 5% 60px; max-width:1240px; margin:0 auto; }
   .products-count { padding:0 5%; max-width:1240px; margin:12px auto 0; font-size:0.82rem; color:var(--text-mid); }
 
+  /* BLOG */
+  .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:26px; padding:30px 5% 60px; max-width:1240px; margin:0 auto; }
+  .blog-card { background:var(--white); border-radius:var(--radius-card); overflow:hidden; box-shadow:var(--shadow-card); border:1px solid rgba(212,175,55,0.12); cursor:pointer; transition:var(--transition); display:flex; flex-direction:column; }
+  .blog-card:hover { transform:translateY(-6px); box-shadow:0 18px 44px rgba(166,124,0,0.18); border-color:var(--gold-light); }
+  .blog-cover { width:100%; aspect-ratio:1.6; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--gold-pale),#f2debf); font-size:4.5rem; }
+  .blog-body { padding:22px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .blog-tag { display:inline-block; background:var(--gold-pale); color:var(--gold-deep); font-size:0.68rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:5px 12px; border-radius:var(--radius-pill); align-self:flex-start; }
+  .blog-card h3 { font-family:'DM Serif Display',serif; font-size:1.22rem; font-weight:400; color:var(--text-dark); line-height:1.3; }
+  .blog-card p { font-size:0.9rem; color:var(--text-mid); line-height:1.6; flex:1; }
+  .blog-date { font-size:0.75rem; color:var(--gray-mid); font-weight:600; letter-spacing:0.04em; text-transform:uppercase; }
+  .blog-read-more { font-size:0.78rem; font-weight:800; color:var(--gold-main); letter-spacing:0.1em; text-transform:uppercase; margin-top:4px; }
+
   /* CARD PRODUTO */
   .product-card { background:transparent; border-radius:0; overflow:visible; box-shadow:none; border:none; transition:transform 0.3s ease; position:relative; cursor:pointer; display:flex; flex-direction:column; }
   .product-card:hover { transform:translateY(-4px); }
@@ -554,6 +566,22 @@
     border-color:rgba(212,175,55,.18);
     color:var(--gold-deep);
     transform:translateX(2px);
+  }
+
+  .left-menu-sub-group { display:flex; flex-direction:column; gap:3px; padding:4px 0 8px; }
+  .left-menu-sub-label {
+    padding:4px 12px;
+    color:var(--gold-deep);
+    font-size:.66rem; font-weight:900;
+    letter-spacing:.1em; text-transform:uppercase;
+    opacity:.9;
+  }
+  .left-menu-sub-all {
+    margin-top:8px;
+    color:var(--gold-deep) !important;
+    font-weight:800 !important;
+    border-top:1px dashed rgba(212,175,55,.3) !important;
+    padding-top:10px !important;
   }
 
   .left-menu-account {
@@ -849,16 +877,16 @@
 
   /* Mega Casa Gold */
   .mega-menu-inner.mega-casa {
-    grid-template-columns: 1fr 1fr;
-    gap: 34px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 36px 5% 42px;
-    max-width: 1020px;
+    max-width: 1280px;
   }
   .mega-casa-block {
     background: rgba(255,255,255,0.7);
     border: 1px solid rgba(212,175,55,0.15);
     border-radius: 22px;
-    padding: 26px 28px;
+    padding: 24px 22px;
     cursor: pointer;
     transition: all .28s var(--spring);
     text-decoration: none;
@@ -873,14 +901,15 @@
   }
   .mega-casa-block h3 {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: var(--text-dark);
     margin-bottom: 8px;
+    line-height: 1.25;
   }
   .mega-casa-block p {
     color: var(--text-mid);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.55;
   }
   .mega-casa-block .mega-casa-arrow {
@@ -888,7 +917,7 @@
     margin-top: 14px;
     color: var(--gold-main);
     font-weight: 700;
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
@@ -1015,6 +1044,7 @@
   @media (max-width:1200px) {
     .nav-links a { padding:8px 12px; font-size:0.88rem; }
     .mega-menu-inner { grid-template-columns: repeat(4, 1fr) 220px; gap: 24px; }
+    .mega-menu-inner.mega-casa { grid-template-columns: repeat(4, 1fr); gap: 18px; }
   }
   @media (max-width:1000px) {
     .nav-links a { padding:7px 9px; font-size:0.83rem; }
@@ -1024,6 +1054,7 @@
     .about-visual { order:-1; }
     .about-stats { grid-template-columns:repeat(3,1fr); }
     .footer-grid { grid-template-columns:1fr 1fr; }
+    .mega-menu-inner.mega-casa { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   }
   @media (max-width:820px) {
     .nav-links { display:none; }
@@ -1220,6 +1251,16 @@
 <!-- MEGA MENU: CASA GOLD -->
 <div class="mega-menu" id="megaMenuCasa" role="region" aria-label="Menu Casa Gold">
   <div class="mega-menu-inner mega-casa">
+    <a class="mega-casa-block" onclick="megaGoTo('sustentabilidade');return false;">
+      <h3>Sustentabilidade</h3>
+      <p>Nosso compromisso com o consumo consciente, fios responsáveis e produção artesanal de baixo impacto.</p>
+      <span class="mega-casa-arrow">Conhecer →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('periodo-atemporal');return false;">
+      <h3>O período atemporal</h3>
+      <p>A relação entre o ciclo do ouro e a nossa visão de arte que atravessa gerações.</p>
+      <span class="mega-casa-arrow">Descobrir →</span>
+    </a>
     <a class="mega-casa-block" onclick="megaGoTo('sobre');return false;">
       <h3>Sobre Gold Crochet</h3>
       <p>A história da casa, nossa essência e cada ponto que nos trouxe até aqui.</p>
@@ -1263,33 +1304,9 @@
 
   <div class="left-menu-scroll" id="leftMenuScroll">
 
-    <!-- DESTAQUES -->
-    <nav class="left-menu-nav" aria-label="Destaques">
-      <a href="#" onclick="navigateFromMenu('produtos');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🛍️</span>
-        <span class="left-menu-link-text">Explore a moda</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('colecoes');return false;">
-        <span class="left-menu-icon" aria-hidden="true">⏳</span>
-        <span class="left-menu-link-text">O período atemporal</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('produtos');return false;">
-        <span class="left-menu-icon" aria-hidden="true">☀️</span>
-        <span class="left-menu-link-text">Seleção de verão</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('novidades');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🆕</span>
-        <span class="left-menu-link-text">Novidades</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-    </nav>
-
     <!-- NAVEGAÇÃO -->
     <div class="left-menu-section-label">Navegação</div>
-    <nav class="left-menu-nav" id="leftMenuNav" aria-label="Menu secundário">
+    <nav class="left-menu-nav" id="leftMenuNav" aria-label="Menu principal">
       <a href="#" id="left-nav-inicio" class="active" onclick="navigateFromMenu('inicio');return false;">
         <span class="left-menu-icon" aria-hidden="true">🏠</span>
         <span class="left-menu-link-text">Início</span>
@@ -1301,61 +1318,62 @@
         <span class="left-menu-link-arrow" aria-hidden="true">›</span>
       </a>
 
-      <!-- PEÇAS (com subseção) -->
+      <!-- PEÇAS (com subseção completa do mega menu) -->
       <a href="#" id="left-nav-produtos" class="has-sub" aria-expanded="false" aria-controls="leftMenuPecasSub" onclick="togglePecasSubmenu(event);return false;">
         <span class="left-menu-icon" aria-hidden="true">🧶</span>
         <span class="left-menu-link-text">Peças</span>
         <span class="left-menu-link-arrow" aria-hidden="true">›</span>
       </a>
       <div class="left-menu-sub" id="leftMenuPecasSub">
-        <a href="#" onclick="navigateFromSubMenu();return false;">Presentes</a>
-        <a href="#" onclick="navigateFromSubMenu();return false;">Mulheres</a>
-        <a href="#" onclick="navigateFromSubMenu();return false;">Homens</a>
-        <a href="#" onclick="navigateFromSubMenu();return false;">Crianças</a>
-        <a href="#" onclick="navigateFromSubMenu();return false;">Bolsas</a>
-        <a href="#" onclick="navigateFromSubMenu();return false;">Relógios &amp; Joias</a>
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Dia a Dia</span>
+          <a href="#" onclick="navigateFromSubMenu('roupas-noite');return false;">Roupas para noite</a>
+          <a href="#" onclick="navigateFromSubMenu('saias-vestidos');return false;">Saias e vestidos</a>
+          <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos');return false;">Jaquetas e casacos</a>
+          <a href="#" onclick="navigateFromSubMenu('tops');return false;">Tops</a>
+          <a href="#" onclick="navigateFromSubMenu('calcas');return false;">Calças</a>
+          <a href="#" onclick="navigateFromSubMenu('pequeninos');return false;">Pequeninos</a>
+        </div>
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Acessórios</span>
+          <a href="#" onclick="navigateFromSubMenu('bolsas');return false;">Bolsas</a>
+          <a href="#" onclick="navigateFromSubMenu('charms');return false;">Charms</a>
+        </div>
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Bijuterias</span>
+          <a href="#" onclick="navigateFromSubMenu('brincos');return false;">Brincos</a>
+          <a href="#" onclick="navigateFromSubMenu('colares');return false;">Colares</a>
+          <a href="#" onclick="navigateFromSubMenu('broches');return false;">Broches</a>
+          <a href="#" onclick="navigateFromSubMenu('braceletes');return false;">Braceletes</a>
+          <a href="#" onclick="navigateFromSubMenu('aneis');return false;">Anéis</a>
+        </div>
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Artigos para Casa</span>
+          <a href="#" onclick="navigateFromSubMenu('decoracoes');return false;">Decorações</a>
+          <a href="#" onclick="navigateFromSubMenu('mantas');return false;">Mantas &amp; Cobertores</a>
+          <a href="#" onclick="navigateFromSubMenu('amigurumi');return false;">Amigurumis</a>
+        </div>
+        <a href="#" class="left-menu-sub-all" onclick="navigateFromSubMenu();return false;">Ver tudo</a>
       </div>
 
       <a href="#" id="left-nav-novidades" onclick="navigateFromMenu('novidades');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🆕</span>
+        <span class="left-menu-icon" aria-hidden="true">📰</span>
         <span class="left-menu-link-text">Novidades</span>
         <span class="left-menu-link-arrow" aria-hidden="true">›</span>
       </a>
-      <a href="#" id="left-nav-sobre" onclick="navigateFromMenu('sobre');return false;">
+
+      <!-- CASA GOLD (com subseção) -->
+      <a href="#" id="left-nav-sobre" class="has-sub" aria-expanded="false" aria-controls="leftMenuCasaSub" onclick="toggleCasaSubmenu(event);return false;">
         <span class="left-menu-icon" aria-hidden="true">🏛️</span>
         <span class="left-menu-link-text">Casa Gold</span>
         <span class="left-menu-link-arrow" aria-hidden="true">›</span>
       </a>
-      <a href="#" id="left-nav-colaboracoes" onclick="navigateFromMenu('colaboracoes');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🎨</span>
-        <span class="left-menu-link-text">Colaborações</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('sobre');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🪡</span>
-        <span class="left-menu-link-text">Atelier</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-    </nav>
-
-    <!-- DESCUBRA -->
-    <div class="left-menu-section-label">Descubra</div>
-    <nav class="left-menu-nav" aria-label="Descubra">
-      <a href="#" onclick="navigateFromMenu('sobre');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🌍</span>
-        <span class="left-menu-link-text">Mundo</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('colecoes');return false;">
-        <span class="left-menu-icon" aria-hidden="true">👑</span>
-        <span class="left-menu-link-text">Alta Moda</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
-      <a href="#" onclick="navigateFromMenu('sobre');return false;">
-        <span class="left-menu-icon" aria-hidden="true">🌱</span>
-        <span class="left-menu-link-text">Sustentabilidade</span>
-        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
-      </a>
+      <div class="left-menu-sub" id="leftMenuCasaSub">
+        <a href="#" onclick="navigateFromMenu('sustentabilidade');return false;">Sustentabilidade</a>
+        <a href="#" onclick="navigateFromMenu('periodo-atemporal');return false;">O período atemporal</a>
+        <a href="#" onclick="navigateFromMenu('sobre');return false;">Sobre Gold Crochet</a>
+        <a href="#" onclick="navigateFromMenu('colaboracoes');return false;">Colaborações &amp; Artistas</a>
+      </div>
     </nav>
 
     <!-- ACESSO RÁPIDO -->
@@ -1548,20 +1566,17 @@
 
 <section class="page" id="page-produtos">
   <div class="products-hero"><h1>Nossas Peças</h1><p>Amigurumis, bolsas, mantas e peças personalizadas.</p></div>
-  <div class="products-controls">
-    <div class="search-bar">
-      <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="Buscar peça..." oninput="onSearch(this.value)">
-      <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca">✕</button>
-    </div>
-  </div>
   <div class="products-count" id="productsCount"></div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
+<!-- NOVIDADES — BLOG -->
 <section class="page" id="page-novidades">
-  <div class="products-hero"><h1>Novidades</h1><p>As últimas criações da Gold Crochet.</p></div>
-  <div class="products-grid" id="novidadesGrid"></div>
+  <div class="products-hero">
+    <h1>Novidades</h1>
+    <p>As últimas notícias da Gold Crochet</p>
+  </div>
+  <div class="blog-grid" id="novidadesGrid"></div>
 </section>
 
 <!-- CASA GOLD — PÁGINA SOBRE -->
@@ -1594,6 +1609,75 @@
         <div class="timeline-item reveal"><div class="timeline-year">Consolidação</div><div class="timeline-text">Entrada em fios premium e acabamentos exclusivos que definem nossa identidade.</div></div>
         <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Loja online oficial e centenas de peças entregues em todo o Brasil.</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — PÁGINA SUSTENTABILIDADE -->
+<section class="page" id="page-sustentabilidade">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Sustentabilidade & <span>Cuidado</span></h1>
+        <p>Na Gold Crochet, acreditamos que criar é um ato de responsabilidade. Cada peça é pensada para durar, para atravessar estações e ser passada adiante — e isso só é possível quando respeitamos o tempo, os materiais e as mãos que trabalham.</p>
+        <p>Escolhemos fios de fornecedores conscientes, evitamos excesso de produção e priorizamos o feito sob demanda, para que nada seja desperdiçado. Nosso compromisso é com um crochê que cuida do planeta tanto quanto cuida das pessoas.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Conhecer peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgSust" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">100%</div><div class="stat-label">Feito à Mão</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">0%</div><div class="stat-label">Desperdício de Fio</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Anos de Durabilidade</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Nossos <span>Princípios</span></h2>
+      <p>O crochê artesanal é, por natureza, uma prática sustentável: é lento, é local, é humano. Cada peça nasce sob demanda e carrega a história de quem a fez.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Produção Consciente</div><div class="timeline-text">Não produzimos em massa. Cada peça é iniciada apenas quando existe uma pessoa esperando por ela.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Fios Selecionados</div><div class="timeline-text">Trabalhamos com fios que valorizam fibras naturais, tingimento consciente e durabilidade.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Sem Desperdício</div><div class="timeline-text">Restos de fio viram detalhes, amigurumis ou pequenos projetos — nada é descartado.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Para a Vida</div><div class="timeline-text">Acreditamos em peças que atravessam gerações e se tornam memórias afetivas.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — PÁGINA O PERÍODO ATEMPORAL -->
+<section class="page" id="page-periodo-atemporal">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>O <span>Período Atemporal</span></h1>
+        <p>O ouro nunca envelhece. Ele atravessa civilizações, permanece brilhando mesmo quando tudo ao redor muda. É essa mesma ideia de permanência que buscamos em cada peça da Gold Crochet: criar objetos que sobrevivem ao tempo, que carregam história e que se tornam parte da vida de quem os recebe.</p>
+        <p>A relação entre o ciclo do ouro — sua extração paciente, seu brilho duradouro, sua capacidade de ser transformado sem perder a essência — espelha o nosso fazer artesanal. Cada ponto, como cada pepita, é único. Cada peça, como o ouro, é feita para durar.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Explorar peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgPeriodo" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Permanência</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">1</div><div class="stat-label">Peça, Uma História</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">♾</div><div class="stat-label">Gerações Conectadas</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>O Fio e o <span>Ouro</span></h2>
+      <p>Assim como o ouro, o crochê é fruto de paciência. Não há pressa no fio, assim como não há pressa na terra que guarda o metal precioso. Ambos só se revelam a quem espera.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Origem</div><div class="timeline-text">O ouro nasce profundo, escondido, silencioso. O fio também — primeiro é fibra, depois é história.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Transformação</div><div class="timeline-text">O ouro é trabalhado, aquecido, moldado. O fio é torcido, laçado, transformado em ponto.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Permanência</div><div class="timeline-text">O ouro resiste. A peça também: feita para durar e ser passada adiante.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Eternidade</div><div class="timeline-text">Toda peça de crochê carrega um pedaço de quem a fez — como o ouro carrega a terra de onde veio.</div></div>
+      </div>
+      <p style="margin-top:24px">Convidamos você a fazer parte desse ciclo: escolher uma peça que não é apenas objeto, mas memória em construção.</p>
     </div>
   </div>
 </section>
@@ -1700,8 +1784,19 @@ const defaultCollections = [
   { id:'dia-a-dia', name:'Coleção Maré de Ouro', desc:'Peças versáteis inspiradas no balanço do mar e no brilho do ouro.', emoji:'🌊', filter:'Dia a Dia' }
 ];
 
+// Posts do blog de novidades
+const defaultBlogPosts = [
+  { id: 1, title: 'Nova Coleção Maré de Ouro', date: 'Março 2026', emoji: '🌊', tag: 'Lançamento', excerpt: 'Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas em tons dourados e azuis.' },
+  { id: 2, title: 'Por trás dos pontos: o Atelier', date: 'Fevereiro 2026', emoji: '🧶', tag: 'Bastidores', excerpt: 'Um passeio pelo nosso atelier, onde cada peça nasce do cuidado, da paciência e do amor pelo crochê artesanal.' },
+  { id: 3, title: 'Colaboração com artistas locais', date: 'Janeiro 2026', emoji: '🎨', tag: 'Colaboração', excerpt: 'Convidamos artistas da nossa região para criar peças exclusivas que misturam tradição e contemporaneidade.' },
+  { id: 4, title: 'Guia de cuidados com o crochê', date: 'Dezembro 2025', emoji: '💛', tag: 'Dicas', excerpt: 'Aprenda a lavar, secar e guardar suas peças de crochê para que durem por muitos anos.' },
+  { id: 5, title: 'Fios premium: nossa seleção', date: 'Novembro 2025', emoji: '🧵', tag: 'Materiais', excerpt: 'Conheça os fios que escolhemos a dedo para garantir conforto, durabilidade e acabamento impecável.' },
+  { id: 6, title: 'Personalize sua peça dos sonhos', date: 'Outubro 2025', emoji: '✨', tag: 'Personalização', excerpt: 'Cores, tamanhos, detalhes... veja como criar uma peça sob medida com a Gold Crochet.' }
+];
+
 let products = defaultProducts;
 let collections = defaultCollections;
+let blogPosts = defaultBlogPosts;
 let categories = [
   'amigurumi','bolsas','mantas','vestuario','personalizado',
   'roupas-noite','saias-vestidos','jaquetas-casacos','tops','calcas','pequeninos',
@@ -1917,8 +2012,26 @@ function togglePecasSubmenu(event) {
   toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 
+/* SUBMENU "CASA GOLD" */
+function toggleCasaSubmenu(event) {
+  if (event) event.preventDefault();
+  const sub = document.getElementById('leftMenuCasaSub');
+  const toggle = document.getElementById('left-nav-sobre');
+  if (!sub || !toggle) return;
+  const isOpen = sub.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
 function navigateFromMenu(page) { closeLeftMenu(); setTimeout(() => showPage(page), 120); }
-function navigateFromSubMenu() { closeLeftMenu(); setTimeout(() => showPage('produtos'), 120); }
+function navigateFromSubMenu(category) {
+  closeLeftMenu();
+  setTimeout(() => {
+    showPage('produtos');
+    if (category) setFilter(category);
+    else setFilter('todos');
+  }, 120);
+}
 function openSearchFromMenu() { closeLeftMenu(); setTimeout(() => openSearchOverlay(), 160); }
 function openFavoritesFromMenu() { closeLeftMenu(); setTimeout(() => handleFavoritesAction(), 160); }
 function openCartFromMenu() { closeLeftMenu(); setTimeout(() => openCart(), 160); }
@@ -2301,9 +2414,14 @@ function setupLogos() {
   const navImg = document.getElementById('navLogoImg');
   const aboutImg = document.getElementById('aboutLogoImg');
   const aboutImgColab = document.getElementById('aboutLogoImgColab');
+  const aboutImgSust = document.getElementById('aboutLogoImgSust');
+  const aboutImgPeriodo = document.getElementById('aboutLogoImgPeriodo');
   if (navImg) navImg.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<span class="nav-logo-text-fallback">Gold Crochet</span>'; });
-  if (aboutImg) aboutImg.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; });
-  if (aboutImgColab) aboutImgColab.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; });
+  const fallback = function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; };
+  if (aboutImg) aboutImg.addEventListener('error', fallback);
+  if (aboutImgColab) aboutImgColab.addEventListener('error', fallback);
+  if (aboutImgSust) aboutImgSust.addEventListener('error', fallback);
+  if (aboutImgPeriodo) aboutImgPeriodo.addEventListener('error', fallback);
 }
 function toRaw(url) {
   if (!url) return '';
@@ -2427,6 +2545,7 @@ async function loadData() {
       if (data.categories && data.categories.length) categories = data.categories;
       if (data.badges && data.badges.length) badges = data.badges;
       if (data.globalColors && data.globalColors.length) globalColors = data.globalColors;
+      if (data.blogPosts && data.blogPosts.length) blogPosts = data.blogPosts;
       if (data.config) siteConfig = data.config;
       try {
         localStorage.setItem('goldcrochet_products', JSON.stringify(products));
@@ -2584,12 +2703,31 @@ function renderProducts() {
   grid.innerHTML = filtered.map((p,i) => cardHtml(p,i)).join('');
   bindCardEvents(grid);
 }
+
+/* NOVIDADES — BLOG */
 function renderNovidades() {
   const grid = document.getElementById('novidadesGrid');
-  const novidades = products.filter(p => p.badge === 'Novo' || p.badge === 'Destaque');
-  grid.innerHTML = novidades.length ? novidades.map((p,i)=>cardHtml(p,i)).join('') : '<div class="no-results"><span>✨</span><p>Nenhuma novidade ainda.</p></div>';
-  bindCardEvents(grid);
+  if (!grid) return;
+  if (!blogPosts.length) { grid.innerHTML = '<div class="no-results"><span>📰</span><p>Nenhuma novidade ainda.</p></div>'; return; }
+  grid.innerHTML = blogPosts.map(post => `
+    <article class="blog-card" onclick="openBlogPost(${post.id})" role="button" tabindex="0">
+      <div class="blog-cover">${post.emoji}</div>
+      <div class="blog-body">
+        <span class="blog-tag">${post.tag}</span>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <div class="blog-date">${post.date}</div>
+        <span class="blog-read-more">Ler mais →</span>
+      </div>
+    </article>
+  `).join('');
 }
+function openBlogPost(id) {
+  const post = blogPosts.find(p => p.id === id);
+  if (!post) return;
+  showToast(`📰 ${post.title}`);
+}
+
 function setColecaoFilter(filter) {
   currentColecaoFilter = filter;
   document.querySelectorAll('#colecoesFilterPills .filter-pill').forEach(p => p.classList.toggle('active', p.textContent === filter || (filter === 'todas' && p.textContent === 'Todas')));
@@ -2643,8 +2781,6 @@ function handleCardClick(e) {
   const pid = parseInt(this.dataset?.id); if (pid) openModal(pid);
 }
 function renderFilters() {
-  // As pills de categoria foram removidas da página de Peças.
-  // Mantemos esta função apenas como guarda para não quebrar chamadas existentes.
   const container = document.getElementById('filterPills');
   if (!container) return;
   let html = `<button class="filter-pill ${currentFilter === 'todos' ? 'active' : ''}" onclick="setFilter('todos')">Todos</button>`;
@@ -2656,8 +2792,21 @@ function setFilter(cat) {
   renderFilters();
   renderProducts();
 }
-function onSearch(val) { clearTimeout(searchTimeout); document.getElementById('searchClear').classList.toggle('visible', !!val); searchTimeout = setTimeout(renderProducts, 280); }
-function clearSearch() { document.getElementById('searchInput').value = ''; document.getElementById('searchClear').classList.remove('visible'); renderProducts(); }
+function onSearch(val) {
+  const si = document.getElementById('searchInput');
+  if (!si) return;
+  clearTimeout(searchTimeout);
+  const clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.classList.toggle('visible', !!val);
+  searchTimeout = setTimeout(renderProducts, 280);
+}
+function clearSearch() {
+  const si = document.getElementById('searchInput');
+  if (si) si.value = '';
+  const clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.classList.remove('visible');
+  renderProducts();
+}
 
 function openModal(id) {
   const p = products.find(x=>x.id===id); if (!p) return;
