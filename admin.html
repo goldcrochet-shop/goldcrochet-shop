@@ -817,11 +817,17 @@ const firebaseConfig = {
   measurementId: "G-GHHVJHSMJH"
 };
 let auth = null;
+let db = null;
 try {
   if (typeof firebase === 'undefined') throw new Error('SDK Firebase não carregado');
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
-  console.log('✅ Firebase inicializado');
+  if (firebase.firestore) {
+    db = firebase.firestore();
+    console.log('✅ Firebase + Firestore inicializados');
+  } else {
+    console.warn('⚠️ Firestore SDK não carregado');
+  }
 } catch(e) {
   console.warn('⚠️ Firebase offline:', e.message);
   auth = {
