@@ -8,15 +8,7 @@
       "desc": "Envie sua ideia, cor e tamanho — criamos sua peça exclusiva em crochê, do zero, com todo cuidado artesanal.",
       "price": null,
       "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            }
-          ]
-        }
+        { "name": "Cores disponíveis", "colors": [{ "name": "Dourado", "hex": "#cda434" }] }
       ],
       "badge": "Sob Medida",
       "discount": 0,
@@ -24,19 +16,14 @@
       "image": "",
       "custom": true,
       "gallery": [],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        }
-      ]
+      "colors": [{ "name": "Dourado", "hex": "#cda434" }]
     },
     {
       "id": 1001,
       "name": "Amigurumi Ursinho 🧸",
       "emoji": "🧸",
       "desc": "Ursinho de crochê feito totalmente à mão, com acabamento macio e detalhes bordados. Perfeito para presentear ou colecionar.",
-      "category": "Amigurumi",
+      "category": "amigurumi",
       "price": 65,
       "badge": "Popular",
       "discount": 0,
@@ -44,233 +31,511 @@
       "image": "",
       "gallery": [],
       "colorSections": [
-        {
-          "name": "Cor do corpo",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marrom",
-              "hex": "#6b4c2a"
-            }
-          ]
-        }
+        { "name": "Cor do corpo", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marrom", "hex": "#6b4c2a" }
+        ]}
       ],
       "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Marrom",
-          "hex": "#6b4c2a"
-        }
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Marrom", "hex": "#6b4c2a" }
       ]
     },
     {
       "id": 1002,
-      "name": "Bolsa Trançada de Crochê 👜",
-      "emoji": "👜",
-      "desc": "Bolsa artesanal em crochê com trama trançada e alça reforçada. Elegante, resistente e feita sob encomenda.",
-      "category": "Bolsas",
-      "price": 145,
-      "badge": "Exclusivo",
+      "name": "Amigurumi Coelhinho 🐰",
+      "emoji": "🐰",
+      "desc": "Coelhinho delicado em crochê, com orelhinhas longas e detalhes em rosa. Um mimo fofo para decorar ou presentear.",
+      "category": "amigurumi",
+      "price": 72,
+      "badge": "Novo",
       "discount": 0,
-      "model3d": "",
       "image": "",
       "gallery": [],
       "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
+        { "name": "Cor do corpo", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Rosé", "hex": "#c98a97" },
+          { "name": "Cinza", "hex": "#b8b0a4" }
+        ]}
       ],
       "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        },
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        }
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Rosé", "hex": "#c98a97" }
       ]
     },
     {
       "id": 1003,
+      "name": "Bolsa Trançada de Crochê 👜",
+      "emoji": "👜",
+      "desc": "Bolsa artesanal em crochê com trama trançada e alça reforçada. Elegante, resistente e feita sob encomenda.",
+      "category": "bolsas",
+      "price": 145,
+      "badge": "Exclusivo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Preto", "hex": "#2c2c2c" },
+          { "name": "Marfim", "hex": "#f4ead0" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Preto", "hex": "#2c2c2c" },
+        { "name": "Marfim", "hex": "#f4ead0" }
+      ]
+    },
+    {
+      "id": 1004,
+      "name": "Clutch de Festa ✨",
+      "emoji": "👛",
+      "desc": "Clutch delicada em crochê fino, com fecho dourado e alça de corrente. Perfeita para ocasiões especiais.",
+      "category": "bolsas",
+      "price": 175,
+      "badge": "Destaque",
+      "discount": 10,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Preto", "hex": "#2c2c2c" },
+          { "name": "Vinho", "hex": "#7a2437" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Vinho", "hex": "#7a2437" }
+      ]
+    },
+    {
+      "id": 1005,
       "name": "Manta de Crochê Concha 🛋️",
       "emoji": "🛋️",
       "desc": "Manta artesanal em ponto concha, macia e aconchegante. Uma peça atemporal para decorar e aquecer com estilo.",
-      "category": "Mantas",
+      "category": "mantas",
       "price": 280,
       "badge": "",
-      "discount": 10,
-      "model3d": "",
+      "discount": 0,
       "image": "",
       "gallery": [],
       "colorSections": [],
       "colors": []
     },
     {
-      "id": 1004,
-      "name": "Porta-Copos em Crochê (Jogo de 4) ☕",
-      "emoji": "☕",
-      "desc": "Jogo com 4 porta-copos artesanais em crochê, perfeitos para a mesa ou como mimo de presente.",
-      "category": "Casa",
-      "price": 38,
+      "id": 1006,
+      "name": "Manta Bebê Nuvem ☁️",
+      "emoji": "☁️",
+      "desc": "Manta suave para bebê, em fio antialérgico e ponto delicado. Acompanha embalagem especial para presente.",
+      "category": "mantas",
+      "price": 195,
       "badge": "Novo",
       "discount": 0,
-      "model3d": "",
       "image": "",
       "gallery": [],
       "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Azul Bebê", "hex": "#b8d4e8" },
+          { "name": "Rosé", "hex": "#f4c9d4" }
+        ]}
       ],
       "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        }
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Azul Bebê", "hex": "#b8d4e8" }
       ]
     },
     {
-      "id": 1005,
+      "id": 1007,
       "name": "Colete de Crochê Feminino 🧥",
       "emoji": "🧥",
-      "desc": "Colete tricô/crochê com caimento elegante, ideal para compor looks sofisticados em qualquer estação.",
-      "category": "Vestuário",
+      "desc": "Colete em crochê com caimento elegante, ideal para compor looks sofisticados em qualquer estação.",
+      "category": "vestuario",
       "price": 195,
       "badge": "Edição Limitada",
       "discount": 0,
-      "model3d": "",
       "image": "",
       "gallery": [],
       "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#c98a97"
-            }
-          ]
-        }
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Preto", "hex": "#2c2c2c" },
+          { "name": "Rosé", "hex": "#c98a97" }
+        ]}
       ],
       "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        },
-        {
-          "name": "Rosé",
-          "hex": "#c98a97"
-        }
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Preto", "hex": "#2c2c2c" }
       ]
     },
     {
-      "id": 1006,
+      "id": 1008,
+      "name": "Top Cropped Dourado ⭐",
+      "emoji": "👚",
+      "desc": "Top cropped em crochê com detalhes em ponto renda. Leve, fresco e perfeito para o verão.",
+      "category": "tops",
+      "price": 115,
+      "badge": "Novo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Preto", "hex": "#2c2c2c" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Preto", "hex": "#2c2c2c" }
+      ]
+    },
+    {
+      "id": 1009,
+      "name": "Vestido Longo Boho 👗",
+      "emoji": "👗",
+      "desc": "Vestido longo em crochê com ponto vazado e caimento fluido. Uma peça marcante para dias especiais.",
+      "category": "saias-vestidos",
+      "price": 380,
+      "badge": "Exclusivo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Preto", "hex": "#2c2c2c" },
+          { "name": "Terracota", "hex": "#b96b4a" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Terracota", "hex": "#b96b4a" }
+      ]
+    },
+    {
+      "id": 1010,
+      "name": "Cardigan Aconchego 🧣",
+      "emoji": "🧣",
+      "desc": "Cardigan aberto em crochê grosso, com bolsos e mangas amplas. Perfeito para os dias frios.",
+      "category": "jaquetas-casacos",
+      "price": 295,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Marrom", "hex": "#6b4c2a" },
+          { "name": "Verde Oliva", "hex": "#6b7a3a" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Marrom", "hex": "#6b4c2a" }
+      ]
+    },
+    {
+      "id": 1011,
+      "name": "Calça Wide Leg Crochê 🩳",
+      "emoji": "🩳",
+      "desc": "Calça wide leg em crochê com cós elástico. Confortável, moderna e cheia de personalidade.",
+      "category": "calcas",
+      "price": 245,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Preto", "hex": "#2c2c2c" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Marfim", "hex": "#f4ead0" },
+        { "name": "Preto", "hex": "#2c2c2c" }
+      ]
+    },
+    {
+      "id": 1012,
+      "name": "Macacão Bebê Nuvem 🍼",
+      "emoji": "🍼",
+      "desc": "Macacãozinho de bebê em crochê macio, com botões frontais. Fofo, quentinho e cheio de charme.",
+      "category": "bebe",
+      "price": 145,
+      "badge": "Novo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Azul Bebê", "hex": "#b8d4e8" },
+          { "name": "Rosé", "hex": "#f4c9d4" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Marfim", "hex": "#f4ead0" }
+      ]
+    },
+    {
+      "id": 1013,
+      "name": "Vestido Infantil Flor 🌸",
+      "emoji": "🌸",
+      "desc": "Vestidinho de crochê para meninas, com detalhes em flor e laço. Uma graça para ocasiões especiais.",
+      "category": "garotas",
+      "price": 165,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Rosé", "hex": "#f4c9d4" },
+          { "name": "Marfim", "hex": "#f4ead0" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Rosé", "hex": "#f4c9d4" }
+      ]
+    },
+    {
+      "id": 1014,
+      "name": "Blusa Menino Marinheiro ⚓",
+      "emoji": "⚓",
+      "desc": "Blusa de crochê para meninos, com gola marinheira e listras. Clássica e cheia de estilo.",
+      "category": "garotos",
+      "price": 135,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Azul Marinho", "hex": "#2a3a5a" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Azul Marinho", "hex": "#2a3a5a" }
+      ]
+    },
+    {
+      "id": 1015,
+      "name": "Kit Presente Bebê 🎁",
+      "emoji": "🎁",
+      "desc": "Kit com manta, macacão e sapatinho em crochê, embalado em caixa especial. O presente perfeito para recém-nascidos.",
+      "category": "presentes",
+      "price": 320,
+      "badge": "Destaque",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Azul Bebê", "hex": "#b8d4e8" },
+          { "name": "Rosé", "hex": "#f4c9d4" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Marfim", "hex": "#f4ead0" }
+      ]
+    },
+    {
+      "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
       "desc": "Chaveiro delicado em formato de flor, feito em crochê. Um mimo perfeito para bolsas, mochilas e presentes.",
-      "category": "bolsas",
+      "category": "charms",
       "price": 22,
       "badge": "",
       "discount": 0,
-      "model3d": "",
       "image": "",
       "gallery": [],
-      "colorSections": [],
-      "colors": [],
-      "prod_time": "",
-      "material": ""
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Rosé", "hex": "#f4c9d4" },
+          { "name": "Marfim", "hex": "#f4ead0" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" }
+      ]
+    },
+    {
+      "id": 1017,
+      "name": "Brinco Argola Dourada 💛",
+      "emoji": "💛",
+      "desc": "Brinco argola em crochê fino, com fio dourado. Leve, elegante e cheio de personalidade.",
+      "category": "brincos",
+      "price": 35,
+      "badge": "Novo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Preto", "hex": "#2c2c2c" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" }
+      ]
+    },
+    {
+      "id": 1018,
+      "name": "Colar Dourado Trançado 📿",
+      "emoji": "📿",
+      "desc": "Colar de crochê com cordão trançado e pingente dourado. Um toque artesanal em qualquer look.",
+      "category": "colares",
+      "price": 55,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marfim", "hex": "#f4ead0" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" }
+      ]
+    },
+    {
+      "id": 1019,
+      "name": "Broche Flor de Crochê 🌺",
+      "emoji": "🌺",
+      "desc": "Broche em formato de flor, feito à mão em crochê fino. Perfeito para jaquetas, bolsas e blazers.",
+      "category": "broches",
+      "price": 28,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Rosé", "hex": "#f4c9d4" },
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Vinho", "hex": "#7a2437" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Rosé", "hex": "#f4c9d4" }
+      ]
+    },
+    {
+      "id": 1020,
+      "name": "Bracelete Trançado ⭕",
+      "emoji": "⭕",
+      "desc": "Bracelete em crochê trançado, com fecho ajustável. Leve, versátil e feito para durar.",
+      "category": "braceletes",
+      "price": 42,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Preto", "hex": "#2c2c2c" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" }
+      ]
+    },
+    {
+      "id": 1021,
+      "name": "Anel de Crochê Minimalista 💍",
+      "emoji": "💍",
+      "desc": "Anel minimalista em crochê fino, com pequeno detalhe dourado. Delicado e cheio de charme.",
+      "category": "aneis",
+      "price": 18,
+      "badge": "",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marfim", "hex": "#f4ead0" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" }
+      ]
+    },
+    {
+      "id": 1022,
+      "name": "Porta-Copos em Crochê (Jogo de 4) ☕",
+      "emoji": "☕",
+      "desc": "Jogo com 4 porta-copos artesanais em crochê, perfeitos para a mesa ou como mimo de presente.",
+      "category": "decoracoes",
+      "price": 38,
+      "badge": "Novo",
+      "discount": 0,
+      "image": "",
+      "gallery": [],
+      "colorSections": [
+        { "name": "Cores disponíveis", "colors": [
+          { "name": "Dourado", "hex": "#cda434" },
+          { "name": "Marfim", "hex": "#f4ead0" },
+          { "name": "Terracota", "hex": "#b96b4a" }
+        ]}
+      ],
+      "colors": [
+        { "name": "Dourado", "hex": "#cda434" },
+        { "name": "Terracota", "hex": "#b96b4a" }
+      ]
     }
   ],
   "categories": [
-    "amigurumi",
-    "bolsas",
-    "mantas",
-    "vestuario",
-    "personalizado",
-    "roupas-noite",
-    "saias-vestidos",
-    "jaquetas-casacos",
-    "tops",
-    "calcas",
-    "pequeninos",
-    "charms",
-    "brincos",
-    "colares",
-    "broches",
-    "braceletes",
-    "aneis",
+    "amigurumi","bolsas","mantas","vestuario","personalizado",
+    "roupas-noite","saias-vestidos","jaquetas-casacos","tops","calcas",
+    "pequeninos","bebe","garotas","garotos","presentes",
+    "charms","brincos","colares","broches","braceletes","aneis",
     "decoracoes"
   ],
   "badges": [
-    "Novo",
-    "Destaque",
-    "Popular",
-    "Exclusivo",
-    "Sob Medida"
+    "Novo","Destaque","Popular","Exclusivo","Sob Medida","Edição Limitada"
   ],
-  "globalColors": [],
-  "config": {},
+  "globalColors": [
+    { "name": "Dourado Gold", "hex": "#cda434", "priceAdd": 0 },
+    { "name": "Marfim", "hex": "#f4ead0", "priceAdd": 0 },
+    { "name": "Preto", "hex": "#2c2c2c", "priceAdd": 0 },
+    { "name": "Rosé", "hex": "#f4c9d4", "priceAdd": 0 },
+    { "name": "Vinho", "hex": "#7a2437", "priceAdd": 2 }
+  ],
+  "blogPosts": [
+    { "id": 1, "title": "Nova Coleção Maré de Ouro", "date": "Março 2026", "emoji": "🌊", "tag": "Lançamento", "excerpt": "Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas em tons dourados e azuis." },
+    { "id": 2, "title": "Por trás dos pontos: o Atelier", "date": "Fevereiro 2026", "emoji": "🧶", "tag": "Bastidores", "excerpt": "Um passeio pelo nosso atelier, onde cada peça nasce do cuidado, da paciência e do amor pelo crochê artesanal." },
+    { "id": 3, "title": "Colaboração com artistas locais", "date": "Janeiro 2026", "emoji": "🎨", "tag": "Colaboração", "excerpt": "Convidamos artistas da nossa região para criar peças exclusivas que misturam tradição e contemporaneidade." },
+    { "id": 4, "title": "Guia de cuidados com o crochê", "date": "Dezembro 2025", "emoji": "💛", "tag": "Dicas", "excerpt": "Aprenda a lavar, secar e guardar suas peças de crochê para que durem por muitos anos." },
+    { "id": 5, "title": "Fios premium: nossa seleção", "date": "Novembro 2025", "emoji": "🧵", "tag": "Materiais", "excerpt": "Conheça os fios que escolhemos a dedo para garantir conforto, durabilidade e acabamento impecável." },
+    { "id": 6, "title": "Personalize sua peça dos sonhos", "date": "Outubro 2025", "emoji": "✨", "tag": "Personalização", "excerpt": "Cores, tamanhos, detalhes... veja como criar uma peça sob medida com a Gold Crochet." }
+  ],
+  "config": {
+    "hero_title": "Elegância que se <em>Tece</em><br>à Mão",
+    "hero_subtitle": "Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.",
+    "instagram": "https://instagram.com/goldc.rochet",
+    "email": "rayssacrochet1404@gmail.com"
+  },
   "_meta": {
-    "updated": "2026-09-20T01:53:49.046Z",
-    "version": "2.0"
+    "updated": "2026-09-20T02:00:00.000Z",
+    "version": "3.0"
   }
 }
