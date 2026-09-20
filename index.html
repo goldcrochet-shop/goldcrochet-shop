@@ -1144,4 +1144,2488 @@
   .user-dropdown-sub { margin-top: 3px; font-size: 0.78rem; color: var(--text-mid); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .user-dropdown-actions { display: flex; flex-direction: column; gap: 8px; }
   .user-drop-btn { width: 100%; min-height: 44px; border: 0; border-radius: var(--radius-pill); background: var(--gold-pale); color: var(--gold-deep); font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .22s var(--spring); }
- 
+  .user-drop-btn.primary { background: var(--gold-main); color: #fff; box-shadow: 0 6px 16px rgba(205,164,52,0.35); }
+  .user-drop-btn.primary:hover { background: var(--gold-deep); transform: translateY(-2px); }
+  .user-drop-btn:hover { background: #f4e4b6; transform: translateY(-2px); }
+  .user-drop-link { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 0 14px; border: 0; border-radius: 14px; background: transparent; color: var(--text-dark); font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-align: left; transition: all .2s var(--spring); }
+  .user-drop-link:hover { background: rgba(212,175,55,0.12); color: var(--gold-deep); transform: translateX(3px); }
+  @media (max-width: 640px) { .user-dropdown { right: 12px; left: 12px; width: auto; } }
+
+  @media (max-width:1200px) {
+    .nav-links a { padding:8px 12px; font-size:0.88rem; }
+    .mega-menu-inner { grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 180px; gap: 18px; }
+    .mega-menu-inner.mega-casa { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .mega-col ul li a { font-size: 0.84rem; }
+  }
+  @media (max-width:1100px) {
+    .mega-menu-inner { grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr; gap: 20px; }
+    .mega-image-slot { display: none; }
+  }
+  @media (max-width:1000px) {
+    .nav-links a { padding:7px 9px; font-size:0.83rem; }
+  }
+  @media (max-width:900px) {
+    .about-hero { grid-template-columns:1fr; text-align:center; gap:28px; }
+    .about-visual { order:-1; }
+    .about-stats { grid-template-columns:repeat(3,1fr); }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .mega-menu-inner.mega-casa { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  }
+  @media (max-width:820px) {
+    .nav-links { display:none; }
+    .mega-menu { display: none !important; }
+  }
+  @media (min-width:821px) {
+    :root { --nav-h:122px; --nav-h-scrolled:68px; }
+    .nav-links { display:flex; }
+    .nav-left { left:4%; }
+    .nav-logo { top:14px; width:min(300px,54vw); height:68px; }
+    nav#mainNav.scrolled .nav-logo { left:250px; top:50%; width:180px; height:48px; transform:translateY(-50%); }
+    nav#mainNav.scrolled .nav-links { bottom:50%; transform:translate(-50%,50%); }
+    .nav-icons { right:4%; }
+    .icon-btn.search-trigger { width:auto; min-width:114px; padding:0 16px; gap:7px; border-radius:var(--radius-pill); }
+    .icon-btn.search-trigger .icon-btn-label { display:inline; font-size:.93rem; font-weight:500; color:inherit; }
+    .icon-btn.search-trigger:hover .icon-btn-label { color:var(--gold-main); }
+  }
+  @media (max-width:640px) {
+    .nav-logo { width:min(200px,54vw); height:52px; top:12px; }
+    .about-stats { grid-template-columns:1fr 1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    .footer-bottom { flex-direction:column; text-align:center; }
+    .cart-panel, .fav-panel { width:100vw; }
+    .modal-content { padding:16px 18px 20px; }
+    .gallery-main { height:240px; }
+    .search-overlay-header { padding:18px 4%; }
+    .search-overlay-content { padding:20px 4% 50px; }
+    .products-grid { grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; }
+    .search-overlay-results { grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; }
+    .search-overlay-input-wrap { padding: 12px 18px; }
+  }
+  @media (max-width:380px) {
+    :root { --nav-h:80px; --nav-h-scrolled:58px; }
+    .hamburger { width:46px; height:46px; }
+    .hamburger span { width:24px; }
+    .nav-logo { width:min(180px,48vw); height:52px; top:7px; }
+    .nav-icons { right:3px; }
+    .icon-btn { width:40px; height:40px; }
+  }
+
+  .user-modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.65); z-index:1500; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+  .user-modal-overlay.open { opacity:1; pointer-events:all; }
+  .user-modal-box { background:var(--white); border-radius:var(--radius-lg); max-width:420px; width:100%; box-shadow:0 32px 80px rgba(0,0,0,0.25); transform:scale(0.9) translateY(20px); transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); max-height:94vh; overflow-y:auto; position:relative; padding:30px; }
+  .user-modal-overlay.open .user-modal-box { transform:scale(1) translateY(0); }
+  .user-modal-close { position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%; border:none; background:var(--gold-pale); color:var(--gold-main); font-size:0.95rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); z-index:50; }
+  .user-modal-close:hover { background:var(--gold-main); color:#fff; transform:rotate(90deg); }
+  .user-modal-title { font-family:'DM Serif Display',serif; font-size:1.6rem; margin-bottom:8px; color:var(--text-dark); }
+  .user-modal-subtitle { font-size:0.88rem; color:var(--text-mid); margin-bottom:22px; line-height:1.5; }
+  .form-group { margin-bottom:16px; }
+  .form-group label { font-size:0.82rem; font-weight:700; color:var(--text-mid); display:block; margin-bottom:6px; }
+  .form-group input { width:100%; padding:12px 16px; border-radius:var(--radius-pill); border:2px solid var(--gray-light); font-family:'Outfit',sans-serif; font-size:0.9rem; color:var(--text-dark); transition:var(--transition); background:var(--off-white); }
+  .form-group input:focus { border-color:var(--gold-main); background:#fff; outline:none; box-shadow:0 0 0 4px rgba(212,175,55,0.1); }
+  .user-modal-btn { width:100%; background:var(--gold-main); color:#fff; border:none; cursor:pointer; padding:13px; border-radius:var(--radius-pill); font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:700; box-shadow:var(--shadow-btn); transition:var(--transition); margin-top:10px; }
+  .user-modal-btn:hover { background:var(--gold-deep); transform:translateY(-2px); }
+  .user-modal-toggle { text-align:center; margin-top:20px; font-size:0.85rem; color:var(--text-mid); }
+  .user-modal-toggle button { background:none; border:none; color:var(--gold-main); font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; font-size:0.85rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero::before, .hero::after, .hero-scroll,
+    .liquid-glass::after, .skeleton, .fade-in,
+    .reveal { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .fade-in, .fade-in-1, .fade-in-2, .fade-in-3 { opacity: 1 !important; }
+    .carousel-track { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#mainContent" class="skip-link">Pular para o conteúdo</a>
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
+<div class="mouse-light" id="mouseLight" aria-hidden="true"></div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Pesquisa">
+  <div class="search-overlay-header">
+    <span class="search-overlay-title">Pesquisar</span>
+    <button class="search-overlay-close" onclick="closeSearchOverlay()" aria-label="Fechar pesquisa">✕</button>
+  </div>
+  <div class="search-overlay-content">
+    <div class="search-overlay-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchOverlayInput" placeholder="Buscar peças... (Ctrl+K)" oninput="onSearchOverlay(this.value)">
+      <button class="search-overlay-clear" id="searchOverlayClear" type="button" onclick="clearSearchOverlayInput()" aria-label="Limpar pesquisa" title="Limpar">✕</button>
+    </div>
+    <div class="search-overlay-results" id="searchOverlayResults"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav" aria-label="Navegação principal">
+  <div class="nav-inner">
+
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger" type="button" onclick="toggleLeftMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="leftMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <button class="icon-btn search-trigger" id="searchTriggerBtn" aria-label="Pesquisa" onclick="toggleSearchOverlay()" title="Pesquisa (Ctrl+K)">
+        <svg class="st-icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg class="st-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <span class="icon-btn-label">Pesquisa</span>
+      </button>
+    </div>
+
+    <a href="#" class="nav-logo" onclick="showPage('inicio');return false;">
+      <img id="navLogoImg" src="./assets/logo.png" alt="Gold Crochet">
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('inicio');return false;" class="active" id="nav-inicio">Início</a></li>
+      <li><a href="#" onclick="showPage('colecoes');return false;" id="nav-colecoes">Coleções</a></li>
+      <li><a href="#" id="nav-produtos">Peças</a></li>
+      <li><a href="#" onclick="showPage('novidades');return false;" id="nav-novidades">Novidades</a></li>
+      <li><a href="#" id="nav-sobre">Casa Gold</a></li>
+    </ul>
+
+    <div class="nav-icons">
+      <button class="icon-btn" aria-label="Conta" onclick="handleAccountAction()" title="Minha conta" id="userAccountBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </button>
+      <button class="icon-btn" aria-label="Favoritos" onclick="handleFavoritesAction()" title="Favoritos" id="favIconBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="badge hidden" id="navFavCount">0</span>
+      </button>
+      <button class="icon-btn" aria-label="Sacola de compras" onclick="toggleCart()" title="Sacola de compras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="badge hidden" id="navCartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MEGA MENU: PEÇAS -->
+<div class="mega-menu" id="megaMenuPecas" role="region" aria-label="Menu de peças">
+  <div class="mega-menu-inner">
+
+    <!-- COLUNA 1: ESSENCIAIS -->
+    <div class="mega-col">
+      <h3>Essenciais</h3>
+      <div class="mega-diaadia-grid">
+        <div>
+          <div class="mega-subhead">Para Ela</div>
+          <ul>
+            <li><a onclick="megaGoToCategory('roupas-noite','feminino');return false;">Roupas para noite</a></li>
+            <li><a onclick="megaGoToCategory('saias-vestidos','feminino');return false;">Saias e vestidos</a></li>
+            <li><a onclick="megaGoToCategory('jaquetas-casacos','feminino');return false;">Jaquetas e casacos</a></li>
+            <li><a onclick="megaGoToCategory('tops','feminino');return false;">Tops</a></li>
+            <li><a onclick="megaGoToCategory('calcas','feminino');return false;">Calças</a></li>
+            <li class="mega-see-all"><a onclick="megaGoToSectionGender('dia-a-dia','feminino');return false;">Ver tudo</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="mega-subhead">Para Ele</div>
+          <ul>
+            <li><a onclick="megaGoToCategory('roupas-noite','masculino');return false;">Roupas para noite</a></li>
+            <li><a onclick="megaGoToCategory('jaquetas-casacos','masculino');return false;">Jaquetas e casacos</a></li>
+            <li><a onclick="megaGoToCategory('calcas','masculino');return false;">Calças</a></li>
+            <li class="mega-see-all"><a onclick="megaGoToSectionGender('dia-a-dia','masculino');return false;">Ver tudo</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA 2: PEQUENINOS -->
+    <div class="mega-col">
+      <h3>Pequeninos</h3>
+      <ul>
+        <li><a onclick="megaGoToCategory('bebe');return false;">Bebê</a></li>
+        <li><a onclick="megaGoToCategory('garotas');return false;">Garotas</a></li>
+        <li><a onclick="megaGoToCategory('garotos');return false;">Garotos</a></li>
+        <li><a onclick="megaGoToCategory('presentes');return false;">Presentes</a></li>
+        <li class="mega-see-all"><a onclick="megaGoToSection('pequeninos');return false;">Ver tudo</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUNA 3: ACESSÓRIOS -->
+    <div class="mega-col">
+      <h3>Acessórios</h3>
+      <ul>
+        <li><a onclick="megaGoToCategory('bolsas');return false;">Bolsas</a></li>
+        <li><a onclick="megaGoToCategory('charms');return false;">Charms</a></li>
+        <li class="mega-see-all"><a onclick="megaGoToSection('acessorios');return false;">Ver tudo</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUNA 4: BIJUTERIAS -->
+    <div class="mega-col">
+      <h3>Bijuterias</h3>
+      <ul>
+        <li><a onclick="megaGoToCategory('brincos');return false;">Brincos</a></li>
+        <li><a onclick="megaGoToCategory('colares');return false;">Colares</a></li>
+        <li><a onclick="megaGoToCategory('broches');return false;">Broches</a></li>
+        <li><a onclick="megaGoToCategory('braceletes');return false;">Braceletes</a></li>
+        <li><a onclick="megaGoToCategory('aneis');return false;">Anéis</a></li>
+        <li class="mega-see-all"><a onclick="megaGoToSection('bijuterias');return false;">Ver tudo</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUNA 5: ARTIGOS PARA CASA -->
+    <div class="mega-col">
+      <h3>Artigos para Casa</h3>
+      <ul>
+        <li><a onclick="megaGoToCategory('decoracoes');return false;">Decorações</a></li>
+        <li><a onclick="megaGoToCategory('mantas');return false;">Mantas &amp; Cobertores</a></li>
+        <li><a onclick="megaGoToCategory('amigurumi');return false;">Amigurumis</a></li>
+        <li class="mega-see-all"><a onclick="megaGoToSection('casa');return false;">Ver tudo</a></li>
+      </ul>
+    </div>
+
+    <div class="mega-image-slot" aria-hidden="true">
+      <img src="./assets/mega-pecas.png" alt=""
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+      <span style="display:none">Sua imagem aqui</span>
+    </div>
+  </div>
+</div>
+
+<!-- MEGA MENU: CASA GOLD -->
+<div class="mega-menu" id="megaMenuCasa" role="region" aria-label="Menu Casa Gold">
+  <div class="mega-menu-inner mega-casa">
+    <a class="mega-casa-block" onclick="megaGoTo('sustentabilidade');return false;">
+      <h3>Sustentabilidade</h3>
+      <p>Nosso compromisso com o consumo consciente, fios responsáveis e produção artesanal de baixo impacto.</p>
+      <span class="mega-casa-arrow">Conhecer →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('periodo-atemporal');return false;">
+      <h3>O período atemporal</h3>
+      <p>A relação entre o ciclo do ouro e a nossa visão de arte que atravessa gerações.</p>
+      <span class="mega-casa-arrow">Descobrir →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('sobre');return false;">
+      <h3>Sobre Gold Crochet</h3>
+      <p>A história da casa, nossa essência e cada ponto que nos trouxe até aqui.</p>
+      <span class="mega-casa-arrow">Conhecer →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('colaboracoes');return false;">
+      <h3>Colaborações & Artistas</h3>
+      <p>A influência dos artistas, parcerias criativas e o crochê como expressão coletiva.</p>
+      <span class="mega-casa-arrow">Descobrir →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('cuidados');return false;">
+      <h3>Cuidados Gold Crochet</h3>
+      <p>Como lavar, secar e guardar suas peças para que durem por gerações.</p>
+      <span class="mega-casa-arrow">Saiba mais →</span>
+    </a>
+    <a class="mega-casa-block" onclick="megaGoTo('entregas');return false;">
+      <h3>Entrega & Devolução</h3>
+      <p>Prazos, formas de envio e nossa política de trocas e devoluções.</p>
+      <span class="mega-casa-arrow">Consultar →</span>
+    </a>
+  </div>
+</div>
+
+<!-- USER DROPDOWN -->
+<div class="user-dropdown" id="userDropdown" role="dialog" aria-label="Minha conta">
+  <div class="user-dropdown-top">
+    <div class="user-dropdown-avatar" id="userDropAvatar">GC</div>
+    <div class="user-dropdown-meta">
+      <div class="user-dropdown-name" id="userDropName">Olá, Visitante</div>
+      <div class="user-dropdown-sub" id="userDropSub">Entre para ver sua conta</div>
+    </div>
+  </div>
+  <div class="user-dropdown-actions" id="userDropActions"></div>
+</div>
+
+<!-- OVERLAY DO MENU -->
+<div class="left-menu-overlay" id="leftMenuOverlay" aria-hidden="true" onclick="closeLeftMenu()"></div>
+
+<!-- MENU LATERAL -->
+<aside class="left-menu" id="leftMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true">
+  <div class="left-menu-header">
+    <div class="left-menu-brand">
+      <div class="left-menu-brand-mark" aria-hidden="true">✦</div>
+      <div>
+        <div class="left-menu-title">Gold Crochet</div>
+        <span class="left-menu-subtitle">Menu principal</span>
+      </div>
+    </div>
+    <button class="left-menu-close" type="button" onclick="closeLeftMenu()" aria-label="Fechar menu">✕</button>
+  </div>
+
+  <div class="left-menu-scroll" id="leftMenuScroll">
+
+    <div class="left-menu-section-label">Navegação</div>
+    <nav class="left-menu-nav" id="leftMenuNav" aria-label="Menu principal">
+      <a href="#" id="left-nav-inicio" class="active" onclick="navigateFromMenu('inicio');return false;">
+        <span class="left-menu-icon" aria-hidden="true">🏠</span>
+        <span class="left-menu-link-text">Início</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <a href="#" id="left-nav-colecoes" onclick="navigateFromMenu('colecoes');return false;">
+        <span class="left-menu-icon" aria-hidden="true">✨</span>
+        <span class="left-menu-link-text">Coleções</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a href="#" id="left-nav-produtos" class="has-sub" aria-expanded="false" aria-controls="leftMenuPecasSub" onclick="togglePecasSubmenu(event);return false;">
+        <span class="left-menu-icon" aria-hidden="true">🧶</span>
+        <span class="left-menu-link-text">Peças</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <div class="left-menu-sub" id="leftMenuPecasSub">
+
+        <div class="left-menu-sub-row">
+          <div class="left-menu-sub-group">
+            <span class="left-menu-sub-label">Para Ela</span>
+            <a href="#" onclick="navigateFromSubMenu('roupas-noite','feminino');return false;">Roupas p/ noite</a>
+            <a href="#" onclick="navigateFromSubMenu('saias-vestidos','feminino');return false;">Saias &amp; vestidos</a>
+            <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos','feminino');return false;">Jaquetas &amp; casacos</a>
+            <a href="#" onclick="navigateFromSubMenu('tops','feminino');return false;">Tops</a>
+            <a href="#" onclick="navigateFromSubMenu('calcas','feminino');return false;">Calças</a>
+          </div>
+          <div class="left-menu-sub-group">
+            <span class="left-menu-sub-label">Para Ele</span>
+            <a href="#" onclick="navigateFromSubMenu('roupas-noite','masculino');return false;">Roupas p/ noite</a>
+            <a href="#" onclick="navigateFromSubMenu('jaquetas-casacos','masculino');return false;">Jaquetas &amp; casacos</a>
+            <a href="#" onclick="navigateFromSubMenu('calcas','masculino');return false;">Calças</a>
+          </div>
+        </div>
+
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Pequeninos</span>
+          <a href="#" onclick="navigateFromSubMenu('bebe');return false;">Bebê</a>
+          <a href="#" onclick="navigateFromSubMenu('garotas');return false;">Garotas</a>
+          <a href="#" onclick="navigateFromSubMenu('garotos');return false;">Garotos</a>
+          <a href="#" onclick="navigateFromSubMenu('presentes');return false;">Presentes</a>
+        </div>
+
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Acessórios</span>
+          <a href="#" onclick="navigateFromSubMenu('bolsas');return false;">Bolsas</a>
+          <a href="#" onclick="navigateFromSubMenu('charms');return false;">Charms</a>
+        </div>
+
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Bijuterias</span>
+          <a href="#" onclick="navigateFromSubMenu('brincos');return false;">Brincos</a>
+          <a href="#" onclick="navigateFromSubMenu('colares');return false;">Colares</a>
+          <a href="#" onclick="navigateFromSubMenu('broches');return false;">Broches</a>
+          <a href="#" onclick="navigateFromSubMenu('braceletes');return false;">Braceletes</a>
+          <a href="#" onclick="navigateFromSubMenu('aneis');return false;">Anéis</a>
+        </div>
+
+        <div class="left-menu-sub-group">
+          <span class="left-menu-sub-label">Artigos para Casa</span>
+          <a href="#" onclick="navigateFromSubMenu('decoracoes');return false;">Decorações</a>
+          <a href="#" onclick="navigateFromSubMenu('mantas');return false;">Mantas &amp; Cobertores</a>
+          <a href="#" onclick="navigateFromSubMenu('amigurumi');return false;">Amigurumis</a>
+        </div>
+
+        <a href="#" class="left-menu-sub-all" onclick="navigateFromSubMenu();return false;">Ver tudo</a>
+      </div>
+
+      <a href="#" id="left-nav-novidades" onclick="navigateFromMenu('novidades');return false;">
+        <span class="left-menu-icon" aria-hidden="true">📰</span>
+        <span class="left-menu-link-text">Novidades</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+
+      <a href="#" id="left-nav-sobre" class="has-sub" aria-expanded="false" aria-controls="leftMenuCasaSub" onclick="toggleCasaSubmenu(event);return false;">
+        <span class="left-menu-icon" aria-hidden="true">🏛️</span>
+        <span class="left-menu-link-text">Casa Gold</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <div class="left-menu-sub" id="leftMenuCasaSub">
+        <a href="#" onclick="navigateFromMenu('sustentabilidade');return false;">Sustentabilidade</a>
+        <a href="#" onclick="navigateFromMenu('periodo-atemporal');return false;">O período atemporal</a>
+        <a href="#" onclick="navigateFromMenu('sobre');return false;">Sobre Gold Crochet</a>
+        <a href="#" onclick="navigateFromMenu('colaboracoes');return false;">Colaborações &amp; Artistas</a>
+        <a href="#" onclick="navigateFromMenu('cuidados');return false;">Cuidados Gold Crochet</a>
+        <a href="#" onclick="navigateFromMenu('entregas');return false;">Entrega &amp; Devolução</a>
+      </div>
+    </nav>
+
+    <div class="left-menu-section-label">Acesso rápido</div>
+    <nav class="left-menu-nav" aria-label="Atalhos">
+      <a href="#" onclick="openSearchFromMenu();return false;">
+        <span class="left-menu-icon" aria-hidden="true">🔎</span>
+        <span class="left-menu-link-text">Pesquisar</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <a href="#" id="drawerFavLink" onclick="openFavoritesFromMenu();return false;">
+        <span class="left-menu-icon" aria-hidden="true">❤️</span>
+        <span class="left-menu-link-text">Meus favoritos</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <a href="#" id="drawerCartLink" onclick="openCartFromMenu();return false;">
+        <span class="left-menu-icon" aria-hidden="true">🛍️</span>
+        <span class="left-menu-link-text">Minha sacola</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <a href="#" onclick="handleAccountFromMenu();return false;">
+        <span class="left-menu-icon" aria-hidden="true">👤</span>
+        <span class="left-menu-link-text">Minha conta</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+    </nav>
+
+    <div class="left-menu-account" id="leftMenuAccount">
+      <div class="left-menu-account-head">
+        <div class="left-menu-avatar" id="leftMenuAvatar">GC</div>
+        <div class="left-menu-account-copy">
+          <div class="left-menu-account-name" id="leftMenuAccountName">Visitante</div>
+          <div class="left-menu-account-status" id="leftMenuAccountStatus">Entre para sincronizar favoritos.</div>
+        </div>
+      </div>
+      <button type="button" id="leftMenuAccountAction" onclick="handleAccountFromMenu()">Entrar / Criar conta</button>
+    </div>
+  </div>
+
+  <div class="left-menu-footer">
+    <p>Feito com amor, ponto por ponto 💛</p>
+    <div class="left-menu-social">
+      <a href="https://instagram.com/goldc.rochet" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.4"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+      <a href="mailto:rayssacrochet1404@gmail.com" aria-label="E-mail" title="E-mail">✉</a>
+    </div>
+  </div>
+</aside>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<!-- SACOLA -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-label="Minha sacola">
+  <div class="cart-header"><h2>🛍️ Minha Sacola</h2><button class="cart-close" onclick="closeCart()" aria-label="Fechar sacola">✕</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty"><span class="empty-icon">🧶</span><p>Seu carrinho está vazio.<br>Explore nossas peças!</p></div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+    <button class="checkout-btn" onclick="checkout()">Finalizar pelo WhatsApp 🚀</button>
+  </div>
+  <div class="cart-promo" id="cartPromo">
+    <h3>Pegue sua bolsa</h3>
+    <p>Faça login na Minha Conta para acessar sua sacola em todos os seus dispositivos.</p>
+    <button class="user-modal-btn" onclick="openUserModalFromCart()">Entrar na Minha Conta</button>
+  </div>
+</div>
+
+<!-- FAVORITOS -->
+<div class="fav-overlay" id="favOverlay" onclick="closeFavorites()"></div>
+<div class="fav-panel" id="favPanel" role="dialog" aria-modal="true" aria-label="Meus favoritos">
+  <div class="cart-header"><h2>❤️ Meus Favoritos</h2><button class="cart-close" onclick="closeFavorites()" aria-label="Fechar favoritos">✕</button></div>
+  <div class="cart-items" id="favItems"></div>
+</div>
+
+<!-- MODAL PRODUTO (compatibilidade) -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar produto">✕</button>
+    <div class="media-switcher-container">
+      <div class="media-switcher-tabs">
+        <button class="media-tab active" onclick="switchMedia('gallery')" id="tab-gallery">🖼 Galeria</button>
+        <button class="media-tab" onclick="switchMedia('model')" id="tab-model" style="display:none">🔲 Modelo 3D</button>
+      </div>
+      <div class="media-panel active" id="panel-gallery">
+        <div class="gallery-main" id="galleryMain"></div>
+        <div class="gallery-nav" id="galleryNav" style="display:none">
+          <button class="gallery-nav-btn" onclick="galleryPrev()" aria-label="Imagem anterior">‹</button>
+          <button class="gallery-nav-btn" onclick="galleryNext()" aria-label="Próxima imagem">›</button>
+        </div>
+        <div class="gallery-counter" id="galleryCounter"></div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+      <div class="media-panel" id="panel-model"></div>
+    </div>
+    <div class="modal-content" id="modalContent">
+      <h2 id="modalTitle"></h2>
+      <div class="modal-price-row" id="modalPriceRow"></div>
+      <div class="modal-print-info" id="modalPrintInfo"></div>
+      <p id="modalDesc"></p>
+      <div id="modalColors" style="margin-bottom:18px;"></div>
+      <button class="btn-primary" style="width:100%;font-size:1rem;border-radius:0 16px 0 16px;" onclick="addToCartFromModal()">Adicionar à Sacola 🛍️</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="user-modal-overlay" id="userModalOverlay" role="dialog" aria-modal="true" aria-label="Minha conta">
+  <div class="user-modal-box">
+    <button class="user-modal-close" onclick="closeUserModal()" aria-label="Fechar conta">✕</button>
+    <div id="loginView">
+      <h2 class="user-modal-title">Bem-vindo(a) de volta! 👋</h2>
+      <p class="user-modal-subtitle">Entre para acompanhar seus pedidos e favoritos.</p>
+      <div class="form-group"><label>E-mail</label><input type="email" id="loginEmail" placeholder="seu@email.com"></div>
+      <div class="form-group"><label>Senha</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+      <button class="user-modal-btn" onclick="loginUser()">Entrar</button>
+      <div class="user-modal-toggle">Não tem conta? <button onclick="showRegister()">Cadastre-se</button></div>
+    </div>
+    <div id="registerView" style="display:none;">
+      <h2 class="user-modal-title">Crie sua conta 🧶</h2>
+      <p class="user-modal-subtitle">Faça parte da Gold Crochet e ganhe vantagens exclusivas.</p>
+      <div class="form-group"><label>Nome</label><input type="text" id="regName" placeholder="Seu nome"></div>
+      <div class="form-group"><label>E-mail</label><input type="email" id="regEmail" placeholder="seu@email.com"></div>
+      <div class="form-group"><label>Senha</label><input type="password" id="regPassword" placeholder="Crie uma senha"></div>
+      <button class="user-modal-btn" onclick="registerUser()">Cadastrar</button>
+      <div class="user-modal-toggle">Já tem conta? <button onclick="showLogin()">Fazer Login</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="cookie-banner" id="cookieBanner">
+  <p>🍪 Usamos cookies para melhorar sua experiência. <a href="#">Política de Privacidade</a>.</p>
+  <button class="cookie-accept" onclick="acceptCookies()">Aceitar Tudo</button>
+  <button class="cookie-decline" onclick="acceptCookies()">Só Essenciais</button>
+</div>
+
+<main id="mainContent">
+
+<section class="page active" id="page-inicio">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge fade-in fade-in-1">🧶 Crochê Artesanal de Alto Padrão</div>
+      <h1 class="fade-in fade-in-2" id="heroTitle">Elegância que se <em>Tece</em><br>à Mão</h1>
+      <p class="fade-in fade-in-3" id="heroSubtitle">Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.</p>
+    </div>
+    <div class="hero-scroll" onclick="document.querySelector('.carousel-section').scrollIntoView({behavior:'smooth'})">
+      <span>Explorar</span>
+      <span class="hero-scroll-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
+    </div>
+  </div>
+  <div class="carousel-section">
+    <div class="carousel-title">Peças em <span>Destaque</span></div>
+    <div class="carousel-wrapper" id="carouselWrapper"><div class="carousel-track" id="carouselTrack"></div></div>
+    <div class="carousel-arrows">
+      <button class="carousel-arrow" onclick="prevSlide()" aria-label="Anterior">‹</button>
+      <button class="carousel-arrow" onclick="nextSlide()" aria-label="Próxima">›</button>
+    </div>
+  </div>
+
+  <!-- ALTERAÇÃO: cards agora redirecionam para a listagem filtrada (Essenciais → Para Ela / Para Ele) -->
+  <div class="gender-section">
+    <a class="gender-card" href="#" onclick="megaGoToSectionGender('dia-a-dia','feminino');return false;" style="background-image:url('./assets/para-mulher.jpg')" aria-label="Ver tudo em Essenciais — Para Ela">
+      <div class="gender-content">
+        <h3>Para Mulher</h3>
+        <span class="gender-cta">Descubra Mais</span>
+      </div>
+    </a>
+    <a class="gender-card" href="#" onclick="megaGoToSectionGender('dia-a-dia','masculino');return false;" style="background-image:url('./assets/para-homem.jpg')" aria-label="Ver tudo em Essenciais — Para Ele">
+      <div class="gender-content">
+        <h3>Para Homem</h3>
+        <span class="gender-cta">Descubra Mais</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="features">
+    <div class="section-header reveal"><h2>Por que <span>Gold Crochet</span>?</h2><p>Acabamento refinado, atenção artesanal em cada ponto que sai das nossas mãos.</p></div>
+    <div class="features-grid">
+      <div class="feature-card reveal liquid-glass"><div class="feature-icon">🧵</div><h3>Fios Selecionados</h3><p>Trabalhamos com fios premium para um caimento macio e duradouro em cada peça.</p></div>
+      <div class="feature-card reveal liquid-glass"><div class="feature-icon">🎨</div><h3>Múltiplas Cores</h3><p>Diversas cores de fio disponíveis para personalizar sua peça do jeito que imagina.</p></div>
+      <div class="feature-card reveal liquid-glass"><div class="feature-icon">⏳</div><h3>Feito à Mão</h3><p>Cada ponto é trabalhado manualmente, com tempo e cuidado dedicados ao seu pedido.</p></div>
+      <div class="feature-card reveal liquid-glass"><div class="feature-icon">🧶</div><h3>Customização Total</h3><p>Traga sua ideia, cor e tamanho — transformamos em uma peça exclusiva.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-colecoes">
+  <div class="products-hero"><h1>Nossas Coleções</h1><p>Explore as coleções exclusivas da Gold Crochet.</p></div>
+  <div class="products-controls" style="justify-content:center; margin-top:20px;">
+    <!-- ALTERAÇÃO: "Dia a Dia" renomeado para "Essenciais" (valor de filtro mantido por compatibilidade dos dados) -->
+    <div class="filter-pills" id="colecoesFilterPills">
+      <button class="filter-pill active" data-filter="todas" onclick="setColecaoFilter('todas')">Todas</button>
+      <button class="filter-pill" data-filter="Alta-Costura" onclick="setColecaoFilter('Alta-Costura')">Alta-Costura</button>
+      <button class="filter-pill" data-filter="Dia a Dia" onclick="setColecaoFilter('Dia a Dia')">Essenciais</button>
+    </div>
+  </div>
+  <div class="products-grid" id="colecoesGrid"></div>
+</section>
+
+<!-- PÁGINA PEÇAS (com header dinâmico) -->
+<section class="page" id="page-produtos">
+  <div class="products-hero"><h1>Nosso Acervo</h1><p>Amigurumis, bolsas, mantas e peças personalizadas.</p></div>
+  <div class="products-filter-header" id="productsFilterHeader" style="display:none">
+    <div class="products-filter-title" id="productsFilterTitle"></div>
+  </div>
+  <div class="products-count" id="productsCount"></div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- PÁGINA DE PRODUTO -->
+<section class="page" id="page-produto">
+  <div class="product-page-wrap">
+    <div class="product-page-inner">
+      <div class="product-page-top">
+        <div class="product-page-gallery" id="productPageGallery"></div>
+        <div class="product-page-info">
+          <h1 class="product-page-title" id="productPageTitle"></h1>
+          <div class="product-page-price-row" id="productPagePriceRow"></div>
+          <p class="product-page-desc" id="productPageDesc"></p>
+          <div id="productPageColors"></div>
+          <button class="product-page-add-btn" onclick="addToCartFromProductPage()">Adicionar à Sacola 🛍️</button>
+
+          <div class="product-page-specs" id="productPageSpecs"></div>
+        </div>
+      </div>
+
+      <div class="product-page-related">
+        <h2>Você pode gostar</h2>
+        <div class="product-page-related-track-wrap">
+          <div class="product-page-related-track" id="productPageRelated"></div>
+        </div>
+      </div>
+
+      <div class="product-page-blocks">
+        <div class="product-page-block">
+          <h3>Cuidados Gold Crochet</h3>
+          <p>Nossas peças são feitas para durar. Lavar à mão com água fria, secar na sombra na horizontal e guardar dobradas — assim elas atravessam gerações.</p>
+          <a onclick="showPage('cuidados')">Saiba mais →</a>
+        </div>
+        <div class="product-page-block">
+          <h3>Embalagem para presente</h3>
+          <p>Cada pedido pode ser enviado com embalagem especial para presente, com fita de cetim e cartão personalizado. Perfeito para surpreender quem você ama.</p>
+          <a href="https://wa.me/553182032351?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20embalagem%20para%20presente%20%F0%9F%8E%81" target="_blank" rel="noopener">Solicitar no WhatsApp →</a>
+        </div>
+        <div class="product-page-block">
+          <h3>Entrega & Devolução</h3>
+          <p>Enviamos para todo o Brasil com prazos que variam de 3 a 15 dias úteis. Aceitamos devoluções em até 7 dias após o recebimento, conforme o Código de Defesa do Consumidor.</p>
+          <a onclick="showPage('entregas')">Consultar política →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PÁGINA DE CONTA DO USUÁRIO -->
+<section class="page" id="page-conta">
+  <div class="user-account-wrap">
+    <div class="user-account-header">
+      <h1>Minha <span>Conta</span></h1>
+      <div class="user-account-tabs">
+        <button class="user-account-tab active" data-tab="pedidos" onclick="setUserTab('pedidos')">📦 Pedidos</button>
+        <button class="user-account-tab" data-tab="conta" onclick="setUserTab('conta')">👤 Conta</button>
+        <button class="user-account-tab" data-tab="config" onclick="setUserTab('config')">⚙️ Configurações</button>
+      </div>
+    </div>
+    <div class="user-account-content">
+      <div class="user-tab-panel active" id="userTabPedidos"></div>
+      <div class="user-tab-panel" id="userTabConta"></div>
+      <div class="user-tab-panel" id="userTabConfig"></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOVIDADES -->
+<section class="page" id="page-novidades">
+  <div class="products-hero">
+    <h1>Novidades</h1>
+    <p>As últimas notícias da Gold Crochet</p>
+  </div>
+  <div class="blog-grid" id="novidadesGrid"></div>
+</section>
+
+<!-- CASA GOLD — SOBRE -->
+<section class="page" id="page-sobre">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>A História da <span>Gold Crochet</span></h1>
+        <p>Nascemos da paixão por criar. De um novelo de fio a uma marca, a Gold Crochet começou como um sonho de transformar o crochê artesanal em peças de alto padrão, elegantes e atemporais.</p>
+        <p>Cada peça que sai das nossas mãos foi feita com cuidado, atenção aos detalhes e muito amor pelo que fazemos. Acreditamos que o feito à mão carrega uma história — e é essa história que queremos compartilhar com você.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Ver Peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImg" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">500+</div><div class="stat-label">Peças Entregues</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">20+</div><div class="stat-label">Cores Disponíveis</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">98%</div><div class="stat-label">Clientes Satisfeitas</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Nossa <span>Jornada</span></h2>
+      <p>Tudo começou com uma agulha, um novelo de fio e muita vontade de transformar um hobby em algo maior.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Início</div><div class="timeline-text">Fundação da Gold Crochet, com as primeiras peças feitas artesanalmente em casa.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Expansão</div><div class="timeline-text">Novas técnicas, primeiros projetos personalizados e o reconhecimento de clientes fiéis.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Consolidação</div><div class="timeline-text">Entrada em fios premium e acabamentos exclusivos que definem nossa identidade.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Loja online oficial e centenas de peças entregues em todo o Brasil.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — CUIDADOS -->
+<section class="page" id="page-cuidados">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Cuidados <span>Gold Crochet</span></h1>
+        <p>Suas peças de crochê são feitas para durar. Com alguns cuidados simples no dia a dia, elas mantêm o caimento, a cor e a maciez por muitos anos — e podem até passar de geração em geração.</p>
+        <p>Siga nossas recomendações de lavagem, secagem e armazenamento para preservar cada ponto feito à mão.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Ver peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">💧</div><div class="stat-label">Lavar à Mão</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">🌤️</div><div class="stat-label">Secar na Sombra</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">🧺</div><div class="stat-label">Guardar Dobrada</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Como <span>Cuidar</span></h2>
+      <p>Cada ponto foi feito à mão, com paciência. Trate sua peça com o mesmo cuidado.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Lavagem</div><div class="timeline-text">Lave à mão com água fria e sabão neutro. Nunca use alvejante ou amaciante. Não torça a peça — pressione suavemente para retirar o excesso de água.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Secagem</div><div class="timeline-text">Seque na horizontal, à sombra, sobre uma toalha limpa. Evite pendurar molhada para não deformar o fio.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Armazenamento</div><div class="timeline-text">Guarde dobrada, em local seco e arejado. Para peças delicadas, use saquinhos de algodão.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Uso Diário</div><div class="timeline-text">Evite contato com superfícies ásperas e objetos que possam puxar o fio. Se aparecer uma laçada, puxe com cuidado para o lado interno.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — ENTREGAS -->
+<section class="page" id="page-entregas">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Entrega & <span>Devolução</span></h1>
+        <p>Enviamos para todo o Brasil com cuidado e carinho. Cada pedido é embalado com proteção extra para que sua peça chegue impecável ao destino.</p>
+        <p>Consulte abaixo os prazos, formas de envio e nossa política de trocas e devoluções.</p>
+        <a href="https://wa.me/553182032351?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20entrega%20%F0%9F%93%A6" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;margin-top:8px;">Falar no WhatsApp</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">3-15</div><div class="stat-label">Dias Úteis</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">7</div><div class="stat-label">Dias p/ Devolver</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">100%</div><div class="stat-label">Rastreável</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Políticas de <span>Envio</span></h2>
+      <p>Cada peça é feita sob demanda e embalada individualmente com proteção extra.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Prazo de Produção</div><div class="timeline-text">Peças sob medida levam de 3 a 10 dias úteis para ficarem prontas antes do envio.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Envio</div><div class="timeline-text">Enviamos por Correios (PAC/SEDEX) ou transportadora, com código de rastreio enviado por e-mail.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Recebimento</div><div class="timeline-text">Confira sua peça ao receber. Caso haja qualquer problema, entre em contato em até 48h.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Devolução</div><div class="timeline-text">Aceitamos devoluções em até 7 dias após o recebimento, desde que a peça esteja sem uso e na embalagem original.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — SUSTENTABILIDADE -->
+<section class="page" id="page-sustentabilidade">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Sustentabilidade & <span>Cuidado</span></h1>
+        <p>Na Gold Crochet, acreditamos que criar é um ato de responsabilidade. Cada peça é pensada para durar, para atravessar estações e ser passada adiante — e isso só é possível quando respeitamos o tempo, os materiais e as mãos que trabalham.</p>
+        <p>Escolhemos fios de fornecedores conscientes, evitamos excesso de produção e priorizamos o feito sob demanda, para que nada seja desperdiçado. Nosso compromisso é com um crochê que cuida do planeta tanto quanto cuida das pessoas.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Conhecer peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgSust" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">100%</div><div class="stat-label">Feito à Mão</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">0%</div><div class="stat-label">Desperdício de Fio</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Anos de Durabilidade</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>Nossos <span>Princípios</span></h2>
+      <p>O crochê artesanal é, por natureza, uma prática sustentável: é lento, é local, é humano. Cada peça nasce sob demanda e carrega a história de quem a fez.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Produção Consciente</div><div class="timeline-text">Não produzimos em massa. Cada peça é iniciada apenas quando existe uma pessoa esperando por ela.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Fios Selecionados</div><div class="timeline-text">Trabalhamos com fios que valorizam fibras naturais, tingimento consciente e durabilidade.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Sem Desperdício</div><div class="timeline-text">Restos de fio viram detalhes, amigurumis ou pequenos projetos — nada é descartado.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Para a Vida</div><div class="timeline-text">Acreditamos em peças que atravessam gerações e se tornam memórias afetivas.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — PERÍODO ATEMPORAL -->
+<section class="page" id="page-periodo-atemporal">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>O <span>Período Atemporal</span></h1>
+        <p>O ouro nunca envelhece. Ele atravessa civilizações, permanece brilhando mesmo quando tudo ao redor muda. É essa mesma ideia de permanência que buscamos em cada peça da Gold Crochet: criar objetos que sobrevivem ao tempo, que carregam história e que se tornam parte da vida de quem os recebe.</p>
+        <p>A relação entre o ciclo do ouro — sua extração paciente, seu brilho duradouro, sua capacidade de ser transformado sem perder a essência — espelha o nosso fazer artesanal. Cada ponto, como cada pepita, é único. Cada peça, como o ouro, é feita para durar.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Explorar peças</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgPeriodo" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Permanência</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">1</div><div class="stat-label">Peça, Uma História</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">♾</div><div class="stat-label">Gerações Conectadas</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>O Fio e o <span>Ouro</span></h2>
+      <p>Assim como o ouro, o crochê é fruto de paciência. Não há pressa no fio, assim como não há pressa na terra que guarda o metal precioso. Ambos só se revelam a quem espera.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Origem</div><div class="timeline-text">O ouro nasce profundo, escondido, silencioso. O fio também — primeiro é fibra, depois é história.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Transformação</div><div class="timeline-text">O ouro é trabalhado, aquecido, moldado. O fio é torcido, laçado, transformado em ponto.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Permanência</div><div class="timeline-text">O ouro resiste. A peça também: feita para durar e ser passada adiante.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Eternidade</div><div class="timeline-text">Toda peça de crochê carrega um pedaço de quem a fez — como o ouro carrega a terra de onde veio.</div></div>
+      </div>
+      <p style="margin-top:24px">Convidamos você a fazer parte desse ciclo: escolher uma peça que não é apenas objeto, mas memória em construção.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — COLABORAÇÕES -->
+<section class="page" id="page-colaboracoes">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Colaborações & <span>Artistas</span></h1>
+        <p>Na Gold Crochet, acreditamos que a arte se fortalece quando compartilhada. Nossas colaborações com artistas, designers e marcas parceiras trazem novas perspectivas, técnicas e inspirações para cada peça que criamos.</p>
+        <p>Cada parceria é um encontro de sensibilidades — o olhar do artista se entrelaça ao nosso fio, resultando em criações únicas e cheias de significado.</p>
+        <a href="mailto:rayssacrochet1404@gmail.com" class="btn-primary" style="display:inline-block;margin-top:8px;">Quero colaborar</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgColab" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">15+</div><div class="stat-label">Artistas Parceiros</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">30+</div><div class="stat-label">Projetos Colaborativos</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Inspirações Compartilhadas</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>A Influência dos <span>Artistas</span></h2>
+      <p>Cada artista que cruza nosso caminho deixa uma marca. Seja pela paleta de cores, pelas formas inusitadas ou pela narrativa por trás de cada obra, as colaborações moldam a identidade da Gold Crochet e expandem os limites do que o crochê pode ser.</p>
+      <p>Acreditamos que o feito à mão é, por natureza, uma forma de arte coletiva: passa de mão em mão, de geração em geração, e se reinventa a cada novo encontro criativo.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Primeiras Parcerias</div><div class="timeline-text">Encontros com artistas locais que trouxeram novas técnicas e cores ao nosso atelier.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Edições Limitadas</div><div class="timeline-text">Coleções cápsula criadas em conjunto com designers convidados.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Projetos Sociais</div><div class="timeline-text">Iniciativas que unem arte, comunidade e sustentabilidade em torno do crochê.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Uma rede crescente de criadores que celebra o crochê como expressão artística.</div></div>
+      </div>
+      <p style="margin-top:24px">Tem uma ideia, marca ou projeto artístico em mente? Ficaremos honradas em conhecer. <a href="mailto:rayssacrochet1404@gmail.com" style="color:var(--gold-main);font-weight:700;">Fale conosco →</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Gold Crochet</div>
+      <p>Crochê artesanal de alto padrão. Transformando fio em peças elegantes, feitas ponto por ponto.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/goldc.rochet" target="_blank" rel="noopener" class="social-circle" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.4"></rect>
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
+        <a href="mailto:rayssacrochet1404@gmail.com" class="social-circle" aria-label="E-mail" title="E-mail">✉</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a onclick="showPage('inicio')">Início</a></li>
+        <li><a onclick="showPage('colecoes')">Coleções</a></li>
+        <li><a onclick="showPage('produtos')">Peças</a></li>
+        <li><a onclick="showPage('novidades')">Novidades</a></li>
+        <li><a onclick="showPage('sobre')">Casa Gold</a></li>
+        <li><a onclick="showPage('colaboracoes')">Colaborações</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://instagram.com/goldc.rochet" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:rayssacrochet1404@gmail.com">E-mail</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gold Crochet — Todos os direitos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Cookies</a><a href="#">Privacidade</a><a href="#">Termos</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     FIREBASE — SDK Modular v10 via ESM (equivalente ao npm)
+     Se você usar bundler (Vite/Webpack), troque as URLs por:
+       import { initializeApp } from "firebase/app";
+       import { getAnalytics }  from "firebase/analytics";
+       import { getAuth, ... }  from "firebase/auth";
+     ============================================================ -->
+<script type="module">
+// ─── Firebase imports ─────────────────────────────────────────
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  deleteUser
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// ─── Firebase config ──────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyCptS84PWOOnw2iz6ihni6Am023lyvgi3g",
+  authDomain: "gold-crochet.firebaseapp.com",
+  projectId: "gold-crochet",
+  storageBucket: "gold-crochet.firebasestorage.app",
+  messagingSenderId: "133111101270",
+  appId: "1:133111101270:web:a53b559687c10135b848f7",
+  measurementId: "G-GHHVJHSMJH"
+};
+
+// ─── Firebase initialize ──────────────────────────────────────
+const app = initializeApp(firebaseConfig);
+
+// Analytics pode falhar em alguns ambientes (ex.: domínio não autorizado)
+let analytics = null;
+try { analytics = getAnalytics(app); } catch (e) { console.warn('[Firebase] Analytics indisponível:', e); }
+
+const auth = getAuth(app);
+
+// ════════════════════════════════════════
+// DADOS
+// ════════════════════════════════════════
+const GITHUB_RAW = 'https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/data.json';
+
+/*
+ * Modelo de produto (novos campos suportados pelo admin):
+ *   section: 'dia-a-dia' | 'pequeninos' | 'acessorios' | 'bijuterias' | 'casa'
+ *   gender:  'feminino' | 'masculino' | null  (obrigatório apenas em dia-a-dia)
+ *   collection: 'Alta-Costura' | 'Dia a Dia' | ... (opcional)
+ */
+const defaultProducts = [
+  { id:1, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', section:'casa', gender:null, collection:'Dia a Dia', desc:'Ursinho de crochê feito à mão.', price:65, colors:[{name:'Dourado',hex:'#d4af37'},{name:'Marfim',hex:'#fdf6d6'}], badge:'Popular', discount:0, image:'', model3d:'', gallery:[] },
+  { id:2, name:'Bolsa de Crochê', emoji:'👜', category:'bolsas', section:'acessorios', gender:null, collection:'Alta-Costura', desc:'Bolsa artesanal em crochê.', price:120, colors:[{name:'Dourado',hex:'#d4af37'},{name:'Preto',hex:'#2c2c2c'}], badge:'', discount:0, image:'', model3d:'', gallery:[] },
+  { id:3, name:'Manta Ponto Concha', emoji:'🛋️', category:'mantas', section:'casa', gender:null, collection:'Alta-Costura', desc:'Manta artesanal em ponto concha.', price:280, colors:[{name:'Marfim',hex:'#fdf6d6'}], badge:'Destaque', discount:10, image:'', model3d:'', gallery:[] },
+  { id:6, name:'Colete Feminino', emoji:'🧥', category:'vestuario', section:'dia-a-dia', gender:'feminino', collection:'Dia a Dia', desc:'Colete em crochê com caimento elegante.', price:195, colors:[{name:'Dourado',hex:'#d4af37'}], badge:'Novo', discount:0, image:'', model3d:'', gallery:[] },
+];
+
+const defaultCollections = [
+  { id:'alta-costura', name:'Alta-Costura', desc:'Peças exclusivas, com fios premium e acabamento refinado.', emoji:'👑', filter:'Alta-Costura' },
+  { id:'dia-a-dia', name:'Coleção Maré de Ouro', desc:'Peças versáteis inspiradas no balanço do mar e no brilho do ouro.', emoji:'🌊', filter:'Dia a Dia' }
+];
+
+const defaultBlogPosts = [
+  { id: 1, title: 'Nova Coleção Maré de Ouro', date: 'Março 2026', emoji: '🌊', tag: 'Lançamento', excerpt: 'Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas em tons dourados e azuis.' },
+  { id: 2, title: 'Por trás dos pontos: o Atelier', date: 'Fevereiro 2026', emoji: '🧶', tag: 'Bastidores', excerpt: 'Um passeio pelo nosso atelier, onde cada peça nasce do cuidado, da paciência e do amor pelo crochê artesanal.' },
+  { id: 3, title: 'Colaboração com artistas locais', date: 'Janeiro 2026', emoji: '🎨', tag: 'Colaboração', excerpt: 'Convidamos artistas da nossa região para criar peças exclusivas que misturam tradição e contemporaneidade.' },
+  { id: 4, title: 'Guia de cuidados com o crochê', date: 'Dezembro 2025', emoji: '💛', tag: 'Dicas', excerpt: 'Aprenda a lavar, secar e guardar suas peças de crochê para que durem por muitos anos.' },
+  { id: 5, title: 'Fios premium: nossa seleção', date: 'Novembro 2025', emoji: '🧵', tag: 'Materiais', excerpt: 'Conheça os fios que escolhemos a dedo para garantir conforto, durabilidade e acabamento impecável.' },
+  { id: 6, title: 'Personalize sua peça dos sonhos', date: 'Outubro 2025', emoji: '✨', tag: 'Personalização', excerpt: 'Cores, tamanhos, detalhes... veja como criar uma peça sob medida com a Gold Crochet.' }
+];
+
+let products = defaultProducts;
+let collections = defaultCollections;
+let blogPosts = defaultBlogPosts;
+let categories = [
+  'amigurumi','bolsas','mantas','vestuario','personalizado',
+  'roupas-noite','saias-vestidos','jaquetas-casacos','tops','calcas','pequeninos',
+  'bebe','garotas','garotos','presentes',
+  'charms','brincos','colares','broches','braceletes','aneis',
+  'decoracoes'
+];
+let badges = ['Novo','Destaque','Popular','Exclusivo','Sob Medida'];
+let globalColors = [];
+let siteConfig = {};
+let cart = [];
+let currentFilter = 'todos';
+let currentSectionFilter = null;
+let currentGenderFilter = null;
+let currentCollectionFilter = null;
+let currentColecaoFilter = 'todas';
+let currentModal = null;
+let currentGalleryIdx = 0;
+let currentGalleryImages = [];
+let selectedColors = {};
+let searchTimeout = null;
+let favorites = [];
+let searchOverlayTimeout = null;
+let currentProductPageId = null;
+let currentUserTab = 'pedidos';
+
+// Mapeamento categoria → seção (fallback caso o admin não envie section)
+const CATEGORY_TO_SECTION = {
+  'roupas-noite': 'dia-a-dia',
+  'saias-vestidos': 'dia-a-dia',
+  'jaquetas-casacos': 'dia-a-dia',
+  'tops': 'dia-a-dia',
+  'calcas': 'dia-a-dia',
+  'bebe': 'pequeninos',
+  'garotas': 'pequeninos',
+  'garotos': 'pequeninos',
+  'presentes': 'pequeninos',
+  'bolsas': 'acessorios',
+  'charms': 'acessorios',
+  'brincos': 'bijuterias',
+  'colares': 'bijuterias',
+  'broches': 'bijuterias',
+  'braceletes': 'bijuterias',
+  'aneis': 'bijuterias',
+  'decoracoes': 'casa',
+  'mantas': 'casa',
+  'amigurumi': 'casa'
+};
+// ALTERAÇÃO: "Dia a Dia" → "Essenciais" (nome visível)
+const SECTION_LABELS = {
+  'dia-a-dia': 'Essenciais',
+  'pequeninos': 'Pequeninos',
+  'acessorios': 'Acessórios',
+  'bijuterias': 'Bijuterias',
+  'casa': 'Artigos para Casa'
+};
+
+function getProductSection(p) {
+  if (p.section) return p.section;
+  return CATEGORY_TO_SECTION[p.category] || null;
+}
+
+// Rótulos amigáveis para as categorias
+const categoryLabels = {
+  'amigurumi': 'Amigurumi',
+  'bolsas': 'Bolsas',
+  'mantas': 'Mantas',
+  'vestuario': 'Vestuário',
+  'personalizado': 'Personalizado',
+  'roupas-noite': 'Roupas para Noite',
+  'saias-vestidos': 'Saias e Vestidos',
+  'jaquetas-casacos': 'Jaquetas e Casacos',
+  'tops': 'Tops',
+  'calcas': 'Calças',
+  'pequeninos': 'Pequeninos',
+  'bebe': 'Bebê',
+  'garotas': 'Garotas',
+  'garotos': 'Garotos',
+  'presentes': 'Presentes',
+  'charms': 'Charms',
+  'brincos': 'Brincos',
+  'colares': 'Colares',
+  'broches': 'Broches',
+  'braceletes': 'Braceletes',
+  'aneis': 'Anéis',
+  'decoracoes': 'Decorações'
+};
+function labelForCategory(cat) {
+  return categoryLabels[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+}
+
+function getEffectivePrice(p) {
+  if (!p || !p.price) return null;
+  const base = parseFloat(p.price);
+  if (!base) return null;
+  if (p.discount && p.discount > 0) return Math.round(base * (1 - p.discount / 100));
+  return base;
+}
+
+function getBadgeText(p) {
+  if (p.discount && p.discount > 0) return `-${p.discount}%`;
+  if (p.badge) return p.badge;
+  return '';
+}
+function isDiscountBadge(p) {
+  return p.discount && p.discount > 0;
+}
+
+/* ==========================================================
+   ACESSIBILIDADE
+   ========================================================== */
+function $(id) { return document.getElementById(id); }
+function lockBody() { document.body.classList.add("no-scroll"); }
+function unlockBody() {
+  const openLayer = ["leftMenu", "searchOverlay", "cartPanel", "favPanel", "modalOverlay", "userModalOverlay"].some(id => {
+    const element = $(id);
+    return element && element.classList.contains("open");
+  });
+  if (!openLayer) document.body.classList.remove("no-scroll");
+}
+
+let previousFocus = null;
+let activeDialog = null;
+function setActiveDialog(el) { if (!activeDialog) previousFocus = document.activeElement; activeDialog = el; }
+function clearActiveDialog(el) { if (activeDialog === el) { activeDialog = null; restoreFocus(); } }
+function restoreFocus() {
+  try { if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus(); } catch (error) {}
+  previousFocus = null;
+}
+function trapFocus(container, event) {
+  if (event.key !== "Tab") return;
+  const focusable = [...container.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])')].filter(el => el.offsetParent !== null || el === document.activeElement);
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const current = document.activeElement;
+  if (!container.contains(current)) { event.preventDefault(); first.focus(); return; }
+  if (event.shiftKey && current === first) { event.preventDefault(); last.focus(); return; }
+  if (!event.shiftKey && current === last) { event.preventDefault(); first.focus(); }
+}
+
+function closeOtherLayers(except = "") {
+  const pairs = [
+    ["leftMenu", closeLeftMenu],
+    ["searchOverlay", closeSearchOverlay],
+    ["cartPanel", closeCart],
+    ["favPanel", closeFavorites],
+    ["modalOverlay", closeModal],
+    ["userModalOverlay", closeUserModal],
+    ["userDropdown", closeUserDropdown]
+  ];
+  pairs.forEach(([id, closeFunction]) => {
+    if (id === except) return;
+    const element = $(id);
+    if (element && element.classList.contains("open")) closeFunction();
+  });
+  if (except !== "megaMenu") closeMega();
+}
+
+function updateLeftMenuAccount() {
+  const user = auth?.currentUser || null;
+  const name = $("leftMenuAccountName");
+  const status = $("leftMenuAccountStatus");
+  const avatar = $("leftMenuAvatar");
+  const action = $("leftMenuAccountAction");
+  if (!name || !status || !avatar || !action) return;
+
+  if (user) {
+    const label = user.displayName || user.email?.split("@")[0] || "Cliente";
+    name.textContent = label;
+    status.textContent = "Conta conectada e favoritos sincronizados.";
+    avatar.textContent = label.trim().slice(0, 2).toUpperCase();
+    action.textContent = "Abrir Minha Conta";
+    action.setAttribute("aria-label", "Abrir Minha Conta");
+    return;
+  }
+  name.textContent = "Visitante";
+  status.textContent = "Entre para sincronizar favoritos.";
+  avatar.textContent = "GC";
+  action.textContent = "Entrar / Criar conta";
+  action.setAttribute("aria-label", "Entrar ou criar conta");
+}
+
+function updateDrawerCounts() {
+  const favoriteLink = document.querySelector("#drawerFavLink .left-menu-link-text");
+  const cartLink = document.querySelector("#drawerCartLink .left-menu-link-text");
+  const cartCount = cart.reduce((total, item) => total + (Number(item.qty) || 0), 0);
+  if (favoriteLink) favoriteLink.textContent = favorites.length ? `Meus favoritos (${favorites.length})` : "Meus favoritos";
+  if (cartLink) cartLink.textContent = cartCount ? `Minha sacola (${cartCount})` : "Minha sacola";
+}
+
+/* ---------- DRAWER ---------- */
+function openLeftMenu() {
+  closeOtherLayers("leftMenu");
+  previousFocus = document.activeElement;
+  const menu = $("leftMenu"), overlay = $("leftMenuOverlay"), button = $("hamburger");
+  if (!menu || !overlay || !button) return;
+  menu.classList.add("open"); overlay.classList.add("open");
+  menu.setAttribute("aria-hidden", "false"); overlay.setAttribute("aria-hidden", "false");
+  button.setAttribute("aria-expanded", "true"); button.setAttribute("aria-label", "Fechar menu");
+  activeDialog = menu; lockBody(); updateLeftMenuAccount(); updateDrawerCounts();
+  setTimeout(() => {
+    const active = menu.querySelector(".left-menu-nav a.active");
+    const first = menu.querySelector(".left-menu-nav a");
+    (active || first)?.focus();
+  }, 100);
+}
+function closeLeftMenu() {
+  const menu = $("leftMenu"), overlay = $("leftMenuOverlay"), button = $("hamburger");
+  if (!menu || !overlay || !button) return;
+  menu.classList.remove("open"); overlay.classList.remove("open");
+  menu.setAttribute("aria-hidden", "true"); overlay.setAttribute("aria-hidden", "true");
+  button.setAttribute("aria-expanded", "false"); button.setAttribute("aria-label", "Abrir menu");
+  if (activeDialog === menu) activeDialog = null;
+  unlockBody(); restoreFocus();
+}
+function toggleLeftMenu() {
+  const menu = $("leftMenu");
+  if (!menu) return;
+  if (menu.classList.contains("open")) closeLeftMenu();
+  else openLeftMenu();
+}
+
+function togglePecasSubmenu(event) {
+  if (event) event.preventDefault();
+  const sub = document.getElementById('leftMenuPecasSub');
+  const toggle = document.getElementById('left-nav-produtos');
+  if (!sub || !toggle) return;
+  const isOpen = sub.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function toggleCasaSubmenu(event) {
+  if (event) event.preventDefault();
+  const sub = document.getElementById('leftMenuCasaSub');
+  const toggle = document.getElementById('left-nav-sobre');
+  if (!sub || !toggle) return;
+  const isOpen = sub.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function navigateFromMenu(page) { closeLeftMenu(); setTimeout(() => showPage(page), 120); }
+function navigateFromSubMenu(category, gender) {
+  closeLeftMenu();
+  setTimeout(() => {
+    showPage('produtos');
+    if (category) setFilter(category, gender || null);
+    else setFilter('todos');
+  }, 120);
+}
+function openSearchFromMenu() { closeLeftMenu(); setTimeout(() => openSearchOverlay(), 160); }
+function openFavoritesFromMenu() { closeLeftMenu(); setTimeout(() => handleFavoritesAction(), 160); }
+function openCartFromMenu() { closeLeftMenu(); setTimeout(() => openCart(), 160); }
+function handleAccountFromMenu() {
+  closeLeftMenu();
+  setTimeout(() => {
+    if (auth.currentUser) { openUserAccountPage(); }
+    else { openUserModal(); }
+  }, 180);
+}
+
+/* ==========================================================
+   MEGA MENUS
+   ========================================================== */
+let megaCloseTimer = null;
+function positionNavDropdowns() {
+  const nav = document.getElementById('mainNav');
+  if (!nav) return;
+  const navHeight = nav.getBoundingClientRect().height;
+  document.querySelectorAll('.mega-menu').forEach(m => { m.style.top = navHeight + 'px'; });
+  const dd = document.getElementById('userDropdown');
+  if (dd) dd.style.top = (navHeight + 10) + 'px';
+}
+function closeMega() {
+  document.querySelectorAll('.mega-menu').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('mega-active'));
+}
+function scheduleCloseMega() { clearTimeout(megaCloseTimer); megaCloseTimer = setTimeout(closeMega, 220); }
+function openMega(id) {
+  clearTimeout(megaCloseTimer);
+  ["leftMenu","searchOverlay","cartPanel","favPanel","modalOverlay","userModalOverlay","userDropdown"].forEach(layerId => {
+    const el = document.getElementById(layerId);
+    if (!el || !el.classList.contains('open')) return;
+    if (layerId === 'leftMenu') closeLeftMenu();
+    else if (layerId === 'searchOverlay') closeSearchOverlay();
+    else if (layerId === 'cartPanel') closeCart();
+    else if (layerId === 'favPanel') closeFavorites();
+    else if (layerId === 'modalOverlay') closeModal();
+    else if (layerId === 'userModalOverlay') closeUserModal();
+    else if (layerId === 'userDropdown') closeUserDropdown();
+  });
+  document.querySelectorAll('.mega-menu').forEach(m => m.classList.toggle('open', m.id === id));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('mega-active'));
+  const triggerId = id === 'megaMenuPecas' ? 'nav-produtos' : 'nav-sobre';
+  const trigger = document.getElementById(triggerId);
+  if (trigger) trigger.classList.add('mega-active');
+  positionNavDropdowns();
+}
+function megaGoTo(page, category) {
+  closeMega();
+  showPage(page);
+  if (page === 'produtos' && category) setTimeout(() => setFilter(category), 30);
+  else if (page === 'produtos') setTimeout(() => setFilter('todos'), 30);
+}
+function megaGoToCategory(category, gender) {
+  closeMega();
+  showPage('produtos');
+  setTimeout(() => setFilter(category, gender || null), 30);
+}
+function megaGoToSection(section) {
+  closeMega();
+  showPage('produtos');
+  setTimeout(() => setSectionFilter(section, null), 30);
+}
+function megaGoToSectionGender(section, gender) {
+  closeMega();
+  showPage('produtos');
+  setTimeout(() => setSectionFilter(section, gender), 30);
+}
+function megaGoToCollection(collection) {
+  closeMega();
+  showPage('produtos');
+  setTimeout(() => setCollectionFilter(collection), 30);
+}
+
+function initMegaMenus() {
+  const pecasLink = document.getElementById('nav-produtos');
+  const sobreLink = document.getElementById('nav-sobre');
+  const otherLinks = document.querySelectorAll('.nav-links a:not(#nav-produtos):not(#nav-sobre)');
+  const isDesktop = () => window.matchMedia('(min-width: 821px)').matches;
+  function attach(link, menuId) {
+    if (!link) return;
+    link.addEventListener('mouseenter', () => { if (isDesktop()) openMega(menuId); });
+    link.addEventListener('focus', () => { if (isDesktop()) openMega(menuId); });
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      if (!isDesktop()) { showPage(menuId === 'megaMenuPecas' ? 'produtos' : 'sobre'); return; }
+      const m = document.getElementById(menuId);
+      if (m.classList.contains('open')) closeMega(); else openMega(menuId);
+    });
+  }
+  attach(pecasLink, 'megaMenuPecas');
+  attach(sobreLink, 'megaMenuCasa');
+  otherLinks.forEach(l => l.addEventListener('mouseenter', () => { if (isDesktop()) scheduleCloseMega(); }));
+  document.querySelectorAll('.mega-menu').forEach(m => {
+    m.addEventListener('mouseenter', () => clearTimeout(megaCloseTimer));
+    m.addEventListener('mouseleave', () => scheduleCloseMega());
+  });
+  document.querySelectorAll('.nav-links').forEach(nl => nl.addEventListener('mouseleave', () => scheduleCloseMega()));
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.mega-menu') || e.target.closest('.nav-links')) return;
+    closeMega();
+  });
+  window.addEventListener('resize', () => { positionNavDropdowns(); if (!isDesktop()) closeMega(); });
+  window.addEventListener('scroll', positionNavDropdowns, { passive: true });
+}
+
+/* ==========================================================
+   USER DROPDOWN
+   ========================================================== */
+function renderUserDropdown() {
+  const user = auth?.currentUser || null;
+  const avatar = document.getElementById('userDropAvatar');
+  const name = document.getElementById('userDropName');
+  const sub = document.getElementById('userDropSub');
+  const actions = document.getElementById('userDropActions');
+  if (!avatar || !name || !sub || !actions) return;
+
+  if (!user) {
+    avatar.textContent = 'GC';
+    name.textContent = 'Olá, Visitante';
+    sub.textContent = 'Entre para ver sua conta';
+    actions.innerHTML = `
+      <button class="user-drop-btn primary" onclick="closeUserDropdown();openUserModal();">Entrar</button>
+      <button class="user-drop-btn" onclick="closeUserDropdown();openUserModal();showRegister();">Criar conta</button>
+      <button class="user-drop-link" onclick="closeUserDropdown();handleFavoritesAction();">❤️ Meus favoritos</button>
+      <button class="user-drop-link" onclick="closeUserDropdown();openCart();">🛍️ Minha sacola</button>
+    `;
+    return;
+  }
+  const label = user.displayName || user.email?.split('@')[0] || 'Cliente';
+  avatar.textContent = label.trim().slice(0, 2).toUpperCase();
+  name.textContent = label;
+  sub.textContent = user.email || 'Conta conectada';
+  actions.innerHTML = `
+    <button class="user-drop-btn primary" onclick="closeUserDropdown();openUserAccountPage();">Minha Conta</button>
+    <button class="user-drop-link" onclick="closeUserDropdown();handleFavoritesAction();">❤️ Meus favoritos</button>
+    <button class="user-drop-link" onclick="closeUserDropdown();openCart();">🧺 Minha sacola</button>
+    <button class="user-drop-btn" onclick="logoutUser();closeUserDropdown();">Sair da conta</button>
+  `;
+}
+
+function openUserDropdown() { closeOtherLayers('userDropdown'); renderUserDropdown(); positionNavDropdowns(); document.getElementById('userDropdown').classList.add('open'); }
+function closeUserDropdown() { const dd = document.getElementById('userDropdown'); if (dd) dd.classList.remove('open'); }
+function toggleUserDropdown() {
+  const dd = document.getElementById('userDropdown');
+  if (!dd) return;
+  if (dd.classList.contains('open')) closeUserDropdown(); else openUserDropdown();
+}
+
+function positionSearchButton() {
+  const searchBtn = document.querySelector('.search-trigger');
+  const navLeft = document.querySelector('.nav-left');
+  const navIcons = document.querySelector('.nav-icons');
+  if (!searchBtn || !navLeft || !navIcons) return;
+  const isDesktop = window.matchMedia('(min-width: 821px)').matches;
+  if (isDesktop) {
+    if (searchBtn.parentElement !== navIcons) navIcons.insertBefore(searchBtn, navIcons.firstChild);
+  } else {
+    if (searchBtn.parentElement !== navLeft) navLeft.appendChild(searchBtn);
+  }
+}
+
+function setupMenuInteractions() {
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      if (document.querySelector('.mega-menu.open')) { closeMega(); return; }
+      if ($("userDropdown")?.classList.contains("open")) { closeUserDropdown(); return; }
+      if ($("leftMenu")?.classList.contains("open")) { closeLeftMenu(); return; }
+      if (activeDialog && activeDialog.classList.contains("open")) {
+        if (activeDialog === $("searchOverlay")) { closeSearchOverlay(); return; }
+        if (activeDialog === $("cartPanel")) { closeCart(); return; }
+        if (activeDialog === $("favPanel")) { closeFavorites(); return; }
+        if (activeDialog === $("modalOverlay")) { closeModal(); return; }
+        if (activeDialog === $("userModalOverlay")) { closeUserModal(); return; }
+      }
+    }
+    if (activeDialog && activeDialog.classList.contains("open")) trapFocus(activeDialog, event);
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); openSearchOverlay(); return; }
+    if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) && !document.activeElement?.isContentEditable) {
+      event.preventDefault(); openSearchOverlay();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    const dd = document.getElementById('userDropdown');
+    if (!dd || !dd.classList.contains('open')) return;
+    if (e.target.closest('#userDropdown')) return;
+    if (e.target.closest('#userAccountBtn')) return;
+    closeUserDropdown();
+  });
+  const drawer = $("leftMenu");
+  if (!drawer) return;
+  let startX = 0, startY = 0, touching = false;
+  drawer.addEventListener("pointerdown", event => { touching = true; startX = event.clientX; startY = event.clientY; });
+  drawer.addEventListener("pointerup", event => {
+    if (!touching) return; touching = false;
+    const deltaX = event.clientX - startX;
+    const deltaY = event.clientY - startY;
+    const horizontal = Math.abs(deltaX) > Math.abs(deltaY);
+    if (horizontal && Math.abs(deltaX) > 55 && deltaX < 0) closeLeftMenu();
+  });
+  drawer.addEventListener("pointercancel", () => { touching = false; });
+}
+function setupMenuAria() {
+  const menu = $("leftMenu"), overlay = $("leftMenuOverlay"), button = $("hamburger");
+  if (menu) menu.setAttribute("aria-hidden", "true");
+  if (overlay) overlay.setAttribute("aria-hidden", "true");
+  if (button) { button.setAttribute("aria-expanded", "false"); button.setAttribute("aria-label", "Abrir menu"); }
+}
+function setupMenuKeyboardNavigation() {
+  const nav = $("leftMenuNav");
+  if (!nav) return;
+  nav.addEventListener("keydown", event => {
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+    const links = [...nav.querySelectorAll("a")];
+    const current = links.indexOf(document.activeElement);
+    if (current < 0) return;
+    event.preventDefault();
+    let next;
+    if (event.key === "ArrowDown") next = (current + 1) % links.length;
+    else next = (current - 1 + links.length) % links.length;
+    links[next].focus();
+  });
+}
+
+/* ════════════════════════════════════════
+   RESTO DO CÓDIGO
+   ════════════════════════════════════════ */
+function getCurrentUserId() { const user = auth.currentUser; return user ? user.uid : 'guest'; }
+function loadCart() { try { cart = JSON.parse(localStorage.getItem('goldcrochet_cart_' + getCurrentUserId()) || '[]'); } catch(e) { cart = []; } }
+function saveCart() { localStorage.setItem('goldcrochet_cart_' + getCurrentUserId(), JSON.stringify(cart)); }
+function loadFavorites() { try { favorites = JSON.parse(localStorage.getItem('goldcrochet_favs_' + getCurrentUserId()) || '[]'); } catch(e) { favorites = []; } }
+function saveFavorites() { localStorage.setItem('goldcrochet_favs_' + getCurrentUserId(), JSON.stringify(favorites)); }
+
+function toggleFavorite(id) {
+  if (favorites.includes(id)) favorites = favorites.filter(f => f !== id);
+  else favorites.push(id);
+  saveFavorites();
+  renderProducts(); renderNovidades(); renderCarousel(); updateFavCount();
+  if (document.getElementById('favPanel').classList.contains('open')) renderFavorites();
+  if (document.getElementById('searchOverlay').classList.contains('open')) {
+    const v = document.getElementById('searchOverlayInput')?.value || '';
+    if (v) onSearchOverlay(v);
+  }
+  if (currentProductPageId === id) renderProductPageContent(id);
+}
+function updateFavCount() {
+  const badge = document.getElementById('navFavCount');
+  if (badge) {
+    if (favorites.length > 0) { badge.classList.remove('hidden'); badge.textContent = favorites.length; }
+    else { badge.classList.add('hidden'); }
+  }
+  updateDrawerCounts();
+}
+
+// ──────────────────────────────────────────
+// FIREBASE AUTH — listeners (v10 modular)
+// ──────────────────────────────────────────
+onAuthStateChanged(auth, () => {
+  loadCart(); loadFavorites(); updateCartUI(); updateFavCount(); updateAuthUI();
+  updateLeftMenuAccount();
+  updateDrawerCounts();
+  renderUserDropdown();
+  if ($('page-conta')?.classList.contains('active')) renderUserAccount();
+});
+
+function updateAuthUI() {
+  const user = auth.currentUser;
+  const promo = document.getElementById('cartPromo');
+  if (promo) promo.style.display = user ? 'none' : 'block';
+}
+function registerUser() {
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const password = document.getElementById('regPassword').value.trim();
+  if (!name || !email || !password) { showToast('⚠️ Preencha todos os campos!', 'error'); return; }
+  if (password.length < 6) { showToast('⚠️ Senha deve ter ao menos 6 caracteres!', 'error'); return; }
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(uc => updateProfile(uc.user, { displayName: name }))
+    .then(() => { closeUserModal(); showToast(`🎉 Conta criada!`); })
+    .catch(err => showToast('❌ ' + err.message, 'error'));
+}
+function loginUser() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  if (!email || !password) { showToast('⚠️ Preencha todos os campos!', 'error'); return; }
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => { closeUserModal(); showToast(`✅ Bem-vindo(a) de volta!`); })
+    .catch(() => showToast('❌ E-mail ou senha incorretos!', 'error'));
+}
+function logoutUser() { signOut(auth).then(() => { showToast('👋 Você saiu da sua conta.'); if ($('page-conta')?.classList.contains('active')) showPage('inicio'); }); }
+function handleAccountAction() {
+  const user = auth.currentUser;
+  if (user) openUserAccountPage();
+  else openUserModal();
+}
+
+function openUserModal() {
+  closeOtherLayers('userModalOverlay');
+  const el = document.getElementById('userModalOverlay');
+  el.classList.add('open'); setActiveDialog(el); showLogin(); lockBody();
+  setTimeout(() => document.getElementById('loginEmail')?.focus(), 80);
+}
+function closeUserModal() {
+  const el = document.getElementById('userModalOverlay');
+  el.classList.remove('open'); clearActiveDialog(el); unlockBody();
+}
+function showLogin() { document.getElementById('loginView').style.display = 'block'; document.getElementById('registerView').style.display = 'none'; }
+function showRegister() { document.getElementById('loginView').style.display = 'none'; document.getElementById('registerView').style.display = 'block'; setTimeout(() => document.getElementById('regName')?.focus(), 60); }
+function openUserModalFromCart() { closeCart(); setTimeout(() => openUserModal(), 350); }
+
+function setupLogos() {
+  const navImg = document.getElementById('navLogoImg');
+  const aboutImg = document.getElementById('aboutLogoImg');
+  const aboutImgColab = document.getElementById('aboutLogoImgColab');
+  const aboutImgSust = document.getElementById('aboutLogoImgSust');
+  const aboutImgPeriodo = document.getElementById('aboutLogoImgPeriodo');
+  if (navImg) navImg.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<span class="nav-logo-text-fallback">Gold Crochet</span>'; });
+  const fallback = function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; };
+  if (aboutImg) aboutImg.addEventListener('error', fallback);
+  if (aboutImgColab) aboutImgColab.addEventListener('error', fallback);
+  if (aboutImgSust) aboutImgSust.addEventListener('error', fallback);
+  if (aboutImgPeriodo) aboutImgPeriodo.addEventListener('error', fallback);
+}
+function toRaw(url) {
+  if (!url) return '';
+  if (url.includes('github.com') && url.includes('/blob/')) return url.replace('github.com','raw.githubusercontent.com').replace('/blob/','/');
+  return url;
+}
+
+/* ---------- SEARCH OVERLAY ---------- */
+function toggleSearchOverlay() {
+  const el = document.getElementById('searchOverlay');
+  if (el && el.classList.contains('open')) closeSearchOverlay(); else openSearchOverlay();
+}
+function openSearchOverlay() {
+  closeOtherLayers('searchOverlay');
+  const el = document.getElementById('searchOverlay');
+  el.classList.add('open'); setActiveDialog(el); lockBody();
+  const trigger = document.getElementById('searchTriggerBtn');
+  if (trigger) {
+    trigger.classList.add('is-active');
+    trigger.setAttribute('aria-label', 'Fechar pesquisa');
+    trigger.setAttribute('title', 'Fechar pesquisa');
+    const label = trigger.querySelector('.icon-btn-label');
+    if (label) label.textContent = 'Fechar';
+  }
+  setTimeout(() => {
+    const input = document.getElementById('searchOverlayInput');
+    input?.focus(); input?.select();
+  }, 120);
+  onSearchOverlay(document.getElementById('searchOverlayInput').value || '');
+}
+function closeSearchOverlay() {
+  const el = document.getElementById('searchOverlay');
+  el.classList.remove('open'); clearActiveDialog(el); unlockBody();
+  const trigger = document.getElementById('searchTriggerBtn');
+  if (trigger) {
+    trigger.classList.remove('is-active');
+    trigger.setAttribute('aria-label', 'Pesquisa');
+    trigger.setAttribute('title', 'Pesquisa (Ctrl+K)');
+    const label = trigger.querySelector('.icon-btn-label');
+    if (label) label.textContent = 'Pesquisa';
+  }
+}
+function onSearchOverlay(val) {
+  const clearBtn = document.getElementById('searchOverlayClear');
+  if (clearBtn) clearBtn.classList.toggle('visible', !!val && val.length > 0);
+  clearTimeout(searchOverlayTimeout);
+  searchOverlayTimeout = setTimeout(() => renderSearchOverlayResults(val), 180);
+}
+function clearSearchOverlayInput() {
+  const input = document.getElementById('searchOverlayInput');
+  if (input) { input.value = ''; input.focus(); }
+  const clearBtn = document.getElementById('searchOverlayClear');
+  if (clearBtn) clearBtn.classList.remove('visible');
+  renderSearchOverlayResults('');
+}
+function renderSearchOverlayResults(val) {
+  const results = document.getElementById('searchOverlayResults');
+  const q = (val || '').toLowerCase().trim();
+  if (!q) { results.innerHTML = '<div class="search-overlay-hint"><span class="emoji">🔍</span>Digite algo para começar a pesquisar...</div>'; return; }
+  const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q));
+  if (!filtered.length) { results.innerHTML = '<div class="no-results"><span>🔍</span><p>Nenhuma peça encontrada.</p></div>'; return; }
+  results.innerHTML = filtered.map((p,i) => cardHtml(p,i)).join('');
+  bindCardEvents(results);
+}
+
+function handleFavoritesAction() {
+  const user = auth.currentUser;
+  if (!user) { showToast('💛 Faça login para ver seus favoritos!'); openUserModal(); return; }
+  openFavorites();
+}
+function openFavorites() {
+  closeOtherLayers('favPanel');
+  renderFavorites();
+  const panel = document.getElementById('favPanel');
+  panel.classList.add('open');
+  document.getElementById('favOverlay').classList.add('open');
+  setActiveDialog(panel); lockBody();
+  setTimeout(() => panel.querySelector('.cart-close')?.focus(), 80);
+}
+function closeFavorites() {
+  const panel = document.getElementById('favPanel');
+  panel.classList.remove('open');
+  document.getElementById('favOverlay').classList.remove('open');
+  clearActiveDialog(panel); unlockBody();
+}
+function toggleFavorites() {
+  const p = document.getElementById('favPanel');
+  if (p.classList.contains('open')) closeFavorites(); else openFavorites();
+}
+function renderFavorites() {
+  const items = document.getElementById('favItems');
+  const favProducts = products.filter(p => favorites.includes(p.id));
+  if (!favProducts.length) { items.innerHTML = '<div class="cart-empty"><span class="empty-icon">🤍</span><p>Você ainda não tem favoritos.<br>Toque no coração das peças que amar!</p></div>'; return; }
+  items.innerHTML = favProducts.map(p => {
+    const rawImg = toRaw(p.image);
+    const priceInfo = formatPriceHtml(p);
+    return `<div class="cart-item" style="cursor:pointer" onclick="openModalFromFav(${p.id})">
+      <div class="cart-item-img">${rawImg ? `<img src="${rawImg}" alt="${p.name}">` : (p.emoji || '🧶')}</div>
+      <div class="cart-item-info"><h4>${p.name}</h4><span>${priceInfo}</span></div>
+      <button class="cart-remove" onclick="event.stopPropagation();toggleFavorite(${p.id});" aria-label="Remover dos favoritos">🗑</button>
+    </div>`;
+  }).join('');
+}
+function openModalFromFav(id) { closeFavorites(); setTimeout(() => openProductPage(id), 300); }
+
+async function loadData() {
+  try {
+    const resp = await fetch(GITHUB_RAW + '?t=' + Date.now(), { cache: 'no-store' });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.products && data.products.length) products = data.products;
+      if (data.categories && data.categories.length) categories = data.categories;
+      if (data.badges && data.badges.length) badges = data.badges;
+      if (data.globalColors && data.globalColors.length) globalColors = data.globalColors;
+      if (data.blogPosts && data.blogPosts.length) blogPosts = data.blogPosts;
+      if (data.config) siteConfig = data.config;
+      try {
+        localStorage.setItem('goldcrochet_products', JSON.stringify(products));
+        localStorage.setItem('goldcrochet_categories', JSON.stringify(categories));
+        localStorage.setItem('goldcrochet_badges', JSON.stringify(badges));
+        localStorage.setItem('goldcrochet_global_colors', JSON.stringify(globalColors));
+        localStorage.setItem('goldcrochet_config', JSON.stringify(siteConfig));
+      } catch(e) {}
+      return;
+    }
+  } catch(e) {}
+  try {
+    const lp = localStorage.getItem('goldcrochet_products'); if (lp) products = JSON.parse(lp);
+    const lc = localStorage.getItem('goldcrochet_categories'); if (lc) categories = JSON.parse(lc);
+    const lb = localStorage.getItem('goldcrochet_badges'); if (lb) badges = JSON.parse(lb);
+    const lg = localStorage.getItem('goldcrochet_global_colors'); if (lg) globalColors = JSON.parse(lg);
+    const lcfg = localStorage.getItem('goldcrochet_config'); if (lcfg) siteConfig = JSON.parse(lcfg);
+  } catch(e) {}
+}
+
+function applySiteConfig() {
+  if (siteConfig.hero_title) { const t = document.getElementById('heroTitle'); if (t) t.innerHTML = siteConfig.hero_title; }
+  if (siteConfig.hero_subtitle) { const s = document.getElementById('heroSubtitle'); if (s) s.textContent = siteConfig.hero_subtitle; }
+  if (siteConfig.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.href = siteConfig.instagram);
+  if (siteConfig.email) document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.href = 'mailto:' + siteConfig.email);
+}
+
+let scrollDebounce; let navScrolled = false;
+function handleScroll() {
+  const y = window.scrollY;
+  const shouldBeScrolled = y > 40;
+  if (shouldBeScrolled !== navScrolled) {
+    navScrolled = shouldBeScrolled;
+    document.getElementById('mainNav').classList.toggle('scrolled', shouldBeScrolled);
+    positionNavDropdowns();
+  }
+  document.getElementById('backTop').classList.toggle('visible', y > 400);
+}
+window.addEventListener('scroll', () => {
+  handleScroll();
+  clearTimeout(scrollDebounce);
+  scrollDebounce = setTimeout(handleScroll, 30);
+}, { passive:true });
+
+function showPage(id) {
+  closeMega();
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-'+id);
+  if (!target) return;
+  target.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const nav = document.getElementById('nav-'+id); if (nav) nav.classList.add('active');
+  document.querySelectorAll('.left-menu-nav a').forEach(a => a.classList.remove('active'));
+  const leftNav = document.getElementById('left-nav-'+id); if (leftNav) leftNav.classList.add('active');
+  scrollTo({top:0,behavior:'instant'});
+  if (id==='produtos') renderProducts();
+  if (id==='colecoes') renderColecoes();
+  if (id==='novidades') renderNovidades();
+  if (id==='conta') renderUserAccount();
+  initReveal();
+  document.getElementById('mainNav').classList.remove('scrolled');
+  navScrolled = false;
+  positionNavDropdowns();
+}
+function initReveal() {
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }); }, {threshold:0.08});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+
+/* ==========================================================
+   CARROSSEL
+   ========================================================== */
+let carouselProducts = [];
+let carouselAll = [];
+let carouselIdx = 10;
+let carouselTimer;
+let carouselHover = false;
+let isCarouselAnimating = false;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function renderCarousel() {
+  carouselProducts = products.filter(p=>!p.custom).slice(0,10);
+  if (carouselProducts.length < 10) {
+    const extras = products.filter(p => !carouselProducts.includes(p));
+    carouselProducts = carouselProducts.concat(extras).slice(0,10);
+  }
+  if (!carouselProducts.length) return;
+  carouselAll = [...carouselProducts, ...carouselProducts, ...carouselProducts];
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
+  const grads = ['#f2ede0','#f8ead5','#f5e6cb','#f3ead2'];
+  track.innerHTML = carouselAll.map((p,i) => {
+    const img = toRaw(p.image);
+    const cols = getColors(p);
+    const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
+    const badgeText = getBadgeText(p);
+    const isDisc = isDiscountBadge(p);
+    const badgeLabel = badgeText ? `<div class="product-badge-label${isDisc?' discount':''}">${badgeText}</div>` : '';
+    const fav = favorites.includes(p.id) ? 'faved' : '';
+    return `<div class="carousel-card" onclick="openProductPage(${p.id})" role="button" tabindex="0">
+      <div class="product-img-square" style="background:${grads[i%grads.length]}">
+        ${img?`<img src="${img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''}
+        ${!img?`<div class="product-img-emoji">${p.emoji}</div>`:''}
+        ${badgeLabel}
+        <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <div class="product-price">${formatPriceHtml(p)}</div>
+        ${colorText ? `<div class="product-colors-text">${colorText}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  carouselIdx = carouselProducts.length;
+  updateCarouselPosition(false);
+  const wr = document.getElementById('carouselWrapper');
+  wr.addEventListener('mouseenter',()=>{carouselHover=true;clearInterval(carouselTimer);});
+  wr.addEventListener('mouseleave',()=>{carouselHover=false;startCarouselTimer();});
+  startCarouselTimer();
+}
+function cardWidth() { const c = document.querySelector('.carousel-card'); if (!c) return 282; return c.offsetWidth + 20; }
+function updateCarouselPosition(animate) {
+  const track = document.getElementById('carouselTrack'); const w = cardWidth();
+  if (!animate) { track.style.transition = 'none'; track.style.transform = `translateX(-${carouselIdx * w}px)`; void track.offsetWidth; track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)'; }
+  else { track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)'; track.style.transform = `translateX(-${carouselIdx * w}px)`; }
+}
+function nextSlide() {
+  if (isCarouselAnimating) return; isCarouselAnimating = true; carouselIdx++; updateCarouselPosition(true);
+  setTimeout(() => { if (carouselIdx >= carouselProducts.length * 2) { carouselIdx = carouselProducts.length; updateCarouselPosition(false); } isCarouselAnimating = false; }, 520);
+}
+function prevSlide() {
+  if (isCarouselAnimating) return; isCarouselAnimating = true; carouselIdx--; updateCarouselPosition(true);
+  setTimeout(() => { if (carouselIdx < carouselProducts.length) { carouselIdx = carouselProducts.length * 2 - 1; updateCarouselPosition(false); } isCarouselAnimating = false; }, 520);
+}
+function startCarouselTimer() {
+  clearInterval(carouselTimer);
+  if (carouselHover) return;
+  if (prefersReducedMotion) return;
+  carouselTimer = setInterval(nextSlide, 3800);
+}
+
+function getColors(p) { if (p.colors && p.colors.length) return p.colors; if (p.colorSections) return p.colorSections.flatMap(s=>s.colors||[]); return []; }
+
+function formatPriceHtml(p) {
+  if (!p.price) return 'Sob Consulta';
+  const base = parseFloat(p.price);
+  if (p.discount && p.discount > 0) {
+    const final = Math.round(base * (1 - p.discount / 100));
+    return `<span class="price-old">R$ ${base},00</span><span class="price-new">R$ ${final},00</span>`;
+  }
+  return `R$ ${base},00`;
+}
+function getPriceForCart(p) {
+  if (!p.price) return null;
+  const base = parseFloat(p.price);
+  if (p.discount && p.discount > 0) return Math.round(base * (1 - p.discount / 100));
+  return base;
+}
+
+/* ==========================================================
+   FILTROS DA PÁGINA PRODUTOS
+   ========================================================== */
+function setFilter(cat, gender) {
+  currentFilter = cat || 'todos';
+  currentGenderFilter = gender || null;
+  currentSectionFilter = null;
+  currentCollectionFilter = null;
+  renderFilters();
+  renderProducts();
+}
+function setSectionFilter(section, gender) {
+  currentSectionFilter = section;
+  currentGenderFilter = gender || null;
+  currentFilter = 'todos';
+  currentCollectionFilter = null;
+  renderFilters();
+  renderProducts();
+}
+function setSectionGenderFilter(section, gender) { setSectionFilter(section, gender); }
+function setCollectionFilter(collection) {
+  currentCollectionFilter = collection;
+  currentSectionFilter = null;
+  currentGenderFilter = null;
+  currentFilter = 'todos';
+  renderFilters();
+  renderProducts();
+}
+function clearAllFilters() {
+  currentFilter = 'todos';
+  currentSectionFilter = null;
+  currentGenderFilter = null;
+  currentCollectionFilter = null;
+  renderFilters();
+  renderProducts();
+}
+
+function updateProductsFilterHeader() {
+  const header = document.getElementById('productsFilterHeader');
+  const title = document.getElementById('productsFilterTitle');
+  if (!header || !title) return;
+  let label = '';
+  if (currentCollectionFilter) {
+    label = `Coleção ${currentCollectionFilter === 'Dia a Dia' ? 'Essenciais' : currentCollectionFilter}`;
+  } else if (currentSectionFilter && currentGenderFilter) {
+    const secLabel = SECTION_LABELS[currentSectionFilter] || currentSectionFilter;
+    label = `${secLabel} — Para ${currentGenderFilter === 'feminino' ? 'Ela' : 'Ele'}`;
+  } else if (currentSectionFilter) {
+    label = SECTION_LABELS[currentSectionFilter] || currentSectionFilter;
+  } else if (currentFilter !== 'todos') {
+    label = labelForCategory(currentFilter);
+  }
+  if (label) {
+    title.textContent = label;
+    header.style.display = 'block';
+  } else {
+    header.style.display = 'none';
+  }
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const q = (document.getElementById('searchInput')?.value||'').toLowerCase();
+  const filtered = products.filter(p => {
+    if (currentCollectionFilter && p.collection !== currentCollectionFilter) return false;
+    if (currentSectionFilter && getProductSection(p) !== currentSectionFilter) return false;
+    if (currentGenderFilter && p.gender !== currentGenderFilter) return false;
+    if (currentFilter !== 'todos' && p.category !== currentFilter) return false;
+    if (q) {
+      const mq = p.name.toLowerCase().includes(q) || (p.desc||'').toLowerCase().includes(q) || (p.category||'').includes(q);
+      if (!mq) return false;
+    }
+    return true;
+  });
+  updateProductsFilterHeader();
+  document.getElementById('productsCount').textContent = `${filtered.length} peça${filtered.length!==1?'s':''} encontrada${filtered.length!==1?'s':''}`;
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="no-results"><span>🔍</span><p>Nenhuma peça encontrada.</p><button class="btn-secondary" onclick="clearAllFilters()">Ver todas</button></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map((p,i) => cardHtml(p,i)).join('');
+  bindCardEvents(grid);
+}
+
+/* NOVIDADES */
+function renderNovidades() {
+  const grid = document.getElementById('novidadesGrid');
+  if (!grid) return;
+  if (!blogPosts.length) { grid.innerHTML = '<div class="no-results"><span>📰</span><p>Nenhuma novidade ainda.</p></div>'; return; }
+  grid.innerHTML = blogPosts.map(post => `
+    <article class="blog-card" onclick="openBlogPost(${post.id})" role="button" tabindex="0">
+      <div class="blog-cover">${post.emoji}</div>
+      <div class="blog-body">
+        <span class="blog-tag">${post.tag}</span>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <div class="blog-date">${post.date}</div>
+        <span class="blog-read-more">Ler mais →</span>
+      </div>
+    </article>
+  `).join('');
+}
+function openBlogPost(id) { const post = blogPosts.find(p => p.id === id); if (!post) return; showToast(`📰 ${post.title}`); }
+
+// ALTERAÇÃO: setColecaoFilter agora usa data-filter (não textContent)
+function setColecaoFilter(filter) {
+  currentColecaoFilter = filter;
+  document.querySelectorAll('#colecoesFilterPills .filter-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.filter === filter);
+  });
+  renderColecoes();
+}
+function renderColecoes() {
+  const grid = document.getElementById('colecoesGrid');
+  if (!grid) return;
+  let filtered = collections;
+  if (currentColecaoFilter !== 'todas') filtered = collections.filter(c => c.filter === currentColecaoFilter);
+  if (!filtered.length) { grid.innerHTML = '<div class="no-results"><span>✨</span><p>Nenhuma coleção disponível.</p></div>'; return; }
+  grid.innerHTML = filtered.map(c => `
+    <div class="collection-card" onclick="openCollection('${c.id}','${c.filter}')" role="button" tabindex="0">
+      <div class="collection-img"><div class="collection-emoji">${c.emoji}</div></div>
+      <div class="collection-info"><h3>${c.name}</h3><p>${c.desc}</p><div class="collection-cta">Explorar →</div></div>
+    </div>
+  `).join('');
+}
+function openCollection(id, filterName) {
+  if (filterName) {
+    showPage('produtos');
+    setTimeout(() => setCollectionFilter(filterName), 30);
+  } else {
+    showPage('produtos');
+  }
+}
+
+function cardHtml(p,i) {
+  const grads = ['#f2ede0','#f8ead5','#f5e6cb','#f3ead2'];
+  const rawImg = toRaw(p.image); const hasImg = !!rawImg;
+  const cols = getColors(p);
+  const colorText = cols.length > 0 ? `${cols.length} ${cols.length === 1 ? 'Cor' : 'Cores'}` : '';
+  const badgeText = getBadgeText(p);
+  const isDisc = isDiscountBadge(p);
+  const badgeLabel = badgeText ? `<div class="product-badge-label${isDisc?' discount':''}">${badgeText}</div>` : '';
+  const fav = favorites.includes(p.id) ? 'faved' : '';
+  return `
+  <div class="product-card ${p.custom?'custom-card':''}" data-id="${p.id}" role="button" tabindex="0">
+    <div class="product-img-square" style="background:${grads[i%grads.length]}">
+      ${hasImg?`<img src="${rawImg}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:''} 
+      ${!hasImg?`<div class="product-img-emoji">${p.emoji}</div>`:''}
+      ${badgeLabel}
+      <button class="fav-btn ${fav}" onclick="event.stopPropagation();toggleFavorite(${p.id})" aria-label="Favorito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+    </div>
+    <div class="product-info">
+      <h3>${p.name}</h3>
+      <div class="product-price">${formatPriceHtml(p)}</div>
+      ${colorText ? `<div class="product-colors-text">${colorText}</div>` : ''}
+    </div>
+  </div>`;
+}
+function bindCardEvents(grid) {
+  grid.querySelectorAll('.product-card').forEach(card => { card.addEventListener('click', handleCardClick); });
+}
+function handleCardClick(e) {
+  if (e.target.closest('.fav-btn')) return;
+  const pid = parseInt(this.dataset?.id); if (pid) openProductPage(pid);
+}
+function renderFilters() {
+  const container = document.getElementById('filterPills');
+  if (!container) return;
+  let html = `<button class="filter-pill ${currentFilter === 'todos' && !currentSectionFilter && !currentCollectionFilter ? 'active' : ''}" onclick="clearAllFilters()">Todos</button>`;
+  categories.forEach(cat => {
+    const active = currentFilter === cat && !currentSectionFilter && !currentCollectionFilter;
+    html += `<button class="filter-pill ${active ? 'active' : ''}" onclick="setFilter('${cat}')">${labelForCategory(cat)}</button>`;
+  });
+  container.innerHTML = html;
+}
+function onSearch(val) {
+  const si = document.getElementById('searchInput');
+  if (!si) return;
+  clearTimeout(searchTimeout);
+  const clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.classList.toggle('visible', !!val);
+  searchTimeout = setTimeout(renderProducts, 280);
+}
+function clearSearch() {
+  const si = document.getElementById('searchInput');
+  if (si) si.value = '';
+  const clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.classList.remove('visible');
+  renderProducts();
+}
+
+/* ==========================================================
+   PÁGINA DE PRODUTO
+   ========================================================== */
+function openProductPage(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  currentProductPageId = id;
+  currentModal = p;
+  selectedColors[p.id] = null;
+  renderProductPageContent(id);
+  showPage('produto');
+}
+
+function renderProductPageContent(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('productPageTitle').textContent = p.name;
+  const priceRow = document.getElementById('productPagePriceRow');
+  const base = parseFloat(p.price) || 0;
+  if (p.discount && p.discount > 0) {
+    const final = Math.round(base * (1 - p.discount / 100));
+    priceRow.innerHTML = `
+      <span class="product-page-price-old">R$ ${base},00</span>
+      <span class="product-page-price-new">R$ ${final},00</span>
+      <span class="product-page-discount-tag">-${p.discount}%</span>
+    `;
+  } else if (base > 0) {
+    priceRow.innerHTML = `<span class="product-page-price">R$ ${base},00</span>`;
+  } else {
+    priceRow.innerHTML = `<span class="product-page-price">Sob consulta</span>`;
+  }
+  document.getElementById('productPageDesc').textContent = p.desc || '';
+
+  const sections = p.colorSections || (p.colors ? [{ name: 'Cores disponíveis', colors: p.colors }] : []);
+  if (!Array.isArray(selectedColors[p.id])) {
+    selectedColors[p.id] = sections.map(s => s.colors.length ? s.colors[0] : null);
+  }
+  let colorsHtml = '';
+  if (sections.length > 0) {
+    colorsHtml = sections.map((sec, sIdx) => {
+      const sel = selectedColors[p.id][sIdx] || (sec.colors.length ? sec.colors[0] : null);
+      if (!selectedColors[p.id][sIdx]) selectedColors[p.id][sIdx] = sel;
+      return `<div style="margin-bottom:18px">
+        <div class="product-page-colors-label">${sec.name}</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap" class="productPageColorDots" data-sidx="${sIdx}">
+          ${sec.colors.map(c => `<button class="color-dot ${sel && c.hex === sel.hex ? 'selected' : ''}" style="background:${c.hex};width:28px;height:28px" data-pid="${p.id}" data-sidx="${sIdx}" data-name="${c.name}" data-hex="${c.hex}" aria-label="Cor ${c.name}"></button>`).join('')}
+        </div>
+        <div class="modal-color-name" id="productPageColorName-${sIdx}">Cor: ${sel ? sel.name : ''}</div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('productPageColors').innerHTML = colorsHtml;
+  setTimeout(() => {
+    document.querySelectorAll('.productPageColorDots .color-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const pid = parseInt(dot.dataset.pid);
+        const sIdx = parseInt(dot.dataset.sidx);
+        selectedColors[pid][sIdx] = { name: dot.dataset.name, hex: dot.dataset.hex };
+        const parent = dot.closest('.productPageColorDots');
+        parent.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+        dot.classList.add('selected');
+        const label = document.getElementById('productPageColorName-' + sIdx);
+        if (label) label.textContent = 'Cor: ' + dot.dataset.name;
+      });
+    });
+  }, 0);
+
+  const gallery = document.getElementById('productPageGallery');
+  const rawImg = toRaw(p.image);
+  const imgs = [];
+  if (rawImg) imgs.push(rawImg);
+  (p.gallery || []).forEach(g => { const r = toRaw(g); if (r && !imgs.includes(r)) imgs.push(r); });
+  if (imgs.length) {
+    gallery.innerHTML = imgs.map(url => `<div class="product-page-gallery-item"><img src="${url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div>`).join('');
+  } else {
+    gallery.innerHTML = `<div class="product-page-gallery-item"><div class="gallery-emoji">${p.emoji || '🧶'}</div></div>`;
+  }
+
+  const specs = document.getElementById('productPageSpecs');
+  const composition = p.composition || p.material || 'Fios premium de alta durabilidade, selecionados à mão para cada peça.';
+  const care = p.care || 'Lavar à mão com água fria e sabão neutro. Secar na horizontal, à sombra. Guardar dobrada.';
+  const responsibility = p.responsibility || 'Produção artesanal sob demanda, sem desperdício, com fios de fornecedores conscientes.';
+  specs.innerHTML = `
+    <details><summary>Composição</summary><p>${composition}</p></details>
+    <details><summary>Cuidados</summary><p>${care}</p></details>
+    <details><summary>Responsabilidade</summary><p>${responsibility}</p></details>
+  `;
+
+  const related = document.getElementById('productPageRelated');
+  const others = products.filter(x => x.id !== p.id).slice(0, 8);
+  const grads = ['#f2ede0','#f8ead5','#f5e6cb','#f3ead2'];
+  related.innerHTML = others.map((rp, i) => {
+    const rimg = toRaw(rp.image);
+    const rcols = getColors(rp);
+    const rcolorText = rcols.length > 0 ? `${rcols.length} ${rcols.length === 1 ? 'Cor' : 'Cores'}` : '';
+    const rbadge = getBadgeText(rp);
+    const rdisc = isDiscountBadge(rp);
+    const rbadgeLabel = rbadge ? `<div class="product-badge-label${rdisc?' discount':''}">${rbadge}</div>` : '';
+    const rfav = favorites.includes(rp.id) ? 'faved' : '';
+    return `<div class="carousel-card" onclick="openProductPage(${rp.id})" role="button" tabindex="0">
+      <div class="product-img-square" style="background:${grads[i%grads.length]}">
+        ${rimg?`<img src="${rimg}" alt="${rp.name}" loading="lazy" onerror="this.style.display='none'">`:''}
+        ${!rimg?`<div class="product-img-emoji">${rp.emoji}</div>`:''}
+        ${rbadgeLabel}
+        <button class="fav-btn ${rfav}" onclick="event.stopPropagation();toggleFavorite(${rp.id})" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <h3>${rp.name}</h3>
+        <div class="product-price">${formatPriceHtml(rp)}</div>
+        ${rcolorText ? `<div class="product-colors-text">${rcolorText}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function addToCartFromProductPage() {
+  if (!currentProductPageId) return;
+  addToCart(currentProductPageId);
+}
+
+/* ---------- MODAL (compatibilidade) ---------- */
+function openModal(id) { openProductPage(id); }
+function closeModal() {
+  const overlay = document.getElementById('modalOverlay');
+  if (overlay) overlay.classList.remove('open');
+  clearActiveDialog(overlay); unlockBody();
+}
+function addToCartFromModal() { if (currentModal) addToCart(currentModal.id); closeModal(); }
+function switchMedia() {}
+function galleryPrev() {}
+function galleryNext() {}
+function setGalleryImg() {}
+
+function addToCart(id) {
+  const p = products.find(x=>x.id===id); if(!p) return;
+  const colsArr = selectedColors[id] || []; 
+  const chosenColors = Array.isArray(colsArr) ? colsArr.filter(c => c !== null && c !== undefined) : [];
+  const effectivePrice = getPriceForCart(p);
+  const existing = cart.find(c => c.id === id && JSON.stringify(c.selectedColors) === JSON.stringify(chosenColors));
+  if(existing) existing.qty++;
+  else cart.push({...p, price: effectivePrice, originalPrice: p.price, qty:1, selectedColors: chosenColors});
+  saveCart(); updateCartUI();
+  showToast(`✅ ${p.name} adicionado!`);
+}
+function removeFromCart(idx) { cart.splice(idx,1); saveCart(); updateCartUI(); }
+function changeQty(idx,d) { if(!cart[idx])return; cart[idx].qty+=d; if(cart[idx].qty<=0) removeFromCart(idx); else { saveCart(); updateCartUI(); } }
+function updateCartUI() {
+  const total = cart.reduce((s,c)=>s+(c.price||0)*c.qty,0);
+  const count = cart.reduce((s,c)=>s+c.qty,0);
+  const items = document.getElementById('cartItems'); const footer = document.getElementById('cartFooter');
+  if(!cart.length) { items.innerHTML=`<div class="cart-empty"><span class="empty-icon">🧶</span><p>Seu carrinho está vazio.<br>Explore nossas peças!</p></div>`; footer.style.display='none'; document.getElementById('navCartCount').classList.add('hidden'); updateDrawerCounts(); return; }
+  footer.style.display='block'; document.getElementById('cartTotal').textContent=`R$ ${total.toFixed(2).replace('.',',')}`;
+  const navBadge = document.getElementById('navCartCount'); if(navBadge) { navBadge.classList.remove('hidden'); navBadge.textContent = count; }
+  items.innerHTML = cart.map((item,i)=>{
+    const rawI=toRaw(item.image);
+    const colorInfo = (item.selectedColors && item.selectedColors.length > 0) ? item.selectedColors.map(sc => `<div class="cart-item-color"><div class="cart-item-color-dot" style="background:${sc.hex}"></div>${sc.name}</div>`).join('') : '';
+    return `<div class="cart-item"><div class="cart-item-img">${rawI?`<img src="${rawI}" alt="${item.name}">`:(item.emoji||'🧶')}</div><div class="cart-item-info"><h4>${item.name}</h4>${colorInfo}<span>${item.price?'R$ '+parseFloat(item.price).toFixed(2).replace('.',','):'Sob consulta'}</span></div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Diminuir quantidade">−</button><span class="qty-value">${item.qty}</span><button class="qty-btn" onclick="changeQty(${i},1)" aria-label="Aumentar quantidade">+</button></div><button class="cart-remove" onclick="removeFromCart(${i})" aria-label="Remover item">🗑</button></div>`;
+  }).join('');
+  updateDrawerCounts();
+}
+function openCart() {
+  closeOtherLayers('cartPanel');
+  const panel = document.getElementById('cartPanel');
+  panel.classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  setActiveDialog(panel); lockBody();
+  setTimeout(() => panel.querySelector('.cart-close')?.focus(), 80);
+}
+function closeCart() {
+  const panel = document.getElementById('cartPanel');
+  panel.classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  clearActiveDialog(panel); unlockBody();
+}
+function toggleCart() {
+  const p = document.getElementById('cartPanel');
+  if (p.classList.contains('open')) closeCart(); else openCart();
+}
+function checkout() {
+  if(!cart.length) return;
+  const user = auth.currentUser;
+  // Salvar pedido localmente (por usuário) para aparecer na aba Pedidos
+  if (user) {
+    const order = {
+      id: 'GC' + Date.now().toString().slice(-8),
+      date: new Date().toISOString(),
+      items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price, selectedColors: c.selectedColors || [] })),
+      total: cart.reduce((s,c)=>s+(c.price||0)*c.qty,0)
+    };
+    try {
+      const key = 'goldcrochet_orders_' + user.uid;
+      const orders = JSON.parse(localStorage.getItem(key) || '[]');
+      orders.unshift(order);
+      localStorage.setItem(key, JSON.stringify(orders));
+    } catch(e) {}
+  }
+  const lines = cart.map(c=>{ const colorStr = (c.selectedColors && c.selectedColors.length > 0) ? ` (${c.selectedColors.map(sc => sc.name).join(', ')})` : ''; return `• ${c.name}${colorStr} x${c.qty}${c.price?' — R$ '+parseFloat(c.price).toFixed(2).replace('.',','):''}`; });
+  const total = cart.reduce((s,c)=>s+(c.price||0)*c.qty,0);
+  const msg = `Olá! Gostaria de fazer um pedido na Gold Crochet 🧶\n\n${lines.join('\n')}\n\nTotal: R$ ${total.toFixed(2).replace('.',',')}\n\nAguardo confirmação! 😊`;
+  closeCart(); showToast('🚀 Abrindo WhatsApp...'); setTimeout(()=>window.open('https://wa.me/553182032351?text='+encodeURIComponent(msg),'_blank'),800);
+}
+
+function showToast(msg,type='') { const t=document.getElementById('toast'); t.textContent=msg; t.className='toast show '+(type||''); setTimeout(()=>t.classList.remove('show'),2800); }
+function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('goldcrochet_cookies','1'); }
+
+/* ==========================================================
+   PÁGINA MINHA CONTA (com abas)
+   ========================================================== */
+function openUserAccountPage() {
+  closeUserDropdown();
+  showPage('conta');
+}
+function setUserTab(tab) {
+  currentUserTab = tab;
+  document.querySelectorAll('.user-account-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.user-tab-panel').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('userTab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+  if (el) el.classList.add('active');
+}
+function renderUserAccount() {
+  renderUserPedidos();
+  renderUserConta();
+  renderUserConfig();
+  setUserTab(currentUserTab || 'pedidos');
+}
+function renderUserPedidos() {
+  const el = document.getElementById('userTabPedidos');
+  if (!el) return;
+  const user = auth.currentUser;
+  if (!user) {
+    el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">🔒</span><h3>Entre para ver seus pedidos</h3><p>Faça login para acompanhar seus pedidos e histórico de compras.</p><button class="user-primary-btn" onclick="openUserModal()">Entrar na minha conta</button></div></div>`;
+    return;
+  }
+  let orders = [];
+  try { orders = JSON.parse(localStorage.getItem('goldcrochet_orders_' + user.uid) || '[]'); } catch(e) { orders = []; }
+  if (!orders.length) {
+    el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">📦</span><h3>Nenhum pedido ainda</h3><p>Quando você finalizar uma compra, seu pedido aparecerá aqui.</p><button class="user-primary-btn" onclick="showPage('produtos')">Explorar peças</button></div></div>`;
+    return;
+  }
+  el.innerHTML = orders.map(o => {
+    const dateStr = new Date(o.date).toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+    const itemsStr = o.items.map(i => `${i.qty}× ${i.name}`).join(' · ');
+    return `<div class="user-order-card">
+      <div class="user-order-header">
+        <span class="user-order-id">Pedido #${o.id}</span>
+        <span class="user-order-date">${dateStr}</span>
+      </div>
+      <div class="user-order-items">${itemsStr}</div>
+      <div class="user-order-total">Total: R$ ${(o.total||0).toFixed(2).replace('.',',')}</div>
+    </div>`;
+  }).join('');
+}
+function renderUserConta() {
+  const el = document.getElementById('userTabConta');
+  if (!el) return;
+  const user = auth.currentUser;
+  if (!user) {
+    el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">👤</span><h3>Entre para acessar sua conta</h3><p>Faça login para visualizar e editar seus dados.</p><button class="user-primary-btn" onclick="openUserModal()">Entrar na minha conta</button></div></div>`;
+    return;
+  }
+  const name = user.displayName || '';
+  const email = user.email || '';
+  el.innerHTML = `
+    <div class="user-tab-card">
+      <h2>Informações da Conta</h2>
+      <p class="user-card-sub">Atualize seu nome de exibição. O e-mail é usado para login e não pode ser alterado por aqui.</p>
+      <div class="user-field-row">
+        <div class="user-field">
+          <label>Nome</label>
+          <input type="text" id="userContaName" value="${name.replace(/"/g,'&quot;')}" placeholder="Seu nome">
+        </div>
+        <div class="user-field">
+          <label>E-mail</label>
+          <input type="email" value="${email.replace(/"/g,'&quot;')}" disabled>
+        </div>
+      </div>
+      <button class="user-primary-btn" onclick="saveUserConta()">Salvar alterações</button>
+    </div>
+  `;
+}
+function saveUserConta() {
+  const user = auth.currentUser;
+  if (!user) return;
+  const name = (document.getElementById('userContaName')?.value || '').trim();
+  if (!name) { showToast('⚠️ Preencha o nome!', 'error'); return; }
+  updateProfile(user, { displayName: name })
+    .then(() => { showToast('✅ Nome atualizado!'); updateLeftMenuAccount(); renderUserDropdown(); renderUserConta(); })
+    .catch(err => showToast('❌ ' + err.message, 'error'));
+}
+function renderUserConfig() {
+  const el = document.getElementById('userTabConfig');
+  if (!el) return;
+  const user = auth.currentUser;
+  if (!user) {
+    el.innerHTML = `<div class="user-tab-card"><div class="user-empty"><span class="empty-icon">⚙️</span><h3>Entre para ver as configurações</h3><p>Faça login para gerenciar suas preferências.</p><button class="user-primary-btn" onclick="openUserModal()">Entrar na minha conta</button></div></div>`;
+    return;
+  }
+  el.innerHTML = `
+    <div class="user-tab-card">
+      <h2>Notificações</h2>
+      <p class="user-card-sub">Escolha quais comunicações deseja receber.</p>
+      <div class="user-checkbox-row">
+        <input type="checkbox" id="cfgPromo" checked>
+        <label for="cfgPromo"><strong>Promoções e lançamentos</strong><small>Novidades, descontos exclusivos e novas coleções.</small></label>
+      </div>
+      <div class="user-checkbox-row">
+        <input type="checkbox" id="cfgPedidos" checked>
+        <label for="cfgPedidos"><strong>Atualizações de pedido</strong><small>Status de produção, envio e entrega.</small></label>
+      </div>
+      <div class="user-checkbox-row">
+        <input type="checkbox" id="cfgNews">
+        <label for="cfgNews"><strong>Newsletter Gold Crochet</strong><small>Bastidores, artigos sobre crochê e inspirações.</small></label>
+      </div>
+    </div>
+    <div class="user-tab-card">
+      <h2>Privacidade</h2>
+      <p class="user-card-sub">Você pode sair da conta ou excluir seus dados a qualquer momento.</p>
+      <button class="user-danger-btn" onclick="deleteUserAccount()">Excluir minha conta</button>
+    </div>
+  `;
+}
+function deleteUserAccount() {
+  const user = auth.currentUser;
+  if (!user) return;
+  if (!confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.')) return;
+  deleteUser(user)
+    .then(() => { showToast('Conta excluída.'); showPage('inicio'); })
+    .catch(err => showToast('❌ ' + err.message + ' (talvez seja necessário fazer login novamente)', 'error'));
+}
+
+document.getElementById('searchOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('searchOverlay')) closeSearchOverlay(); });
+
+// ─── Boot do app ──────────────────────────────────────────────
+async function initApp() {
+  setupLogos();
+  setupMenuAria();
+  setupMenuInteractions();
+  setupMenuKeyboardNavigation();
+  initMegaMenus();
+  positionSearchButton();
+  positionNavDropdowns();
+
+  loadCart(); loadFavorites();
+  handleScroll();
+  updateFavCount();
+  updateAuthUI();
+  updateLeftMenuAccount();
+  updateDrawerCounts();
+  renderUserDropdown();
+
+  document.getElementById('productsGrid').innerHTML = Array(6).fill('<div class="skeleton skeleton-card"></div>').join('');
+  await loadData();
+  applySiteConfig();
+  renderCarousel(); renderFilters(); renderProducts(); renderNovidades(); renderColecoes(); updateCartUI();
+  updateFavCount();
+  updateLeftMenuAccount();
+  updateDrawerCounts();
+  renderUserDropdown();
+  initReveal();
+  positionNavDropdowns();
+  if(!localStorage.getItem('goldcrochet_cookies')) setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'),2200);
+}
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+window.addEventListener('resize', () => {
+  positionSearchButton();
+  positionNavDropdowns();
+});
+
+/* ============================================================
+   EXPOR FUNÇÕES AO ESCOPO GLOBAL
+   (necessário porque type="module" isola o escopo;
+    os onclick="" inline do HTML precisam acessar window.fn)
+   ============================================================ */
+Object.assign(window, {
+  // Navegação / Drawer
+  showPage, toggleLeftMenu, closeLeftMenu, navigateFromMenu,
+  navigateFromSubMenu, togglePecasSubmenu, toggleCasaSubmenu,
+  openSearchFromMenu, openFavoritesFromMenu, openCartFromMenu,
+  handleAccountFromMenu, handleAccountAction, handleFavoritesAction,
+  // Mega menus
+  megaGoTo, megaGoToCategory, megaGoToSection, megaGoToSectionGender,
+  megaGoToCollection,
+  // Busca
+  toggleSearchOverlay, openSearchOverlay, closeSearchOverlay,
+  onSearchOverlay, clearSearchOverlayInput,
+  // Produtos / Filtros
+  openProductPage, openModal, toggleFavorite, setFilter, setSectionFilter,
+  setSectionGenderFilter, setCollectionFilter, clearAllFilters,
+  setColecaoFilter, openCollection, onSearch, clearSearch,
+  // Carrinho
+  toggleCart, closeCart, openCart, checkout, removeFromCart, changeQty,
+  addToCart, addToCartFromModal, addToCartFromProductPage, openUserModalFromCart,
+  // Favoritos
+  openFavorites, closeFavorites, openModalFromFav,
+  // Modal produto
+  closeModal, switchMedia, galleryPrev, galleryNext,
+  // Usuário
+  openUserModal, closeUserModal, showLogin, showRegister,
+  loginUser, registerUser, logoutUser, openUserAccountPage,
+  closeUserDropdown, openUserDropdown, toggleUserDropdown,
+  setUserTab, saveUserConta, deleteUserAccount,
+  // Carrossel
+  prevSlide, nextSlide,
+  // Blog / Coleções
+  openBlogPost,
+  // Cookies
+  acceptCookies
+});
+</script>
+</body>
+</html>
