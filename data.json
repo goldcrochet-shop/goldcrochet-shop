@@ -171,7 +171,7 @@
       "category": "bolsas",
       "price": 175,
       "badge": "Destaque",
-      "discount": 10,
+      "discount": 0,
       "image": "",
       "gallery": [],
       "colorSections": [
@@ -199,10 +199,17 @@
           "hex": "#cda434"
         },
         {
+          "name": "Preto",
+          "hex": "#2c2c2c"
+        },
+        {
           "name": "Vinho",
           "hex": "#7a2437"
         }
-      ]
+      ],
+      "model3d": "",
+      "prod_time": "",
+      "material": ""
     },
     {
       "id": 1005,
@@ -979,7 +986,7 @@
     "email": "rayssacrochet1404@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-20T02:18:45.295Z",
+    "updated": "2026-09-20T02:19:31.640Z",
     "version": "3.0"
   }
 }
