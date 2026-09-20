@@ -916,7 +916,7 @@
     {
       "id": "dia-a-dia",
       "name": "Coleção Maré de Ouro",
-      "filter": "Dia a Dia",
+      "filter": "Essenciais",
       "emoji": "🌊",
       "desc": "Peças versáteis inspiradas no balanço do mar e no brilho do ouro."
     }
@@ -1005,7 +1005,7 @@
     "email": "rayssacrochet1404@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-20T16:15:09.259Z",
+    "updated": "2026-09-20T16:21:13.696Z",
     "version": "3.1"
   }
 }
