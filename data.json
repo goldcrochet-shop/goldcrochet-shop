@@ -690,7 +690,10 @@
       ],
       "model3d": "",
       "prod_time": "",
-      "material": ""
+      "material": "",
+      "section": "bijuterias",
+      "gender": null,
+      "collection": null
     },
     {
       "id": 1018,
@@ -902,6 +905,22 @@
     "Sob Medida",
     "Edição Limitada"
   ],
+  "collections": [
+    {
+      "id": "alta-costura",
+      "name": "Alta-Costura",
+      "filter": "Alta-Costura",
+      "emoji": "👑",
+      "desc": "Peças exclusivas, com fios premium e acabamento refinado."
+    },
+    {
+      "id": "dia-a-dia",
+      "name": "Coleção Maré de Ouro",
+      "filter": "Dia a Dia",
+      "emoji": "🌊",
+      "desc": "Peças versáteis inspiradas no balanço do mar e no brilho do ouro."
+    }
+  ],
   "globalColors": [
     {
       "name": "Dourado Gold",
@@ -986,7 +1005,7 @@
     "email": "rayssacrochet1404@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-20T02:19:31.640Z",
-    "version": "3.0"
+    "updated": "2026-09-20T16:15:09.259Z",
+    "version": "3.1"
   }
 }
