@@ -632,6 +632,23 @@
   .search-overlay-input-wrap:focus-within { border-color:var(--gold-main); box-shadow:0 0 0 5px rgba(212,175,55,0.12); }
   .search-overlay-input-wrap svg { width:24px; height:24px; color:var(--gold-main); flex-shrink:0; }
   .search-overlay-input-wrap input { flex:1; border:none; outline:none; font-family:'Outfit',sans-serif; font-size:1.05rem; color:var(--text-dark); background:transparent; }
+  .search-overlay-clear {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gold-pale);
+    color: var(--gold-main);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+  .search-overlay-clear.visible { display: flex; }
+  .search-overlay-clear:hover { background: var(--gold-main); color: #fff; transform: rotate(90deg); }
   .search-overlay-results { display:grid; grid-template-columns:repeat(auto-fill,minmax(262px,1fr)); gap:26px; }
   .search-overlay-results .no-results { grid-column:1/-1; }
   .search-overlay-hint { text-align:center; padding:40px 20px; color:var(--text-mid); font-size:0.95rem; grid-column:1/-1; }
@@ -747,17 +764,20 @@
     margin: 0 auto;
     padding: 32px 5% 36px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 260px;
-    gap: 42px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
     align-items: flex-start;
   }
   .mega-col h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 14px;
-    letter-spacing: 0.01em;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,175,55,0.18);
   }
   .mega-col ul {
     list-style: none;
@@ -767,7 +787,7 @@
   }
   .mega-col ul li a {
     display: inline-block;
-    color: var(--text-mid);
+    color: var(--text-dark);
     text-decoration: none;
     font-size: 0.92rem;
     font-weight: 500;
@@ -971,7 +991,7 @@
      ========================================================== */
   @media (max-width:1200px) {
     .nav-links a { padding:8px 12px; font-size:0.88rem; }
-    .mega-menu-inner { grid-template-columns: 1fr 1fr 1fr 220px; gap: 32px; }
+    .mega-menu-inner { grid-template-columns: repeat(4, 1fr); gap: 24px; }
   }
   @media (max-width:1000px) {
     .nav-links a { padding:7px 9px; font-size:0.83rem; }
@@ -1010,6 +1030,7 @@
     .search-overlay-content { padding:20px 4% 50px; }
     .products-grid { grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px; }
     .search-overlay-results { grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px; }
+    .search-overlay-input-wrap { padding: 12px 18px; }
   }
   @media (max-width:380px) {
     :root { --nav-h:80px; --nav-h-scrolled:58px; }
@@ -1070,6 +1091,7 @@
     <div class="search-overlay-input-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       <input type="text" id="searchOverlayInput" placeholder="Buscar peças... (Ctrl+K)" oninput="onSearchOverlay(this.value)">
+      <button class="search-overlay-clear" id="searchOverlayClear" type="button" onclick="clearSearchOverlayInput()" aria-label="Limpar pesquisa" title="Limpar">✕</button>
     </div>
     <div class="search-overlay-results" id="searchOverlayResults"></div>
   </div>
@@ -1124,34 +1146,42 @@
     <div class="mega-col">
       <h3>Dia a Dia</h3>
       <ul>
-        <li><a onclick="megaGoTo('produtos');return false;">Roupas para noite</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Saias e vestidos</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Jaquetas e casacos</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Tops</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Calças</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Pequeninos</a></li>
+        <li><a onclick="megaGoTo('produtos','roupas-noite');return false;">Roupas para noite</a></li>
+        <li><a onclick="megaGoTo('produtos','saias-vestidos');return false;">Saias e vestidos</a></li>
+        <li><a onclick="megaGoTo('produtos','jaquetas-casacos');return false;">Jaquetas e casacos</a></li>
+        <li><a onclick="megaGoTo('produtos','tops');return false;">Tops</a></li>
+        <li><a onclick="megaGoTo('produtos','calcas');return false;">Calças</a></li>
+        <li><a onclick="megaGoTo('produtos','pequeninos');return false;">Pequeninos</a></li>
         <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
       </ul>
     </div>
     <div class="mega-col">
       <h3>Acessórios</h3>
       <ul>
-        <li><a onclick="megaGoTo('produtos');return false;">Bolsas</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Charms</a></li>
+        <li><a onclick="megaGoTo('produtos','bolsas');return false;">Bolsas</a></li>
+        <li><a onclick="megaGoTo('produtos','charms');return false;">Charms</a></li>
+        <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
       </ul>
     </div>
     <div class="mega-col">
       <h3>Bijuterias</h3>
       <ul>
-        <li><a onclick="megaGoTo('produtos');return false;">Brincos</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Colares</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Broches</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Braceletes</a></li>
-        <li><a onclick="megaGoTo('produtos');return false;">Anéis</a></li>
+        <li><a onclick="megaGoTo('produtos','brincos');return false;">Brincos</a></li>
+        <li><a onclick="megaGoTo('produtos','colares');return false;">Colares</a></li>
+        <li><a onclick="megaGoTo('produtos','broches');return false;">Broches</a></li>
+        <li><a onclick="megaGoTo('produtos','braceletes');return false;">Braceletes</a></li>
+        <li><a onclick="megaGoTo('produtos','aneis');return false;">Anéis</a></li>
+        <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
       </ul>
     </div>
-    <div class="mega-image-slot" aria-hidden="true">
-      <span>Imagem aqui</span>
+    <div class="mega-col">
+      <h3>Artigos para Casa</h3>
+      <ul>
+        <li><a onclick="megaGoTo('produtos','decoracoes');return false;">Decorações</a></li>
+        <li><a onclick="megaGoTo('produtos','mantas');return false;">Mantas &amp; Cobertores</a></li>
+        <li><a onclick="megaGoTo('produtos','amigurumi');return false;">Amigurumis</a></li>
+        <li class="mega-see-all"><a onclick="megaGoTo('produtos');return false;">Ver tudo</a></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -1161,12 +1191,12 @@
   <div class="mega-menu-inner mega-casa">
     <a class="mega-casa-block" onclick="megaGoTo('sobre');return false;">
       <h3>Sobre Gold Crochet</h3>
-      <p>A história da casa</p>
+      <p>A história da casa, nossa essência e cada ponto que nos trouxe até aqui.</p>
       <span class="mega-casa-arrow">Conhecer →</span>
     </a>
-    <a class="mega-casa-block" onclick="megaGoTo('sobre');switchAboutTab('colab');return false;">
-      <h3>Colaborações</h3>
-      <p>A casa gold e os artistas</p>
+    <a class="mega-casa-block" onclick="megaGoTo('colaboracoes');return false;">
+      <h3>Colaborações & Artistas</h3>
+      <p>A influência dos artistas, parcerias criativas e o crochê como expressão coletiva.</p>
       <span class="mega-casa-arrow">Descobrir →</span>
     </a>
   </div>
@@ -1263,6 +1293,11 @@
       <a href="#" id="left-nav-sobre" onclick="navigateFromMenu('sobre');return false;">
         <span class="left-menu-icon" aria-hidden="true">🏛️</span>
         <span class="left-menu-link-text">Casa Gold</span>
+        <span class="left-menu-link-arrow" aria-hidden="true">›</span>
+      </a>
+      <a href="#" id="left-nav-colaboracoes" onclick="navigateFromMenu('colaboracoes');return false;">
+        <span class="left-menu-icon" aria-hidden="true">🎨</span>
+        <span class="left-menu-link-text">Colaborações</span>
         <span class="left-menu-link-arrow" aria-hidden="true">›</span>
       </a>
       <a href="#" onclick="navigateFromMenu('sobre');return false;">
@@ -1497,25 +1532,15 @@
   <div class="products-grid" id="novidadesGrid"></div>
 </section>
 
+<!-- CASA GOLD — PÁGINA SOBRE -->
 <section class="page" id="page-sobre">
   <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
     <div class="about-hero">
       <div class="about-text">
         <h1>A História da <span>Gold Crochet</span></h1>
-        <div class="about-tabs">
-          <button class="about-tab active" onclick="switchAboutTab('sobre')">Sobre Gold Crochet</button>
-          <button class="about-tab" onclick="switchAboutTab('colab')">Colaborações</button>
-        </div>
-        <div id="about-sobre" class="about-content active">
-          <p>Nascemos da paixão por criar. De um novelo de fio a uma marca, a Gold Crochet começou como um sonho de transformar o crochê artesanal em peças de alto padrão, elegantes e atemporais.</p>
-          <p>Cada peça que sai das nossas mãos foi feita com cuidado, atenção aos detalhes e muito amor pelo que fazemos.</p>
-          <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Ver Peças</a>
-        </div>
-        <div id="about-colab" class="about-content">
-          <p>Buscamos parcerias criativas com artistas e marcas que compartilham do nosso amor pelo feito à mão.</p>
-          <p>Se você tem uma marca ou é um artista e deseja colaborar, entre em contato!</p>
-          <a href="mailto:rayssacrochet1404@gmail.com" class="btn-secondary" style="display:inline-block;margin-top:8px;">Fale Conosco</a>
-        </div>
+        <p>Nascemos da paixão por criar. De um novelo de fio a uma marca, a Gold Crochet começou como um sonho de transformar o crochê artesanal em peças de alto padrão, elegantes e atemporais.</p>
+        <p>Cada peça que sai das nossas mãos foi feita com cuidado, atenção aos detalhes e muito amor pelo que fazemos. Acreditamos que o feito à mão carrega uma história — e é essa história que queremos compartilhar com você.</p>
+        <a href="#" class="btn-primary" onclick="showPage('produtos');return false;" style="display:inline-block;margin-top:8px;">Ver Peças</a>
       </div>
       <div class="about-visual">
         <div class="about-logo-wrap"><img id="aboutLogoImg" src="./assets/logo.png" alt="Gold Crochet"></div>
@@ -1532,11 +1557,47 @@
       <h2>Nossa <span>Jornada</span></h2>
       <p>Tudo começou com uma agulha, um novelo de fio e muita vontade de transformar um hobby em algo maior.</p>
       <div class="timeline">
-        <div class="timeline-item reveal"><div class="timeline-year">Início</div><div class="timeline-text">Fundação da Gold Crochet.</div></div>
-        <div class="timeline-item reveal"><div class="timeline-year">Expansão</div><div class="timeline-text">Novas técnicas e primeiros projetos personalizados.</div></div>
-        <div class="timeline-item reveal"><div class="timeline-year">Consolidação</div><div class="timeline-text">Entrada em fios premium e acabamentos exclusivos.</div></div>
-        <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Loja online oficial e centenas de peças entregues.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Início</div><div class="timeline-text">Fundação da Gold Crochet, com as primeiras peças feitas artesanalmente em casa.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Expansão</div><div class="timeline-text">Novas técnicas, primeiros projetos personalizados e o reconhecimento de clientes fiéis.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Consolidação</div><div class="timeline-text">Entrada em fios premium e acabamentos exclusivos que definem nossa identidade.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Loja online oficial e centenas de peças entregues em todo o Brasil.</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASA GOLD — PÁGINA COLABORAÇÕES -->
+<section class="page" id="page-colaboracoes">
+  <div style="background:linear-gradient(135deg,var(--gold-pale) 0%,var(--off-white) 100%);padding-top:20px">
+    <div class="about-hero">
+      <div class="about-text">
+        <h1>Colaborações & <span>Artistas</span></h1>
+        <p>Na Gold Crochet, acreditamos que a arte se fortalece quando compartilhada. Nossas colaborações com artistas, designers e marcas parceiras trazem novas perspectivas, técnicas e inspirações para cada peça que criamos.</p>
+        <p>Cada parceria é um encontro de sensibilidades — o olhar do artista se entrelaça ao nosso fio, resultando em criações únicas e cheias de significado.</p>
+        <a href="mailto:rayssacrochet1404@gmail.com" class="btn-primary" style="display:inline-block;margin-top:8px;">Quero colaborar</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-logo-wrap"><img id="aboutLogoImgColab" src="./assets/logo.png" alt="Gold Crochet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">15+</div><div class="stat-label">Artistas Parceiros</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">30+</div><div class="stat-label">Projetos Colaborativos</div></div>
+    <div class="stat-box reveal liquid-glass"><div class="stat-number">∞</div><div class="stat-label">Inspirações Compartilhadas</div></div>
+  </div>
+  <div class="about-story">
+    <div class="about-story-inner">
+      <h2>A Influência dos <span>Artistas</span></h2>
+      <p>Cada artista que cruza nosso caminho deixa uma marca. Seja pela paleta de cores, pelas formas inusitadas ou pela narrativa por trás de cada obra, as colaborações moldam a identidade da Gold Crochet e expandem os limites do que o crochê pode ser.</p>
+      <p>Acreditamos que o feito à mão é, por natureza, uma forma de arte coletiva: passa de mão em mão, de geração em geração, e se reinventa a cada novo encontro criativo.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal"><div class="timeline-year">Primeiras Parcerias</div><div class="timeline-text">Encontros com artistas locais que trouxeram novas técnicas e cores ao nosso atelier.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Edições Limitadas</div><div class="timeline-text">Coleções cápsula criadas em conjunto com designers convidados.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Projetos Sociais</div><div class="timeline-text">Iniciativas que unem arte, comunidade e sustentabilidade em torno do crochê.</div></div>
+        <div class="timeline-item reveal"><div class="timeline-year">Hoje</div><div class="timeline-text">Uma rede crescente de criadores que celebra o crochê como expressão artística.</div></div>
+      </div>
+      <p style="margin-top:24px">Tem uma ideia, marca ou projeto artístico em mente? Ficaremos honradas em conhecer. <a href="mailto:rayssacrochet1404@gmail.com" style="color:var(--gold-main);font-weight:700;">Fale conosco →</a></p>
     </div>
   </div>
 </section>
@@ -1567,6 +1628,7 @@
         <li><a onclick="showPage('produtos')">Peças</a></li>
         <li><a onclick="showPage('novidades')">Novidades</a></li>
         <li><a onclick="showPage('sobre')">Casa Gold</a></li>
+        <li><a onclick="showPage('colaboracoes')">Colaborações</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1608,7 +1670,12 @@ const defaultCollections = [
 
 let products = defaultProducts;
 let collections = defaultCollections;
-let categories = ['amigurumi','bolsas','mantas','vestuario','personalizado'];
+let categories = [
+  'amigurumi','bolsas','mantas','vestuario','personalizado',
+  'roupas-noite','saias-vestidos','jaquetas-casacos','tops','calcas','pequeninos',
+  'charms','brincos','colares','broches','braceletes','aneis',
+  'decoracoes'
+];
 let badges = ['Novo','Destaque','Popular','Exclusivo','Sob Medida'];
 let globalColors = [];
 let siteConfig = {};
@@ -1622,6 +1689,31 @@ let selectedColors = {};
 let searchTimeout = null;
 let favorites = [];
 let searchOverlayTimeout = null;
+
+// Rótulos amigáveis para as categorias
+const categoryLabels = {
+  'amigurumi': 'Amigurumi',
+  'bolsas': 'Bolsas',
+  'mantas': 'Mantas',
+  'vestuario': 'Vestuário',
+  'personalizado': 'Personalizado',
+  'roupas-noite': 'Roupas para Noite',
+  'saias-vestidos': 'Saias e Vestidos',
+  'jaquetas-casacos': 'Jaquetas e Casacos',
+  'tops': 'Tops',
+  'calcas': 'Calças',
+  'pequeninos': 'Pequeninos',
+  'charms': 'Charms',
+  'brincos': 'Brincos',
+  'colares': 'Colares',
+  'broches': 'Broches',
+  'braceletes': 'Braceletes',
+  'aneis': 'Anéis',
+  'decoracoes': 'Decorações'
+};
+function labelForCategory(cat) {
+  return categoryLabels[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+}
 
 /* ==========================================================
    ACESSIBILIDADE — foco, scroll lock, diálogos
@@ -1832,7 +1924,6 @@ function scheduleCloseMega() {
 
 function openMega(id) {
   clearTimeout(megaCloseTimer);
-  // fecha tudo o resto, menos os próprios mega menus
   ["leftMenu","searchOverlay","cartPanel","favPanel","modalOverlay","userModalOverlay","userDropdown"].forEach(layerId => {
     const el = document.getElementById(layerId);
     if (!el || !el.classList.contains('open')) return;
@@ -1853,9 +1944,30 @@ function openMega(id) {
   positionNavDropdowns();
 }
 
-function megaGoTo(page) {
+/**
+ * Navega do mega menu para uma página.
+ * @param {string} page - 'inicio' | 'produtos' | 'colecoes' | 'novidades' | 'sobre' | 'colaboracoes'
+ * @param {string} [category] - filtra a página de produtos por categoria
+ */
+function megaGoTo(page, category) {
   closeMega();
   showPage(page);
+  if (page === 'produtos' && category) {
+    // limpa a busca para não conflitar com o filtro
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    const clearBtn = document.getElementById('searchClear');
+    if (clearBtn) clearBtn.classList.remove('visible');
+    // aplica o filtro depois do showPage renderizar
+    setTimeout(() => setFilter(category), 30);
+  } else if (page === 'produtos') {
+    // "Ver tudo" — volta para todos
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    const clearBtn = document.getElementById('searchClear');
+    if (clearBtn) clearBtn.classList.remove('visible');
+    setTimeout(() => setFilter('todos'), 30);
+  }
 }
 
 function initMegaMenus() {
@@ -2009,6 +2121,15 @@ function setupMenuInteractions() {
     }
   });
 
+  // Fechar o user dropdown ao clicar fora
+  document.addEventListener('click', (e) => {
+    const dd = document.getElementById('userDropdown');
+    if (!dd || !dd.classList.contains('open')) return;
+    if (e.target.closest('#userDropdown')) return;
+    if (e.target.closest('#userAccountBtn')) return;
+    closeUserDropdown();
+  });
+
   const drawer = $("leftMenu");
   if (!drawer) return;
   let startX = 0, startY = 0, touching = false;
@@ -2155,8 +2276,10 @@ function openUserModalFromCart() { closeCart(); setTimeout(() => openUserModal()
 function setupLogos() {
   const navImg = document.getElementById('navLogoImg');
   const aboutImg = document.getElementById('aboutLogoImg');
+  const aboutImgColab = document.getElementById('aboutLogoImgColab');
   if (navImg) navImg.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<span class="nav-logo-text-fallback">Gold Crochet</span>'; });
   if (aboutImg) aboutImg.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; });
+  if (aboutImgColab) aboutImgColab.addEventListener('error', function() { this.style.display = 'none'; this.parentElement.innerHTML = '<div style="font-family:DM Serif Display,serif;font-size:2rem;color:var(--gold-main);">Gold Crochet</div>'; });
 }
 function toRaw(url) {
   if (!url) return '';
@@ -2184,8 +2307,17 @@ function closeSearchOverlay() {
   unlockBody();
 }
 function onSearchOverlay(val) {
+  const clearBtn = document.getElementById('searchOverlayClear');
+  if (clearBtn) clearBtn.classList.toggle('visible', !!val && val.length > 0);
   clearTimeout(searchOverlayTimeout);
   searchOverlayTimeout = setTimeout(() => renderSearchOverlayResults(val), 180);
+}
+function clearSearchOverlayInput() {
+  const input = document.getElementById('searchOverlayInput');
+  if (input) { input.value = ''; input.focus(); }
+  const clearBtn = document.getElementById('searchOverlayClear');
+  if (clearBtn) clearBtn.classList.remove('visible');
+  renderSearchOverlayResults('');
 }
 function renderSearchOverlayResults(val) {
   const results = document.getElementById('searchOverlayResults');
@@ -2313,13 +2445,6 @@ function showPage(id) {
   document.getElementById('mainNav').classList.remove('scrolled');
   navScrolled = false;
   positionNavDropdowns();
-}
-function switchAboutTab(tab) {
-  document.querySelectorAll('.about-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.about-content').forEach(c => c.classList.remove('active'));
-  document.getElementById('about-' + tab).classList.add('active');
-  if (tab === 'sobre') document.querySelectorAll('.about-tab')[0].classList.add('active');
-  else document.querySelectorAll('.about-tab')[1].classList.add('active');
 }
 function initReveal() {
   const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }); }, {threshold:0.08});
@@ -2472,10 +2597,14 @@ function handleCardClick(e) {
 function renderFilters() {
   const container = document.getElementById('filterPills');
   let html = `<button class="filter-pill ${currentFilter === 'todos' ? 'active' : ''}" onclick="setFilter('todos')">Todos</button>`;
-  categories.forEach(cat => { html += `<button class="filter-pill ${currentFilter === cat ? 'active' : ''}" onclick="setFilter('${cat}')">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`; });
+  categories.forEach(cat => { html += `<button class="filter-pill ${currentFilter === cat ? 'active' : ''}" onclick="setFilter('${cat}')">${labelForCategory(cat)}</button>`; });
   container.innerHTML = html;
 }
-function setFilter(cat) { currentFilter = cat; renderFilters(); renderProducts(); }
+function setFilter(cat) {
+  currentFilter = cat;
+  renderFilters();
+  renderProducts();
+}
 function onSearch(val) { clearTimeout(searchTimeout); document.getElementById('searchClear').classList.toggle('visible', !!val); searchTimeout = setTimeout(renderProducts, 280); }
 function clearSearch() { document.getElementById('searchInput').value = ''; document.getElementById('searchClear').classList.remove('visible'); renderProducts(); }
 
