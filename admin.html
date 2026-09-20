@@ -207,6 +207,7 @@
     color:var(--text-dark); background:var(--off-white);
     outline:none; transition:var(--transition-fast);
   }
+  select { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b5b3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
   input:focus, textarea:focus, select:focus { border-color:var(--gold-main); background:var(--white); box-shadow:0 0 0 4px rgba(205,164,52,0.1); }
   textarea { resize:vertical; min-height:90px; line-height:1.5; }
   .char-counter { position:absolute; right:10px; bottom:6px; font-size:0.72rem; color:var(--text-soft); font-family:var(--font-mono); pointer-events:none; }
@@ -254,6 +255,9 @@
   .product-row-info .meta { font-size:0.78rem; color:var(--text-mid); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .product-row-info .meta .tag { padding:2px 8px; border-radius:999px; background:rgba(205,164,52,0.1); color:var(--gold-deep); font-weight:600; font-size:0.72rem; }
   .product-row-info .meta .tag.novo { background:rgba(56,161,105,0.12); color:var(--success); }
+  .product-row-info .meta .tag.section { background:rgba(49,130,206,0.12); color:var(--info); }
+  .product-row-info .meta .tag.gender { background:rgba(214,158,46,0.15); color:var(--warning); }
+  .product-row-info .meta .tag.collection { background:rgba(160,90,200,0.12); color:#8050b8; }
   .product-row-price { font-size:1.05rem; font-weight:800; color:var(--gold-main); width:110px; text-align:right; }
   .product-row-actions { display:flex; gap:6px; flex-shrink:0; }
   .product-row-actions .btn { padding:6px 10px; font-size:0.75rem; border-radius:8px; }
@@ -308,6 +312,13 @@
   .cat-row input { flex:1; padding:8px 12px; font-size:0.9rem; }
   .cat-row .cat-usage { font-size:0.72rem; color:var(--text-soft); padding:2px 8px; background:var(--gold-pale); border-radius:999px; font-weight:600; }
 
+  /* Collection row com múltiplos campos */
+  .collection-row { display:grid; grid-template-columns:auto 1.2fr 1fr auto auto; gap:8px; align-items:center; padding:8px 12px; background:var(--off-white); border-radius:var(--radius-sm); border:1px solid rgba(205,164,52,0.1); }
+  .collection-row input { padding:8px 12px; font-size:0.88rem; }
+  .collection-row .collection-emoji-input { width:52px; text-align:center; font-size:1.05rem; }
+  .collection-row .collection-usage { font-size:0.72rem; color:var(--text-soft); padding:2px 8px; background:var(--gold-pale); border-radius:999px; font-weight:600; white-space:nowrap; }
+  .collection-row .collection-filter-tag { font-family:var(--font-mono); font-size:0.7rem; color:var(--gold-deep); }
+
   .modal-overlay { position:fixed; inset:0; background:rgba(42,34,16,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:500; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.25s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal-box { background:var(--white); border-radius:24px; max-width:760px; width:100%; max-height:92vh; overflow-y:auto; padding:32px; box-shadow:var(--shadow-lg); position:relative; transform:scale(0.95) translateY(10px); transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
@@ -359,6 +370,8 @@
     .sidebar-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:99; opacity:0; pointer-events:none; transition:opacity 0.3s; }
     .sidebar-overlay.open { opacity:1; pointer-events:all; }
     .page-header { flex-direction:column; align-items:stretch; }
+    .collection-row { grid-template-columns:1fr 1fr; }
+    .collection-row > .collection-usage { grid-column:1/-1; }
   }
   @media (max-width:640px) {
     .modal-box { padding:24px 20px; border-radius:20px; }
@@ -427,6 +440,7 @@
       <button class="nav-item" onclick="showTab('produtos')" id="tab-produtos"><span class="icon">🧶</span> Produtos <span class="nav-count" id="navCountProducts">0</span></button>
       <button class="nav-item" onclick="showTab('novidades')" id="tab-novidades"><span class="icon">📰</span> Novidades <span class="nav-count" id="navCountPosts">0</span></button>
       <button class="nav-item" onclick="showTab('categorias')" id="tab-categorias"><span class="icon">📂</span> Categorias & Tags</button>
+      <button class="nav-item" onclick="showTab('colecoes')" id="tab-colecoes"><span class="icon">🗂️</span> Coleções <span class="nav-count" id="navCountCollections">0</span></button>
       <button class="nav-item" onclick="showTab('cores')" id="tab-cores"><span class="icon">🎨</span> Cores Globais</button>
       <button class="nav-item" onclick="showTab('clientes')" id="tab-clientes"><span class="icon">👥</span> Clientes</button>
       <div class="nav-divider"></div>
@@ -455,6 +469,7 @@
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-label">Produtos</div><div class="stat-value" id="statProducts">0</div><div class="stat-sub">no catálogo</div></div>
         <div class="stat-card"><div class="stat-label">Categorias</div><div class="stat-value" id="statCategories">0</div><div class="stat-sub">ativas</div></div>
+        <div class="stat-card"><div class="stat-label">Coleções</div><div class="stat-value" id="statCollections">0</div><div class="stat-sub">criadas</div></div>
         <div class="stat-card"><div class="stat-label">Novidades</div><div class="stat-value" id="statPosts">0</div><div class="stat-sub">posts no blog</div></div>
         <div class="stat-card"><div class="stat-label">Cores Globais</div><div class="stat-value" id="statColors">0</div><div class="stat-sub">disponíveis</div></div>
       </div>
@@ -496,6 +511,14 @@
           <select class="product-sort" id="productCategoryFilter" onchange="filterProducts()">
             <option value="">Todas as categorias</option>
           </select>
+          <select class="product-sort" id="productSectionFilter" onchange="filterProducts()">
+            <option value="">Todas as seções</option>
+            <option value="dia-a-dia">Dia a Dia</option>
+            <option value="pequeninos">Pequeninos</option>
+            <option value="acessorios">Acessórios</option>
+            <option value="bijuterias">Bijuterias</option>
+            <option value="casa">Artigos para Casa</option>
+          </select>
         </div>
         <div class="product-list" id="productList"></div>
       </div>
@@ -528,6 +551,22 @@
         </div>
         <div class="cat-list" id="badgeList"></div>
         <p class="form-hint" style="margin-top:12px;">💡 O badge <strong>Novo</strong> ativa o rótulo vertical dourado no card do produto.</p>
+      </div>
+    </div>
+
+    <!-- NOVA ABA: COLEÇÕES -->
+    <div id="section-colecoes" class="hidden">
+      <div class="page-header">
+        <div><h2>Coleções</h2><p>Crie coleções para agrupar peças no site (ex: Alta-Costura, Dia a Dia)</p></div>
+        <div class="header-actions"><button class="btn btn-primary" onclick="addCollection()">＋ Nova Coleção</button></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><h3>🗂️ Coleções Cadastradas</h3></div>
+        <div class="cat-list" id="collectionList"></div>
+        <div class="gh-info-box" style="margin-top:16px;">
+          <span class="info-icon">💡</span>
+          <div>O campo <strong>Filtro</strong> é o valor que o produto guarda internamente para pertencer à coleção. Os produtos devem ser marcados com a coleção no cadastro da peça.</div>
+        </div>
       </div>
     </div>
 
@@ -669,6 +708,41 @@
       <div class="form-group"><label>Modelo 3D (URL)</label><input type="url" id="p_model3d" placeholder="https://..."></div>
     </div>
 
+    <!-- NOVA SEÇÃO: SEÇÃO DO SITE / GÊNERO / COLEÇÃO -->
+    <div class="section-label" style="margin-top:8px;">🗂️ Seção do Site</div>
+    <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">Define onde o produto aparece no site (menu Peças e filtros das coleções).</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Seção <span class="req">*</span></label>
+        <select id="p_section" onchange="onProductSectionChange()">
+          <option value="">— Selecione —</option>
+          <option value="dia-a-dia">Dia a Dia</option>
+          <option value="pequeninos">Pequeninos</option>
+          <option value="acessorios">Acessórios</option>
+          <option value="bijuterias">Bijuterias</option>
+          <option value="casa">Artigos para Casa</option>
+        </select>
+      </div>
+      <div class="form-group" id="p_gender_group" style="display:none;">
+        <label>Gênero <span class="req">*</span></label>
+        <select id="p_gender">
+          <option value="">— Selecione —</option>
+          <option value="feminino">Para Ela (Feminino)</option>
+          <option value="masculino">Para Ele (Masculino)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Coleção</label>
+        <select id="p_collection">
+          <option value="">— Nenhuma —</option>
+        </select>
+        <p class="form-hint">Opcional. Agrupa a peça em uma coleção específica do site.</p>
+      </div>
+      <div></div>
+    </div>
+
     <div class="section-label" style="margin-top:8px;">🖼️ Imagens da Peça</div>
     <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:12px;">A <strong>primeira</strong> é a capa. Reordene arrastando.</p>
     <div class="drop-zone" id="dropZone">
@@ -771,10 +845,30 @@ const MAX_IMAGE_SIZE_MB = 3;
 const LOG_MAX_ENTRIES = 100;
 
 // ════════════════════════════════════════
+// SEÇÕES DISPONÍVEIS
+// ════════════════════════════════════════
+const SECTION_OPTIONS = [
+  { value: 'dia-a-dia',  label: 'Dia a Dia' },
+  { value: 'pequeninos', label: 'Pequeninos' },
+  { value: 'acessorios', label: 'Acessórios' },
+  { value: 'bijuterias', label: 'Bijuterias' },
+  { value: 'casa',       label: 'Artigos para Casa' }
+];
+function labelForSection(val) {
+  const s = SECTION_OPTIONS.find(x => x.value === val);
+  return s ? s.label : (val || '');
+}
+function labelForGender(val) {
+  if (val === 'feminino') return 'Para Ela';
+  if (val === 'masculino') return 'Para Ele';
+  return '';
+}
+
+// ════════════════════════════════════════
 // DEFAULTS
 // ════════════════════════════════════════
 const DEFAULT_PRODUCTS = [
-  { id:1001, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', desc:'Ursinho feito à mão com todo carinho.', price:65, prod_time:8, material:'Fio Premium', colorSections:[{name:'Cores',colors:[{name:'Dourado',hex:'#cda434'},{name:'Marfim',hex:'#f4ead0'}]}], badge:'Popular', discount:0, image:'', gallery:[] }
+  { id:1001, name:'Amigurumi Ursinho', emoji:'🧸', category:'amigurumi', section:'casa', gender:null, collection:'Dia a Dia', desc:'Ursinho feito à mão com todo carinho.', price:65, prod_time:8, material:'Fio Premium', colorSections:[{name:'Cores',colors:[{name:'Dourado',hex:'#cda434'},{name:'Marfim',hex:'#f4ead0'}]}], badge:'Popular', discount:0, image:'', gallery:[] }
 ];
 const DEFAULT_GLOBAL_COLORS = [
   { name:'Dourado Gold', hex:'#cda434', priceAdd:0 },
@@ -789,6 +883,10 @@ const DEFAULT_CATEGORIES = [
   'charms','brincos','colares','broches','braceletes','aneis','decoracoes'
 ];
 const DEFAULT_BADGES = ['Novo','Destaque','Popular','Exclusivo','Sob Medida','Edição Limitada'];
+const DEFAULT_COLLECTIONS = [
+  { id:'alta-costura', name:'Alta-Costura', filter:'Alta-Costura', emoji:'👑', desc:'Peças exclusivas, com fios premium e acabamento refinado.' },
+  { id:'dia-a-dia', name:'Coleção Maré de Ouro', filter:'Dia a Dia', emoji:'🌊', desc:'Peças versáteis inspiradas no balanço do mar e no brilho do ouro.' }
+];
 const DEFAULT_BLOG_POSTS = [
   { id:1, title:'Nova Coleção Maré de Ouro', date:'Março 2026', emoji:'🌊', tag:'Lançamento', excerpt:'Inspirada no balanço do mar e no brilho do ouro, nossa nova coleção chega com peças únicas.' }
 ];
@@ -800,6 +898,7 @@ let products = [];
 let globalColors = [];
 let categories = [];
 let badges = [];
+let collections = [];
 let blogPosts = [];
 let siteConfig = {};
 let activityLog = [];
@@ -989,6 +1088,7 @@ async function initAdmin() {
   globalColors = loadState('goldcrochet_global_colors', DEFAULT_GLOBAL_COLORS);
   categories = loadState('goldcrochet_categories', DEFAULT_CATEGORIES);
   badges = loadState('goldcrochet_badges', DEFAULT_BADGES);
+  collections = loadState('goldcrochet_collections', DEFAULT_COLLECTIONS);
   blogPosts = loadState('goldcrochet_blogPosts', DEFAULT_BLOG_POSTS);
   siteConfig = loadState('goldcrochet_config', {});
   activityLog = loadState('goldcrochet_logs', []);
@@ -1014,12 +1114,14 @@ async function refreshFromGitHub(silent) {
       if (data.products && data.products.length) products = data.products;
       if (data.categories && data.categories.length) categories = data.categories;
       if (data.badges && data.badges.length) badges = data.badges;
+      if (data.collections && data.collections.length) collections = data.collections;
       if (data.globalColors && data.globalColors.length) globalColors = data.globalColors;
       if (data.blogPosts && data.blogPosts.length) blogPosts = data.blogPosts;
       if (data.config) siteConfig = data.config;
       saveState('goldcrochet_products', products);
       saveState('goldcrochet_categories', categories);
       saveState('goldcrochet_badges', badges);
+      saveState('goldcrochet_collections', collections);
       saveState('goldcrochet_global_colors', globalColors);
       saveState('goldcrochet_blogPosts', blogPosts);
       saveState('goldcrochet_config', siteConfig);
@@ -1037,27 +1139,32 @@ function updateAllSections() {
   renderBlogList();
   renderGlobalColors();
   renderCategoryManager();
+  renderCollectionManager();
   renderConfig();
   renderClients();
   calcular();
   updateCategoryOptions();
   updateBadgeOptions();
+  updateCollectionOptions();
   updateCategoryFilter();
 }
 
 function updateDashboard() {
   document.getElementById('statProducts').textContent = products.length;
   document.getElementById('statCategories').textContent = categories.length;
+  document.getElementById('statCollections').textContent = collections.length;
   document.getElementById('statPosts').textContent = blogPosts.length;
   document.getElementById('statColors').textContent = globalColors.length;
   document.getElementById('navCountProducts').textContent = products.length;
   document.getElementById('navCountPosts').textContent = blogPosts.length;
+  const navColl = document.getElementById('navCountCollections');
+  if (navColl) navColl.textContent = collections.length;
 }
 
 // ════════════════════════════════════════
 // TABS
 // ════════════════════════════════════════
-const TABS = ['dashboard','produtos','novidades','categorias','cores','clientes','config','calc','backup','logs'];
+const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','clientes','config','calc','backup','logs'];
 function showTab(name) {
   TABS.forEach(t => {
     const section = document.getElementById('section-' + t);
@@ -1069,6 +1176,7 @@ function showTab(name) {
   if (name === 'produtos') renderProductList();
   else if (name === 'novidades') renderBlogList();
   else if (name === 'categorias') renderCategoryManager();
+  else if (name === 'colecoes') renderCollectionManager();
   else if (name === 'cores') renderGlobalColors();
   else if (name === 'clientes') renderClients();
   else if (name === 'config') renderConfig();
@@ -1087,9 +1195,11 @@ function renderProductList() {
   const q = (document.getElementById('productSearchInput')?.value || '').toLowerCase().trim();
   const sort = document.getElementById('productSort')?.value || 'newest';
   const cat = document.getElementById('productCategoryFilter')?.value || '';
+  const sec = document.getElementById('productSectionFilter')?.value || '';
   if (q) visible = visible.filter(p =>
     (p.name||'').toLowerCase().includes(q) || (p.desc||'').toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q));
   if (cat) visible = visible.filter(p => p.category === cat);
+  if (sec) visible = visible.filter(p => p.section === sec);
   switch (sort) {
     case 'name-asc': visible.sort((a,b) => (a.name||'').localeCompare(b.name||'')); break;
     case 'name-desc': visible.sort((a,b) => (b.name||'').localeCompare(a.name||'')); break;
@@ -1109,6 +1219,8 @@ function renderProductList() {
     const rawImg = toRawUrl(p.image);
     const badgeTag = p.badge ? `<span class="tag ${p.badge==='Novo'?'novo':''}">${p.badge}</span>` : '';
     const discTag = p.discount > 0 ? `<span class="tag">-${p.discount}%</span>` : '';
+    const sectionTag = p.section ? `<span class="tag section">${labelForSection(p.section)}${p.gender ? ' · ' + labelForGender(p.gender) : ''}</span>` : '';
+    const collTag = p.collection ? `<span class="tag collection">${escapeHtml(p.collection)}</span>` : '';
     return `<div class="product-row">
       <div class="product-row-thumb">${rawImg ? `<img src="${rawImg}" loading="lazy" onerror="this.parentElement.textContent='${p.emoji||'🧶'}'">` : (p.emoji||'🧶')}</div>
       <div class="product-row-info">
@@ -1116,7 +1228,7 @@ function renderProductList() {
         <div class="meta">
           <span>${escapeHtml(p.category||'sem categoria')}</span><span>·</span>
           <span>${totalColors} cor(es)</span>
-          ${badgeTag}${discTag}
+          ${sectionTag}${collTag}${badgeTag}${discTag}
         </div>
       </div>
       <div class="product-row-price">${priceStr}</div>
@@ -1361,6 +1473,86 @@ function updateBadgeOptions() {
 }
 
 // ════════════════════════════════════════
+// COLEÇÕES
+// ════════════════════════════════════════
+function renderCollectionManager() {
+  const list = document.getElementById('collectionList');
+  if (!list) return;
+  if (!collections.length) {
+    list.innerHTML = '';
+    return;
+  }
+  list.innerHTML = collections.map((c, i) => {
+    const usage = products.filter(p => p.collection === c.filter).length;
+    return `<div class="collection-row">
+      <input type="text" class="collection-emoji-input" value="${escapeHtml(c.emoji || '✨')}" maxlength="4"
+             onchange="updateCollectionField(${i}, 'emoji', this.value)" title="Emoji">
+      <input type="text" value="${escapeHtml(c.name || '')}" placeholder="Nome da coleção"
+             onchange="updateCollectionField(${i}, 'name', this.value)" title="Nome">
+      <input type="text" value="${escapeHtml(c.filter || '')}" placeholder="Filtro (tag do produto)"
+             onchange="updateCollectionField(${i}, 'filter', this.value)" title="Filtro (valor que casa com product.collection)">
+      <span class="collection-usage" title="${usage} peça(s) usando este filtro">${usage} peça${usage!==1?'s':''}</span>
+      <button class="btn btn-danger btn-sm" onclick="removeCollection(${i})" title="Remover">✕</button>
+    </div>`;
+  }).join('');
+  updateDashboard();
+}
+function addCollection() {
+  const name = prompt('Nome da nova coleção (ex: Verão Dourado):');
+  if (!name || !name.trim()) return;
+  const filter = prompt('Filtro da coleção (valor que o produto deve usar, ex: Verão Dourado):', name.trim());
+  if (!filter || !filter.trim()) return;
+  const emoji = prompt('Emoji da coleção (opcional):', '✨') || '✨';
+  const newColl = {
+    id: 'coll-' + Date.now(),
+    name: name.trim(),
+    filter: filter.trim(),
+    emoji: emoji.trim(),
+    desc: ''
+  };
+  collections.push(newColl);
+  saveState('goldcrochet_collections', collections);
+  renderCollectionManager();
+  updateCollectionOptions();
+  logActivity(`🗂️ Coleção criada: ${name}`);
+  showToast('✅ Coleção salva!');
+  publishAll();
+}
+function updateCollectionField(i, field, val) {
+  if (!collections[i]) return;
+  collections[i][field] = (val || '').trim();
+  if (field === 'filter' || field === 'name') {
+    saveState('goldcrochet_collections', collections);
+    renderCollectionManager();
+    updateCollectionOptions();
+    publishAll();
+  } else {
+    saveState('goldcrochet_collections', collections);
+    publishAll();
+  }
+}
+function removeCollection(i) {
+  const c = collections[i];
+  if (!c) return;
+  const usage = products.filter(p => p.collection === c.filter).length;
+  if (!confirm(usage > 0 ? `"${c.name}" está em uso por ${usage} peça(s). Remover?` : `Remover "${c.name}"?`)) return;
+  collections.splice(i, 1);
+  saveState('goldcrochet_collections', collections);
+  renderCollectionManager();
+  updateCollectionOptions();
+  logActivity(`🗂️ Coleção removida: ${c.name}`);
+  publishAll();
+}
+function updateCollectionOptions() {
+  const sel = document.getElementById('p_collection');
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— Nenhuma —</option>' +
+    collections.map(c => `<option value="${escapeHtml(c.filter)}">${escapeHtml(c.emoji ? c.emoji + ' ' : '')}${escapeHtml(c.name)}</option>`).join('');
+  sel.value = current;
+}
+
+// ════════════════════════════════════════
 // CORES GLOBAIS
 // ════════════════════════════════════════
 function renderGlobalColors() {
@@ -1493,6 +1685,17 @@ function calcular() {
 // ════════════════════════════════════════
 // MODAL PRODUTO
 // ════════════════════════════════════════
+function onProductSectionChange() {
+  const section = document.getElementById('p_section').value;
+  const genderGroup = document.getElementById('p_gender_group');
+  if (section === 'dia-a-dia') {
+    genderGroup.style.display = '';
+  } else {
+    genderGroup.style.display = 'none';
+    document.getElementById('p_gender').value = '';
+  }
+}
+
 function openNewProduct() {
   editingId = null;
   editingImages = [];
@@ -1503,6 +1706,10 @@ function openNewProduct() {
   });
   document.getElementById('p_discount').value = '0';
   document.getElementById('p_category').value = categories[0] || '';
+  document.getElementById('p_section').value = '';
+  document.getElementById('p_gender').value = '';
+  document.getElementById('p_gender_group').style.display = 'none';
+  document.getElementById('p_collection').value = '';
   document.getElementById('colorSections').innerHTML = '';
   document.getElementById('imgPreviewGrid').innerHTML = '';
   addColorSection();
@@ -1510,6 +1717,7 @@ function openNewProduct() {
   document.getElementById('productModal').classList.add('open');
   updateCategoryOptions();
   updateBadgeOptions();
+  updateCollectionOptions();
   setTimeout(() => document.getElementById('p_name').focus(), 300);
 }
 function openEditProduct(id) {
@@ -1528,6 +1736,18 @@ function openEditProduct(id) {
   document.getElementById('p_model3d').value = p.model3d || '';
   document.getElementById('p_prod_time').value = p.prod_time || '';
   document.getElementById('p_material').value = p.material || '';
+
+  // Novos campos
+  updateCollectionOptions();
+  document.getElementById('p_section').value = p.section || '';
+  document.getElementById('p_gender').value = p.gender || '';
+  document.getElementById('p_collection').value = p.collection || '';
+  onProductSectionChange();
+  // Se section = dia-a-dia, força visibilidade do gender
+  if (p.section === 'dia-a-dia') {
+    document.getElementById('p_gender_group').style.display = '';
+  }
+
   editingImages = [];
   if (p.image) editingImages.push({ src: p.image, isBase64: false });
   if (p.gallery) p.gallery.forEach(g => g && editingImages.push({ src: g, isBase64: false }));
@@ -1555,8 +1775,13 @@ async function saveProduct() {
   if (isProcessing) return;
   const name = document.getElementById('p_name').value.trim();
   const desc = document.getElementById('p_desc').value.trim();
+  const section = document.getElementById('p_section').value;
+  const gender = document.getElementById('p_gender').value;
+
   if (!name) { showToast('❗ Nome é obrigatório.', 'error'); document.getElementById('p_name').focus(); return; }
   if (!desc) { showToast('❗ Descrição é obrigatória.', 'error'); document.getElementById('p_desc').focus(); return; }
+  if (!section) { showToast('❗ Selecione a seção do site.', 'error'); document.getElementById('p_section').focus(); return; }
+  if (section === 'dia-a-dia' && !gender) { showToast('❗ Selecione o gênero (Para Ela/Para Ele).', 'error'); document.getElementById('p_gender').focus(); return; }
 
   const hasLocal = editingImages.some(i => i.isBase64);
   let token = getGHToken();
@@ -1609,10 +1834,14 @@ async function saveProduct() {
     const priceRaw = document.getElementById('p_price').value;
     const price = priceRaw !== '' ? parseFloat(priceRaw) : null;
     const discount = parseInt(document.getElementById('p_discount').value) || 0;
+    const collection = document.getElementById('p_collection').value || '';
 
     const productData = {
       name, emoji: document.getElementById('p_emoji').value.trim() || '🧶',
       desc, category: document.getElementById('p_category').value.trim(),
+      section,                                   // NOVO
+      gender: section === 'dia-a-dia' ? gender : null,  // NOVO
+      collection: collection || null,            // NOVO
       price, badge: document.getElementById('p_badge').value.trim(),
       discount, model3d: document.getElementById('p_model3d').value.trim(),
       prod_time: document.getElementById('p_prod_time').value.trim(),
@@ -1848,9 +2077,9 @@ async function publishAll() {
   showSaving('Publicando no GitHub...', 'data.json', 70);
   try {
     const data = {
-      products, categories, badges, globalColors, blogPosts,
+      products, categories, badges, collections, globalColors, blogPosts,
       config: siteConfig,
-      _meta: { updated: new Date().toISOString(), version: '3.0' }
+      _meta: { updated: new Date().toISOString(), version: '3.1' }
     };
     const jsonString = JSON.stringify(data, null, 2);
     const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
@@ -1891,8 +2120,8 @@ async function testGitHubConnection() {
 // ════════════════════════════════════════
 function exportData() {
   const data = {
-    products, categories, badges, globalColors, blogPosts, config: siteConfig,
-    _meta: { exported: new Date().toISOString(), version: '3.0' }
+    products, categories, badges, collections, globalColors, blogPosts, config: siteConfig,
+    _meta: { exported: new Date().toISOString(), version: '3.1' }
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -1905,7 +2134,7 @@ function exportData() {
   showToast('💾 Backup baixado!');
 }
 async function copyDataToClipboard() {
-  const data = { products, categories, badges, globalColors, blogPosts, config: siteConfig };
+  const data = { products, categories, badges, collections, globalColors, blogPosts, config: siteConfig };
   try {
     await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
     showToast('📋 JSON copiado!');
@@ -1933,12 +2162,14 @@ function importData(data) {
   if (data.products && Array.isArray(data.products)) products = data.products;
   if (data.categories && Array.isArray(data.categories)) categories = data.categories;
   if (data.badges && Array.isArray(data.badges)) badges = data.badges;
+  if (data.collections && Array.isArray(data.collections)) collections = data.collections;
   if (data.globalColors && Array.isArray(data.globalColors)) globalColors = data.globalColors;
   if (data.blogPosts && Array.isArray(data.blogPosts)) blogPosts = data.blogPosts;
   if (data.config) siteConfig = data.config;
   saveState('goldcrochet_products', products);
   saveState('goldcrochet_categories', categories);
   saveState('goldcrochet_badges', badges);
+  saveState('goldcrochet_collections', collections);
   saveState('goldcrochet_global_colors', globalColors);
   saveState('goldcrochet_blogPosts', blogPosts);
   saveState('goldcrochet_config', siteConfig);
@@ -1954,12 +2185,14 @@ function resetToDefaults() {
   products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
   categories = [...DEFAULT_CATEGORIES];
   badges = [...DEFAULT_BADGES];
+  collections = JSON.parse(JSON.stringify(DEFAULT_COLLECTIONS));
   globalColors = JSON.parse(JSON.stringify(DEFAULT_GLOBAL_COLORS));
   blogPosts = JSON.parse(JSON.stringify(DEFAULT_BLOG_POSTS));
   siteConfig = {};
   saveState('goldcrochet_products', products);
   saveState('goldcrochet_categories', categories);
   saveState('goldcrochet_badges', badges);
+  saveState('goldcrochet_collections', collections);
   saveState('goldcrochet_global_colors', globalColors);
   saveState('goldcrochet_blogPosts', blogPosts);
   saveState('goldcrochet_config', siteConfig);
@@ -2036,7 +2269,7 @@ window.addEventListener('beforeunload', e => {
   if (isProcessing) { e.preventDefault(); e.returnValue = ''; }
 });
 
-console.log('%c🧶 Gold Crochet Admin v3.0', 'color:#cda434;font-size:16px;font-weight:bold;');
+console.log('%c🧶 Gold Crochet Admin v3.1', 'color:#cda434;font-size:16px;font-weight:bold;');
 console.log('%cCtrl+S = Salvar · Ctrl+K = Buscar · ESC = Fechar', 'color:#8b7a5a;font-size:12px;');
 </script>
 </body>
