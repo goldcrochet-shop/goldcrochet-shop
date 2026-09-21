@@ -195,47 +195,6 @@
       ]
     },
     {
-      "id": 1022,
-      "name": "Porta-Copos em Crochê (Jogo de 4) ☕",
-      "emoji": "☕",
-      "desc": "Jogo com 4 porta-copos artesanais em crochê, perfeitos para a mesa ou como mimo de presente.",
-      "category": "decoracoes",
-      "price": 38,
-      "badge": "Novo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Terracota",
-              "hex": "#b96b4a"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Terracota",
-          "hex": "#b96b4a"
-        }
-      ]
-    },
-    {
       "id": 1789954142890,
       "name": "Bolsa Dunas",
       "emoji": "🧶",
@@ -507,7 +466,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:52.390Z",
+    "updated": "2026-09-21T03:39:19.418Z",
     "version": "4.0"
   }
 }
