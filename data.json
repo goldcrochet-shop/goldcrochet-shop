@@ -881,6 +881,26 @@
           "hex": "#b96b4a"
         }
       ]
+    },
+    {
+      "id": 1789954142890,
+      "name": "BOLSA DUNAS",
+      "emoji": "🧶",
+      "desc": "A tradução perfeita da luz suave das manhãs de verão brasileiras. A Bolsa Dunas traz um tom amarelo-manteiga suave e iluminado, construída com uma trama espessa que une o corpo à alça em um design orgânico e contínuo.",
+      "category": "bolsas",
+      "section": "acessorios",
+      "gender": null,
+      "collection": "Essenciais",
+      "price": 250,
+      "badge": "Novo",
+      "discount": 0,
+      "model3d": "",
+      "prod_time": "8",
+      "material": "Fio de Malha 100% Algodão Premium",
+      "image": "",
+      "gallery": [],
+      "colorSections": [],
+      "colors": []
     }
   ],
   "categories": [
@@ -1015,7 +1035,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-20T20:30:27.671Z",
+    "updated": "2026-09-21T01:29:02.891Z",
     "version": "4.0"
   }
 }
