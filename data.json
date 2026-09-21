@@ -162,39 +162,6 @@
       "material": ""
     },
     {
-      "id": 1021,
-      "name": "Anel de Crochê Minimalista 💍",
-      "emoji": "💍",
-      "desc": "Anel minimalista em crochê fino, com pequeno detalhe dourado. Delicado e cheio de charme.",
-      "category": "aneis",
-      "price": 18,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        }
-      ]
-    },
-    {
       "id": 1789954142890,
       "name": "Bolsa Dunas",
       "emoji": "🧶",
@@ -466,7 +433,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:39:19.418Z",
+    "updated": "2026-09-21T03:39:24.632Z",
     "version": "4.0"
   }
 }
