@@ -119,39 +119,6 @@
       ]
     },
     {
-      "id": 1018,
-      "name": "Colar Dourado Trançado 📿",
-      "emoji": "📿",
-      "desc": "Colar de crochê com cordão trançado e pingente dourado. Um toque artesanal em qualquer look.",
-      "category": "colares",
-      "price": 55,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        }
-      ]
-    },
-    {
       "id": 1019,
       "name": "Broche Flor de Crochê 🌺",
       "emoji": "🌺",
@@ -577,7 +544,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:28.813Z",
+    "updated": "2026-09-21T03:38:50.037Z",
     "version": "4.0"
   }
 }
