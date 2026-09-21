@@ -119,57 +119,6 @@
       ]
     },
     {
-      "id": 1017,
-      "name": "Brinco Argola Dourada 💛",
-      "emoji": "💛",
-      "desc": "Brinco argola em crochê fino, com fio dourado. Leve, elegante e cheio de personalidade.",
-      "category": "brincos",
-      "price": 35,
-      "badge": "Novo",
-      "discount": 5,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        }
-      ],
-      "model3d": "",
-      "prod_time": "",
-      "material": "",
-      "section": "bijuterias",
-      "gender": null,
-      "collection": null
-    },
-    {
       "id": 1018,
       "name": "Colar Dourado Trançado 📿",
       "emoji": "📿",
@@ -628,7 +577,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:25.976Z",
+    "updated": "2026-09-21T03:38:28.813Z",
     "version": "4.0"
   }
 }
