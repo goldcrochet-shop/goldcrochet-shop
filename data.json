@@ -897,8 +897,10 @@
       "model3d": "",
       "prod_time": "8",
       "material": "Fio de Malha 100% Algodão Premium",
-      "image": "",
-      "gallery": [],
+      "image": "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789954259246_0.png",
+      "gallery": [
+        "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789954263874_1.png"
+      ],
       "colorSections": [],
       "colors": []
     }
@@ -1035,7 +1037,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T01:29:28.660Z",
+    "updated": "2026-09-21T01:31:07.247Z",
     "version": "4.0"
   }
 }
