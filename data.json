@@ -488,43 +488,6 @@
       ]
     },
     {
-      "id": 1015,
-      "name": "Kit Presente Bebê 🎁",
-      "emoji": "🎁",
-      "desc": "Kit com manta, macacão e sapatinho em crochê, embalado em caixa especial. O presente perfeito para recém-nascidos.",
-      "category": "presentes",
-      "price": 320,
-      "badge": "Destaque",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Azul Bebê",
-              "hex": "#b8d4e8"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -1071,7 +1034,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T02:29:57.444Z",
+    "updated": "2026-09-21T03:37:51.937Z",
     "version": "4.0"
   }
 }
