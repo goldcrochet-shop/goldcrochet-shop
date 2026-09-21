@@ -913,7 +913,7 @@
       "section": "dia-a-dia",
       "gender": "feminino",
       "collection": "Essenciais",
-      "price": 0.01,
+      "price": 550,
       "badge": "Destaque",
       "discount": 0,
       "model3d": "",
@@ -1059,7 +1059,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T01:38:08.281Z",
+    "updated": "2026-09-21T01:38:31.864Z",
     "version": "4.0"
   }
 }
