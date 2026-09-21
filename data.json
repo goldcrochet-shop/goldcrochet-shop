@@ -119,43 +119,6 @@
       ]
     },
     {
-      "id": 1016,
-      "name": "Chaveiro Amigurumi Flor 🌼",
-      "emoji": "🌼",
-      "desc": "Chaveiro delicado em formato de flor, feito em crochê. Um mimo perfeito para bolsas, mochilas e presentes.",
-      "category": "charms",
-      "price": 22,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        }
-      ]
-    },
-    {
       "id": 1017,
       "name": "Brinco Argola Dourada 💛",
       "emoji": "💛",
@@ -665,7 +628,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:22.480Z",
+    "updated": "2026-09-21T03:38:25.976Z",
     "version": "4.0"
   }
 }
