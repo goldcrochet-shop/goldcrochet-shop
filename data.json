@@ -119,43 +119,6 @@
       ]
     },
     {
-      "id": 1019,
-      "name": "Broche Flor de Crochê 🌺",
-      "emoji": "🌺",
-      "desc": "Broche em formato de flor, feito à mão em crochê fino. Perfeito para jaquetas, bolsas e blazers.",
-      "category": "broches",
-      "price": 28,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            },
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Vinho",
-              "hex": "#7a2437"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Rosé",
-          "hex": "#f4c9d4"
-        }
-      ]
-    },
-    {
       "id": 1020,
       "name": "Bracelete Trançado ⭕",
       "emoji": "⭕",
@@ -544,7 +507,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:50.037Z",
+    "updated": "2026-09-21T03:38:52.390Z",
     "version": "4.0"
   }
 }
