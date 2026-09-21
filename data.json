@@ -119,54 +119,6 @@
       ]
     },
     {
-      "id": 1004,
-      "name": "Clutch de Festa ✨",
-      "emoji": "👛",
-      "desc": "Clutch delicada em crochê fino, com fecho dourado e alça de corrente. Perfeita para ocasiões especiais.",
-      "category": "bolsas",
-      "price": 175,
-      "badge": "Destaque",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            },
-            {
-              "name": "Vinho",
-              "hex": "#7a2437"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        },
-        {
-          "name": "Vinho",
-          "hex": "#7a2437"
-        }
-      ],
-      "model3d": "",
-      "prod_time": "",
-      "material": ""
-    },
-    {
       "id": 1005,
       "name": "Manta de Crochê Concha 🛋️",
       "emoji": "🛋️",
@@ -1119,7 +1071,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T02:29:52.677Z",
+    "updated": "2026-09-21T02:29:57.444Z",
     "version": "4.0"
   }
 }
