@@ -960,23 +960,21 @@
     },
     {
       "id": 1789956946626,
-      "name": "CAMISA ARPOADOR (Cópia)",
+      "name": "REGATA NORONHA",
       "emoji": "🧶",
-      "desc": "Um clássico contemporâneo que captura a essência do luxo despretensioso carioca. A Camisa Arpoador possui uma trama vazada milimetricamente estruturada, onde a leveza do fio encontra o frescor do design moderno.",
+      "desc": "Um sopro de brisa fresca do nosso litoral traduzido em arte tecida. A Regata Noronha captura a imensidão do horizonte onde o céu encontra o mar, trazendo uma padronagem de listras ritmadas que brinca com um degradê de azuis profundos e celestes, perfeitamente equilibrados com a suavidade da cor de a",
       "category": "tops",
       "section": "dia-a-dia",
-      "gender": "masculino",
+      "gender": "feminino",
       "collection": "Essenciais",
-      "price": 100,
-      "badge": "Novo",
+      "price": 190,
+      "badge": "",
       "discount": 0,
       "model3d": "",
-      "prod_time": "0",
+      "prod_time": "",
       "material": "Fio 100% Algodão Premium",
-      "image": "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789955074956_0.png",
-      "gallery": [
-        "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789955081599_1.png"
-      ],
+      "image": "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789957448381_0.png",
+      "gallery": [],
       "colorSections": [],
       "colors": []
     },
@@ -1126,7 +1124,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T02:22:29.009Z",
+    "updated": "2026-09-21T02:24:12.418Z",
     "version": "4.0"
   }
 }
