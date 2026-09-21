@@ -385,43 +385,6 @@
       ]
     },
     {
-      "id": 1012,
-      "name": "Macacão Bebê Nuvem 🍼",
-      "emoji": "🍼",
-      "desc": "Macacãozinho de bebê em crochê macio, com botões frontais. Fofo, quentinho e cheio de charme.",
-      "category": "bebe",
-      "price": 145,
-      "badge": "Novo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Azul Bebê",
-              "hex": "#b8d4e8"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -968,7 +931,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:37:59.007Z",
+    "updated": "2026-09-21T03:38:01.251Z",
     "version": "4.0"
   }
 }
