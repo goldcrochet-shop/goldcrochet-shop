@@ -304,8 +304,18 @@
         {
           "name": "Preto",
           "hex": "#2c2c2c"
+        },
+        {
+          "name": "Rosé",
+          "hex": "#c98a97"
         }
-      ]
+      ],
+      "section": "dia-a-dia",
+      "gender": "feminino",
+      "collection": "Essenciais",
+      "model3d": "",
+      "prod_time": "",
+      "material": ""
     },
     {
       "id": 1008,
@@ -1059,7 +1069,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T01:38:31.864Z",
+    "updated": "2026-09-21T01:40:58.997Z",
     "version": "4.0"
   }
 }
