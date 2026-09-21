@@ -133,47 +133,6 @@
       "colors": []
     },
     {
-      "id": 1006,
-      "name": "Manta Bebê Nuvem ☁️",
-      "emoji": "☁️",
-      "desc": "Manta suave para bebê, em fio antialérgico e ponto delicado. Acompanha embalagem especial para presente.",
-      "category": "mantas",
-      "price": 195,
-      "badge": "Novo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Azul Bebê",
-              "hex": "#b8d4e8"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Azul Bebê",
-          "hex": "#b8d4e8"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -720,7 +679,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:17.573Z",
+    "updated": "2026-09-21T03:38:20.151Z",
     "version": "4.0"
   }
 }
