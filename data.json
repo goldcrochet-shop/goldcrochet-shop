@@ -174,57 +174,6 @@
       ]
     },
     {
-      "id": 1007,
-      "name": "Colete de Crochê Feminino 🧥",
-      "emoji": "🧥",
-      "desc": "Colete em crochê com caimento elegante, ideal para compor looks sofisticados em qualquer estação.",
-      "category": "vestuario",
-      "price": 195,
-      "badge": "Edição Limitada",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#c98a97"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        },
-        {
-          "name": "Rosé",
-          "hex": "#c98a97"
-        }
-      ],
-      "section": "dia-a-dia",
-      "gender": "feminino",
-      "collection": "Essenciais",
-      "model3d": "",
-      "prod_time": "",
-      "material": ""
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -771,7 +720,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:14.920Z",
+    "updated": "2026-09-21T03:38:17.573Z",
     "version": "4.0"
   }
 }
