@@ -32,52 +32,6 @@
       ]
     },
     {
-      "id": 1001,
-      "name": "Amigurumi Ursinho 🧸",
-      "emoji": "🧸",
-      "desc": "Ursinho de crochê feito totalmente à mão, com acabamento macio e detalhes bordados. Perfeito para presentear ou colecionar.",
-      "category": "amigurumi",
-      "price": 65,
-      "badge": "Popular",
-      "discount": 0,
-      "model3d": "",
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cor do corpo",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marrom",
-              "hex": "#6b4c2a"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Marrom",
-          "hex": "#6b4c2a"
-        }
-      ]
-    },
-    {
       "id": 1002,
       "name": "Amigurumi Coelhinho 🐰",
       "emoji": "🐰",
@@ -390,7 +344,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:39:27.903Z",
+    "updated": "2026-09-21T03:39:31.378Z",
     "version": "4.0"
   }
 }
