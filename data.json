@@ -119,49 +119,6 @@
       ]
     },
     {
-      "id": 1020,
-      "name": "Bracelete Trançado ⭕",
-      "emoji": "⭕",
-      "desc": "Bracelete em crochê trançado, com fecho ajustável. Leve, versátil e feito para durar.",
-      "category": "braceletes",
-      "price": 42,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        }
-      ],
-      "section": "dia-a-dia",
-      "gender": "masculino",
-      "collection": null,
-      "model3d": "",
-      "prod_time": "",
-      "material": ""
-    },
-    {
       "id": 1789954142890,
       "name": "Bolsa Dunas",
       "emoji": "🧶",
@@ -433,7 +390,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:39:24.632Z",
+    "updated": "2026-09-21T03:39:27.903Z",
     "version": "4.0"
   }
 }
