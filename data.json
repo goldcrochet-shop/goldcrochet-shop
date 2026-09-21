@@ -928,7 +928,7 @@
       "discount": 0,
       "model3d": "",
       "prod_time": "24",
-      "material": "",
+      "material": "Fio 100% Algodão Premium",
       "image": "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789954680598_0.png",
       "gallery": [
         "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789954683985_1.png"
@@ -1084,7 +1084,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T01:49:52.721Z",
+    "updated": "2026-09-21T02:15:10.754Z",
     "version": "4.0"
   }
 }
