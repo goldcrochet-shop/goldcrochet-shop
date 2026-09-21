@@ -997,6 +997,26 @@
       "gallery": [],
       "colorSections": [],
       "colors": []
+    },
+    {
+      "id": 1789957539765,
+      "name": "VESTIDO TRANCOSO MIDI",
+      "emoji": "🧶",
+      "desc": "Uma ode à natureza brasileira e ao artesanato de raiz. O Vestido Trancoso Midi traz o equilíbrio perfeito entre a essência rústica e a sofisticação absoluta. A paleta orgânica, que mescla tons terrosos, verde suave e branco puro em listras ritmadas, reflete as cores das falésias e o frescor da flora",
+      "category": "saias-vestidos",
+      "section": "dia-a-dia",
+      "gender": "feminino",
+      "collection": "Essenciais",
+      "price": 450,
+      "badge": "Destaque",
+      "discount": 0,
+      "model3d": "",
+      "prod_time": "",
+      "material": "Fio de Malha 100% Algodão Premium",
+      "image": "https://raw.githubusercontent.com/goldcrochet-shop/goldcrochet-shop/main/images/peca_1789957537128_0.png",
+      "gallery": [],
+      "colorSections": [],
+      "colors": []
     }
   ],
   "categories": [
@@ -1124,7 +1144,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T02:24:21.216Z",
+    "updated": "2026-09-21T02:25:39.767Z",
     "version": "4.0"
   }
 }
