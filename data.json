@@ -422,39 +422,6 @@
       ]
     },
     {
-      "id": 1013,
-      "name": "Vestido Infantil Flor 🌸",
-      "emoji": "🌸",
-      "desc": "Vestidinho de crochê para meninas, com detalhes em flor e laço. Uma graça para ocasiões especiais.",
-      "category": "garotas",
-      "price": 165,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Rosé",
-              "hex": "#f4c9d4"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Rosé",
-          "hex": "#f4c9d4"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -1001,7 +968,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:37:56.154Z",
+    "updated": "2026-09-21T03:37:59.007Z",
     "version": "4.0"
   }
 }
