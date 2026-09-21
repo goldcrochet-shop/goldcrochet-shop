@@ -119,20 +119,6 @@
       ]
     },
     {
-      "id": 1005,
-      "name": "Manta de Crochê Concha 🛋️",
-      "emoji": "🛋️",
-      "desc": "Manta artesanal em ponto concha, macia e aconchegante. Uma peça atemporal para decorar e aquecer com estilo.",
-      "category": "mantas",
-      "price": 280,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [],
-      "colors": []
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -679,7 +665,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:20.151Z",
+    "updated": "2026-09-21T03:38:22.480Z",
     "version": "4.0"
   }
 }
