@@ -455,39 +455,6 @@
       ]
     },
     {
-      "id": 1014,
-      "name": "Blusa Menino Marinheiro ⚓",
-      "emoji": "⚓",
-      "desc": "Blusa de crochê para meninos, com gola marinheira e listras. Clássica e cheia de estilo.",
-      "category": "garotos",
-      "price": 135,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Azul Marinho",
-              "hex": "#2a3a5a"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Azul Marinho",
-          "hex": "#2a3a5a"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -1034,7 +1001,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:37:51.937Z",
+    "updated": "2026-09-21T03:37:56.154Z",
     "version": "4.0"
   }
 }
