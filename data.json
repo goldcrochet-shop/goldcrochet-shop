@@ -32,47 +32,6 @@
       ]
     },
     {
-      "id": 1002,
-      "name": "Amigurumi Coelhinho 🐰",
-      "emoji": "🐰",
-      "desc": "Coelhinho delicado em crochê, com orelhinhas longas e detalhes em rosa. Um mimo fofo para decorar ou presentear.",
-      "category": "amigurumi",
-      "price": 72,
-      "badge": "Novo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cor do corpo",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Rosé",
-              "hex": "#c98a97"
-            },
-            {
-              "name": "Cinza",
-              "hex": "#b8b0a4"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Rosé",
-          "hex": "#c98a97"
-        }
-      ]
-    },
-    {
       "id": 1789954142890,
       "name": "Bolsa Dunas",
       "emoji": "🧶",
@@ -344,7 +303,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:39:31.378Z",
+    "updated": "2026-09-21T03:39:33.810Z",
     "version": "4.0"
   }
 }
