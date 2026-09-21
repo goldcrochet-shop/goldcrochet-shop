@@ -225,47 +225,6 @@
       "material": ""
     },
     {
-      "id": 1008,
-      "name": "Top Cropped Dourado ⭐",
-      "emoji": "👚",
-      "desc": "Top cropped em crochê com detalhes em ponto renda. Leve, fresco e perfeito para o verão.",
-      "category": "tops",
-      "price": 115,
-      "badge": "Novo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -812,7 +771,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:11.996Z",
+    "updated": "2026-09-21T03:38:14.920Z",
     "version": "4.0"
   }
 }
