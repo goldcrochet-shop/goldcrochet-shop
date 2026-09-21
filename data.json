@@ -119,51 +119,6 @@
       ]
     },
     {
-      "id": 1003,
-      "name": "Bolsa Trançada de Crochê 👜",
-      "emoji": "👜",
-      "desc": "Bolsa artesanal em crochê com trama trançada e alça reforçada. Elegante, resistente e feita sob encomenda.",
-      "category": "bolsas",
-      "price": 145,
-      "badge": "Exclusivo",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Dourado",
-              "hex": "#cda434"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            },
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Dourado",
-          "hex": "#cda434"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        },
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        }
-      ]
-    },
-    {
       "id": 1004,
       "name": "Clutch de Festa ✨",
       "emoji": "👛",
@@ -1164,7 +1119,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T02:27:18.399Z",
+    "updated": "2026-09-21T02:29:52.677Z",
     "version": "4.0"
   }
 }
