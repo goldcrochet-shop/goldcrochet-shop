@@ -993,13 +993,6 @@
   ],
   "collections": [
     {
-      "id": "alta-costura",
-      "name": "Alta-Costura",
-      "filter": "Alta-Costura",
-      "emoji": "👑",
-      "desc": "Peças exclusivas, com fios premium e acabamento refinado."
-    },
-    {
       "id": "dia-a-dia",
       "name": "Coleção Maré de Ouro",
       "filter": "Essenciais",
@@ -1091,7 +1084,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T01:44:43.973Z",
+    "updated": "2026-09-21T01:49:52.721Z",
     "version": "4.0"
   }
 }
