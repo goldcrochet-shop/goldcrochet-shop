@@ -307,47 +307,6 @@
       ]
     },
     {
-      "id": 1010,
-      "name": "Cardigan Aconchego 🧣",
-      "emoji": "🧣",
-      "desc": "Cardigan aberto em crochê grosso, com bolsos e mangas amplas. Perfeito para os dias frios.",
-      "category": "jaquetas-casacos",
-      "price": 295,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Marrom",
-              "hex": "#6b4c2a"
-            },
-            {
-              "name": "Verde Oliva",
-              "hex": "#6b7a3a"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Marrom",
-          "hex": "#6b4c2a"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -894,7 +853,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:03.640Z",
+    "updated": "2026-09-21T03:38:09.228Z",
     "version": "4.0"
   }
 }
