@@ -348,43 +348,6 @@
       ]
     },
     {
-      "id": 1011,
-      "name": "Calça Wide Leg Crochê 🩳",
-      "emoji": "🩳",
-      "desc": "Calça wide leg em crochê com cós elástico. Confortável, moderna e cheia de personalidade.",
-      "category": "calcas",
-      "price": 245,
-      "badge": "",
-      "discount": 0,
-      "image": "",
-      "gallery": [],
-      "colorSections": [
-        {
-          "name": "Cores disponíveis",
-          "colors": [
-            {
-              "name": "Marfim",
-              "hex": "#f4ead0"
-            },
-            {
-              "name": "Preto",
-              "hex": "#2c2c2c"
-            }
-          ]
-        }
-      ],
-      "colors": [
-        {
-          "name": "Marfim",
-          "hex": "#f4ead0"
-        },
-        {
-          "name": "Preto",
-          "hex": "#2c2c2c"
-        }
-      ]
-    },
-    {
       "id": 1016,
       "name": "Chaveiro Amigurumi Flor 🌼",
       "emoji": "🌼",
@@ -931,7 +894,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:38:01.251Z",
+    "updated": "2026-09-21T03:38:03.640Z",
     "version": "4.0"
   }
 }
