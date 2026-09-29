@@ -62,9 +62,9 @@
       "section": "dia-a-dia",
       "gender": "feminino",
       "collection": "Essenciais",
-      "price": 550,
+      "price": 450,
       "badge": "Destaque",
-      "discount": 0,
+      "discount": 20,
       "model3d": "",
       "prod_time": "24",
       "material": "Fio 100% Algodão Premium",
@@ -303,7 +303,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-21T03:39:33.810Z",
+    "updated": "2026-09-29T00:52:06.368Z",
     "version": "4.0"
   }
 }
