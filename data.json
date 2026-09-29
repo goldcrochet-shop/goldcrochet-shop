@@ -126,7 +126,7 @@
       "section": "acessorios",
       "gender": null,
       "collection": "Essenciais",
-      "price": 230,
+      "price": 150,
       "badge": "",
       "discount": 0,
       "model3d": "",
@@ -326,7 +326,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-29T01:12:09.246Z",
+    "updated": "2026-09-29T01:12:35.971Z",
     "version": "4.0"
   }
 }
