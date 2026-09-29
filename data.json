@@ -84,7 +84,7 @@
       "section": "dia-a-dia",
       "gender": "masculino",
       "collection": "Essenciais",
-      "price": 100,
+      "price": 75,
       "badge": "Novo",
       "discount": 0,
       "model3d": "",
@@ -326,7 +326,7 @@
     "email": "goldcrochet.suporte@gmail.com"
   },
   "_meta": {
-    "updated": "2026-09-29T01:12:35.971Z",
+    "updated": "2026-09-29T01:12:50.875Z",
     "version": "4.0"
   }
 }
