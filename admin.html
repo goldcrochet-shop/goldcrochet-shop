@@ -544,7 +544,11 @@
     <div style="margin:20px 0;display:flex;align-items:center;gap:10px;color:var(--text-soft);font-size:0.8rem;font-weight:600;">
       <div style="flex:1;height:1px;background:var(--gray-light);"></div>OU<div style="flex:1;height:1px;background:var(--gray-light);"></div>
     </div>
-    <button class="login-btn" style="background:transparent;color:var(--gold-main);border:2px solid var(--gold-main);box-shadow:none;" onclick="loginWithFirebase()">Entrar com Conta Firebase</button>
+    <button class="login-btn" style="background:white;color:var(--text-dark);border:1px solid #ddd;box-shadow:0 2px 8px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;" onclick="loginWithGoogleAdmin()">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+      Entrar com Google (Firebase)
+    </button>
+    <button class="login-btn" style="background:transparent;color:var(--gold-main);border:2px solid var(--gold-main);box-shadow:none;" onclick="loginWithFirebase()">Entrar com E-mail Firebase</button>
     <p class="login-hint">Senha admin padrão: <code>goldcrochet2026</code></p>
   </div>
 </div>
@@ -577,6 +581,7 @@
       <div class="nav-divider"></div>
       <button class="nav-item" onclick="showTab('pedidos')" id="tab-pedidos"><span class="icon">📦</span> Pedidos <span class="nav-count" id="navCountOrders">—</span></button>
       <button class="nav-item" onclick="showTab('clientes')" id="tab-clientes"><span class="icon">👥</span> Clientes <span class="nav-count" id="navCountClients">—</span></button>
+      <button class="nav-item" onclick="showTab('newsletter')" id="tab-newsletter"><span class="icon">✉️</span> Newsletter <span class="nav-count" id="navCountNewsletter">—</span></button>
       <div class="nav-divider"></div>
       <button class="nav-item" onclick="showTab('config')" id="tab-config"><span class="icon">⚙️</span> Configurações</button>
       <button class="nav-item" onclick="showTab('calc')" id="tab-calc"><span class="icon">🧮</span> Calculadora</button>
@@ -589,6 +594,10 @@
         <strong id="adminStatusTitle">Modo Visitante</strong>
         <small id="adminStatusText">Entre com Firebase para acessar Clientes e Pedidos.</small>
         <button class="primary" id="adminStatusBtn" onclick="loginWithFirebase()">🔑 Entrar com Firebase</button>
+      </div>
+      <div class="server-api-status" style="display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:0.75rem;color:#78e08f;margin-bottom:6px;background:rgba(120,224,143,0.1);border-radius:var(--radius-sm);border:1px solid rgba(120,224,143,0.25);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#78e08f;box-shadow:0 0 8px rgba(120,224,143,0.8);"></div>
+        <span>Servidor Integrado (/api/data) ✓</span>
       </div>
       <button class="token-status" onclick="configureToken()">
         <div class="token-dot" id="tokenDot"></div>
@@ -802,6 +811,31 @@
       </div>
     </div>
 
+    <!-- NEWSLETTER -->
+    <div id="section-newsletter" class="hidden">
+      <div class="page-header">
+        <div>
+          <h2>Newsletter (Clube Gold Crochet)</h2>
+          <p>Leads e e-mails de clientes inscritos pelo rodapé para novidades</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost btn-sm" onclick="copyNewsletterEmails()">📋 Copiar E-mails</button>
+          <button class="btn btn-ghost btn-sm" onclick="exportNewsletterCSV()">📥 Exportar CSV</button>
+          <button class="btn btn-ghost btn-sm" onclick="renderNewsletter()">🔄 Recarregar</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="product-filters" style="margin-bottom:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <div class="product-search" style="flex:1;min-width:240px;">
+            <span>🔍</span>
+            <input type="text" id="newsletterSearchInput" placeholder="Buscar por e-mail..." oninput="filterNewsletterList()">
+          </div>
+          <div id="newsletterCountSummary" style="font-size:0.88rem;color:var(--text-soft);font-weight:600;"></div>
+        </div>
+        <div id="newsletterList"></div>
+      </div>
+    </div>
+
     <!-- CONFIG -->
     <div id="section-config" class="hidden">
       <div class="page-header"><div><h2>Configurações do Site</h2><p>Textos e links aplicados automaticamente</p></div></div>
@@ -809,8 +843,9 @@
         <div class="form-group"><label>Título do Hero <span class="req">*</span></label><input type="text" id="config_hero_title" maxlength="120" placeholder="Elegância que se <em>Tece</em><br>à Mão"></div>
         <div class="form-group"><label>Subtítulo do Hero</label><textarea id="config_hero_subtitle" maxlength="300"></textarea></div>
         <div class="form-row">
-          <div class="form-group"><label>Link do Instagram</label><input type="url" id="config_instagram" placeholder="https://instagram.com/goldc.rochet"></div>
+          <div class="form-group"><label>Link do Instagram</label><input type="url" id="config_instagram" placeholder="https://instagram.com/goldcrochetbrasil"></div>
           <div class="form-group"><label>E-mail de contato</label><input type="email" id="config_email"></div>
+          <div class="form-group"><label>WhatsApp de Vendas (DDD + Número)</label><input type="text" id="config_whatsapp" placeholder="5531984566047"></div>
         </div>
         <button class="btn btn-primary" onclick="saveConfig()">💾 Salvar e Publicar</button>
       </div>
@@ -1018,9 +1053,9 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
 'use strict';
@@ -1029,14 +1064,17 @@
 // FIREBASE
 // ════════════════════════════════════════
 const firebaseConfig = {
-  apiKey: "AIzaSyCptS84PWOOnw2iz6ihni6Am023lyvgi3g",
-  authDomain: "gold-crochet.firebaseapp.com",
-  projectId: "gold-crochet",
-  storageBucket: "gold-crochet.firebasestorage.app",
-  messagingSenderId: "133111101270",
-  appId: "1:133111101270:web:a53b559687c10135b848f7",
-  measurementId: "G-GHHVJHSMJH"
+  projectId: "lucky-dolphin-861jg",
+  appId: "1:422090938662:web:2c55e62c1f7ad7a85f49e7",
+  apiKey: "AIzaSyDHHGEuFeQViQutklqIhFoEI5akvAv4Ko8",
+  authDomain: "lucky-dolphin-861jg.firebaseapp.com",
+  firestoreDatabaseId: "ai-studio-goldcrochetshop-0e84b9ac-6dbb-400f-9959-fc455c1c4776",
+  storageBucket: "lucky-dolphin-861jg.firebasestorage.app",
+  messagingSenderId: "422090938662",
+  measurementId: "",
+  oAuthClientId: "422090938662-vtlg1dv2hd0u60hagkpvl9plg8cfpgi5.apps.googleusercontent.com"
 };
+
 let auth = null;
 let db = null;
 try {
@@ -1044,9 +1082,9 @@ try {
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
   if (firebase.firestore) {
-    db = firebase.firestore();
+    db = firebase.app().firestore(firebaseConfig.firestoreDatabaseId);
     db.settings({ ignoreUndefinedProperties: true });
-    console.log('✅ Firebase + Firestore inicializados');
+    console.log('✅ Firebase + Firestore inicializados no Admin com databaseId:', firebaseConfig.firestoreDatabaseId);
   } else {
     console.warn('⚠️ Firestore SDK não carregado');
   }
@@ -1061,11 +1099,33 @@ try {
   };
 }
 
-// ════════════════════════════════════════
-// CONFIG
-// ════════════════════════════════════════
 const ADMIN_PASSWORD = 'goldcrochet2026';
-const ADMIN_EMAILS = ['goldcrochet.suporte@gmail.com'];
+const ADMIN_EMAILS = ['goldcrochet.suporte@gmail.com', 'rossipereira2010@gmail.com'];
+
+async function loginWithGoogleAdmin() {
+  if (!auth) { showToast('⚠️ Firebase offline', 'error'); return; }
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const cred = await auth.signInWithPopup(provider);
+    if (ADMIN_EMAILS.includes(cred.user.email)) {
+      showToast(`✅ Conectado como ${cred.user.displayName || cred.user.email}!`, 'success');
+      logActivity(`✅ Login Google Admin: ${cred.user.email}`);
+      if (document.getElementById('adminApp').classList.contains('show')) {
+        updateAdminStatusBox();
+        startRealtimeListeners();
+        loadFirebaseStats();
+        renderClients();
+        renderOrders();
+      } else {
+        enterAdmin(cred.user.email, cred.user);
+      }
+    } else {
+      showToast(`⚠️ Usuário ${cred.user.email} não possui privilégios de administrador.`, 'warning');
+    }
+  } catch(err) {
+    showToast('❌ Erro login Google: ' + err.message, 'error');
+  }
+}
 const GH_OWNER = 'goldcrochet-shop';
 const GH_REPO = 'goldcrochet-shop';
 const GH_BRANCH = 'main';
@@ -1369,10 +1429,11 @@ function firebaseGateHtml() {
   return `<div class="gh-info-box warning">
     <span class="info-icon">🔒</span>
     <div>
-      <strong>Login com Firebase necessário.</strong><br>
-      Faça login com <strong>${ADMIN_EMAILS[0]}</strong> para visualizar estes dados.
-      <div style="margin-top:10px;">
-        <button class="btn btn-primary btn-sm" onclick="loginWithFirebase()">🔑 Entrar com Firebase</button>
+      <strong>Login de Administrador necessário.</strong><br>
+      Entre com sua conta Google de administrador para visualizar clientes e pedidos em tempo real.
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" onclick="loginWithGoogleAdmin()">🔑 Entrar com Google</button>
+        <button class="btn btn-ghost btn-sm" onclick="loginWithFirebase()">✉️ Entrar com E-mail</button>
       </div>
     </div>
   </div>`;
@@ -1394,21 +1455,23 @@ function updateAdminStatusBox() {
     title.textContent = '⚠️ Conta não autorizada';
     text.textContent = 'Faça login com o e-mail admin.';
     btn.textContent = '🔑 Trocar conta';
-    btn.onclick = () => { auth.signOut().then(loginWithFirebase); };
+    btn.onclick = () => { auth.signOut().then(loginWithGoogleAdmin); };
   } else {
     box.className = 'admin-status guest';
     title.textContent = 'Modo Visitante';
-    text.textContent = 'Entre com Firebase para acessar Clientes e Pedidos.';
-    btn.textContent = '🔑 Entrar com Firebase';
-    btn.onclick = loginWithFirebase;
+    text.textContent = 'Entre com Google/Firebase para acessar Clientes e Pedidos.';
+    btn.textContent = '🔑 Conectar Google (Firebase)';
+    btn.onclick = loginWithGoogleAdmin;
   }
 }
 function updateFirestoreUI() {
   const clients = document.getElementById('navCountClients');
   const orders = document.getElementById('navCountOrders');
+  const news = document.getElementById('navCountNewsletter');
   if (!isFirebaseAdmin()) {
     if (clients) { clients.textContent = '—'; clients.classList.remove('alert'); }
     if (orders) { orders.textContent = '—'; orders.classList.remove('alert'); }
+    fetch('/api/newsletter').then(r=>r.json()).then(d=>{ if (news) news.textContent = d.length || 0; }).catch(()=>{});
     return;
   }
   loadFirebaseStats();
@@ -1416,12 +1479,14 @@ function updateFirestoreUI() {
 async function loadFirebaseStats() {
   if (!db || !isFirebaseAdmin()) return;
   try {
-    const [usersSnap, ordersSnap] = await Promise.all([
+    const [usersSnap, ordersSnap, newsSnap] = await Promise.all([
       db.collection('users').get(),
-      db.collection('orders').get()
+      db.collection('orders').get(),
+      db.collection('newsletter').get().catch(() => ({ size: 0 }))
     ]);
     const totalUsers = usersSnap.size;
     const totalOrders = ordersSnap.size;
+    const totalNews = newsSnap.size !== undefined ? newsSnap.size : 0;
     let pending = 0;
     let revenue = 0;
     let revenue30d = 0;
@@ -1448,7 +1513,9 @@ async function loadFirebaseStats() {
 
     const clientsEl = document.getElementById('navCountClients');
     const ordersEl = document.getElementById('navCountOrders');
+    const newsEl = document.getElementById('navCountNewsletter');
     if (clientsEl) clientsEl.textContent = totalUsers;
+    if (newsEl) newsEl.textContent = totalNews;
     if (ordersEl) {
       ordersEl.textContent = totalOrders;
       ordersEl.classList.toggle('alert', pending > 0);
@@ -1551,13 +1618,16 @@ function updateFirestoreStatsFromCache() {
 // GITHUB DATA
 // ════════════════════════════════════════
 async function refreshFromGitHub(silent) {
-  if (!silent) showToast('🔄 Sincronizando com GitHub...');
+  if (!silent) showToast('🔄 Sincronizando dados com o servidor...');
   try {
-    const resp = await fetch(
-      `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${GH_DATA_PATH}?t=${Date.now()}`,
-      { cache: 'no-store' }
-    );
-    if (resp.ok) {
+    let resp = await fetch('/api/data?t=' + Date.now(), { cache: 'no-store' }).catch(() => null);
+    if (!resp || !resp.ok) {
+      resp = await fetch(
+        `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${GH_DATA_PATH}?t=${Date.now()}`,
+        { cache: 'no-store' }
+      ).catch(() => null);
+    }
+    if (resp && resp.ok) {
       const data = await resp.json();
       if (data.products && data.products.length) products = data.products;
       if (data.categories && data.categories.length) categories = data.categories;
@@ -1573,7 +1643,7 @@ async function refreshFromGitHub(silent) {
       saveState('goldcrochet_global_colors', globalColors);
       saveState('goldcrochet_blogPosts', blogPosts);
       saveState('goldcrochet_config', siteConfig);
-      if (!silent) { logActivity('🔄 Sincronizado do GitHub'); showToast('✅ Dados sincronizados!'); }
+      if (!silent) { logActivity('🔄 Sincronizado do Servidor/GitHub'); showToast('✅ Dados sincronizados!'); }
     }
   } catch(e) {
     if (!silent) showToast('⚠️ Não foi possível sincronizar.', 'warning');
@@ -1613,7 +1683,7 @@ function updateDashboard() {
 // ════════════════════════════════════════
 // TABS
 // ════════════════════════════════════════
-const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','pedidos','clientes','config','calc','backup','logs'];
+const TABS = ['dashboard','produtos','novidades','categorias','colecoes','cores','pedidos','clientes','newsletter','config','calc','backup','logs'];
 function showTab(name) {
   TABS.forEach(t => {
     const section = document.getElementById('section-' + t);
@@ -1629,6 +1699,7 @@ function showTab(name) {
   else if (name === 'cores') renderGlobalColors();
   else if (name === 'pedidos') renderOrders();
   else if (name === 'clientes') renderClients();
+  else if (name === 'newsletter') renderNewsletter();
   else if (name === 'config') renderConfig();
   else if (name === 'calc') calcular();
   else if (name === 'dashboard') { updateDashboard(); renderRecentActivity(); loadFirebaseStats(); }
@@ -2441,15 +2512,17 @@ document.getElementById('genericModal').addEventListener('click', e => {
 function renderConfig() {
   document.getElementById('config_hero_title').value = siteConfig.hero_title || 'Elegância que se <em>Tece</em><br>à Mão';
   document.getElementById('config_hero_subtitle').value = siteConfig.hero_subtitle || 'Peças únicas, personalizadas e com acabamento premium.';
-  document.getElementById('config_instagram').value = siteConfig.instagram || 'https://instagram.com/goldc.rochet';
+  document.getElementById('config_instagram').value = siteConfig.instagram || 'https://instagram.com/goldcrochetbrasil';
   document.getElementById('config_email').value = siteConfig.email || 'goldcrochet.suporte@gmail.com';
+  document.getElementById('config_whatsapp').value = siteConfig.whatsapp || '5531984566047';
 }
 async function saveConfig() {
   siteConfig = {
     hero_title: document.getElementById('config_hero_title').value.trim(),
     hero_subtitle: document.getElementById('config_hero_subtitle').value.trim(),
     instagram: document.getElementById('config_instagram').value.trim(),
-    email: document.getElementById('config_email').value.trim()
+    email: document.getElementById('config_email').value.trim(),
+    whatsapp: (document.getElementById('config_whatsapp').value.trim().replace(/\D/g, '') || '5531984566047')
   };
   saveState('goldcrochet_config', siteConfig);
   logActivity('⚙️ Configurações atualizadas');
@@ -2601,13 +2674,7 @@ async function saveProduct() {
   if (!section) { showToast('❗ Selecione a seção do site.', 'error'); document.getElementById('p_section').focus(); return; }
   if (section === 'dia-a-dia' && !gender) { showToast('❗ Selecione o gênero.', 'error'); document.getElementById('p_gender').focus(); return; }
 
-  const hasLocal = editingImages.some(i => i.isBase64);
   let token = getGHToken();
-  if (hasLocal && !token) {
-    token = prompt('Token GitHub necessário para upload de imagens:');
-    if (!token) return;
-    setGHToken(token);
-  }
   isProcessing = true;
   const saveBtn = document.getElementById('saveProductBtn');
   saveBtn.disabled = true;
@@ -2620,19 +2687,38 @@ async function saveProduct() {
       if (editingImages[i].isBase64) {
         const base64Data = editingImages[i].src.split(',')[1];
         const ext = editingImages[i].ext || 'png';
-        const fileName = `images/peca_${Date.now()}_${i}.${ext}`;
-        showSaving(`Enviando imagem ${i+1}/${totalImgs}...`, fileName, (i/totalImgs)*60);
+        const fileName = `peca_${Date.now()}_${i}.${ext}`;
+        showSaving(`Enviando imagem ${i+1}/${totalImgs}...`, fileName, ((i+1)/totalImgs)*60);
+
+        let uploadedUrl = null;
+        // 1. Try local server upload first
         try {
-          await uploadToGitHub(fileName, base64Data, `Upload imagem ${fileName}`, token);
-          finalUrls.push(`https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${fileName}`);
-        } catch(err) {
-          hideSaving();
-          showToast('❌ Erro no upload: ' + err.message, 'error');
-          saveBtn.disabled = false;
-          saveBtn.textContent = '💾 Salvar Peça';
-          isProcessing = false;
-          return;
+          const apiResp = await fetch('/api/upload-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileName, base64Data })
+          });
+          if (apiResp.ok) {
+            const apiRes = await apiResp.json();
+            uploadedUrl = apiRes.url;
+          }
+        } catch(apiErr) {
+          console.warn('Upload API local falhou:', apiErr);
         }
+
+        // 2. If GitHub token is present, also upload to GitHub
+        if (token) {
+          try {
+            await uploadToGitHub(`images/${fileName}`, base64Data, `Upload imagem ${fileName}`, token);
+            if (!uploadedUrl) {
+              uploadedUrl = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/images/${fileName}`;
+            }
+          } catch(err) {
+            console.warn('Upload GitHub falhou:', err);
+          }
+        }
+
+        finalUrls.push(uploadedUrl || editingImages[i].src);
       } else {
         finalUrls.push(editingImages[i].src);
       }
@@ -2886,29 +2972,47 @@ async function uploadToGitHub(path, contentBase64, commitMessage, token) {
   return await response.json();
 }
 async function publishAll() {
-  let token = getGHToken();
-  if (!token) {
-    token = prompt('Token GitHub necessário para publicar:');
-    if (!token) { showToast('⚠️ Sem token — salvo apenas localmente.', 'warning'); return; }
-    setGHToken(token);
-  }
-  showSaving('Publicando no GitHub...', 'data.json', 70);
+  showSaving('Sincronizando catálogo...', 'Salvando no servidor...', 45);
+  const data = {
+    products, categories, badges, collections, globalColors, blogPosts,
+    config: siteConfig,
+    _meta: { updated: new Date().toISOString(), version: '4.0' }
+  };
+
+  let savedToServer = false;
   try {
-    const data = {
-      products, categories, badges, collections, globalColors, blogPosts,
-      config: siteConfig,
-      _meta: { updated: new Date().toISOString(), version: '4.0' }
-    };
-    const jsonString = JSON.stringify(data, null, 2);
-    const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-    await uploadToGitHub(GH_DATA_PATH, base64Content, `Catálogo atualizado [${new Date().toLocaleString('pt-BR')}]`, token);
-    hideSaving();
-    showToast('✅ Publicado! O site verá as mudanças em segundos.', 'success');
-    logActivity('📤 Publicado no GitHub');
-  } catch(e) {
-    hideSaving();
-    showToast('❌ Erro: ' + e.message, 'error');
-    logActivity(`❌ Erro ao publicar: ${e.message}`);
+    const resp = await fetch('/api/data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (resp.ok) {
+      savedToServer = true;
+      logActivity('💾 Dados salvos no servidor local');
+    }
+  } catch(err) {
+    console.warn('Erro ao salvar em /api/data:', err);
+  }
+
+  let token = getGHToken();
+  if (token) {
+    try {
+      showSaving('Publicando no GitHub...', 'data.json', 80);
+      const jsonString = JSON.stringify(data, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+      await uploadToGitHub(GH_DATA_PATH, base64Content, `Catálogo atualizado [${new Date().toLocaleString('pt-BR')}]`, token);
+      logActivity('📤 Publicado no GitHub');
+    } catch(e) {
+      console.warn('Erro GitHub:', e.message);
+      logActivity(`⚠️ GitHub: ${e.message}`);
+    }
+  }
+
+  hideSaving();
+  if (savedToServer) {
+    showToast('✅ Publicado! As alterações já estão ativas na loja.', 'success');
+  } else {
+    showToast('⚠️ Salvo no navegador localmente.', 'warning');
   }
 }
 async function testGitHubConnection() {
@@ -3065,6 +3169,171 @@ document.addEventListener('keydown', e => {
     setTimeout(() => document.getElementById('productSearchInput')?.focus(), 200);
   }
 });
+
+// ════════════════════════════════════════
+// NEWSLETTER (CLUBE GOLD CROCHET)
+// ════════════════════════════════════════
+let newsletterSubscribers = [];
+
+async function renderNewsletter() {
+  const list = document.getElementById('newsletterList');
+  const countEl = document.getElementById('newsletterCountSummary');
+  if (!list) return;
+
+  list.innerHTML = '<p style="color:var(--text-soft);text-align:center;padding:30px;font-style:italic;">Carregando inscritos...</p>';
+
+  let subs = [];
+  if (db && isFirebaseAdmin()) {
+    try {
+      const snap = await db.collection('newsletter').orderBy('subscribedAt', 'desc').get();
+      subs = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } catch (e) {
+      console.warn('[Firestore] Erro ao buscar newsletter:', e);
+    }
+  }
+
+  if (!subs.length) {
+    try {
+      const res = await fetch('/api/newsletter');
+      if (res.ok) {
+        subs = await res.json();
+      }
+    } catch (e) {
+      console.warn('Erro ao buscar newsletter local:', e);
+    }
+  }
+
+  newsletterSubscribers = subs;
+  const navBadge = document.getElementById('navCountNewsletter');
+  if (navBadge) navBadge.textContent = subs.length;
+  if (countEl) countEl.textContent = `Total: ${subs.length} inscrito(s)`;
+
+  filterNewsletterList();
+}
+
+function filterNewsletterList() {
+  const list = document.getElementById('newsletterList');
+  const countEl = document.getElementById('newsletterCountSummary');
+  if (!list) return;
+
+  const q = (document.getElementById('newsletterSearchInput')?.value || '').toLowerCase().trim();
+  let filtered = newsletterSubscribers;
+  if (q) {
+    filtered = filtered.filter(s => (s.email || '').toLowerCase().includes(q));
+  }
+
+  if (countEl) countEl.textContent = `Total: ${filtered.length} de ${newsletterSubscribers.length} inscrito(s)`;
+
+  if (!filtered.length) {
+    list.innerHTML = `
+      <div class="empty-state" style="padding:40px;text-align:center;">
+        <span class="icon" style="font-size:2.5rem;display:block;margin-bottom:8px;">✉️</span>
+        <h4>Nenhum inscrito encontrado</h4>
+        <p style="color:var(--text-soft);font-size:0.9rem;">${q ? 'Nenhum e-mail corresponde à sua busca.' : 'Quando alguém se cadastrar no rodapé do site, aparecerá aqui.'}</p>
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <thead>
+          <tr style="border-bottom:1.5px solid var(--border);text-align:left;color:var(--text-soft);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+            <th style="padding:12px 16px;">E-mail</th>
+            <th style="padding:12px 16px;">Data de Inscrição</th>
+            <th style="padding:12px 16px;">Origem</th>
+            <th style="padding:12px 16px;">Status</th>
+            <th style="padding:12px 16px;text-align:right;">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filtered.map(s => {
+            const dateStr = s.subscribedAt ? new Date(s.subscribedAt).toLocaleString('pt-BR') : '—';
+            return `
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:14px 16px;font-weight:600;color:var(--text-dark);">
+                  ✉️ ${escapeHtml(s.email)}
+                </td>
+                <td style="padding:14px 16px;color:var(--text-mid);">
+                  📅 ${dateStr}
+                </td>
+                <td style="padding:14px 16px;color:var(--text-soft);font-size:0.82rem;">
+                  <span style="background:rgba(205,164,52,0.12);color:var(--gold-dark);padding:3px 8px;border-radius:4px;font-weight:600;">
+                    ${escapeHtml(s.source || 'rodapé')}
+                  </span>
+                </td>
+                <td style="padding:14px 16px;">
+                  <span style="color:#2e7d32;font-weight:700;font-size:0.82rem;display:inline-flex;align-items:center;gap:4px;">
+                    ● Ativo
+                  </span>
+                </td>
+                <td style="padding:14px 16px;text-align:right;">
+                  <button class="btn btn-ghost btn-sm" onclick="copySingleEmail('${escapeHtml(s.email)}')" title="Copiar e-mail">📋 Copiar</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteNewsletterSubscriber('${s.id || ''}', '${escapeHtml(s.email)}')" title="Remover inscrito">🗑️</button>
+                </td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function copySingleEmail(email) {
+  navigator.clipboard.writeText(email)
+    .then(() => toast('E-mail copiado!'))
+    .catch(() => toast('Erro ao copiar', 'error'));
+}
+
+function copyNewsletterEmails() {
+  if (!newsletterSubscribers.length) {
+    toast('Nenhum e-mail para copiar', 'error');
+    return;
+  }
+  const emails = newsletterSubscribers.map(s => s.email).filter(Boolean).join(', ');
+  navigator.clipboard.writeText(emails)
+    .then(() => toast(`✅ ${newsletterSubscribers.length} e-mails copiados para a área de transferência!`))
+    .catch(() => toast('Erro ao copiar e-mails', 'error'));
+}
+
+function exportNewsletterCSV() {
+  if (!newsletterSubscribers.length) {
+    toast('Nenhum inscrito para exportar', 'error');
+    return;
+  }
+  let csv = 'Email,Data de Inscricao,Origem,Status\n';
+  newsletterSubscribers.forEach(s => {
+    const d = s.subscribedAt ? new Date(s.subscribedAt).toISOString() : '';
+    csv += `"${s.email}","${d}","${s.source || 'rodapé'}","ativo"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `newsletter_gold_crochet_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('📥 Arquivo CSV baixado com sucesso!');
+}
+
+async function deleteNewsletterSubscriber(id, email) {
+  if (!confirm(`Deseja remover o e-mail ${email} da newsletter?`)) return;
+  try {
+    if (id && db && isFirebaseAdmin()) {
+      await db.collection('newsletter').doc(id).delete();
+    }
+    await fetch('/api/newsletter', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    toast('Inscrito removido com sucesso!');
+    renderNewsletter();
+  } catch (e) {
+    toast('Erro ao remover inscrito: ' + e.message, 'error');
+  }
+}
 
 // ════════════════════════════════════════
 // AUTO-INIT

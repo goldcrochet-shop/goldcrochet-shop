@@ -347,10 +347,12 @@
     "hero_title": "Elegância que se <em>Tece</em><br>à Mão",
     "hero_subtitle": "Peças únicas, personalizadas e com acabamento premium. Do amigurumi à peça sob medida, cada ponto carrega cuidado e sofisticação.",
     "instagram": "https://instagram.com/goldcrochetbrasil",
-    "email": "goldcrochet.suporte@gmail.com"
+    "email": "goldcrochet.suporte@gmail.com",
+    "whatsapp": "5531984566047"
   },
   "_meta": {
     "updated": "2026-09-29T01:17:07.476Z",
     "version": "4.0"
-  }
+  },
+  "newsletter": []
 }

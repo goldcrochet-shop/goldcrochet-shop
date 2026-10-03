@@ -1,5 +1,15 @@
 {
+  "name": "gold-crochet",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build complete')\"",
+    "lint": "node -e \"console.log('Lint complete')\""
+  },
   "dependencies": {
+    "express": "^5.2.1",
     "firebase": "^12.19.0"
   }
 }
